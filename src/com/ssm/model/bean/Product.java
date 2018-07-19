@@ -58,4 +58,6 @@ public class Product {
     public void setCover_url(String cover_url) {
         this.cover_url = cover_url;
     }
+
+
 }
