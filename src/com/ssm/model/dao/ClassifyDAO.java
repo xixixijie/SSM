@@ -13,7 +13,7 @@ public interface ClassifyDAO {
 
     public void addClassify(Classify classify);
 
-    public Classify getClassify();
+    public Classify getClassify(int classifyID);
 
     public void ModifyClassify(Classify classify);
 

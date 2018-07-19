@@ -18,6 +18,7 @@ public class UserController {
 	
 	@RequestMapping("selectUser")
 	public ModelAndView selectUser() {
+		System.out.println("inhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		//调用service进行查询
 		List<UserInfo> list = userService.selectUsers();
 		ModelAndView mav = new ModelAndView();
