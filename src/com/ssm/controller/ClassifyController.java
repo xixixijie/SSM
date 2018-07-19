@@ -18,17 +18,20 @@ public class ClassifyController {
     @Autowired
     private ClassifyService classifyService;
 
+    @RequestMapping(value = "")
     public void deleteClassify(int classifyID){
         System.out.println("-----系统展示Controller-----");
 
 
     }
 
+    @RequestMapping(value = "addClassify")
     public void addClassify(Classify classify){
         System.out.println("-----加分类Controller-----");
 
     }
 
+    @RequestMapping(value = "getClassify")
     public Classify getClassify(int classifyID){
         System.out.println("-----获得分类Controller-----");
 
