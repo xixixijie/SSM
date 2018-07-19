@@ -23,6 +23,7 @@ public class GroupBuyingService {
         return groupBuyingDAO.searchActivities(activity);
     }
 
+    //
     /**
      * 根据团购活动号查询参与此团购活动的队伍
      * @param activityID
