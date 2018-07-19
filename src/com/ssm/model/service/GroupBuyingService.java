@@ -14,7 +14,7 @@ public class GroupBuyingService {
 
     @Autowired
     private GroupBuyingDAO groupBuyingDAO;
-
+    //sadas
 
     /**
      * 根据查询条件查询符合条件的所有团购活动
