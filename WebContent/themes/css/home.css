@@ -2037,7 +2037,7 @@ input.check:checked {
 
 /* 底部加入购物车以及立即购买 */
 .aui-product-content {
-	padding-bottom: 50px;
+	padding-bottom: 0px;
 }
 
 .aui-footer-product-fixed {
