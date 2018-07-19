@@ -1,6 +1,8 @@
 package com.ssm.controller;
 
 import com.ssm.model.bean.Classify;
+import com.ssm.model.service.ClassifyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.List;
  */
 @Controller
 public class ClassifyController {
+    @Autowired
+    private ClassifyService classifyService;
 
     public void deleteClassify(int classifyID){
 
