@@ -6,7 +6,7 @@ package com.ssm.model.bean;
 public class Product {
     private int product_id;
     private String product_name;
-    private Category category;
+    private Classify classify;
     private double original_price;
     private double dicount_price;
     private String cover_url;
@@ -27,12 +27,12 @@ public class Product {
         this.product_name = product_name;
     }
 
-    public Category getCategory() {
-        return category;
+    public Classify getClassify() {
+        return classify;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setClassify(Classify classify) {
+        this.classify = classify;
     }
 
     public double getOriginal_price() {
