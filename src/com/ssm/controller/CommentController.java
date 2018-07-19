@@ -12,6 +12,8 @@ import java.util.List;
 public class CommentController {
 
     public List<Comment> getCommentByKey(){
+        System.out.println("-----通过key获得评论Controller-----");
+
         return null;
     }
 

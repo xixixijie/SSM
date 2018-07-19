@@ -17,23 +17,34 @@ public class ClassifyService {
     private ClassifyDAO classifyDAO;
 
     public void deleteClassify(int classifyID){
-        System.out.println("-----删除分类-----");
+        System.out.println("-----删除分类service-----");
         classifyDAO.deleteClassify(classifyID);
     }
 
     public void addClassify(Classify classify){
+        System.out.println("-----添加分类service-----");
+        classifyDAO.addClassify(classify);
 
     }
 
-    public Classify getClassify(){
+    public Classify getClassify(int classifyID){
+        System.out.println("-----获取分类service-----");
+        classifyDAO.getClassify(classifyID);
         return null;
     }
 
     public void ModifyClassify(Classify classify){
+        System.out.println("-----修改分类service-----");
+        classifyDAO.ModifyClassify(classify);
 
     }
 
     public List<Classify> showClassify(){
-        return null;
+        System.out.println("-----展示分类service-----");
+        List<Classify> list=classifyDAO.showClassify();
+        if(list.size()==0||list==null){
+            System.out.println("-----展示分类失败-----");
+        }
+        return list;
     }
 }

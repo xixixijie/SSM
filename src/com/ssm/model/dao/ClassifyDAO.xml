@@ -3,14 +3,33 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.model.dao.ClassifyDAO">
-    <select id="deleteClassify"  parameterType="int" >
-    	DELETE from Classify WHERE ClassifyID=#{classifyID}
+  <update id="deleteClassify" parameterType="int">
+      undate classify
+      set classState=0
+      WHERE classifyID=#{classifyID}
+  </update>
+
+  <insert id="addClassify" parameterType="Classify">
+      <selectKey keyProperty="Classify" resultType="int" order="BEFORE">
+          SELECT nvl(max(classifyID),0)+1 from classify
+      </selectKey>
+      INSERT into classify
+      values(#{classifyID},#{className},#{classDis},#{classState})
+  </insert>
+
+    <select id="getClassify" parameterType="int" resultType="Classify">
+        SELECT * FROM classify WHERE classifyID=#{classifyID}
     </select>
 
-    <select id="addClassify" parameterType="Classify" >
+    <update id="ModifyClassify" parameterType="Classify">
+        UPDATE classify
+        set className=#{className},
+        classDis=#{classDis}
+    </update>
 
+    <select id="showClassify" resultType="Classify">
+        SELECT * from classify
     </select>
-    
 </mapper>
 
 
