@@ -18,7 +18,7 @@ public class ClassifyController {
     @Autowired
     private ClassifyService classifyService;
 
-    @RequestMapping(value = "")
+    @RequestMapping(value = "deleteClassify")
     public void deleteClassify(int classifyID){
         System.out.println("-----系统展示Controller-----");
 
@@ -42,17 +42,17 @@ public class ClassifyController {
     @RequestMapping(value = "ModifyClassify")
     public void ModifyClassify(Classify classify){
         System.out.println("-----修改分类Controller-----");
-
+        ModelAndView mav = new ModelAndView();
+       // mav.addObject("resultList",list);
+        mav.setViewName("select");
+//        return mav;
 
     }
     @RequestMapping(value = "showClassify")
     @ResponseBody
     public List<Classify> showClassify(){
         System.out.println("-----展示分类Controller-----");
-        List<Classify> list=classifyService.showClassify();
-        System.out.println("返回分类大小"+list.size());
-
-        return list;
+        return classifyService.showClassify();
 
     }
 }
