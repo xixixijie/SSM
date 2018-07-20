@@ -42,8 +42,10 @@ public class ClassifyService {
     public List<Classify> showClassify(){
         System.out.println("-----展示分类service-----");
         List<Classify> list=classifyDAO.showClassify();
-        if(list.size()==0||list==null){
+        if(list==null||list.size()==0){
             System.out.println("-----展示分类失败-----");
+        }else{
+            System.out.println("-----分类的大小为"+list.size()+"-----");
         }
         return list;
     }
