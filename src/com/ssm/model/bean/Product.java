@@ -1,5 +1,7 @@
 package com.ssm.model.bean;
 
+import java.util.Date;
+
 /**
  * Created by fouter on 2018/7/17.
  */
@@ -10,6 +12,15 @@ public class Product {
     private double original_price;
     private double dicount_price;
     private String cover_url;
+    private Date on_date;
+
+    public Date getOn_date() {
+        return on_date;
+    }
+
+    public void setOn_date(Date on_date) {
+        this.on_date = on_date;
+    }
 
     public int getProduct_id() {
         return product_id;

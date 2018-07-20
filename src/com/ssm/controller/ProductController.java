@@ -40,10 +40,10 @@ public class ProductController {
         return null;
     }
 
+    @RequestMapping(value = "introProduct")
+    @ResponseBody
     public List<Product> introProduct(){
         System.out.println("-----推荐商品Controller-----");
-
-
-        return null;
+        return productService.introProduct();
     }
 }

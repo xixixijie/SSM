@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface CommentDAO {
     public List<Comment> getCommentByKey(String keyName);
+    public int getCommentNum(int productID);
 }
