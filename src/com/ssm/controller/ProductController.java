@@ -1,7 +1,13 @@
 package com.ssm.controller;
 
 import com.ssm.model.bean.Product;
+import com.ssm.model.dao.ProductDAO;
+import com.ssm.model.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -10,10 +16,16 @@ import java.util.List;
  */
 @Controller
 public class ProductController {
-    public List<Product> getProducts(int classifyID){
-        System.out.println("-----分类查询Controller-----");
 
-        return null;
+    @Autowired
+    private ProductService productService;
+
+    @RequestMapping(value = "/getProductsByClassifyID/{classifyID}")
+    @ResponseBody
+    public List<Product> getProducts(@PathVariable int classifyID){
+        System.out.println("-----分类查询Controller-----");
+//        List<Product> list=productService.getProducts(classifyID);
+        return productService.getProducts(classifyID);
     }
 
     public void storeRecord(Product product){
