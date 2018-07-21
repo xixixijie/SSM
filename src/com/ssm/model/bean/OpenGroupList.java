@@ -7,12 +7,68 @@ import java.util.Date;
  */
 public class OpenGroupList {
     int openID;
-    User leader;
     Date openDate;
     String receiverName;
     String receiverTelephone;
-    String receiverPostCode;
+    int receiverPostCode;
     String receiverAddress;
     int billNeeded;
+
+    public int getOpenID() {
+        return openID;
+    }
+
+    public void setOpenID(int openID) {
+        this.openID = openID;
+    }
+
+
+    public Date getOpenDate() {
+        return openDate;
+    }
+
+    public void setOpenDate(Date openDate) {
+        this.openDate = openDate;
+    }
+
+    public String getReceiverName() {
+        return receiverName;
+    }
+
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
+
+    public String getReceiverTelephone() {
+        return receiverTelephone;
+    }
+
+    public void setReceiverTelephone(String receiverTelephone) {
+        this.receiverTelephone = receiverTelephone;
+    }
+
+    public int getReceiverPostCode() {
+        return receiverPostCode;
+    }
+
+    public void setReceiverPostCode(int receiverPostCode) {
+        this.receiverPostCode = receiverPostCode;
+    }
+
+    public String getReceiverAddress() {
+        return receiverAddress;
+    }
+
+    public void setReceiverAddress(String receiverAddress) {
+        this.receiverAddress = receiverAddress;
+    }
+
+    public int getBillNeeded() {
+        return billNeeded;
+    }
+
+    public void setBillNeeded(int billNeeded) {
+        this.billNeeded = billNeeded;
+    }
 }
 

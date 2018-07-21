@@ -2,9 +2,11 @@ package com.ssm.model.dao;
 
 import com.ssm.model.bean.Activity;
 import com.ssm.model.bean.Group;
+import com.ssm.model.bean.OpenGroupList;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by chenyufeng on 2018/7/19.
@@ -23,11 +25,12 @@ public interface GroupBuyingDAO {
      */
     public ArrayList<Group> searchGroups(int activityID);
 
+
     /**
-     *开团操作
-     * @param group
+     * 开团操作
+     * @param map
      */
-    public void initiateGroupBuying(Group group);
+    public void initiateGroupBuying(Map<String,Object> map);
 
     /**
      * 发布团购活动
