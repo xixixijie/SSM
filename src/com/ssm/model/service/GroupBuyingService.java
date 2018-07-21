@@ -42,7 +42,7 @@ public class GroupBuyingService {
      */
     public void initiateGroupBuying(Group group, OpenGroupList openGroupList){
         //装到map里再让DAO操作
-
+        //test
 //        groupBuyingDAO.initiateGroupBuying(group,openGroupList);
     }
 
