@@ -28,11 +28,16 @@ public class ProductController {
         return productService.getProducts(classifyID);
     }
 
-    public void storeRecord(Product product){
-        System.out.println("-----存记录Controller-----");
+    //展示详细商品
+    @RequestMapping(value = "/showDetailProduct/{productID}")
+    @ResponseBody
+    public void showDetailProduct(@PathVariable int productID){
 
+        productService.storeRecord(productID);
 
     }
+
+
 
     public List<Product> getRecord(){
         System.out.println("-----获得记录Controller-----");
