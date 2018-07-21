@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.model.dao.ProductDAO">
+
+    <select id="getProducts" parameterType="int" resultMap="proResult">
+       select * FROM classify a,product b
+       WHERE a.classifyID=b.classify_ID and b.classify_ID=#{classifyID} AND b.status=1
+    </select>
+    <resultMap id="proResult" type="Product">
+        <result property="product_id" column="product_id"/>
+        <result property="product_name" column="product_name"/>
+        <result property="cover_url" column="cover_url"/>
+        <association property="classify" column="classifyID" javaType="Classify" resultMap="claResult"/>
+    </resultMap>
+
+    <resultMap id="claResult" type="Classify">
+        <result property="classifyID" column="classifyID"/>
+    </resultMap>
+
+    <select id="getAllProduct" parameterType="int" resultMap="proResult1">
+        select * FROM classify a,product b
+        WHERE a.classifyID=b.classify_ID AND b.status=1
+    </select>
+    <resultMap id="proResult1" type="Product">
+        <result property="product_id" column="product_id"/>
+        <result property="product_name" column="product_name"/>
+        <result property="cover_url" column="cover_url"/>
+        <result property="on_date" column="on_date"/>
+        <association property="classify" column="classifyID" javaType="Classify" resultMap="claResult1"/>
+
+    </resultMap>
+
+    <resultMap id="claResult1" type="Classify">
+        <result property="classifyID" column="classifyID"/>
+    </resultMap>
+
+</mapper>
+
+
+
+
+
+
+
+
+
