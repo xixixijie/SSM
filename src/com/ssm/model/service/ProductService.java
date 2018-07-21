@@ -6,6 +6,9 @@ import com.ssm.model.dao.ProductDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -19,73 +22,86 @@ public class ProductService {
     @Autowired
     private CommentDAO commentDAO;
 
-    public List<Product> getProducts(int classifyID){
+    public List<Product> getProducts(int classifyID) {
         System.out.println("-----获取分类商品service-----");
-        List<Product> list=productDAO.getProducts(classifyID);
-        if(list==null||list.size()==0){
-            System.out.println("-----获得商品种类"+classifyID+"失败-----");
-        }else{
-            System.out.println("-----获得商品种类"+classifyID+"大小为"+list.size()+"-----");
+        List<Product> list = productDAO.getProducts(classifyID);
+        if (list == null || list.size() == 0) {
+            System.out.println("-----获得商品种类" + classifyID + "失败-----");
+        } else {
+            System.out.println("-----获得商品种类" + classifyID + "大小为" + list.size() + "-----");
         }
 
         return list;
     }
 
-    public void storeRecord(Product product){
+    public void storeRecord(int productID) {
         System.out.println("-----存记录service-----");
+
+        String fileName = "record";
+        try {
+            //使用这个构造函数时，如果存在kuka.txt文件，
+            //则直接往kuka.txt中追加字符串
+            FileWriter writer = new FileWriter(fileName, true);
+            SimpleDateFormat format = new SimpleDateFormat();
+            String time = format.format(new Date());
+            writer.write("\n\t" + time);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    public List<Product> getRecord(){
+    public List<Product> getRecord() {
         System.out.println("-----获得记录service-----");
 
         return null;
     }
 
 
-    public List<Product> introProduct(){
+    public List<Product> introProduct() {
         System.out.println("-----推荐商品service-----");
         //获取所有商品
-        List<Product> list=productDAO.getAllProduct();
+        List<Product> list = productDAO.getAllProduct();
 
 
         return chooseProduct(list);
     }
 
 
-    private List<Product> chooseProduct(List<Product> list){
+    private List<Product> chooseProduct(List<Product> list) {
         System.out.println("-----推荐商品方法-----");
         //计算每个商品的热度
-        List<Hot> hotList=caculateHot(list);
+        List<Hot> hotList = caculateHot(list);
         //根据热度排序，选最高的9个
         Arrays.sort(hotList.toArray());
-        List<Product> newList=new ArrayList<>();
-        for(int i=0;i<9;i++){
+        List<Product> newList = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
             newList.add(hotList.get(i).getProduct());
         }
         return newList;
     }
 
-    private List<Hot> caculateHot(List<Product> plist){
-        List<Hot> l=new ArrayList<>();
-        for(Product p:plist){
-            Hot h=new Hot(p);
+    private List<Hot> caculateHot(List<Product> plist) {
+        List<Hot> l = new ArrayList<>();
+        for (Product p : plist) {
+            Hot h = new Hot(p);
             l.add(h);
         }
-        for(Hot h:l){
+        for (Hot h : l) {
             h.setScore(getProductHot(h.getProduct()));
         }
         return l;
     }
 
-    private Double getProductHot(Product product){
+    private Double getProductHot(Product product) {
         //计算推出日期到现在的小时数，转换数量级
-        Double hour= Double.valueOf(Math.abs(product.getOn_date().getTime()-new Date().getTime())/1000/60/60);
+        Double hour = Double.valueOf(Math.abs(product.getOn_date().getTime() - new Date().getTime()) / 1000 / 60 / 60);
 
         //获得和该商品有关的评论数
-        int count=commentDAO.getCommentNum(product.getProduct_id());
+        int count = commentDAO.getCommentNum(product.getProduct_id());
 
-        return hour*0.4+count*0.6;
+        return hour * 0.4 + count * 0.6;
     }
 
 
@@ -117,8 +133,8 @@ public class ProductService {
         //降序<
         @Override
         public int compareTo(Object o) {
-            Double x=this.score;
-            Double y=((Hot)o).getScore();
+            Double x = this.score;
+            Double y = ((Hot) o).getScore();
             return (x > y) ? -1 : ((x == y) ? 0 : 1);
         }
     }

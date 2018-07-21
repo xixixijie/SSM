@@ -5,8 +5,79 @@
     <title>Title</title>
     <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
     <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
-    <script type="text/javascript" src="js/test.js" ></script>
+    <!--<script type="text/javascript" src="js/test.js" ></script>-->
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script>
+        /**
+         * Created by xixi on 2018/7/19.
+         */
+        $(function(){
+            //
+            // $("#compu").click(function(){
+            //     alert("haha");
+            //     //获得参赛选手的信息
+            //     $.ajax({
+            //         url:"showClassify.action",
+            //         type:"post",
+            //         dataType:"json",
+            //         success:function(data)
+            //         {
+            //             if(data.length==0)
+            //             {
+            //                 $("#loadmore").html("没有更多数据了");
+            //             }
+            //             else
+            //             {
+            //                 for(var i=0; i<data.length;i++)
+            //                 {
+            //                     alert(data[i].className)
+            //                 }
+            //             }
+            //         }
+            //
+            //     });
+            // });
+            // $.cookie('record','0',{path:'/'});
 
+            function writeCookie(productid) {
+                //alert(productid)
+                if($.cookie('record')!= "null"){
+                    alert("in1");
+
+                    var record=$.cookie('record');
+                    $.cookie('record',record+','+productid)
+                }else {
+                    alert("in2");
+
+                    $.cookie('record',productid);
+                }
+            }
+
+
+
+
+            if($.cookie('record')==null)
+                alert(null);
+            else
+                alert($.cookie('record'));
+
+
+            writeCookie(1);
+
+            writeCookie(2);
+
+            writeCookie(3);
+
+
+
+            if($.cookie('record')==null)
+                alert(null);
+            else
+                alert($.cookie('record'));
+
+            $.cookie('record',null)
+        })
+    </script>
 </head>
 <body>
 <button id="compu">哈哈哈哈哈</button>
