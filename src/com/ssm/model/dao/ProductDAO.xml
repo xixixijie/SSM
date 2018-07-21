@@ -36,6 +36,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="classifyID" column="classifyID"/>
     </resultMap>
 
+    <select id="getProduct" parameterType="int" resultType="Product">
+        select * from product where product_id=#{pid}
+    </select>
+
 </mapper>
 
 

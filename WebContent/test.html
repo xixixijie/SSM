@@ -12,32 +12,9 @@
          * Created by xixi on 2018/7/19.
          */
         $(function(){
-            //
-            // $("#compu").click(function(){
-            //     alert("haha");
-            //     //获得参赛选手的信息
-            //     $.ajax({
-            //         url:"showClassify.action",
-            //         type:"post",
-            //         dataType:"json",
-            //         success:function(data)
-            //         {
-            //             if(data.length==0)
-            //             {
-            //                 $("#loadmore").html("没有更多数据了");
-            //             }
-            //             else
-            //             {
-            //                 for(var i=0; i<data.length;i++)
-            //                 {
-            //                     alert(data[i].className)
-            //                 }
-            //             }
-            //         }
-            //
-            //     });
-            // });
-            // $.cookie('record','0',{path:'/'});
+
+
+
 
             function writeCookie(productid) {
                 //alert(productid)
@@ -53,29 +30,39 @@
                 }
             }
 
+v           var record=$.cookie('record');
+
+
+            // //获得所有分类参数
+             $.ajax({
+                 url:"getRecord/"+record,
+                 type:"post",
+                 dataType:"json",
+                 success:function(data)
+                 {
+
+                         // $("#leftDiv").empty();
+                         for(var i=0; i<data.length;i++)
+                         {
+
+                             var str='	<a href="#" class="aui-scroll-item aui-crt">'+
+                                 '<div class="aui-scroll-item-icon"></div>'+
+                                 '<div class="aui-scroll-item-text">'+data[i].className+'</div>'+
+                                 ' </a>';
+                             $("#leftDiv").append(str);
+                         }
+                         //动态加载js
+                         // var script=document.createElement("script");
+                         // script.type="text/javascript";
+                         // script.src="themes/js/aui.js";
+                         // document.getElementsByTagName('head')[0].appendChild(script);
+
+                 }
+
+             });
 
 
 
-            if($.cookie('record')==null)
-                alert(null);
-            else
-                alert($.cookie('record'));
-
-
-            writeCookie(1);
-
-            writeCookie(2);
-
-            writeCookie(3);
-
-
-
-            if($.cookie('record')==null)
-                alert(null);
-            else
-                alert($.cookie('record'));
-
-            $.cookie('record',null)
         })
     </script>
 </head>

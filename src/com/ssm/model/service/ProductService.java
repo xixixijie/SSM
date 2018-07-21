@@ -52,10 +52,14 @@ public class ProductService {
 
     }
 
-    public List<Product> getRecord() {
+    public List<Product> getRecord(String record) {
         System.out.println("-----获得记录service-----");
-
-        return null;
+        String strs[]=record.split(",");
+        List<Product> plist=new ArrayList<>();
+        for(String pid:strs){
+            plist.add(productDAO.getProduct(Integer.parseInt(pid)));
+        }
+        return plist;
     }
 
 
@@ -73,10 +77,10 @@ public class ProductService {
         System.out.println("-----推荐商品方法-----");
         //计算每个商品的热度
         List<Hot> hotList = caculateHot(list);
-        //根据热度排序，选最高的9个
-        Arrays.sort(hotList.toArray());
+        //根据热度排序，选最高的10个
+        Collections.sort(hotList);
         List<Product> newList = new ArrayList<>();
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 10; i++) {
             newList.add(hotList.get(i).getProduct());
         }
         return newList;
@@ -106,7 +110,7 @@ public class ProductService {
 
 
     class Hot implements Comparable {
-        public Hot(Product product) {
+         Hot(Product product) {
             this.product = product;
         }
 
@@ -121,16 +125,16 @@ public class ProductService {
             this.product = product;
         }
 
-        public Double getScore() {
+         Double getScore() {
             return score;
         }
 
-        public void setScore(Double score) {
+         void setScore(Double score) {
             this.score = score;
         }
 
-        //升序>
-        //降序<
+        //升序 <
+        //降序 >
         @Override
         public int compareTo(Object o) {
             Double x = this.score;

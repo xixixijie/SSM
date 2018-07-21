@@ -38,11 +38,11 @@ public class ProductController {
     }
 
 
-
-    public List<Product> getRecord(){
+    @RequestMapping(value = "/getRecord/{record}")
+    public List<Product> getRecord(@PathVariable String record){
         System.out.println("-----获得记录Controller-----");
 
-        return null;
+        return productService.getRecord(record);
     }
 
     @RequestMapping(value = "introProduct")
