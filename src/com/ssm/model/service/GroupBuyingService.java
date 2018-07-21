@@ -41,7 +41,7 @@ public class GroupBuyingService {
      * @param group
      */
     public void initiateGroupBuying(Group group, OpenGroupList openGroupList){
-        //装到map里再让DAO操作
+        //装到map里再让DAO操作.
 
 //        groupBuyingDAO.initiateGroupBuying(group,openGroupList);
     }
