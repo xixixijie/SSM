@@ -80,17 +80,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
 
     <!--开团附属操作，记录-->
-    <insert id="initiateGroupBuyingSuffix" parameterType="OpenGroupList">
+    <insert id="initiateGroupBuyingSuffix" parameterType="map">
         <selectKey keyProperty="openID" resultType="int">
             select nvl(max(openID),0)+1 from open_group_list
         </selectKey>
-        <selectKey keyProperty="groupID" resultType="int">
-            select nvl(max(groupID),0) from group_buying_list
-        </selectKey>
         insert into open_group_list
-        VALUES  (#{openID},#{leader.userID},#{groupID},#{openDate},#{receiverName},#{receiverTelephone},#{receiverPostCode},#{receiverAddress},#{billNeeded});
+        VALUES  (#{openID},#{OpenGroupList.leader.userID},#{groupID},#{OpenGroupList.openDate},#{OpenGroupList.receiverName},#{OpenGroupList.receiverTelephone},#{OpenGroupList.receiverPostCode},#{OpenGroupList.receiverAddress},#{OpenGroupList.billNeeded});
     </insert>
 
+    <!--获得当前最大的groupID-->
+    <select id="getGroupID" resultType="int">
+            select nvl(max(groupID),0) from group_buying_list
+    </select>
 
     <!--跟团操作-->
     <insert id="joinGroupBuying" parameterType="JoinGroupList">

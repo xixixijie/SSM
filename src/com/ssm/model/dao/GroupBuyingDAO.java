@@ -35,10 +35,17 @@ public interface GroupBuyingDAO {
 
 
     /**
-     * 开团附属操作，生成开团记录
-     * @param openGroupList
+     * 获得最新创建的group的ID
+     * @return
      */
-    public void initiateGroupBuyingSuffix(OpenGroupList openGroupList);
+    public int getGroupID();
+
+
+    /**
+     * 开团附属操作，生成开团记录
+     * @param map
+     */
+    public void initiateGroupBuyingSuffix( Map<String,Object> map);
 
     /**
      * 发布团购活动
@@ -80,5 +87,6 @@ public interface GroupBuyingDAO {
      * @param a_id
      */
     public void deleteActivities(int[] a_id);
+
 }
 

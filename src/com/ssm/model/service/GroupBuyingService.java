@@ -50,7 +50,11 @@ public class GroupBuyingService {
      */
     public void initiateGroupBuying(Group group, OpenGroupList openGroupList) {
         groupBuyingDAO.initiateGroupBuying(group);
-        groupBuyingDAO.initiateGroupBuyingSuffix(openGroupList);
+        int groupID = groupBuyingDAO.getGroupID();
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("OpenGroupList",openGroupList);
+        map.put("groupID",groupID);
+        groupBuyingDAO.initiateGroupBuyingSuffix(map);
     }
 
     /**
