@@ -10,4 +10,6 @@ import java.util.List;
 public interface ProductDAO {
     public List<Product> getProducts(int classifyID);
     public List<Product> getAllProduct();
+
+    public Product getProduct(int pid);
 }
