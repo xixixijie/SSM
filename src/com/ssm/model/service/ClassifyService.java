@@ -22,9 +22,9 @@ public class ClassifyService {
     @Autowired
     private ClassifyDAO classifyDAO;
 
-    public void deleteClassify(int classifyID){
+    public void deleteClassify(String[] ids){
         System.out.println("-----删除分类service-----");
-        classifyDAO.deleteClassify(classifyID);
+        classifyDAO.deleteClassify(ids);
     }
 
     public void addClassify(Classify classify){
@@ -120,5 +120,8 @@ public class ClassifyService {
     }
 
 
-
+    public List<Classify> findClassify(String content) {
+        System.out.println("-----系统展示Service-----");
+        return classifyDAO.findClassify(content);
+    }
 }

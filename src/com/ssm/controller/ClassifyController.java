@@ -20,10 +20,19 @@ public class ClassifyController {
     @Autowired
     private ClassifyService classifyService;
 
+
+    @RequestMapping(value = "findClassify/{content}")
+    @ResponseBody
+    public List<Classify> findClassify(@PathVariable String content){
+        System.out.println("-----系统展示Controller-----");
+        return classifyService.findClassify(content);
+
+    }
+
     @RequestMapping(value = "deleteClassify/{ids}")
     public void deleteClassify(@PathVariable String ids){
         System.out.println("-----系统展示Controller-----");
-
+        classifyService.deleteClassify(ids.split(","));
 
     }
 

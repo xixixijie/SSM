@@ -3,10 +3,21 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.model.dao.ClassifyDAO">
-  <update id="deleteClassify" parameterType="int">
+
+    <select id="findClassify" parameterType="String" resultType="Classify">
+        select * from classify WHERE className like '%'#{content}'%' OR classDis LIKE '%'#{content}'%' AND classState=1
+    </select>
+
+
+  <update id="deleteClassify" >
       undate classify
       set classState=0
-      WHERE classifyID=#{classifyID}
+      WHERE classifyID IN
+      <foreach collection="array" item="cID"
+               index="index" open="(" close=")" separator=",">
+          #{cID}
+      </foreach>
+
   </update>
 
   <insert id="addClassify" parameterType="Classify">
@@ -18,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </insert>
 
     <select id="getClassify" parameterType="int" resultType="Classify">
-        SELECT * FROM classify WHERE classifyID=#{classifyID}
+        SELECT * FROM classify WHERE classifyID=#{classifyID} AND classState=1
     </select>
 
     <update id="ModifyClassify" parameterType="Classify">
@@ -29,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <select id="showClassify" resultType="Classify">
-        SELECT * from classify where classify.classstate=1
+        SELECT * from classify where classstate=1
     </select>
 </mapper>
 
