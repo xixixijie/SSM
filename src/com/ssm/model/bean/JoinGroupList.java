@@ -7,6 +7,7 @@ import java.util.Date;
  */
 public class JoinGroupList {
     int joinID;
+    Group group;
     UserInfo joiner;
     Date joinDate;
     String receiverName;
@@ -14,6 +15,14 @@ public class JoinGroupList {
     int receiverPostCode;
     String receiverAddress;
     int billNeeded;
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 
     public int getJoinID() {
         return joinID;

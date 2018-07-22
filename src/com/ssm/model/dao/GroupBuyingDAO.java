@@ -2,6 +2,7 @@ package com.ssm.model.dao;
 
 import com.ssm.model.bean.Activity;
 import com.ssm.model.bean.Group;
+import com.ssm.model.bean.JoinGroupList;
 import com.ssm.model.bean.OpenGroupList;
 
 import java.util.ArrayList;
@@ -28,9 +29,16 @@ public interface GroupBuyingDAO {
 
     /**
      * 开团操作
-     * @param map
+     * @param group
      */
-    public void initiateGroupBuying(Map<String,Object> map);
+    public void initiateGroupBuying(Group group);
+
+
+    /**
+     * 开团附属操作，生成开团记录
+     * @param openGroupList
+     */
+    public void initiateGroupBuyingSuffix(OpenGroupList openGroupList);
 
     /**
      * 发布团购活动
@@ -39,10 +47,9 @@ public interface GroupBuyingDAO {
 
     /**
      * 跟团
-     * @param groupID
-     * @param userID
+     * @param joinGroupList
      */
-    public void joinGroupBuying(int groupID, int userID);
+    public void joinGroupBuying(JoinGroupList joinGroupList);
 
     /**
      * 检查是否已经达到要求参与的人数

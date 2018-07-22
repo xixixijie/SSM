@@ -7,12 +7,21 @@ import java.util.Date;
  */
 public class OpenGroupList {
     int openID;
+    UserInfo leader;
     Date openDate;
     String receiverName;
     String receiverTelephone;
     int receiverPostCode;
     String receiverAddress;
     int billNeeded;
+
+    public UserInfo getLeader() {
+        return leader;
+    }
+
+    public void setLeader(UserInfo leader) {
+        this.leader = leader;
+    }
 
     public int getOpenID() {
         return openID;

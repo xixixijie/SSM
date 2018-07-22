@@ -54,8 +54,18 @@ public class GroupBuyingController {
         return groupBuyingService.searchGroups(activity_id);
     }
 
-    //开团操作
-    @RequestMapping(value="/initiateGroupBuying/{activityID}/{leaderID}/{groupID}/{openDate}/" +
+    /**
+     * 开团操作
+     * @param activityID
+     * @param leaderID
+     * @param openDate
+     * @param receiverName
+     * @param receiverTEL
+     * @param receiverPostcode
+     * @param receiverAddress
+     * @param billNeeded
+     */
+    @RequestMapping(value="/initiateGroupBuying/{activityID}/{leaderID}/{openDate}/" +
             "{receiverName}/{receiverTEL}/{receiverPostcode}/{receiverAddress}/{billNeeded}", method=RequestMethod.POST)
     @ResponseBody
     public void initiateGroupBuying(@PathVariable int activityID,@PathVariable int leaderID,
@@ -80,12 +90,14 @@ public class GroupBuyingController {
         //人数初始化为1
         group.setCurrent_num(1);
         UserInfo userInfo = new UserInfo();
+        userInfo.setId(leaderID);
         group.setLeader(userInfo);
         //状态初始化为进行中，即为1
         group.setState(1);
 
 
         OpenGroupList openGroupList = new OpenGroupList();
+        openGroupList.setLeader(userInfo);
         openGroupList.setBillNeeded(billNeeded);
         openGroupList.setReceiverAddress(receiverAddress);
         openGroupList.setReceiverName(receiverName);
@@ -168,13 +180,51 @@ public class GroupBuyingController {
         groupBuyingService.releaseActivity(activity);
     }
 
+
     /**
      * 跟团
+     * @param joinerID
      * @param groupID
-     * @param userID
+     * @param joinDate
+     * @param receiverName
+     * @param receiverTEL
+     * @param receiverPostcode
+     * @param receiverAddress
+     * @param billNeeded
      */
-    public void joinGroupBuying(int groupID,int userID){
+    @RequestMapping(value="/joinGroupBuying/{joinerID}/{groupID}/{joinDate}/" +
+            "{receiverName}/{receiverTEL}/{receiverPostcode}/{receiverAddress}/{billNeeded}", method=RequestMethod.POST)
+    @ResponseBody
+    public void joinGroupBuying(@PathVariable int joinerID,@PathVariable int groupID,
+                                @PathVariable String joinDate, @PathVariable String receiverName,
+                                @PathVariable String receiverTEL, @PathVariable int receiverPostcode,
+                                @PathVariable String receiverAddress, @PathVariable int billNeeded){
+        //封装数据
+        JoinGroupList joinGroupList = new JoinGroupList();
+        Group group = new Group();
+        group.setGroupID(groupID);
+        joinGroupList.setGroup(group);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(joinerID);
+        joinGroupList.setJoiner(userInfo);
+        joinGroupList.setReceiverName(receiverName);
+        joinGroupList.setReceiverTelephone(receiverTEL);
+        joinGroupList.setReceiverPostCode(receiverPostcode);
+        joinGroupList.setReceiverAddress(receiverAddress);
+        joinGroupList.setBillNeeded(billNeeded);
 
+        Date groupJoinDate = null;
+        if(joinDate!=null&!"".equals(joinDate)){
+
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                groupJoinDate = sdf.parse(joinDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            joinGroupList.setJoinDate(groupJoinDate);
+        }
+        groupBuyingService.joinGroupBuying(joinGroupList);
     }
 
     /**

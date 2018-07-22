@@ -73,20 +73,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
 
     <!--开团附属操作，记录-->
+    <insert id="initiateGroupBuyingSuffix" parameterType="OpenGroupList">
+        <selectKey keyProperty="openID" resultType="int">
+            select nvl(max(openID),0)+1 from open_group_list
+        </selectKey>
+        <selectKey keyProperty="groupID" resultType="int">
+            select nvl(max(groupID),0) from group_buying_list
+        </selectKey>
+        insert into open_group_list
+        VALUES  (#{openID},#{leader.userID},#{groupID},#{openDate},#{receiverName},#{receiverTelephone},#{receiverPostCode},#{receiverAddress},#{billNeeded});
+    </insert>
 
 
-    <!--&lt;!&ndash;跟团操作&ndash;&gt;-->
-    <!--<insert id="joinGroupBuying" parameterType="map">-->
-        <!--UPDATE group_buying_list set currentNumber=(-->
-        <!--SELECT currentNumber+1 from group_buying_list-->
-        <!--where groupID = #{}-->
-        <!--);-->
-        <!--<selectKey keyProperty="groupID" resultType="int">-->
-            <!--select nvl(max(groupID),0)+1 from group_buying_list-->
-        <!--</selectKey>-->
-        <!--insert into group_buying_list-->
-        <!--VALUES  (#{groupID},#{leader.userID},#{product.productID},#{activity.activityID},1,1)-->
-    <!--</insert>-->
+    <!--跟团操作-->
+    <insert id="joinGroupBuying" parameterType="JoinGroupList">
+        UPDATE group_buying_list set currentNumber=(
+        SELECT currentNumber+1 from group_buying_list
+        where groupID = #{group.groupID}
+        );
+        <selectKey keyProperty="joinID" resultType="int">
+            select nvl(max(joinID),0)+1 from join_group_list
+        </selectKey>
+        insert into join_group_list
+        VALUES  (#{joinID},#{joiner.userID},#{group.groupID},#{joinDate},#{receiverName},#{receiverTelephone},#{receiverPostCode},#{receiverAddress},#{billNeeded});
+    </insert>
 
 
 </mapper>

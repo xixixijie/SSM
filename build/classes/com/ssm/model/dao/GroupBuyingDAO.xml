@@ -63,14 +63,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
 
 
-    <!--&lt;!&ndash;开团操作&ndash;&gt;-->
-    <!--<insert id="initiateGroupBuying" parameterType="Group">-->
-        <!--<selectKey keyProperty="groupID" resultType="int">-->
-            <!--select nvl(max(groupID),0)+1 from group_buying_list-->
-        <!--</selectKey>-->
-        <!--insert into group_buying_list-->
-        <!--VALUES  (#{groupID},#{leader.userID},#{product.productID},#{activity.activityID},1,1)-->
-    <!--</insert>-->
+    <!--开团操作-->
+    <insert id="initiateGroupBuying" parameterType="Group">
+        <selectKey keyProperty="groupID" resultType="int">
+            select nvl(max(groupID),0)+1 from group_buying_list
+        </selectKey>
+        insert into group_buying_list
+        VALUES  (#{groupID},#{leader.userID},#{product.productID},#{activity.activityID},1,1);
+    </insert>
+
+    <!--开团附属操作，记录-->
 
 
     <!--&lt;!&ndash;跟团操作&ndash;&gt;-->

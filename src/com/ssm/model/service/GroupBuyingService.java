@@ -2,12 +2,15 @@ package com.ssm.model.service;
 
 import com.ssm.model.bean.Activity;
 import com.ssm.model.bean.Group;
+import com.ssm.model.bean.JoinGroupList;
 import com.ssm.model.bean.OpenGroupList;
 import com.ssm.model.dao.GroupBuyingDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by chenyufeng on 2018/7/19.
@@ -41,9 +44,8 @@ public class GroupBuyingService {
      * @param group
      */
     public void initiateGroupBuying(Group group, OpenGroupList openGroupList){
-        //装到map里再让DAO操作
-        //test
-//        groupBuyingDAO.initiateGroupBuying(group,openGroupList);
+        groupBuyingDAO.initiateGroupBuying(group);
+        groupBuyingDAO.initiateGroupBuyingSuffix(openGroupList);
     }
 
     /**
@@ -56,11 +58,10 @@ public class GroupBuyingService {
 
     /**
      * 跟团
-     * @param groupID
-     * @param userID
+     * @param joinGroupList
      */
-    public void joinGroupBuying(int groupID,int userID){
-
+    public void joinGroupBuying(JoinGroupList joinGroupList){
+        groupBuyingDAO.joinGroupBuying(joinGroupList);
     }
 
     /**

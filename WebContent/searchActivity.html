@@ -90,7 +90,6 @@
 <div id="open_group">
     <input id="open_group_activityID" type="text"/>
     <input id="open_group_leaderID" type="text"/>
-    <input id="open_group_groupID" type="text"/>
     <input id="open_group_openDate" type="text" value="2018-07-20"/>
     <input id="open_group_receiverName" type="text"/>
     <input id="open_group_receiverTEL" type="text"/>
@@ -123,6 +122,44 @@
         });
     </script>
 </div>
+
+
+<div id="join_group">
+    <input id="join_group_joinerID" type="text"/>
+    <input id="join_group_groupID" type="text"/>
+    <input id="join_group_joinDate" type="text" value="2018-07-20"/>
+    <input id="join_group_receiverName" type="text"/>
+    <input id="join_group_receiverTEL" type="text"/>
+    <input id="join_group_receiverPostcode" type="text"/>
+    <input id="join_group_receiverAddress" type="text"/>
+    <input id="join_group_billNeeded" type="text"/>
+    <button id="join_group_button" type="button"/>
+    <script type="application/javascript">
+        $("#join_group_button").click(function(){
+            var joinerID = $("#join_group_leaderID").val();
+            var groupID = $("#join_group_groupID").val();
+            var joinDate = $("#join_group_openDate").val();
+            var receiverName = $("#join_group_receiverName").val();
+            var receiverTEL = $("#join_group_receiverTEL").val();
+            var receiverPostcode = $("#join_group_receiverPostcode").val();
+            var receiverAddress = $("#join_group_receiverAddress").val();
+            var billNeeded = $("#join_group_billNeeded").val();
+
+            $.ajax({
+                url:"joinGroupBuying/"+joinerID+"/"+groupID+"/"+joinDate+"/"+receiverName+"/"+receiverTEL
+                +"/"+receiverPostcode+"/"+receiverAddress+"/"+billNeeded,
+                type:"post",
+                dataType:"json",
+                success:function(data)
+                {
+                    console.log(data);
+                    alert(data);
+                }
+            });
+        });
+    </script>
+</div>
+
 
 </body>
 </html>
