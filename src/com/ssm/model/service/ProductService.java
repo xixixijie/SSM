@@ -1,15 +1,20 @@
 package com.ssm.model.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.ssm.model.bean.Classify;
 import com.ssm.model.bean.Product;
 import com.ssm.model.dao.CommentDAO;
 import com.ssm.model.dao.ProductDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 
 /**
  * Created by xixi on 2018/7/19.
@@ -21,6 +26,78 @@ public class ProductService {
 
     @Autowired
     private CommentDAO commentDAO;
+
+    //范东升
+    public List<Classify> getAllClassify(){
+        List<Classify> classifyList=new ArrayList<Classify>();
+        classifyList=productDAO.getAllClassify();
+        return classifyList;
+    }
+
+    public void addProduct(Product product){
+        int status=1;
+        Date on_date=new Date();
+        Map<String, Object> map=new HashMap<String, Object>();
+        map.put("product", product);
+        map.put("status", status);
+        map.put("on_date", new java.sql.Date(on_date.getTime()));
+        productDAO.addProduct(map);
+    }
+
+    public int getCurrentProductId(){
+        int product_id=productDAO.getCurrentProductId();
+        return product_id;
+    }
+
+
+    public void addAspect(String aspect_url,int product_id){
+        Map<String, Object> map=new HashMap<String, Object>();
+        map.put("aspect_url", aspect_url);
+        map.put("product_id", product_id);
+        productDAO.addAspect(map);
+    }
+
+    public void addParameter(String parameter_url,int product_id){
+        Map<String, Object> map=new HashMap<String, Object>();
+        map.put("parameter_url", parameter_url);
+        map.put("product_id", product_id);
+        productDAO.addParameter(map);
+    }
+
+    public List<Product> getAllPageProduct(int pageNum){
+        int pageSize=8;
+        List<Product> list=new ArrayList<Product>();
+        Page<Product> page= PageHelper.startPage(pageNum,pageSize);
+        productDAO.findAllProduct();
+        list=page.getResult();
+//        System.out.println("公司打仨噶萨嘎上的噶");
+//        for (Product product:list) {
+//            System.out.println(product.getProduct_id()+"  "+product.getProduct_name());
+//      }
+
+        return list;
+    }
+
+    public int getAllPageCount(){
+        int count=0;
+        int pageSize=8;
+        int pagecount = 0;
+        count=productDAO.getAllPageCount();
+        if(count%pageSize==0){
+            pagecount = count/pageSize;
+        }else{
+            pagecount = count/pageSize+1;
+        }
+        return pagecount;
+    }
+
+    public Product getProductById(int product_id){
+        Product product=new Product();
+        product=productDAO.getProductById(product_id);
+        return product;
+    }
+
+    //范东升end
 
     public List<Product> getProducts(int classifyID) {
         System.out.println("-----获取分类商品service-----");
