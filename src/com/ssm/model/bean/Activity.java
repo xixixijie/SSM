@@ -13,6 +13,15 @@ public class Activity {
     Date groupEndDate;
     int activityStatus;
     double group_buying_price;
+    boolean canDelete;
+
+    public boolean isCanDelete() {
+        return canDelete;
+    }
+
+    public void setCanDelete(boolean canDelete) {
+        this.canDelete = canDelete;
+    }
 
     public double getGroup_buying_price() {
         return group_buying_price;

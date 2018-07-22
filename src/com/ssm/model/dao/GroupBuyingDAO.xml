@@ -42,16 +42,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <!--</foreach>-->
     <!--</update>-->
 
-    <!--&lt;!&ndash;检查是否可以删除，如果已经开始就不能删除，DAO层做的工作就是返回其开始时间&ndash;&gt;-->
-    <!--<select id="checkIfCanDelete" parameterType="Activity" resultType="Date">-->
-        <!--select groupStartDate from group_buying_activity where activityID = #{activityID}-->
-    <!--</select>-->
+    <!--检查是否可以删除，如果已经开始就不能删除，DAO层做的工作就是返回其开始时间-->
+    <select id="checkIfCanDelete" parameterType="Activity" resultType="Date">
+        select groupStartDate from group_buying_activity where activityID = #{activityID}
+    </select>
 
-    <!--&lt;!&ndash;检查是否已经达到要求参与的人数,DAO层做的主要工作就是返回当前人数&ndash;&gt;-->
-    <!--<select id="checkIfEnough" parameterType="java.lang.Integer" resultType="java.lang.Integer">-->
-        <!--SELECT currentNumber from group_buying_list-->
-        <!--where groupID = #{groupID}-->
-    <!--</select>-->
+    <!--检查是否已经达到要求参与的人数,DAO层做的主要工作就是返回当前人数-->
+    <select id="checkIfEnough" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT currentNumber from group_buying_list
+        where groupID = #{groupID}
+    </select>
+
+
+    <!--返回此团队需要的人数,配合checkIfEnough使用-->
+    <select id="getRequiredNumber" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT requiredNumber from group_buying_list l JOIN group_buying_activity a ON l.activityID = a.activityID
+        where groupID = #{groupID}
+    </select>
 
     <!--发布团购活动-->
     <insert id="releaseActivity" parameterType="Activity">

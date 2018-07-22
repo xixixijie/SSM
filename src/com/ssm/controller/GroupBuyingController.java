@@ -39,7 +39,7 @@ public class GroupBuyingController {
         Product product = new Product();
         product.setProduct_name("小米6");
         activity.setProduct(product);
-        return groupBuyingService.searchActivities(activity);
+        return checkIfCanDelete(groupBuyingService.searchActivities(activity));
     }
 
     /**
@@ -225,6 +225,10 @@ public class GroupBuyingController {
             joinGroupList.setJoinDate(groupJoinDate);
         }
         groupBuyingService.joinGroupBuying(joinGroupList);
+        //人数加一之后做个判断，看是否已经达到要求参与的人数
+        if (checkIfEnough(groupID)){
+//            do sth
+        }
     }
 
     /**
@@ -233,7 +237,7 @@ public class GroupBuyingController {
      * @return
      */
     public boolean checkIfEnough(int groupID){
-        return false;
+        return groupBuyingService.checkIfEnough(groupID);
     }
 
     /**
@@ -242,7 +246,7 @@ public class GroupBuyingController {
      * @return
      */
     public ArrayList<Activity> checkIfCanDelete(ArrayList<Activity> activities){
-        return null;
+        return groupBuyingService.checkIfCanDelete(activities);
     }
 
     /**
