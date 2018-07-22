@@ -96,8 +96,33 @@
 
                 });
 
+
+
                 $.ajax({
-                    url: "",
+                    url: "deleteClassify/"+ids.substr(0,ids.length-1),
+                    type: "get",
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function () {
+                       alert("删除成功")
+                    }
+                });
+
+
+
+            });
+
+            $("#findClassify").click(function() {
+
+                var content =$("#content").val();
+
+
+
+
+                $.ajax({
+                    url: "findClassify/"+content,
                     type: "get",
                     dataType: "json",
                     contentType: false,
@@ -108,11 +133,11 @@
                         for (var i = 0; i < data.length; i++) {
 
                             var str = '<tr>' +
-                                '<td><input type="checkbox" value="' + data[i].classifyID + '" style="margin-left: -10px;margin-top: 8px"> 3</td>' +
+                                '<td><input name="chks" type="checkbox" value="' + data[i].classifyID + '" style="margin-left: -10px;margin-top: 8px"> 3</td>' +
                                 '<td>' + data[i].className + '</td>' +
                                 '<td>' + data[i].classDis + '</td>' +
                                 '<td>' +
-                                '<a style="text-decoration:none" href="modifyClassify.html?cid="' + data[i].classifyID + ' class="layui-btn layui-btn-warm layui-btn-sm">修改</a>' +
+                                '<a style="text-decoration:none" href="modifyClassify.html?cid="'+data[i].classifyID+' class="layui-btn layui-btn-warm layui-btn-sm">修改</a>' +
                                 '</td>' +
                                 '</tr>';
                             $("#mytable").append(str);
@@ -132,7 +157,7 @@
 </head>
 <body style="background-color: #f2f2f2" marginheight="0">
 <div class="layui-col-md8" style="margin-top: 30px">
-    <table class="layui-table" lay-skin="line" lay-size="lg">
+    <table  class="layui-table" lay-skin="line" lay-size="lg">
         <colgroup>
             <col width="150">
             <col width="200">
@@ -147,8 +172,8 @@
                 <button id="sortName">排序️</button>
             </th>
             <th>
-                <input type="text" style="width: 150px;height: 25px">
-                <button class="layui-btn layui-btn-normal layui-btn-xs" style="height: 29px;width: 50px">搜索</button>
+                <input id="content" type="text" style="width: 150px;height: 25px">
+                <button id="findClassify" class="layui-btn layui-btn-normal layui-btn-xs" style="height: 29px;width: 50px">搜索</button>
             </th>
             <th>
                 <button id="deleteClassify" class="layui-btn layui-btn-danger layui-btn-sm" style="float: right;margin-right: 25px;">删除

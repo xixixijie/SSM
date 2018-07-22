@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ClassifyDAO {
 
-    public void deleteClassify(int classifyID);
+    public void deleteClassify(String[] classifyID);
 
     public void addClassify(Classify classify);
 
@@ -19,4 +19,6 @@ public interface ClassifyDAO {
 
 
     public List<Classify> showClassify();
+
+    public List<Classify> findClassify(String content);
 }

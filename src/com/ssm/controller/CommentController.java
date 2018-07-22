@@ -2,6 +2,8 @@ package com.ssm.controller;
 
 import com.ssm.model.bean.Comment;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -10,6 +12,16 @@ import java.util.List;
  */
 @Controller
 public class CommentController {
+
+
+    @RequestMapping(value = "addComment")
+    public void addComment(Comment comment){
+
+    }
+
+
+
+
 
 
     public List<Comment> getCommentByKey(){
