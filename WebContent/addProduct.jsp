@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +18,7 @@
 </head>
 <body>
 
-<form class="layui-form" action="">
+<form class="layui-form" action="/addProduct.action" method="post" enctype="multipart/form-data" >
 
 
 
@@ -27,19 +28,17 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">商品名</label>
                 <div class="layui-input-block">
-                    <input type="text" name="product_name" required  lay-verify="required" placeholder="25个字以内" autocomplete="off" class="layui-input">
+                    <input type="text" name="product_name"  placeholder="25个字以内" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
             <div class="layui-form-item">
                 <label class="layui-form-label">商品分类</label>
                 <div class="layui-input-block">
-                    <select name="" lay-verify="required">
-                        <option value="0">小米家居</option>
-                        <option value="1">小米手机</option>
-                        <option value="2">红米手机</option>
-                        <option value="3">小米电视</option>
-                        <option value="4">小米笔记本</option>
+                    <select name="classify.classifyID" >
+                        <c:forEach items="${classifyList}" var="cla">
+                            <option value="${cla.classifyID}">${cla.className}</option>
+                        </c:forEach>
                     </select>
                 </div>
             </div>
@@ -47,14 +46,14 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">原价</label>
                 <div class="layui-input-block">
-                    <input type="number" name="original_price" required  lay-verify="required" placeholder="不超过50000元" autocomplete="off" class="layui-input">
+                    <input type="number" name="original_price"  placeholder="不超过50000元" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
             <div class="layui-form-item">
                 <label class="layui-form-label">折扣价</label>
                 <div class="layui-input-block">
-                    <input type="number" name="discount_price" required  lay-verify="required" placeholder="不超过50000元" autocomplete="off" class="layui-input">
+                    <input type="number" name="discount_price" placeholder="不超过50000元" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
@@ -64,31 +63,35 @@
                     <textarea name="product_info" placeholder="请输入200字以内的商品概述" class="layui-textarea"></textarea>
                 </div>
             </div>
-
             <div class="layui-form-item layui-upload-form">
                 <label class="layui-form-label">商品封面</label>
                 <div class="layui-input-block">
-                    <input type="file"  name="cover_url" required  lay-verify="required" style="margin-top: 5px">
+                    <input type="file"  name="cover"    style="margin-top: 5px">
                 </div>
             </div>
+
+
+
+
             <br>
             <div class="layui-form-item layui-upload-form">
                 <label class="layui-form-label">商品外观图</label>
                 <div class="layui-input-block">
-                    <input type="file" multiple="multiple" name="aspect_url" required  lay-verify="required" style="margin-top: 5px">
+                    <input type="file" multiple="multiple" name="aspectPics"    style="margin-top: 5px">
                 </div>
             </div>
             <br>
             <div class="layui-form-item layui-upload-form">
                 <label class="layui-form-label">商品参数图</label>
                 <div class="layui-input-block">
-                    <input type="file" multiple="multiple" name="parameter_url" required  lay-verify="required" style="margin-top: 5px">
+                    <input type="file" multiple="multiple" name="parameterPics"    style="margin-top: 5px">
                 </div>
             </div>
 
+
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn " lay-submit lay-filter="formDemo">立即提交</button>
+                    <button type="submit" class="layui-btn "  >立即提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
