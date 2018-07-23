@@ -16,4 +16,8 @@ public class UserService {
 	public List<UserInfo> selectUsers(){
 		return userInfoDAO.selectUsers();
 	}
+
+	public void addUser(UserInfo user){
+		userInfoDAO.addUser(user);
+	}
 }

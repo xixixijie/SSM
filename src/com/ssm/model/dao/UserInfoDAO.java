@@ -6,4 +6,5 @@ import com.ssm.model.bean.UserInfo;
 
 public interface UserInfoDAO {
 	public List<UserInfo> selectUsers();
+	public void addUser(UserInfo user);
 }
