@@ -15,11 +15,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	 </typeAliases>
 
 	<!-- 配置分页插件 -->
-	<plugins>
-		<plugin interceptor="com.github.pagehelper.PageHelper">
-			<property name="dialect" value="oracle"/>
-		</plugin>
-	</plugins>
+	<!--<plugins>-->
+		<!--<plugin interceptor="com.github.pagehelper.PageHelper">-->
+			<!--<property name="dialect" value="oracle"/>-->
+		<!--</plugin>-->
+	<!--</plugins>-->
  	
 </configuration>  
 
