@@ -40,12 +40,16 @@ public class ClassifyService {
     }
 
     public void ModifyClassify(Classify classify){
+//        System.out.println(classify.getClassifyID());
+//        System.out.println(classify.getClassName());
+//        System.out.println(classify.getClassDis());
+//        System.out.println(classify.getClassState());
         System.out.println("-----修改分类service-----");
         classifyDAO.ModifyClassify(classify);
 
     }
 
-    public List<Classify> showClassify(int type){
+    public List<Classify> showClassify(){
         System.out.println("-----展示分类service-----");
         List<Classify> list=classifyDAO.showClassify();
         if(list==null||list.size()==0){
@@ -53,20 +57,7 @@ public class ClassifyService {
         }else{
             System.out.println("-----分类的大小为"+list.size()+"-----");
         }
-       if(type==1){
-            Collections.sort(list, new Comparator<Object>() {
-                @Override
-                public int compare(Object o1, Object o2) {
-                    int x=((Classify)o1).getClassifyID();
-                    int y=((Classify)o2).getClassifyID();
-                    return (x > y) ? -1 : ((x == y) ? 0 : 1);
-                }
-
-
-            });
-       }else if(type==2){
-            return sortByName(list);
-       }
+//
        return list;
 
     }
@@ -74,18 +65,24 @@ public class ClassifyService {
 
     //字典序排序
     private List<Classify> sortByName(List<Classify> list) {
+        //System.out.println("字典序排序"+list.size());
         HashMap<String,Classify> map=new HashMap<>();
 
         for(Classify classify:list){
-            map.put(getPinYin(classify.getClassName()),classify);
+            //System.out.println(classify.getClassName());
+            //System.out.println(getPingYin(classify.getClassName()));
+            map.put(getPingYin(classify.getClassName()),classify);
         }
+       // System.out.println("map大小"+map.size());
 
         Collection<String> keyset= map.keySet();
-
+        //System.out.println("keyset大小"+keyset.size());
         List<String> keyList=new ArrayList<>(keyset);
+        //System.out.println("keyLIst大小"+keyList.size());
         Collections.sort(keyList);
         List<Classify> newList=new ArrayList<>();
         for(int i=0;i<keyList.size();i++){
+            //System.out.println(keyList.get(i));
             newList.add(map.get(keyList.get(i)));
         }
 
@@ -94,34 +91,57 @@ public class ClassifyService {
     }
 
 
-    private String getPinYin(String source) {
-        if (source!=null && !"".equals(source)) {
-            return "";
-        }
-        char[] t1 = source.toCharArray();
-        HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
-        format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
-        format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
-        format.setVCharType(HanyuPinyinVCharType.WITH_V);
-        StringBuilder result = new StringBuilder();
-        for (char aT1 : t1) {
-            if (Character.toString(aT1).matches("[\\u4E00-\\u9FA5]")) {
-                try {
-                    result.append(PinyinHelper.toHanyuPinyinStringArray(aT1, format)[0]);
-                } catch (BadHanyuPinyinOutputFormatCombination e) {
-                    System.out.println("转换出错");
+    private String getPingYin(String src) {
+        char[] t1 = null;
+        t1 = src.toCharArray();
+        String[] t2 = new String[t1.length];
+        HanyuPinyinOutputFormat t3 = new HanyuPinyinOutputFormat();
+        t3.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+        t3.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        t3.setVCharType(HanyuPinyinVCharType.WITH_V);
+        String t4 = "";
+        int t0 = t1.length;
+        try {
+            for (int i = 0; i < t0; i++) {
+                // 判断是否为汉字字符
+                if (java.lang.Character.toString(t1[i]).matches("[\\u4E00-\\u9FA5]+")) {
+                    t2 = PinyinHelper.toHanyuPinyinStringArray(t1[i], t3);
+                    t4 += t2[0];
+                } else {
+                    t4 += java.lang.Character.toString(t1[i]);
                 }
-            } else {
-                // 非汉字不进行转换，直接添加
-                result.append(aT1);
             }
+            return t4;
+        } catch (BadHanyuPinyinOutputFormatCombination e1) {
+            e1.printStackTrace();
         }
-        return result.toString();
+        return t4;
     }
 
 
     public List<Classify> findClassify(String content) {
-        System.out.println("-----系统展示Service-----");
+        System.out.println("-----查找分类Service-----");
+        //System.out.println(content);
         return classifyDAO.findClassify(content);
+    }
+
+    public List<Classify> sortClassify(int type, String[] ids) {
+        System.out.println("-----排序分类service-----");
+        List<Classify> list=classifyDAO.getClassifys(ids);
+        if(type==1){
+            Collections.sort(list, new Comparator<Object>() {
+                @Override
+                public int compare(Object o1, Object o2) {
+                    int x=((Classify)o1).getClassifyID();
+                    int y=((Classify)o2).getClassifyID();
+                    return (x < y) ? -1 : ((x == y) ? 0 : 1);
+                }
+
+
+            });
+       }else if(type==2){
+            return sortByName(list);
+        }
+       return list;
     }
 }

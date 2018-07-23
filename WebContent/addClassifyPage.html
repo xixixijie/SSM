@@ -11,38 +11,15 @@
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
     <script>
         $(function(){
-            var index = location.href.lastIndexOf("=");
-            var cid= location.href.substr(index+1);
 
-             //获得所有分类参数
-             $.ajax({
-                 url:"getClassify/"+cid,
-                 type:"post",
-                 dataType:"json",
-                 success:function(data)
-                 {
 
-                         // $("#leftDiv").empty();
-                     $("#classifyID").attr("value",data.className);
-                     $("#className").attr("value",data.className);
-                     $("#classDis").attr("value",data.classDis);
 
-                     //动态加载js
-                         // var script=document.createElement("script");
-                         // script.type="text/javascript";
-                         // script.src="themes/js/aui.js";
-                         // document.getElementsByTagName('head')[0].appendChild(script);
-
-                 }
-
-             });
-
-            $("#modifyClassify").click(function(){
+            $("#addClassifyButton").click(function(){
                 //1. 创建一个formdata对象
                 var formData = new FormData(document.getElementById("myform"));
 
                 $.ajax({
-                    url:"modifyClassify",
+                    url:"addClassify",
                     type:"post",
                     data:formData,
                     dataType:"json",
@@ -51,55 +28,53 @@
                     cache:false,
                     success:function(data)
                     {
+
                         //{result:true}
                         if(data.result)
                         {
-                            alert("修改成功");
+                            alert("添加成功");
                         }
                         else
                         {
-                            alert("修改失败");
+                            alert("添加失败");
                         }
                     }
                 });
             });
-
-
-
-        });
-
+        })
     </script>
+
 </head>
+
 <body>
 
 <blockquote class="layui-elem-quote layui-text">
-    修改分类
+    添加分类
 </blockquote>
 
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>修改</legend>
+    <legend>请填写下列信息</legend>
 </fieldset>
 
 <form class="layui-form" id="myform" action="">
-    <input type="hidden" id="classifyID" name="classifyID" value="">
 
     <div class="layui-form-item">
         <label class="layui-form-label">分类名</label>
         <div class="layui-input-block">
-            <input type="text" id="className" name="className" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+            <input type="text" name="className" lay-verify="required" placeholder="请输入分类名" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">分类描述</label>
         <div class="layui-input-block">
-            <textarea placeholder="" class="layui-textarea"></textarea>
+            <textarea placeholder="请输入内容" name="classDis" class="layui-textarea"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1" id="modifyClassify">修改</button>
-
+            <button class="layui-btn" lay-submit="" lay-filter="demo1" id="addClassifyButton">添加</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
 </form>

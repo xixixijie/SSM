@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@localhost" uuid="29cd8ab5-4948-4809-ac8b-2324461a6cdb">
-      <driver-ref>oracle</driver-ref>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate driver - @localhost" uuid="d6a513c2-b5ee-41a4-a253-402b777ea9ad">
+      <driver-ref>6cb4a884-a0fa-4bab-8300-96d99c159494</driver-ref>
       <synchronize>true</synchronize>
-      <auto-commit>false</auto-commit>
-      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
-      <jdbc-url>jdbc:oracle:thin:@localhost:1521:neuedu</jdbc-url>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <driver-properties>
+        <property name="autoReconnect" value="true" />
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+        <property name="characterEncoding" value="utf8" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="yearIsDateType" value="false" />
+      </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="@10.25.49.31" uuid="ec8e065b-df9a-4831-b792-117db448936b">
+    <data-source source="LOCAL" name="@10.25.49.15" uuid="c9e9fcc4-bac7-4d81-9fcb-416d72eacd6f">
       <driver-ref>oracle</driver-ref>
       <synchronize>true</synchronize>
       <auto-commit>false</auto-commit>
       <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
-      <jdbc-url>jdbc:oracle:thin:@10.25.49.31:1521:orcl</jdbc-url>
+      <jdbc-url>jdbc:oracle:thin:@10.25.49.15:1521:orcl</jdbc-url>
     </data-source>
   </component>
 </project>

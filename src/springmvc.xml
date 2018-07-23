@@ -16,7 +16,10 @@
 			http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
 
-	<mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:annotation-driven>
+
+
+	</mvc:annotation-driven>
 
 
 	<!-- 配置静态资源的访问 -->
