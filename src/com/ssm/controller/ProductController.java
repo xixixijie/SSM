@@ -189,9 +189,10 @@ public class ProductController {
 
 
     @RequestMapping(value = "/getRecord/{record}")
+    @ResponseBody
     public List<Product> getRecord(@PathVariable String record){
         System.out.println("-----获得记录Controller-----");
-
+        //System.out.println(record);
         return productService.getRecord(record);
     }
 

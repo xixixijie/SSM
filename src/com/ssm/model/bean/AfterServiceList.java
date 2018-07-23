@@ -9,6 +9,15 @@ public class AfterServiceList {
     private int serviceId;
     private int status;
     private String date;
+    private int orderId;
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
 
     public int getTreatId() {
         return treatId;

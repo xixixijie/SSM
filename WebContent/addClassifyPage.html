@@ -11,7 +11,10 @@
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
     <script>
         $(function(){
-            $("#addClassify").click(function(){
+
+
+
+            $("#addClassifyButton").click(function(){
                 //1. 创建一个formdata对象
                 var formData = new FormData(document.getElementById("myform"));
 
@@ -25,6 +28,7 @@
                     cache:false,
                     success:function(data)
                     {
+
                         //{result:true}
                         if(data.result)
                         {
@@ -36,6 +40,7 @@
                         }
                     }
                 });
+                alert("添加成功");
             });
         })
     </script>
@@ -69,7 +74,7 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1" id="addClassify">添加</button>
+            <button class="layui-btn" lay-submit="" lay-filter="demo1" id="addClassifyButton">添加</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>

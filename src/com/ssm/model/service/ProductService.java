@@ -134,7 +134,10 @@ public class ProductService {
         String strs[]=record.split(",");
         List<Product> plist=new ArrayList<>();
         for(String pid:strs){
-            plist.add(productDAO.getProduct(Integer.parseInt(pid)));
+            Product p=productDAO.getProduct(Integer.parseInt(pid));
+            p.setCommentNum(commentDAO.getCommentNum(Integer.parseInt(pid)));
+            plist.add(p);
+
         }
         return plist;
     }

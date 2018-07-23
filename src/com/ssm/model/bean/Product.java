@@ -14,6 +14,15 @@ public class Product {
     private String product_info;
     private String cover_url;
     private Date on_date;
+    private int commentNum;
+
+    public int getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(int commentNum) {
+        this.commentNum = commentNum;
+    }
 
     public Date getOn_date() {
         return on_date;
