@@ -78,7 +78,12 @@
 	</style>
 
 </head>
-<body style="background:#eee">
+<body style="background:#eee" onload="load_started()">
+<script type="application/javascript">
+    function load_started() {
+        $("#top-started").click();
+    }
+</script>
 <script src="lobibox-master/dist/js/Lobibox.min.js"></script>
 <script src="lobibox-master/dist/js/notifications.min.js"></script>
 
@@ -100,263 +105,184 @@
 		<div class="m-tab demo-small-pitch aui-Time-list" data-ydui-tab>
 			<div class="aui-myOrder-fix">
 				<ul class="tab-nav">
-					<li class="tab-nav-item tab-active">
+					<li class="tab-nav-item tab-active" id="top-started">
 						<a href="javascript:;">
-							<span>00:00</span>
-							<em>已开抢</em>
+							<span>进行中</span>
+							<em>进行中</em>
 						</a>
 					</li>
-					<li class="tab-nav-item">
+					<script type="application/javascript">
+                        function getNowFormatDate() {
+                            var date = new Date();
+                            var seperator1 = "-";
+                            var month = date.getMonth() + 1;
+                            var strDate = date.getDate();
+                            if (month >= 1 && month <= 9) {
+                                month = "0" + month;
+                            }
+                            if (strDate >= 0 && strDate <= 9) {
+                                strDate = "0" + strDate;
+                            }
+                            var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+                            return currentdate;
+                        }
+                        $("#top-started").click(function(){
+                            var productName = -1;
+                            var activityStatus = -1;
+                            var groupStartDate = -1;
+                            var groupEndDate = -1;
+                            $.ajax({
+                                url:"searchActivities/"+productName+"/"+activityStatus+"/"+groupStartDate+"/"+groupEndDate,
+                                type:"post",
+                                dataType:"json",
+                                success:function(data)
+                                {
+                                    console.log(data);
+                                    //1.清楚原有的数据
+                                    $("#search_activity_div").empty();
+                                    //2.追加符合条件的数据
+                                    for (var i=0;i<data.length;i++){
+                                        if(data[i].activityStatus==2){
+                                            var str = '<li id="activity'+data[i].activityID+'"><div class="aui-list-title-info"><a href="javascript:;" class="aui-list-product-fl-item"> <div class="aui-list-product-fl-img">';
+                                            str+='<img src="'+data[i].product.cover_url+'" alt="">';
+                                            str+='</div><div class="aui-list-product-fl-text"><span class="aui-Purchase-tag">';
+                                            str+=data[i].requiredNumber;
+                                            str+='人团</span>';
+                                            str+='<h3 class="aui-list-product-fl-title">'+data[i].product.product_name+'</h3>';
+                                            str+='<div class="aui-list-product-fl-mes"><div><span class="aui-list-product-item-price"><em>¥</em>'+data[i].group_buying_price+'</span>';
+                                            str+='<span class="aui-list-product-item-del-price">¥'+data[i].product.original_price+'</span></div>';
+                                            str+='</div> </div> </a> <div class="aui-list-title-btn"> <a href="single_group_buying.html?activityID='+data[i].activityID+'" class="red-color">马上参团</a> </div> </div> </li>';
+                                            $("#search_activity_div").append(str);
+                                        }
+                                    }
+                                }
+                            });
+                        });
+					</script>
+					<li class="tab-nav-item" id="top-ended">
 						<a href="javascript:;">
-							<span>07:00</span>
-							<em>已开抢</em>
+							<span>已经结束</span>
+							<em>已经结束</em>
 						</a>
 					</li>
-					<li class="tab-nav-item">
+					<script type="application/javascript">
+                        $("#top-ended").click(function() {
+                            var productName = -1;
+                            var activityStatus = -1;
+                            var groupStartDate = -1;
+                            var groupEndDate = -1;
+                            $.ajax({
+                                url: "searchActivities/" + productName + "/" + activityStatus + "/" + groupStartDate + "/" + groupEndDate,
+                                type: "post",
+                                dataType: "json",
+                                success: function (data) {
+                                    console.log(data);
+                                    //1.清楚原有的数据
+                                    $("#search_activity_ended").empty();
+                                    //2.追加符合条件的数据
+                                    for (var i = 0; i < data.length; i++) {
+                                        if (data[i].activityStatus == 1) {
+                                            var str = '<li id="activity'+data[i].activityID+'"><div class="aui-list-title-info"><a href="javascript:;" class="aui-list-product-fl-item"> <div class="aui-list-product-fl-img">';
+                                            str += '<img src="' + data[i].product.cover_url + '" alt="">';
+                                            str += '</div><div class="aui-list-product-fl-text"><span class="aui-Purchase-tag">';
+                                            str += data[i].requiredNumber;
+                                            str += '人团</span>';
+                                            str += '<h3 class="aui-list-product-fl-title">' + data[i].product.product_name + '</h3>';
+                                            str += '<div class="aui-list-product-fl-mes"><div><span class="aui-list-product-item-price"><em>¥</em>' + data[i].group_buying_price + '</span>';
+                                            str += '<span class="aui-list-product-item-del-price">¥' + data[i].product.original_price + '</span></div>';
+                                            str += '</div> </div> </a> <div class="aui-list-title-btn"> <a href="single_group_buying.html?activityID='+data[i].activityID+'" class="red-color">已经结束</a> </div> </div> </li>';
+                                            $("#search_activity_ended").append(str);
+                                        }
+                                    }
+                                }
+                            });
+                        });
+					</script>
+					<li class="tab-nav-item" id="top-future">
 						<a href="javascript:;">
-							<span>09:00</span>
-							<em>已开抢</em>
+							<span>即将开始</span>
+							<em>即将开始</em>
 						</a>
 					</li>
-					<li class="tab-nav-item">
-						<a href="javascript:;">
-							<span>13:00</span>
-							<em>抢购中</em>
-						</a>
-					</li>
-					<li class="tab-nav-item">
-						<a href="javascript:;">
-							<span>17:00</span>
-							<em>即将开抢</em>
-						</a>
-					</li>
+					<script type="application/javascript">
+                        $("#top-future").click(function() {
+                            var productName = -1;
+                            var activityStatus = -1;
+                            var groupStartDate = -1;
+                            var groupEndDate = -1;
+                            $.ajax({
+                                url: "searchActivities/" + productName + "/" + activityStatus + "/" + groupStartDate + "/" + groupEndDate,
+                                type: "post",
+                                dataType: "json",
+                                success: function (data) {
+                                    console.log(data);
+                                    //1.清楚原有的数据
+                                    $("#search_activity_future").empty();
+                                    //2.追加符合条件的数据
+                                    for (var i = 0; i < data.length; i++) {
+                                        if (data[i].activityStatus == 3) {
+                                            var str = '<li id="activity'+data[i].activityID+'"><div class="aui-list-title-info"><a href="javascript:;" class="aui-list-product-fl-item"> <div class="aui-list-product-fl-img">';
+                                            str += '<img src="' + data[i].product.cover_url + '" alt="">';
+                                            str += '</div><div class="aui-list-product-fl-text"><span class="aui-Purchase-tag">';
+                                            str += data[i].requiredNumber;
+                                            str += '人团</span>';
+                                            str += '<h3 class="aui-list-product-fl-title">' + data[i].product.product_name + '</h3>';
+                                            str += '<div class="aui-list-product-fl-mes"><div><span class="aui-list-product-item-price"><em>¥</em>' + data[i].group_buying_price + '</span>';
+                                            str += '<span class="aui-list-product-item-del-price">¥' + data[i].product.original_price + '</span></div>';
+                                            str += '</div> </div> </a> <div class="aui-list-title-btn"> <a href="single_group_buying.html?activityID='+data[i].activityID+'" class="red-color">即将开团</a> </div> </div> </li>';
+                                            $("#search_activity_future").append(str);
+                                        }
+                                    }
+                                }
+                            });
+                        });
+					</script>
 				</ul>
 			</div>
 			<div class="aui-prompt"><i class="aui-icon aui-prompt-sm"></i>赶紧下手拼团吧！</div>
 			<div class="tab-panel">
 				<div class="tab-panel-item tab-active">
 					<ul>
-						<!--循环体li-->
-						<li>
-							<div class="aui-list-title-info">
-								<a href="javascript:;" class="aui-list-product-fl-item">
-									<div class="aui-list-product-fl-img">
-										<img src="themes/img/pd/sf-11.jpg" alt="">
-									</div>
-									<div class="aui-list-product-fl-text">
-										<span class="aui-Purchase-tag">2人团</span>
-										<h3 class="aui-list-product-fl-title">【16盒装】伊利 安慕希希腊风味常温酸奶原味205g*16盒</h3>
-										<div class="aui-list-product-fl-mes">
-											<div>
-									<span class="aui-list-product-item-price">
-										<em>¥</em>
-										89.99
-									</span>
-												<span class="aui-list-product-item-del-price">
-										¥125.65
-									</span>
-											</div>
-											<div class="aui-comment">已团134件</div>
-										</div>
-									</div>
-								</a>
-								<div class="aui-list-title-btn">
-									<a href="#" class="red-color">马上参团</a>
-								</div>
-							</div>
-						</li>
-						<div id="search_activity_div">
-							<input type="text" id="search_activity_productName"/>
-							<input type="text" id="search_activity_activityStatus"/>
-							<input type="text" id="search_activity_groupStartDate"/>
-							<input type="text" id="search_activity_groupEndDate"/>
-
-
-							<button type="button" id="search_activity_button">搜索</button>
-							<script type="application/javascript">
-                                $("#search_activity_button").click(function(){
-                                    var productName = $("#search_activity_productName").val();
-                                    if(productName==''){
-                                        productName=-1;
-                                    }
-                                    var activityStatus = $("#search_activity_activityStatus").val();
-                                    if(activityStatus==''){
-                                        activityStatus=-1;
-                                    }
-                                    var groupStartDate = $("#search_activity_groupStartDate").val();
-                                    if(groupStartDate==''){
-                                        groupStartDate=-1;
-                                    }
-                                    var groupEndDate = $("#search_activity_groupEndDate").val();
-                                    if(groupEndDate==''){
-                                        groupEndDate=-1;
-                                    }
-                                    $.ajax({
-                                        url:"searchActivities/"+productName+"/"+activityStatus+"/"+groupStartDate+"/"+groupEndDate,
-                                        type:"post",
-                                        dataType:"json",
-                                        success:function(data)
-                                        {
-                                            alert(11);
-                                            console.log(data);
-                                            //1.清楚原有的数据
-
-                                            //2.追加符合条件的数据
-                                            for (var i=0;i<data.length;i++){
-                                                var str = '<li><div class="aui-list-title-info"><a href="javascript:;" class="aui-list-product-fl-item"> <div class="aui-list-product-fl-img">';
-                                                str+='<img src="'+data[i].product.cover_url+'" alt="">';
-                                                str+='</div><div class="aui-list-product-fl-text"><span class="aui-Purchase-tag">';
-                                                str+=data[i].requiredNumber;
-                                                str+='人团</span>';
-                                                str+='<h3 class="aui-list-product-fl-title">'+data[i].product.product_name+'</h3>';
-                                                str+='<div class="aui-list-product-fl-mes"><div><span class="aui-list-product-item-price"><em>¥</em>'+data[i].group_buying_price+'</span>';
-                                                str+='<span class="aui-list-product-item-del-price">¥'+data[i].product.original_price+'</span></div>';
-                                                str+='</div> </div> </a> <div class="aui-list-title-btn"> <a href="#" class="red-color">马上参团</a> </div> </div> </li>';
-                                                $("#search_activity_div").append(str);
-                                            }
-                                        }
-                                    });
-                                });
-							</script>
-						</div>
-
-
+						<!--&lt;!&ndash;循环体li&ndash;&gt;-->
+						<!--<li>-->
+							<!--<div class="aui-list-title-info">-->
+								<!--<a href="javascript:;" class="aui-list-product-fl-item">-->
+									<!--<div class="aui-list-product-fl-img">-->
+										<!--<img src="themes/img/pd/sf-11.jpg" alt="">-->
+									<!--</div>-->
+									<!--<div class="aui-list-product-fl-text">-->
+										<!--<span class="aui-Purchase-tag">2人团</span>-->
+										<!--<h3 class="aui-list-product-fl-title">【16盒装】伊利 安慕希希腊风味常温酸奶原味205g*16盒</h3>-->
+										<!--<div class="aui-list-product-fl-mes">-->
+											<!--<div>-->
+									<!--<span class="aui-list-product-item-price">-->
+										<!--<em>¥</em>-->
+										<!--89.99-->
+									<!--</span>-->
+												<!--<span class="aui-list-product-item-del-price">-->
+										<!--¥125.65-->
+									<!--</span>-->
+											<!--</div>-->
+											<!--<div class="aui-comment">已团134件</div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</a>-->
+								<!--<div class="aui-list-title-btn">-->
+									<!--<a href="#" class="red-color">马上参团</a>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</li>-->
+						<div id="search_activity_div"></div>
 					</ul>
 				</div>
 				<div class="tab-panel-item">
 					<ul>
-						<li>
-							<div class="aui-list-title-info">
-								<a href="javascript:;" class="aui-list-product-fl-item">
-									<div class="aui-list-product-fl-img">
-										<img src="themes/img/pd/sf-19.jpg" alt="">
-									</div>
-									<div class="aui-list-product-fl-text">
-										<h3 class="aui-list-product-fl-title">【16盒装】伊利 安慕希希腊风味常温酸奶原味205g*16盒</h3>
-										<div class="aui-list-product-fl-mes">
-											<div>
-									<span class="aui-list-product-item-price">
-										<em>¥</em>
-										89.99
-									</span>
-												<span class="aui-list-product-item-del-price">
-										¥125.65
-									</span>
-											</div>
-											<div class="aui-btn-purchase">
-												仅剩19件
-											</div>
-										</div>
-									</div>
-
-								</a>
-							</div>
-							<div class="aui-list-title-btn">
-								<a href="#" class="red-color">马上抢购</a>
-							</div>
-						</li>
+						<div id="search_activity_ended"></div>
 					</ul>
 				</div>
 				<div class="tab-panel-item">
 					<ul>
-						<li>
-							<div class="aui-list-title-info">
-								<a href="javascript:;" class="aui-list-product-fl-item">
-									<div class="aui-list-product-fl-img">
-										<img src="themes/img/pd/sf-16.jpg" alt="">
-									</div>
-									<div class="aui-list-product-fl-text">
-										<h3 class="aui-list-product-fl-title">【16盒装】伊利 安慕希希腊风味常温酸奶原味205g*16盒</h3>
-										<div class="aui-list-product-fl-mes">
-											<div>
-									<span class="aui-list-product-item-price">
-										<em>¥</em>
-										89.99
-									</span>
-												<span class="aui-list-product-item-del-price">
-										¥125.65
-									</span>
-											</div>
-											<div class="aui-btn-purchase">
-												仅剩19件
-											</div>
-										</div>
-									</div>
-
-								</a>
-							</div>
-							<div class="aui-list-title-btn">
-								<a href="#" class="red-color">马上抢购</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div class="tab-panel-item">
-					<ul>
-						<li>
-							<div class="aui-list-title-info">
-								<a href="javascript:;" class="aui-list-product-fl-item">
-									<div class="aui-list-product-fl-img">
-										<img src="themes/img/pd/sf-17.jpg" alt="">
-									</div>
-									<div class="aui-list-product-fl-text">
-										<h3 class="aui-list-product-fl-title">【16盒装】伊利 安慕希希腊风味常温酸奶原味205g*16盒</h3>
-										<div class="aui-list-product-fl-mes">
-											<div>
-									<span class="aui-list-product-item-price">
-										<em>¥</em>
-										89.99
-									</span>
-												<span class="aui-list-product-item-del-price">
-										¥125.65
-									</span>
-											</div>
-											<div class="aui-btn-purchase">
-												仅剩19件
-											</div>
-										</div>
-									</div>
-
-								</a>
-							</div>
-							<div class="aui-list-title-btn">
-								<a href="#" class="red-color">马上抢购</a>
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div class="tab-panel-item">
-					<ul>
-						<li>
-							<div class="aui-list-title-info">
-								<a href="javascript:;" class="aui-list-product-fl-item">
-									<div class="aui-list-product-fl-img">
-										<img src="themes/img/pd/sf-18.jpg" alt="">
-									</div>
-									<div class="aui-list-product-fl-text">
-										<h3 class="aui-list-product-fl-title">【16盒装】伊利 安慕希希腊风味常温酸奶原味205g*16盒</h3>
-										<div class="aui-list-product-fl-mes">
-											<div>
-									<span class="aui-list-product-item-price">
-										<em>¥</em>
-										89.99
-									</span>
-												<span class="aui-list-product-item-del-price">
-										¥125.65
-									</span>
-											</div>
-											<div class="aui-btn-purchase">
-												仅剩19件
-											</div>
-										</div>
-									</div>
-
-								</a>
-							</div>
-							<div class="aui-list-title-btn">
-								<a href="#" class="red-color">马上抢购</a>
-							</div>
-						</li>
+						<div id="search_activity_future"></div>
 					</ul>
 				</div>
 			</div>

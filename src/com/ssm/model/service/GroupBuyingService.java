@@ -31,8 +31,6 @@ public class GroupBuyingService {
         return groupBuyingDAO.searchActivities(activity);
     }
 
-    //
-
     /**
      * 根据团购活动号查询参与此团购活动的队伍
      *
@@ -139,6 +137,15 @@ public class GroupBuyingService {
         map.put("messageTitle",messageTitle);
         map.put("messageBody",messageBody);
         groupBuyingDAO.addMessage(map);
+    }
+
+    /**
+     * 根据groupID查询团购队伍的相关信息
+     * @param groupID
+     * @return
+     */
+    public Group searchGroupInfo(int groupID) {
+        return groupBuyingDAO.searchGroupInfo(groupID);
     }
 }
 

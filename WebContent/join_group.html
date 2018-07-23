@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="themes/css/core.css">
     <link rel="stylesheet" href="themes/css/icon.css">
     <link rel="stylesheet" href="themes/css/home.css">
+    <script src="/carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
 </head>
@@ -44,40 +45,11 @@
             </div>
 
             <!--查数据-->
-            <div class="aui-list-product-fl-text">
-                <h3 class="aui-list-product-fl-title">2016夏天新款男士短袖t恤青少年韩版修身印花圆领半袖男装衣服潮领半袖男装衣服潮领半袖男装衣服潮</h3>
-                <div class="aui-list-product-fl-mes">
-                    <div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-                        <span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-                    </div>
-                </div>
-
-                <div class="aui-list-product-fl-bag">
-                    <span><img src="themes/img/icon/bag1.png" alt=""></span>
-                    <span><img src="themes/img/icon/bag2.png" alt=""></span>
-                </div>
+            <div class="aui-list-product-fl-text" id="show_product">
+                <!--在此显示商品的相关信息-->
             </div>
-            <div class="aui-list-product-fl-text">
-                <div class="aui-list-product-fl-mes">
-                    <div>
-							<span class="aui-list-product-item-price">
-								leader
-							</span>
-                    </div>
-                </div>
-                <div class="aui-list-product-fl-mes">
-                    <div>
-							<span class="aui-list-product-item-price">
-								当前人数1/4
-							</span>
-                    </div>
-                </div>
+            <div class="aui-list-product-fl-text" id="show_group_info">
+               <!--在此显示团队的相关信息-->
             </div>
         </a>
     </div>
@@ -85,7 +57,7 @@
     <div class="aui-address-well" style="height: 50px">
         <a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
             <div class="aui-address-cell-bd">纸质发票</div>
-            <div class="aui-address-cell-ft"><input class="aui-switch" type="checkbox" checked="checked"></div>
+            <div class="aui-address-cell-ft"><input class="aui-switch" type="checkbox" checked="checked" id="join_group_billNeeded"></div>
         </a>
     </div>
     <div class="aui-prompt" id="bill_hint"><i class="aui-icon aui-prompt-sm"></i>纸质发票将在5日内另外寄出</div>
@@ -93,32 +65,61 @@
     <div class="aui-dri"></div>
     <a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
         <div class="aui-address-cell-bd">收货人姓名</div>
-        <div class="aui-address-cell-ft" id="receiver_name">收货人姓名</div>
+        <div class="aui-address-cell-ft" id="join_group_receiverName">收货人姓名</div>
     </a>
     <div class="aui-dri"></div>
     <a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
         <div class="aui-address-cell-bd">收货人电话</div>
-        <div class="aui-address-cell-ft" id="receiver_tel">收货人电话</div>
+        <div class="aui-address-cell-ft" id="join_group_receiverTEL">收货人电话</div>
     </a>
     <div class="aui-dri"></div>
     <a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
         <div class="aui-address-cell-bd">收获人邮编</div>
-        <div class="aui-address-cell-ft" id="receiver_postcode">收获人邮编</div>
+        <div class="aui-address-cell-ft" id="join_group_receiverPostcode">收获人邮编</div>
     </a>
     <div class="aui-dri"></div>
     <a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
         <div class="aui-address-cell-bd">收货地址</div>
-        <div class="aui-address-cell-ft" id="receiver_address">收货地址</div>
+        <div class="aui-address-cell-ft" id="join_group_receiverAddress">收货地址</div>
     </a>
-
+    <input id="join_group_groupID" hidden>
 
     <!--确认金额-->
     <div class="aui-payment-bar">
-        <div class="shop-total">
-            <span class="aui-red aui-size">总金额: <em>￥399.00</em></span>
+        <div class="shop-total" id="show_price">
         </div>
-        <a href="Settlement.html" class="settlement">加入团购</a>
+        <a href="#" class="settlement" id="join_group_button">加入团购</a>
     </div>
+    <script type="application/javascript">
+        $("#join_group_button").click(function(){
+            //往cookie中存joinerID
+            $.cookie('joinerID', 1, { expires: 7 ,path:'/'});
+            //从cookie中取joinerID
+            var joinerID = 1;
+            joinerID = $.cookie('joinerID');
+
+            var groupID = $("#join_group_groupID").val();
+            var joinDate = $("#join_group_openDate").val();
+            var receiverName = $("#join_group_receiverName").val();
+            var receiverTEL = $("#join_group_receiverTEL").val();
+            var receiverPostcode = $("#join_group_receiverPostcode").val();
+            var receiverAddress = $("#join_group_receiverAddress").val();
+            var billNeeded = $("#join_group_billNeeded").val();
+
+            $.ajax({
+                url:"joinGroupBuying/"+joinerID+"/"+groupID+"/"+joinDate+"/"+receiverName+"/"+receiverTEL
+                +"/"+receiverPostcode+"/"+receiverAddress+"/"+billNeeded,
+                type:"post",
+                dataType:"json",
+                success:function(data)
+                {
+                    console.log(data);
+                    window.location.href = 'index.html';
+                }
+            });
+        });
+    </script>
+
 </section>
 
 </body>

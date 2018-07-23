@@ -19,6 +19,8 @@ public interface GroupBuyingDAO {
      */
     public ArrayList<Activity> searchActivities(Activity activity);
 
+
+
     /**
      * 根据团购活动号查询参与此团购活动的队伍
      * @param activityID
@@ -107,5 +109,13 @@ public interface GroupBuyingDAO {
      * @param map
      */
     public void addMessage(Map<String, Object> map);
+
+
+    /**
+     * 根据groupID查询团购队伍的相关信息
+     * @param groupID
+     * @return
+     */
+    public Group searchGroupInfo(int groupID);
 }
 

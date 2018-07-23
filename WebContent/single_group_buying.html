@@ -6,37 +6,31 @@
     <link rel="stylesheet" href="themes/css/core.css">
     <link rel="stylesheet" href="themes/css/icon.css">
     <link rel="stylesheet" href="themes/css/home.css">
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="js/getGroups.js"></script>
 </head>
 <body>
 <div class="aui-list-item">
-    <div class="aui-list-item-img">
-        <img src="themes/img/pd/cf-8.jpg" alt="">
+    <div>
+        <a href="javascript:;" class="aui-list-product-item">
+        <div class="aui-list-product-item-img" style="height: 400px;width: 400px;" id="show_product_pic">
+        </div>
+        <div class="aui-list-product-item-text">
+            <div id="show_product_name"></div>
+            <div class="aui-list-product-mes-box">
+                <div id="show_product_price">
+                </div>
+            </div>
+        </div>
+        </a>
     </div>
+
     <div class="aui-slide-box">
         <div class="aui-slide-list">
-            <ul class="aui-slide-item-list">
+            <ul class="aui-slide-item-list" id="show_groups">
                 <!--循环体li-->
-                <li class="aui-slide-item-item">
-                    <a href="ui-product.html" class="v-link">
-                        <img class="v-img" src="img/join.png">
-                        <p class="aui-slide-item-title aui-slide-item-f-els">group-leader</p>
-                        <p class="aui-slide-item-info">
-                            <span class="aui-slide-item-price">当前人数1/4</span>
-                        </p>
-                    </a>
-                </li>
-                <li class="aui-slide-item-item">
-                    <a href="ui-product.html" class="v-link">
-                        <img class="v-img" src="img/open.png">
-                        <p class="aui-slide-item-title aui-slide-item-f-els"></p>
-                        <p class="aui-slide-item-info">
-                            <span class="aui-slide-item-price">我来开团</span>
-                        </p>
-                    </a>
-                </li>
             </ul>
         </div>
-
     </div>
 </div>
 </body>

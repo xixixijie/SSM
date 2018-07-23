@@ -17,13 +17,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 and activityStatus=#{activityStatus}
             </if>
             <if test="groupStartDate!=null">
-                and groupStartDate &gt;= #{groupStartDate}
+                and groupStartDate &lt;= #{groupStartDate}
             </if>
             <if test="groupEndDate!=null">
-                and groupEndDate &lt;= #{groupEndDate}
+                and groupEndDate &gt;= #{groupEndDate}
             </if>
         </where>
     </select>
+
 
     <resultMap id="ActivityResult" type="Activity">
         <result property="activityID" column="activityID"/>
@@ -49,10 +50,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
     <!--根据活动ID查询参与此活动的团队的集合-->
-    <select id="searchGroups" parameterType="java.lang.Integer" resultType="Group" flushCache="true">
-        select * from group_buying_list
-        where activityID = #{activityID}
+    <select id="searchGroups" parameterType="java.lang.Integer" resultMap="GroupResult">
+        select * from ((group_buying_list  JOIN group_buying_activity  ON
+        group_buying_list.activityID = group_buying_activity.activityID) JOIN userinfo  ON group_buying_list.leaderID = userinfo.user_id) JOIN product on group_buying_activity.productID = product.product_id
+        WHERE group_buying_list.activityID = #{activityID}
     </select>
+
+    <resultMap id="GroupResult" type="Group">
+        <result property="groupID" column="groupID"/>
+        <result property="current_num" column="currentNumber"/>
+        <result property="state" column="groupStatus"/>
+
+        <association property="leader" column="leaderID" javaType="UserInfo" resultMap="userResult"/>
+        <association property="activity" column="activityID" javaType="Activity" resultMap="ActivityResult"/>
+    </resultMap>
+
+
+    <resultMap id="userResult" type="UserInfo">
+        <result column="user_id" property="user_id"/>
+        <result column="password" property="password"/>
+        <result column="username" property="username"/>
+        <result column="user_email" property="user_email"/>
+        <result column="user_phone" property="user_phone"/>
+        <result column="name" property="name"/>
+        <result column="user_birthday" property="user_birthday"/>
+        <result column="user_gender" property="user_gender"/>
+        <result column="user_avatarurl" property="user_avatarurl"/>
+    </resultMap>
+
+    <select id="searchGroupInfo" parameterType="int" resultType="GroupResult">
+        select * from ((group_buying_list  JOIN group_buying_activity  ON
+        group_buying_list.activityID = group_buying_activity.activityID) JOIN userinfo  ON group_buying_list.leaderID = userinfo.user_id) JOIN product on group_buying_activity.productID = product.product_id
+        WHERE group_buying_list.groupID = #{groupID}
+    </select>
+
 
     <!--&lt;!&ndash;批量删除活动&ndash;&gt;-->
     <!--&lt;!&ndash;批量修改活动的状态为3&ndash;&gt;-->
@@ -148,6 +179,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into user_message
         VALUES #{messageID},#{userID},#{messageTitle},#{messageBody},0
     </insert>
+
+
+
 </mapper>
 
 

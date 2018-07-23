@@ -11,6 +11,7 @@ public class Activity {
     int requiredNumber;
     Date groupStartDate;
     Date groupEndDate;
+    //0被删除  1已经结束  2进行中  3还没开始
     int activityStatus;
     double group_buying_price;
     boolean canDelete;
