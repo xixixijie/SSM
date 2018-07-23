@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <title>搜索团购活动</title>
     <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+    <link rel="stylesheet" href="lobibox-master/dist/css/Lobibox.min.css"/>
 </head>
 <body>
+<script src="lobibox-master/dist/js/Lobibox.min.js"></script>
+<script src="lobibox-master/dist/js/notifications.min.js"></script>
 <div id="search_activity_div">
+    <div id="div_testStr"></div>
     <input type="text" id="search_activity_productName"/>
     <input type="text" id="search_activity_activityStatus"/>
     <input type="text" id="search_activity_groupStartDate"/>
@@ -17,17 +21,44 @@
     <script type="application/javascript">
         $("#search_activity_button").click(function(){
             var productName = $("#search_activity_productName").val();
+            if(productName==''){
+                productName=-1;
+            }
             var activityStatus = $("#search_activity_activityStatus").val();
+            if(activityStatus==''){
+                activityStatus=-1;
+            }
             var groupStartDate = $("#search_activity_groupStartDate").val();
+            if(groupStartDate==''){
+                groupStartDate=-1;
+            }
             var groupEndDate = $("#search_activity_groupEndDate").val();
+            if(groupEndDate==''){
+                groupEndDate=-1;
+            }
                 $.ajax({
                     url:"searchActivities/"+productName+"/"+activityStatus+"/"+groupStartDate+"/"+groupEndDate,
                     type:"post",
                     dataType:"json",
                     success:function(data)
                     {
+                        alert(11);
                         console.log(data);
-                        alert(data);
+                        //1.清楚原有的数据
+
+                        //2.追加符合条件的数据
+                        for (var i=0;i<data.length;i++){
+                            var str = '<li><div class="aui-list-title-info"><a href="javascript:;" class="aui-list-product-fl-item"> <div class="aui-list-product-fl-img">';
+                            str+='<img src="'+data[i].product.cover_url+'" alt="">';
+                            str+='</div><div class="aui-list-product-fl-text"><span class="aui-Purchase-tag">';
+                            str+=data[i].requiredNumber;
+                            str+='人团</span>';
+                            str+='<h3 class="aui-list-product-fl-title">'+data[i].product.product_name+'</h3>';
+                            str+='<div class="aui-list-product-fl-mes"><div><span class="aui-list-product-item-price"><em>¥</em>'+data[i].group_buying_price+'</span>';
+                            str+='<span class="aui-list-product-item-del-price">¥'+data[i].product.original_price+'</span></div>';
+                            str+='</div> </div> </a> <div class="aui-list-title-btn"> <a href="#" class="red-color">马上参团</a> </div> </div> </li>';
+                            $("#div_testStr").append(str);
+                        }
                     }
                 });
         });
@@ -159,7 +190,57 @@
         });
     </script>
 </div>
+<!--&lt;!&ndash;messagebox放置的地方&ndash;&gt;-->
+<!--<script type="text/javascript">-->
+    <!--var int=self.setInterval("getMessage()",1000);-->
+    <!--var userID;-->
+    <!--function getMessage()-->
+    <!--{-->
+        <!--$.ajax({-->
+            <!--url:"getMessage/"+userID,-->
+            <!--type:"post",-->
+            <!--dataType:"json",-->
+            <!--success:function(data)-->
+            <!--{-->
+                <!--console.log(data);-->
+                <!--alert(data);-->
+            <!--}-->
+        <!--});-->
+    <!--}-->
+<!--</script>-->
 
-
+<!--<button onclick="int=window.clearInterval(int)">停止</button>-->
+<button type="button" id="testButton1">测试团购成功</button>
+<button type="button" id="testButton2">测试团购失败</button>
+<script>
+    $("#testButton1").click(function(){
+        Lobibox.notify('info', {
+            size: 'mini',
+            rounded: true,
+            delayIndicator: false,
+            msg:'您的团购成功了',
+            onClick: function(){
+                // your code goes here
+                alert(233);
+            }
+        });
+    });
+</script>
+<script>
+    $("#testButton2").click(function(){
+        Lobibox.notify('info', {
+            size: 'mini',
+            rounded: true,
+            delayIndicator: false,
+            msg:'您的团购失败了',
+            onClick: function(){
+                // your code goes here
+                alert(233);
+            }
+        });
+    });
+</script>
+<!--参考博客-->
+<!--http://lobianijs.com/site/lobibox#installation-->
 </body>
 </html>

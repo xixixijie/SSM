@@ -88,5 +88,24 @@ public interface GroupBuyingDAO {
      */
     public void deleteActivities(int[] a_id);
 
+    /**
+     * 根据groupID查询joiner
+     * @param groupID
+     * @return
+     */
+    public ArrayList<Integer> searchJoiners(int groupID);
+
+    /**
+     * 根据groupID查询leader
+     * @param groupID
+     * @return
+     */
+    public int searchLeader(int groupID);
+
+    /**
+     * 根据userID，messageTitle,messageBody往user_message数据表中插入数据
+     * @param map
+     */
+    public void addMessage(Map<String, Object> map);
 }
 

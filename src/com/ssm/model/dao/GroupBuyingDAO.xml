@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
     <!--根据条件查询团购活动-->
-    <select id="searchActivities"  parameterType="Activity" resultType="Activity">
+    <select id="searchActivities"  parameterType="Activity" resultMap="ActivityResult">
     	select * from group_buying_activity g JOIN product p on g.productID = p.product_id
     	<where>
             <if test="product.product_name!=null and product.product_name!= ''">
@@ -24,6 +24,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             </if>
         </where>
     </select>
+
+    <resultMap id="ActivityResult" type="Activity">
+        <result property="activityID" column="activityID"/>
+        <result property="requiredNumber" column="requiredNumber"/>
+        <result property="groupStartDate" column="groupStartDate"/>
+        <result property="groupEndDate" column="groupEndDate"/>
+        <result property="activityStatus" column="activityStatus"/>
+        <result property="group_buying_price" column="group_buying_price"/>
+
+        <association property="product" column="productID" javaType="Product" resultMap="productResult"/>
+    </resultMap>
+
+        <resultMap id="productResult" type="Product">
+            <result column="product_id" property="product_id"/>
+            <result column="product_name" property="product_name"/>
+            <result column="original_price" property="original_price"/>
+            <result column="discount_price" property="discount_price"/>
+            <result column="product_info" property="product_info"/>
+            <result column="cover_url" property="cover_url"/>
+            <result column="on_date" property="on_date"/>
+        </resultMap>
+
 
 
     <!--根据活动ID查询参与此活动的团队的集合-->
@@ -107,6 +129,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
 
 
+    <select id="searchJoiners" parameterType="int" resultType="int">
+        SELECT joinerID FROM join_group_list
+        WHERE groupID = #{groupID}
+    </select>
+
+
+    <select id="searchLeader" parameterType="int" resultType="int">
+        SELECT leaderID from open_group_list
+        where GROUPID = #{groupID}
+    </select>
+
+
+    <insert id="addMessage" parameterType="map">
+        <selectKey keyProperty="messageID" resultType="int">
+            select nvl(max(messageID),0)+1 from user_message
+        </selectKey>
+        insert into user_message
+        VALUES #{messageID},#{userID},#{messageTitle},#{messageBody},0
+    </insert>
 </mapper>
 
 

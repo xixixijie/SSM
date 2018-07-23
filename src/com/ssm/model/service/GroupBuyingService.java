@@ -116,6 +116,29 @@ public class GroupBuyingService {
 
     }
 
+    /**
+     * 根据groupID取得所有的参与的UserID
+     * @param groupID
+     * @return
+     */
+    public ArrayList<Integer> searchJoiners(int groupID) {
+        ArrayList<Integer> userIDs = groupBuyingDAO.searchJoiners(groupID);
+        userIDs.add(groupBuyingDAO.searchLeader(groupID));
+        return userIDs;
+    }
 
+    /**
+     * 根据userID，messageTitle,messageBody往user_message数据表中插入数据
+     * @param userID
+     * @param messageTitle
+     * @param messageBody
+     */
+    public void addMessage(int userID, String messageTitle, String messageBody) {
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("userID",userID);
+        map.put("messageTitle",messageTitle);
+        map.put("messageBody",messageBody);
+        groupBuyingDAO.addMessage(map);
+    }
 }
 
