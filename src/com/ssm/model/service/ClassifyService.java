@@ -22,24 +22,24 @@ public class ClassifyService {
     @Autowired
     private ClassifyDAO classifyDAO;
 
-    public void deleteClassify(String[] ids){
+    public void deleteClassify(String[] ids) {
         System.out.println("-----删除分类service-----");
         classifyDAO.deleteClassify(ids);
     }
 
-    public void addClassify(Classify classify){
+    public void addClassify(Classify classify) {
         System.out.println("-----添加分类service-----");
         classifyDAO.addClassify(classify);
 
     }
 
-    public Classify getClassify(int classifyID){
+    public Classify getClassify(int classifyID) {
         System.out.println("-----获取分类service-----");
         return classifyDAO.getClassify(classifyID);
 
     }
 
-    public void ModifyClassify(Classify classify){
+    public void ModifyClassify(Classify classify) {
 //        System.out.println(classify.getClassifyID());
 //        System.out.println(classify.getClassName());
 //        System.out.println(classify.getClassDis());
@@ -49,16 +49,16 @@ public class ClassifyService {
 
     }
 
-    public List<Classify> showClassify(){
+    public List<Classify> showClassify() {
         System.out.println("-----展示分类service-----");
-        List<Classify> list=classifyDAO.showClassify();
-        if(list==null||list.size()==0){
+        List<Classify> list = classifyDAO.showClassify();
+        if (list == null || list.size() == 0) {
             System.out.println("-----展示分类失败-----");
-        }else{
-            System.out.println("-----分类的大小为"+list.size()+"-----");
+        } else {
+            System.out.println("-----分类的大小为" + list.size() + "-----");
         }
 //
-       return list;
+        return list;
 
     }
 
@@ -66,22 +66,22 @@ public class ClassifyService {
     //字典序排序
     private List<Classify> sortByName(List<Classify> list) {
         //System.out.println("字典序排序"+list.size());
-        HashMap<String,Classify> map=new HashMap<>();
+        HashMap<String, Classify> map = new HashMap<>();
 
-        for(Classify classify:list){
+        for (Classify classify : list) {
             //System.out.println(classify.getClassName());
             //System.out.println(getPingYin(classify.getClassName()));
-            map.put(getPingYin(classify.getClassName()),classify);
+            map.put(getPingYin(classify.getClassName()), classify);
         }
-       // System.out.println("map大小"+map.size());
+        // System.out.println("map大小"+map.size());
 
-        Collection<String> keyset= map.keySet();
+        Collection<String> keyset = map.keySet();
         //System.out.println("keyset大小"+keyset.size());
-        List<String> keyList=new ArrayList<>(keyset);
+        List<String> keyList = new ArrayList<>(keyset);
         //System.out.println("keyLIst大小"+keyList.size());
         Collections.sort(keyList);
-        List<Classify> newList=new ArrayList<>();
-        for(int i=0;i<keyList.size();i++){
+        List<Classify> newList = new ArrayList<>();
+        for (int i = 0; i < keyList.size(); i++) {
             //System.out.println(keyList.get(i));
             newList.add(map.get(keyList.get(i)));
         }
@@ -127,21 +127,30 @@ public class ClassifyService {
 
     public List<Classify> sortClassify(int type, String[] ids) {
         System.out.println("-----排序分类service-----");
-        List<Classify> list=classifyDAO.getClassifys(ids);
-        if(type==1){
+        List<Classify> list = classifyDAO.getClassifys(ids);
+        if (type == 1) {
             Collections.sort(list, new Comparator<Object>() {
                 @Override
                 public int compare(Object o1, Object o2) {
-                    int x=((Classify)o1).getClassifyID();
-                    int y=((Classify)o2).getClassifyID();
+                    int x = ((Classify) o1).getClassifyID();
+                    int y = ((Classify) o2).getClassifyID();
                     return (x < y) ? -1 : ((x == y) ? 0 : 1);
                 }
-
-
             });
-       }else if(type==2){
+            return list;
+        } else if (type == 2) {
             return sortByName(list);
         }
-       return list;
+
+        //随机打乱list顺序
+        List<Classify> list1 = new ArrayList<>();
+        Set<Classify> set = new HashSet<>(list);
+
+        for (Iterator iterator = set.iterator(); iterator.hasNext(); ) {
+            list1.add((Classify) iterator.next());
+        }
+        return list1;
+
+
     }
 }
