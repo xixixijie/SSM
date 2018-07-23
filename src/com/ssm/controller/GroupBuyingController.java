@@ -36,8 +36,33 @@ public class GroupBuyingController {
         System.out.println(groupStartDate);
         System.out.println(groupEndDate);
         Activity activity = new Activity();
+        if(activityStatus!=-1){
+            activity.setActivityStatus(activityStatus);
+        }
+        Date startDate = null;
+        if(groupStartDate!=null&!"-1".equals(groupStartDate)){
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                startDate = sdf.parse(groupStartDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            activity.setGroupStartDate(startDate);
+        }
+        Date endDate = null;
+        if(groupEndDate!=null&!"-1".equals(groupEndDate)){
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                endDate = sdf.parse(groupEndDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            activity.setGroupEndDate(endDate);
+        }
         Product product = new Product();
-        product.setProduct_name("小米6");
+        if(productName!=null&!"-1".equals(productName)){
+            product.setProduct_name(productName);
+        }
         activity.setProduct(product);
         return checkIfCanDelete(groupBuyingService.searchActivities(activity));
     }
@@ -227,7 +252,15 @@ public class GroupBuyingController {
         groupBuyingService.joinGroupBuying(joinGroupList);
         //人数加一之后做个判断，看是否已经达到要求参与的人数
         if (checkIfEnough(groupID)){
-//            do sth
+            //首先获得所有参与者
+            ArrayList<Integer> userIDs = groupBuyingService.searchJoiners(groupID);
+
+            //应该往此group中的每个user在user_message表中插入一条数据
+            for (int userID: userIDs) {
+                String messageTitle = "团购成功！";
+                String messageBody = "您的团购成功了";
+                groupBuyingService.addMessage(userID,messageTitle,messageBody);
+            }
         }
     }
 

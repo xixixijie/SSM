@@ -7,6 +7,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="getCommentNum" parameterType="int" resultType="int">
         select count(*) FROM commentInfo where product_id=#{productID}
     </select>
+
+    <select id="getCommentByKey" parameterType="String" resultType="Keyword">
+        SELECT * FROM keyword where keyname=#{keyname}
+    </select>
+
+
+
 </mapper>
 
 
