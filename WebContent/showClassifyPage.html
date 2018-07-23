@@ -1,0 +1,286 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分类管理</title>
+    <link rel="stylesheet" href="css/layui.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/layui.js"></script>
+    <script src="js/Convert_Pinyin.js"></script>
+    <script>
+
+
+        $(function () {
+            var nowids="";
+
+
+            function load() {
+                $.ajax({
+                    url: "showClassify",
+                    type: "post",
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function (data) {
+                        $("#mytable").empty();
+
+                        nowids='';
+                        for (var i = 0; i < data.length; i++) {
+
+                            nowids+=data[i].classifyID+',';
+                            var str =  '<tr>'+
+                                '<td><input name="chks" type="checkbox" value="'+data[i].classifyID+'" style="margin-left: -10px;margin-top: 8px"> '+data[i].classifyID+'</td>'+
+                                '<td>'+data[i].className+'</td>' +
+                                '<td>'+data[i].classDis+'</td>'+
+                                '<td>' +
+                                '<a style="text-decoration:none" href="modifyClassifyPage.html?cid='+data[i].classifyID+'" class="layui-btn layui-btn-warm layui-btn-sm">修改</a>' +
+                                '</td>'+
+                                '</tr>';
+                            $("#mytable").append(str);
+                        }
+                    }
+                });
+            }
+
+
+
+
+
+            load();
+
+            var type=0;
+            function sort(data) {
+                type=data;
+
+
+                $.ajax({
+                    url: "sortClassify/"+type+"/"+nowids,
+                    type: "post",
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function (data) {
+                        if(type!=2){
+                            $("#mytable").empty();
+                            nowids='';
+                            for (var i = 0; i < data.length; i++) {
+                                nowids+=data[i].classifyID+',';
+                                var str =  '<tr>'+
+                                    '<td><input name="chks" type="checkbox" value="'+data[i].classifyID+'" style="margin-left: -10px;margin-top: 8px"> '+data[i].classifyID+'</td>'+
+                                    '<td>'+data[i].className+'</td>' +
+                                    '<td>'+data[i].classDis+'</td>'+
+                                    '<td>' +
+                                    '<a style="text-decoration:none" href="modifyClassifyPage.html?cid='+data[i].classifyID+'" class="layui-btn layui-btn-warm layui-btn-sm">修改</a>' +
+                                    '</td>'+
+                                    '</tr>';
+                                $("#mytable").append(str);
+                            }
+                        }else{
+                            var headChar='';
+
+
+                            $("#mytable").empty();
+
+                            var anchor='    <tr>'+
+                                '<td colspan="4" id="anchor">'+
+
+                                '</td>'+
+                                '</tr>';
+                            $("#mytable").append(anchor);
+                            for (var i = 0; i < data.length; i++) {
+
+                                if(headChar!=(pinyin.getFullChars(data[i].className)).substr(0,1)){
+
+                                    headChar=(pinyin.getFullChars(data[i].className)).substr(0,1);
+
+                                    var button= '<a style="text-decoration:none"  href="#point'+headChar+'"  class="layui-btn layui-btn-primary layui-btn-sm" >'+headChar+'</a>';
+                                    $("#anchor").append(button);
+
+                                    var title='  <tr id="point'+headChar+'">'+
+                                        ' <td>'+headChar+'</td>'+
+                                        '<td></td>'+
+                                        '<td></td>'+
+                                        '<td></td>'+
+                                        '</tr>';
+                                    $("#mytable").append(title);
+                                }
+
+                                var str = '<tr>' +
+                                    '<td><input name="chks" type="checkbox" value="'+data[i].classifyID+'" style="margin-left: -10px;margin-top: 8px"> '+data[i].classifyID+'</td>'+
+                                    '<td>' + data[i].className + '</td>' +
+                                    '<td>' + data[i].classDis + '</td>' +
+                                    '<td>' +
+                                    '<a style="text-decoration:none" href="modifyClassifyPage.html?cid="'+data[i].classifyID+' class="layui-btn layui-btn-warm layui-btn-sm">修改</a>' +
+                                    '</td>' +
+                                    '</tr>';
+                                $("#mytable").append(str);
+                            }
+
+                        }
+
+                    }
+                });
+            }
+
+
+
+            var sortIDFlag=true;
+
+            $("#sortID").click(function() {
+              if(sortIDFlag){
+                  sort(1);
+                  sortIDFlag=false
+                  $("#sortID").html("还原")
+                  sortNameFlag=true;
+                  $("#sortName").html("排序")
+
+              }else{
+
+                  sort(0);
+                  sortIDFlag=true;
+                  $("#sortID").html("排序")
+              }
+
+            });
+
+            var sortNameFlag=true
+
+            $("#sortName").click(function() {
+
+                if(sortNameFlag){
+                    sortNameFlag=false;
+                    $("#sortName").html("还原");
+                    sort(2);
+                    sortIDFlag=true;
+                    $("#sortID").html("排序");
+
+                }else{
+                    sortNameFlag=true;
+                    sort(0);
+                    $("#sortName").html("排序")
+                }
+
+            });
+
+            $("#deleteClassifyBtn").click(function() {
+                var ids ='';
+
+                $.each($('input:checkbox:checked'),function(){
+                    ids+=$(this).val()+",";
+
+                });
+
+
+
+                $.ajax({
+                    url: "deleteClassify/"+ids.substr(0,ids.length-1),
+                    type: "get",
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function () {
+                       alert("删除成功")
+                        load();
+                    }
+                });
+
+
+
+            });
+
+            $("#findClassifyBtn").click(function() {
+
+//                alert("现在的排序状态"+type);
+
+
+                var content =$("#content").val();
+                if(content==''){
+                    content='void';
+                }
+
+                $.ajax({
+                    url: "findClassify/"+encodeURI(encodeURI(content)),
+                    type: "post",
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function (data) {
+                        $("#mytable").empty();
+                        nowids='';
+                        for (var i = 0; i < data.length; i++) {
+
+                            nowids+=data[i].classifyID+',';
+                            var str = '<tr>' +
+                                '<td><input name="chks" type="checkbox" value="'+data[i].classifyID+'" style="margin-left: -10px;margin-top: 8px"> '+data[i].classifyID+'</td>'+
+                                '<td>' + data[i].className + '</td>' +
+                                '<td>' + data[i].classDis + '</td>' +
+                                '<td>' +
+                                '<a style="text-decoration:none" href="modifyClassifyPage.html?cid='+data[i].classifyID+'" class="layui-btn layui-btn-warm layui-btn-sm">修改</a>' +
+                                '</td>' +
+                                '</tr>';
+                            $("#mytable").append(str);
+                        }
+//                        alert("查找完成的"+nowids);
+//                        alert('查找完成')
+//                        alert("现在的排序状态"+type);
+//                        alert(nowids);
+                        sort(type)
+                    }
+
+
+                });
+
+
+
+
+            });
+
+
+
+
+        });
+    </script>
+</head>
+<body style="background-color: #f2f2f2" marginheight="0">
+<div class="layui-col-md8" style="margin-top: 30px">
+    <table  class="layui-table" lay-skin="line" lay-size="lg">
+        <colgroup>
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+        <tr style="background-color: #dddddd">
+            <th>分类id
+                <button id="sortID">排序️</button>
+            </th>
+            <th>分类名
+                <button id="sortName">排序️</button>
+            </th>
+            <th>
+                <input id="content" type="text" style="width: 100px;height: 25px">
+                <button id="findClassifyBtn" class="layui-btn layui-btn-normal layui-btn-xs" style="height: 29px;width: 50px">搜索</button>
+            </th>
+            <th>
+                <button id="deleteClassifyBtn" class="layui-btn layui-btn-danger layui-btn-sm" style="float: right;margin-right: 25px;">删除
+                </button>
+            </th>
+
+        </tr>
+        </thead>
+        <tbody id="mytable">
+
+        </tbody>
+    </table>
+
+
+</div>
+
+
+</body>
+</html>

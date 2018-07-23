@@ -21,4 +21,6 @@ public interface ClassifyDAO {
     public List<Classify> showClassify();
 
     public List<Classify> findClassify(String content);
+
+    List<Classify> getClassifys(String[] ids);
 }
