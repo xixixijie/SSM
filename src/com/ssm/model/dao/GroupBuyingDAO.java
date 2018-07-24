@@ -117,5 +117,12 @@ public interface GroupBuyingDAO {
      * @return
      */
     public Group searchGroupInfo(int groupID);
+
+    /**
+     * 根据activityID查询团购活动的相关信息
+     * @param activityID
+     * @return
+     */
+    public Activity searchActivityInfo(int activityID);
 }
 

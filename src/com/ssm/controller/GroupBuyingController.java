@@ -239,6 +239,18 @@ public class GroupBuyingController {
         return groupBuyingService.searchGroupInfo(groupID);
     }
 
+
+    /**
+     * 根据activityID查询团购活动的相关信息
+     * @param activityID
+     * @return
+     */
+    @RequestMapping(value = "searchActivityInfo/{activityID}",method = RequestMethod.POST)
+    @ResponseBody
+    public Activity searchActivityInfo(@PathVariable int activityID){
+        return groupBuyingService.searchActivityInfo(activityID);
+    }
+
     /**
      * 跟团
      *
@@ -326,6 +338,5 @@ public class GroupBuyingController {
     public void deleteActivities(int[] a_id) {
 
     }
-
 
 }

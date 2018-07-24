@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="themes/css/icon.css">
     <link rel="stylesheet" href="themes/css/home.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="/js/jquery-3.2.0.min.js"></script>
+    <script src="/js/open_group.js"></script>
     <link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
 </head>
 <body>
@@ -44,24 +46,7 @@
             </div>
 
             <!--查数据-->
-            <div class="aui-list-product-fl-text">
-                <h3 class="aui-list-product-fl-title">2016夏天新款男士短袖t恤青少年韩版修身印花圆领半袖男装衣服潮领半袖男装衣服潮领半袖男装衣服潮</h3>
-                <div class="aui-list-product-fl-mes">
-                    <div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-                        <span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-                    </div>
-                </div>
-
-                <div class="aui-list-product-fl-bag">
-                    <span><img src="themes/img/icon/bag1.png" alt=""></span>
-                    <span><img src="themes/img/icon/bag2.png" alt=""></span>
-                </div>
+            <div class="aui-list-product-fl-text" id="show_product">
             </div>
         </a>
     </div>
@@ -94,15 +79,46 @@
         <div class="aui-address-cell-bd">收货地址</div>
         <div class="aui-address-cell-ft" id="receiver_address">收货地址</div>
     </a>
+    <input id="open_group_activityID" hidden>
 
 
     <!--确认金额-->
     <div class="aui-payment-bar">
-        <div class="shop-total">
-            <span class="aui-red aui-size">总金额: <em>￥399.00</em></span>
+        <div class="shop-total" id="show_price">
         </div>
-        <a href="Settlement.html" class="settlement">我来开团</a>
+        <a href="#" class="settlement" id="open_group_button">我来开团</a>
     </div>
+
+    <script type="application/javascript">
+        $("#open_group_button").click(function(){
+            var activityID = $("#open_group_activityID").val();
+//            从cookie中获取userid
+            $.cookie('leaderID', 1, { expires: 7 ,path:'/'});
+            //从cookie中取joinerID
+            var leaderID = 1;
+            leaderID = $.cookie('leaderID');
+
+            var openDate = $("#open_group_openDate").val();
+            var receiverName = $("#open_group_receiverName").val();
+            var receiverTEL = $("#open_group_receiverTEL").val();
+            var receiverPostcode = $("#open_group_receiverPostcode").val();
+            var receiverAddress = $("#open_group_receiverAddress").val();
+            var billNeeded = $("#open_group_billNeeded").val();
+
+            $.ajax({
+                url:"initiateGroupBuying/"+activityID+"/"+leaderID+"/"+openDate+"/"+receiverName+"/"+receiverTEL
+                +"/"+receiverPostcode+"/"+receiverAddress+"/"+billNeeded,
+                type:"post",
+                dataType:"json",
+                success:function(data)
+                {
+                    console.log(data);
+                    alert(data);
+                }
+            });
+        });
+    </script>
+
 </section>
 </body>
 </html>
