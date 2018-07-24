@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="themes/css/icon.css">
     <link rel="stylesheet" href="themes/css/home.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+    <link href="123.png" sizes="114x114" rel="apple-touch-icon-precomposed">
     <style type="text/css">
 
         #scrollBg {
@@ -33,23 +33,9 @@
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script>
 
-
-
         $(function(){
 
-//            function writeCookie(productid) {
-//                //alert(productid)
-//                if($.cookie('record')!= "null"){
-//                    alert("in1");
 //
-//                    var record=$.cookie('record');
-//                    $.cookie('record',record+','+productid)
-//                }else {
-//                    alert("in2");
-//
-//                    $.cookie('record',productid);
-//                }
-//            }
 //
 
 
@@ -60,7 +46,7 @@
                 var myRecord = $.cookie('record');
                 // //获得所有分类参数
                 $.ajax({
-                    url: "getRecord/1,2,3",
+                    url: "getRecord/"+myRecord,
                     type: "post",
                     dataType: "json",
                     success: function (data) {
@@ -257,186 +243,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="ui-product.html" class="aui-list-product-item">
-                    <div class="aui-list-product-item-img">
-                        <img src="themes/img/pd/pd-zf-7.jpg" alt="">
-                    </div>
-                    <div class="aui-list-product-item-text">
-                        <h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-                        <div class="aui-list-product-mes-box">
-                            <div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-                                <span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-                            </div>
-                            <div class="aui-comment">986评论</div>
-                        </div>
-                    </div>
-                </a>
-                <a href="ui-product.html" class="aui-list-product-item">
-                    <div class="aui-list-product-item-img">
-                        <img src="themes/img/pd/pd-zf-8.jpg" alt="">
-                    </div>
-                    <div class="aui-list-product-item-text">
-                        <h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-                        <div class="aui-list-product-mes-box">
-                            <div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-                                <span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-                            </div>
-                            <div class="aui-comment">986评论</div>
-                        </div>
-                    </div>
-                </a>
-                <a href="ui-product.html" class="aui-list-product-item">
-                    <div class="aui-list-product-item-img">
-                        <img src="themes/img/pd/sf-1.jpg" alt="">
-                    </div>
-                    <div class="aui-list-product-item-text">
-                        <h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-                        <div class="aui-list-product-mes-box">
-                            <div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-                                <span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-                            </div>
-                            <div class="aui-comment">986评论</div>
-                        </div>
-                    </div>
-                </a>
-                <a href="ui-product.html" class="aui-list-product-item">
-                    <div class="aui-list-product-item-img">
-                        <img src="themes/img/pd/sf-2.jpg" alt="">
-                    </div>
-                    <div class="aui-list-product-item-text">
-                        <h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-                        <div class="aui-list-product-mes-box">
-                            <div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-                                <span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-                            </div>
-                            <div class="aui-comment">986评论</div>
-                        </div>
-                    </div>
-                </a>
-                <a href="ui-product.html" class="aui-list-product-item">
-                    <div class="aui-list-product-item-img">
-                        <img src="themes/img/pd/sf-4.jpg" alt="">
-                    </div>
-                    <div class="aui-list-product-item-text">
-                        <h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-                        <div class="aui-list-product-mes-box">
-                            <div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-                                <span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-                            </div>
-                            <div class="aui-comment">986评论</div>
-                        </div>
-                    </div>
-                </a>
-                <a href="ui-product.html" class="aui-list-product-item">
-                    <div class="aui-list-product-item-img">
-                        <img src="themes/img/pd/sf-5.jpg" alt="">
-                    </div>
-                    <div class="aui-list-product-item-text">
-                        <h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-                        <div class="aui-list-product-mes-box">
-                            <div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-                                <span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-                            </div>
-                            <div class="aui-comment">986评论</div>
-                        </div>
-                    </div>
-                </a>
-                <a href="ui-product.html" class="aui-list-product-item">
-                    <div class="aui-list-product-item-img">
-                        <img src="themes/img/pd/sf-6.jpg" alt="">
-                    </div>
-                    <div class="aui-list-product-item-text">
-                        <h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-                        <div class="aui-list-product-mes-box">
-                            <div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-                                <span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-                            </div>
-                            <div class="aui-comment">986评论</div>
-                        </div>
-                    </div>
-                </a>
-                <a href="ui-product.html" class="aui-list-product-item">
-                    <div class="aui-list-product-item-img">
-                        <img src="themes/img/pd/sf-7.jpg" alt="">
-                    </div>
-                    <div class="aui-list-product-item-text">
-                        <h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-                        <div class="aui-list-product-mes-box">
-                            <div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-                                <span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-                            </div>
-                            <div class="aui-comment">986评论</div>
-                        </div>
-                    </div>
-                </a>
-                <a href="ui-product.html" class="aui-list-product-item">
-                    <div class="aui-list-product-item-img">
-                        <img src="themes/img/pd/sf-1.jpg" alt="">
-                    </div>
-                    <div class="aui-list-product-item-text">
-                        <h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-                        <div class="aui-list-product-mes-box">
-                            <div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-                                <span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-                            </div>
-                            <div class="aui-comment">986评论</div>
-                        </div>
-                    </div>
-                </a>
+
             </div>
         </section>
     </section>

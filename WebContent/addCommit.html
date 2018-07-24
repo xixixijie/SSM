@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script>
+        $(function(){
+            $("#addComment").click(function(){
+
+                //1. 创建一个formdata对象
+                var formData = new FormData(document.getElementById("myform"));
+
+                $.ajax({
+                    url:"addComment",
+                    type:"post",
+                    data:formData,
+                    dataType:"json",
+                    contentType:false,
+                    processData:false,
+                    cache:false,
+                    success:function(data)
+                    {
+
+                        //{result:true}
+                        if(data.result)
+                        {
+                            alert("添加成功");
+                        }
+                        else
+                        {
+                            alert("添加失败");
+                        }
+                    }
+                });
+
+            });
+
+            function load() {
+                $.ajax({
+                    url:"getKeyword",
+                    type:"post",
+                    dataType:"json",
+                    success:function(data)
+                    {
+
+                        //{result:true}
+
+                    }
+                });
+                alert(1)
+
+            }
+
+            load()
+        })
+    </script>
+</head>
+<body>
+
+<form id="myform">
+    请输入评价<input id="Comment" name="ctext" type="text" value="">
+    <button id="addComment">添加</button>
+</form>
+
+</body>
+</html>

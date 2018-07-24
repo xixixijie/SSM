@@ -157,10 +157,11 @@ public class ProductService {
         System.out.println("-----推荐商品方法-----");
         //计算每个商品的热度
         List<Hot> hotList = caculateHot(list);
-        //根据热度排序，选最高的10个
+        //根据热度排序，选最高的9个
         Collections.sort(hotList);
         List<Product> newList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 9; i++) {
+            System.out.println(hotList.get(i).getScore()+" "+hotList.get(i).getProduct().getProduct_name());
             newList.add(hotList.get(i).getProduct());
         }
         return newList;
@@ -185,7 +186,8 @@ public class ProductService {
         //获得和该商品有关的评论数
         int count = commentDAO.getCommentNum(product.getProduct_id());
 
-        return hour * 0.4 + count * 0.6;
+        
+        return hour * 0.2 + count * 0.8;
     }
 
 

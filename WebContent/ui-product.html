@@ -11,7 +11,34 @@
 	<link rel="stylesheet" href="themes/css/icon.css">
 	<link rel="stylesheet" href="themes/css/home.css">
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
-	<link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+	<link href="123.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+	<script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+	<script>
+        $(function(){
+            //alert(location.href);
+            var index = location.href.lastIndexOf("=");
+            var product_id= location.href.substr(index+1);
+			alert("商品id"+product_id);
+            function writeCookie(productid) {
+                //alert(productid)
+                if($.cookie('record')!= "null"){
+
+
+                    var record=$.cookie('record');
+                    $.cookie('record',record+','+productid)
+                }else {
+                    $.cookie('record',productid);
+                }
+            }
+
+            writeCookie(product_id);
+
+
+			});
+	</script>
+
 	<style>
 		.m-button {
 			padding: 0 0.24rem;
@@ -120,6 +147,9 @@
 		}
 
 	</style>
+
+
+
 </head>
 <body>
 	<header class="aui-header-default aui-header-fixed ">
@@ -684,7 +714,7 @@
 		</div>
 	</footer>
 
-	<script src="themes/js/jquery.min.js"></script>
+
 	<script src="themes/js/aui.js"></script>
 	<script src="themes/js/aui-down.js"></script>
 	<script type="text/javascript" src="themes/js/city.js"></script>

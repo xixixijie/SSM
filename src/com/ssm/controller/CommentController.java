@@ -24,6 +24,7 @@ public class CommentController {
     @RequestMapping(value = "addComment")
     public void addComment(CommentInfo comment){
         System.out.println("-----添加评论Controller-----");
+        //System.out.println(comment.getCtext());
         commentService.addComment(comment);
     }
 
@@ -31,7 +32,7 @@ public class CommentController {
 
 
 
-    @RequestMapping(value = "/addComment/{keyname}")
+    @RequestMapping(value = "/getComment/{keyname}")
     @ResponseBody
     public List<CommentInfo> getCommentByKey(@PathVariable String keyname){
         System.out.println("-----通过key获得评论Controller-----");

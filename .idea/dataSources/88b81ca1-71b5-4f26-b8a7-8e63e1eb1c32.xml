@@ -1,0 +1,3101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@10.25.49.7">
+  <database-model serializer="dbm" rdbms="ORACLE" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="SCOTT">
+      <ObjectId>54</ObjectId>
+      <IntrospectionTimestamp>2018-07-24.09:08:38</IntrospectionTimestamp>
+      <CreatedTimestamp>2005-08-30.15:06:10</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.14:51:26</ModifiedTimestamp>
+      <CommentsHash>5756556302108</CommentsHash>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="PUBLIC">
+      <ObjectId>1</ObjectId>
+    </schema>
+    <schema id="4" parent="1" name="SYS">
+      <ObjectId>0</ObjectId>
+    </schema>
+    <schema id="5" parent="1" name="SYSTEM">
+      <ObjectId>5</ObjectId>
+    </schema>
+    <schema id="6" parent="1" name="OUTLN">
+      <ObjectId>11</ObjectId>
+    </schema>
+    <schema id="7" parent="1" name="DIP">
+      <ObjectId>19</ObjectId>
+    </schema>
+    <schema id="8" parent="1" name="TSMSYS">
+      <ObjectId>21</ObjectId>
+    </schema>
+    <schema id="9" parent="1" name="DBSNMP">
+      <ObjectId>24</ObjectId>
+    </schema>
+    <schema id="10" parent="1" name="WMSYS">
+      <ObjectId>25</ObjectId>
+    </schema>
+    <schema id="11" parent="1" name="EXFSYS">
+      <ObjectId>34</ObjectId>
+    </schema>
+    <schema id="12" parent="1" name="DMSYS">
+      <ObjectId>35</ObjectId>
+    </schema>
+    <schema id="13" parent="1" name="CTXSYS">
+      <ObjectId>36</ObjectId>
+    </schema>
+    <schema id="14" parent="1" name="XDB">
+      <ObjectId>38</ObjectId>
+    </schema>
+    <schema id="15" parent="1" name="ANONYMOUS">
+      <ObjectId>39</ObjectId>
+    </schema>
+    <schema id="16" parent="1" name="ORDSYS">
+      <ObjectId>43</ObjectId>
+    </schema>
+    <schema id="17" parent="1" name="ORDPLUGINS">
+      <ObjectId>44</ObjectId>
+    </schema>
+    <schema id="18" parent="1" name="SI_INFORMTN_SCHEMA">
+      <ObjectId>45</ObjectId>
+    </schema>
+    <schema id="19" parent="1" name="MDSYS">
+      <ObjectId>46</ObjectId>
+    </schema>
+    <schema id="20" parent="1" name="OLAPSYS">
+      <ObjectId>47</ObjectId>
+    </schema>
+    <schema id="21" parent="1" name="MDDATA">
+      <ObjectId>50</ObjectId>
+    </schema>
+    <schema id="22" parent="1" name="SYSMAN">
+      <ObjectId>51</ObjectId>
+    </schema>
+    <schema id="23" parent="1" name="MGMT_VIEW">
+      <ObjectId>53</ObjectId>
+    </schema>
+    <sequence id="24" parent="2" name="SEQ_ADMIN">
+      <ObjectId>52165</ObjectId>
+      <CreatedTimestamp>2018-07-19.10:45:58</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-19.10:45:58</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="25" parent="2" name="SEQ_CLASSIFY">
+      <ObjectId>52164</ObjectId>
+      <CreatedTimestamp>2018-07-19.10:45:44</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-19.10:45:44</ModifiedTimestamp>
+      <SequenceIdentity>10</SequenceIdentity>
+    </sequence>
+    <sequence id="26" parent="2" name="SEQ_KEYWORD">
+      <ObjectId>52166</ObjectId>
+      <CreatedTimestamp>2018-07-19.10:54:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-19.10:54:32</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <sequence id="27" parent="2" name="ZZZZZZ">
+      <ObjectId>51822</ObjectId>
+      <CreatedTimestamp>2018-06-28.14:21:28</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.14:21:28</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <table id="28" parent="2" name="ACCEPT_ADDRESS">
+      <ObjectId>52204</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:30:45</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:36:36</ModifiedTimestamp>
+    </table>
+    <table id="29" parent="2" name="ADMINSTRATOR">
+      <ObjectId>51529</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:29:28</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-19.10:39:22</ModifiedTimestamp>
+    </table>
+    <table id="30" parent="2" name="AFTERSERVICE_LIST">
+      <ObjectId>52228</ObjectId>
+      <CreatedTimestamp>2018-07-23.10:24:28</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.11:03:47</ModifiedTimestamp>
+    </table>
+    <table id="31" parent="2" name="ASPECT">
+      <ObjectId>52190</ObjectId>
+      <CreatedTimestamp>2018-07-20.10:04:33</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.10:04:33</ModifiedTimestamp>
+    </table>
+    <table id="32" parent="2" name="BANKCARD">
+      <ObjectId>52215</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:38:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:38:32</ModifiedTimestamp>
+    </table>
+    <table id="33" parent="2" name="BONUS">
+      <ObjectId>51153</ObjectId>
+      <CreatedTimestamp>2005-08-30.15:06:10</CreatedTimestamp>
+      <ModifiedTimestamp>2005-08-30.15:06:10</ModifiedTimestamp>
+    </table>
+    <table id="34" parent="2" name="CARPRODUCT">
+      <ObjectId>52218</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:47:56</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:47:56</ModifiedTimestamp>
+    </table>
+    <table id="35" parent="2" name="CENTRAL_DEPOT_IN">
+      <ObjectId>51557</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:08:09</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:12:26</ModifiedTimestamp>
+    </table>
+    <table id="36" parent="2" name="CENTRAL_DEPOT_OUT">
+      <ObjectId>51560</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:08:22</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:34:05</ModifiedTimestamp>
+    </table>
+    <table id="37" parent="2" name="CENTRAL_RETURN_IN">
+      <ObjectId>51575</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:09:34</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-25.13:04:57</ModifiedTimestamp>
+    </table>
+    <table id="38" parent="2" name="CENTRAL_RETURN_OUT">
+      <ObjectId>51578</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:09:42</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:17:37</ModifiedTimestamp>
+    </table>
+    <table id="39" parent="2" name="CLASSIFY">
+      <ObjectId>52160</ObjectId>
+      <CreatedTimestamp>2018-07-19.10:36:07</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-19.10:36:26</ModifiedTimestamp>
+    </table>
+    <table id="40" parent="2" name="COMMENTINFO">
+      <ObjectId>52176</ObjectId>
+      <CreatedTimestamp>2018-07-20.09:40:20</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.14:51:26</ModifiedTimestamp>
+    </table>
+    <table id="41" parent="2" name="COMMENT_PHOTO">
+      <ObjectId>52186</ObjectId>
+      <CreatedTimestamp>2018-07-20.09:51:09</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.09:51:09</ModifiedTimestamp>
+    </table>
+    <table id="42" parent="2" name="COURIER">
+      <ObjectId>51542</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:59:09</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-26.11:36:23</ModifiedTimestamp>
+    </table>
+    <table id="43" parent="2" name="CS_LIST">
+      <ObjectId>52230</ObjectId>
+      <CreatedTimestamp>2018-07-23.10:25:40</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.10:25:40</ModifiedTimestamp>
+    </table>
+    <table id="44" parent="2" name="DEPOT">
+      <ObjectId>51596</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:29:30</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.11:16:24</ModifiedTimestamp>
+    </table>
+    <table id="45" parent="2" name="DEPOT_STORAGE">
+      <ObjectId>51600</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:29:39</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.09:53:53</ModifiedTimestamp>
+    </table>
+    <table id="46" parent="2" name="DEPT">
+      <ObjectId>51149</ObjectId>
+      <CreatedTimestamp>2005-08-30.15:06:10</CreatedTimestamp>
+      <ModifiedTimestamp>2005-08-30.15:06:10</ModifiedTimestamp>
+    </table>
+    <table id="47" parent="2" name="DISTRIBUTION">
+      <ObjectId>51539</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:58:08</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:41:34</ModifiedTimestamp>
+    </table>
+    <table id="48" parent="2" name="EMP">
+      <ObjectId>51151</ObjectId>
+      <CreatedTimestamp>2005-08-30.15:06:10</CreatedTimestamp>
+      <ModifiedTimestamp>2005-08-30.15:06:10</ModifiedTimestamp>
+    </table>
+    <table id="49" parent="2" name="FIRSTCATEGORY">
+      <ObjectId>51580</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:18:47</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:23:42</ModifiedTimestamp>
+    </table>
+    <table id="50" parent="2" name="GROUP_BUYING_ACTIVITY">
+      <ObjectId>52167</ObjectId>
+      <CreatedTimestamp>2018-07-19.11:40:55</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.09:13:26</ModifiedTimestamp>
+    </table>
+    <table id="51" parent="2" name="GROUP_BUYING_LIST">
+      <ObjectId>52169</ObjectId>
+      <CreatedTimestamp>2018-07-19.11:44:29</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.09:16:27</ModifiedTimestamp>
+    </table>
+    <table id="52" parent="2" name="INVOICE">
+      <ObjectId>51590</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:28:07</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:53:49</ModifiedTimestamp>
+    </table>
+    <table id="53" parent="2" name="JOIN_GROUP_LIST">
+      <ObjectId>52173</ObjectId>
+      <CreatedTimestamp>2018-07-19.13:34:07</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.09:17:25</ModifiedTimestamp>
+    </table>
+    <table id="54" parent="2" name="KEYWORD">
+      <ObjectId>52162</ObjectId>
+      <CreatedTimestamp>2018-07-19.10:38:41</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.09:05:20</ModifiedTimestamp>
+    </table>
+    <table id="55" parent="2" name="MISSIONLIST">
+      <ObjectId>51586</ObjectId>
+      <Comment>任务单</Comment>
+      <CreatedTimestamp>2018-06-19.10:27:11</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:53:49</ModifiedTimestamp>
+    </table>
+    <table id="56" parent="2" name="OPEN_GROUP_LIST">
+      <ObjectId>52171</ObjectId>
+      <CreatedTimestamp>2018-07-19.11:47:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.15:01:32</ModifiedTimestamp>
+    </table>
+    <table id="57" parent="2" name="ORDERINFO">
+      <ObjectId>52220</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:53:52</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:53:52</ModifiedTimestamp>
+    </table>
+    <table id="58" parent="2" name="ORDERPRODUCT">
+      <ObjectId>52222</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:58:19</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.13:23:48</ModifiedTimestamp>
+    </table>
+    <table id="59" parent="2" name="PARAMETER">
+      <ObjectId>52192</ObjectId>
+      <CreatedTimestamp>2018-07-20.10:06:41</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.10:06:42</ModifiedTimestamp>
+    </table>
+    <table id="60" parent="2" name="PRAISE">
+      <ObjectId>52180</ObjectId>
+      <CreatedTimestamp>2018-07-20.09:46:02</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.09:46:02</ModifiedTimestamp>
+    </table>
+    <table id="61" parent="2" name="PRAISEINFO">
+      <ObjectId>52182</ObjectId>
+      <CreatedTimestamp>2018-07-20.09:46:13</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.09:47:49</ModifiedTimestamp>
+    </table>
+    <table id="62" parent="2" name="PRODUCT">
+      <ObjectId>52188</ObjectId>
+      <CreatedTimestamp>2018-07-20.10:01:39</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:42:12</ModifiedTimestamp>
+    </table>
+    <table id="63" parent="2" name="PURCHASE_WAREHOUSE">
+      <ObjectId>51550</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:00:29</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:53:49</ModifiedTimestamp>
+    </table>
+    <table id="64" parent="2" name="RECEIPT">
+      <ObjectId>51545</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:59:40</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.09:59:40</ModifiedTimestamp>
+    </table>
+    <table id="65" parent="2" name="REMIND">
+      <ObjectId>52196</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:10:39</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:59:57</ModifiedTimestamp>
+    </table>
+    <table id="66" parent="2" name="REPLY">
+      <ObjectId>52178</ObjectId>
+      <CreatedTimestamp>2018-07-20.09:43:15</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.09:43:15</ModifiedTimestamp>
+    </table>
+    <table id="67" parent="2" name="RESTOCK_ORDER_RECORD">
+      <ObjectId>51535</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:45:59</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:53:49</ModifiedTimestamp>
+    </table>
+    <table id="68" parent="2" name="RETURN_GOODS">
+      <ObjectId>51552</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:00:44</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.09:53:53</ModifiedTimestamp>
+    </table>
+    <table id="69" parent="2" name="RETURN_GOODS_RECORD">
+      <ObjectId>51537</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:51:12</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:53:49</ModifiedTimestamp>
+    </table>
+    <table id="70" parent="2" name="SALGRADE">
+      <ObjectId>51154</ObjectId>
+      <CreatedTimestamp>2005-08-30.15:06:10</CreatedTimestamp>
+      <ModifiedTimestamp>2005-08-30.15:06:10</ModifiedTimestamp>
+    </table>
+    <table id="71" parent="2" name="SECKILL_ORDER">
+      <ObjectId>52198</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:13:00</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.14:01:29</ModifiedTimestamp>
+    </table>
+    <table id="72" parent="2" name="SECKILL_PRODUCT">
+      <ObjectId>52194</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:08:22</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.10:20:42</ModifiedTimestamp>
+    </table>
+    <table id="73" parent="2" name="SUBADMINISTRATOR">
+      <ObjectId>51554</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:01:23</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:07:28</ModifiedTimestamp>
+    </table>
+    <table id="74" parent="2" name="SUBSTATION_CLEARING">
+      <ObjectId>51592</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:28:17</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.15:19:13</ModifiedTimestamp>
+    </table>
+    <table id="75" parent="2" name="SUB_DEPOT_IN">
+      <ObjectId>51563</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:08:35</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:14:00</ModifiedTimestamp>
+    </table>
+    <table id="76" parent="2" name="SUB_DEPOT_OUT">
+      <ObjectId>51566</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:08:53</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:34:36</ModifiedTimestamp>
+    </table>
+    <table id="77" parent="2" name="SUB_RETURN_IN">
+      <ObjectId>51570</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:09:02</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:34:57</ModifiedTimestamp>
+    </table>
+    <table id="78" parent="2" name="SUB_RETURN_OUT">
+      <ObjectId>51573</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:09:11</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:35:44</ModifiedTimestamp>
+    </table>
+    <table id="79" parent="2" name="TRANSFERSLIP">
+      <ObjectId>51602</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:31:28</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:39:43</ModifiedTimestamp>
+    </table>
+    <table id="80" parent="2" name="USERINFO">
+      <ObjectId>52201</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:27:48</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:36:21</ModifiedTimestamp>
+    </table>
+    <table id="81" parent="2" name="USER_MESSAGE">
+      <ObjectId>52226</ObjectId>
+      <CreatedTimestamp>2018-07-23.09:19:18</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.09:20:05</ModifiedTimestamp>
+    </table>
+    <table id="82" parent="2" name="Z">
+      <ObjectId>51689</ObjectId>
+      <CreatedTimestamp>2018-06-22.15:43:21</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-22.15:43:22</ModifiedTimestamp>
+    </table>
+    <column id="83" parent="28" name="ADDRESS_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="84" parent="28" name="USER_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="85" parent="28" name="ADDRESS">
+      <Position>3</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="86" parent="28" name="POSTCODE">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="87" parent="28" name="ACCEPT_PHONE">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="88" parent="28" name="ACCEPT_NAME">
+      <Position>6</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="89" parent="28" name="STATUS">
+      <Position>7</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="90" parent="28" name="A_ADDRESSID">
+      <ObjectId>52214</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:36:26</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:36:26</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>ADDRESS_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="91" parent="28" name="A_ADDRESSID">
+      <ModifiedTimestamp>2018-07-20.13:36:26</ModifiedTimestamp>
+      <ColNames>ADDRESS_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>A_ADDRESSID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="92" parent="28" name="A_USERID">
+      <ModifiedTimestamp>2018-07-20.13:36:36</ModifiedTimestamp>
+      <ColNames>USER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>USERINFO</RefTableName>
+      <RefKeyName>U_USERID</RefKeyName>
+    </foreign-key>
+    <column id="93" parent="29" name="ADMIN_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="94" parent="29" name="ACCOUNT">
+      <Position>2</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="95" parent="29" name="PASSWORD">
+      <Position>3</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="96" parent="29" name="ADMIN_ID">
+      <ObjectId>51530</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:29:28</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.09:29:28</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>ADMIN_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="97" parent="29" name="ACCOUNT">
+      <ObjectId>51531</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:29:28</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.09:29:28</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>ACCOUNT</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="98" parent="29" name="ADMIN_ID">
+      <ModifiedTimestamp>2018-06-19.09:29:28</ModifiedTimestamp>
+      <ColNames>ADMIN_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>ADMIN_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="99" parent="29" name="ACCOUNT">
+      <ModifiedTimestamp>2018-06-19.09:29:28</ModifiedTimestamp>
+      <ColNames>ACCOUNT</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>ACCOUNT</UnderlyingIndexName>
+    </key>
+    <column id="100" parent="30" name="AFTER_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="101" parent="30" name="USER_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="102" parent="30" name="STATUS">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="103" parent="30" name="REASON">
+      <Position>4</Position>
+      <DataType>VARCHAR2(120)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="104" parent="30" name="REQUIREMENT">
+      <Position>5</Position>
+      <DataType>VARCHAR2(120)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="105" parent="30" name="AFTER_DATE">
+      <Position>6</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="106" parent="30" name="CS_ID">
+      <Position>7</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="107" parent="30" name="RESULT">
+      <Position>8</Position>
+      <DataType>VARCHAR2(120)|0</DataType>
+    </column>
+    <column id="108" parent="30" name="ORDER_ID">
+      <Position>9</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="109" parent="30" name="PK_AFTERSERVICE">
+      <ObjectId>52229</ObjectId>
+      <CreatedTimestamp>2018-07-23.10:24:30</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.10:24:30</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>AFTER_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="110" parent="30" name="PK_AFTERSERVICE">
+      <ModifiedTimestamp>2018-07-23.10:24:30</ModifiedTimestamp>
+      <ColNames>AFTER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_AFTERSERVICE</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="111" parent="30" name="USERID_FK">
+      <ModifiedTimestamp>2018-07-23.10:27:49</ModifiedTimestamp>
+      <ColNames>USER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>USERINFO</RefTableName>
+      <RefKeyName>U_USERID</RefKeyName>
+    </foreign-key>
+    <foreign-key id="112" parent="30" name="CSID_FK">
+      <ModifiedTimestamp>2018-07-23.10:27:49</ModifiedTimestamp>
+      <ColNames>CS_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>CS_LIST</RefTableName>
+      <RefKeyName>PK_CS</RefKeyName>
+    </foreign-key>
+    <foreign-key id="113" parent="30" name="ORDERID_FK">
+      <ModifiedTimestamp>2018-07-23.11:03:47</ModifiedTimestamp>
+      <ColNames>ORDER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>ORDERINFO</RefTableName>
+      <RefKeyName>ORDER_ID</RefKeyName>
+    </foreign-key>
+    <column id="114" parent="31" name="ASPECT_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="115" parent="31" name="ASPECT_URL">
+      <Position>2</Position>
+      <DataType>VARCHAR2(200)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="116" parent="31" name="PRODUCT_ID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="117" parent="31" name="PK_ASPECT_ID">
+      <ObjectId>52191</ObjectId>
+      <CreatedTimestamp>2018-07-20.10:04:33</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.10:04:33</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>ASPECT_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="118" parent="31" name="PK_ASPECT_ID">
+      <ModifiedTimestamp>2018-07-20.10:04:33</ModifiedTimestamp>
+      <ColNames>ASPECT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_ASPECT_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="119" parent="31" name="FK_ASPECT_PRODUCT">
+      <ModifiedTimestamp>2018-07-20.10:04:33</ModifiedTimestamp>
+      <ColNames>PRODUCT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>PRODUCT</RefTableName>
+      <RefKeyName>PK_PRODUCT</RefKeyName>
+    </foreign-key>
+    <column id="120" parent="32" name="BANKCARD_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="121" parent="32" name="USER_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="122" parent="32" name="BANKCARD_NUMBER">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="123" parent="32" name="B_BANKCARDID">
+      <ObjectId>52216</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:38:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:38:32</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>BANKCARD_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="124" parent="32" name="B_BANKCARDNUM">
+      <ObjectId>52217</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:38:32</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:38:32</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>BANKCARD_NUMBER</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="125" parent="32" name="B_BANKCARDID">
+      <ModifiedTimestamp>2018-07-20.13:38:32</ModifiedTimestamp>
+      <ColNames>BANKCARD_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>B_BANKCARDID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="126" parent="32" name="B_BANKCARDNUM">
+      <ModifiedTimestamp>2018-07-20.13:38:32</ModifiedTimestamp>
+      <ColNames>BANKCARD_NUMBER</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>B_BANKCARDNUM</UnderlyingIndexName>
+    </key>
+    <foreign-key id="127" parent="32" name="B_USERID">
+      <ModifiedTimestamp>2018-07-20.13:38:32</ModifiedTimestamp>
+      <ColNames>USER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>USERINFO</RefTableName>
+      <RefKeyName>U_USERID</RefKeyName>
+    </foreign-key>
+    <column id="128" parent="33" name="ENAME">
+      <Position>1</Position>
+      <DataType>VARCHAR2(10)|0</DataType>
+    </column>
+    <column id="129" parent="33" name="JOB">
+      <Position>2</Position>
+      <DataType>VARCHAR2(9)|0</DataType>
+    </column>
+    <column id="130" parent="33" name="SAL">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="131" parent="33" name="COMM">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="132" parent="34" name="CARPRODUCT_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="133" parent="34" name="PRODUCT_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="134" parent="34" name="USER_ID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="135" parent="34" name="CREATE_DATE">
+      <Position>4</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="136" parent="34" name="CARPRODUCT_ID">
+      <ObjectId>52219</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:47:56</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:47:56</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>CARPRODUCT_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="137" parent="34" name="CARPRODUCT_ID">
+      <ModifiedTimestamp>2018-07-20.13:47:56</ModifiedTimestamp>
+      <ColNames>CARPRODUCT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>CARPRODUCT_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="138" parent="34" name="PRO_ID">
+      <ModifiedTimestamp>2018-07-20.13:47:56</ModifiedTimestamp>
+      <ColNames>PRODUCT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>PRODUCT</RefTableName>
+      <RefKeyName>PK_PRODUCT</RefKeyName>
+    </foreign-key>
+    <foreign-key id="139" parent="34" name="U_ID">
+      <ModifiedTimestamp>2018-07-20.13:47:56</ModifiedTimestamp>
+      <ColNames>USER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>USERINFO</RefTableName>
+      <RefKeyName>U_USERID</RefKeyName>
+    </foreign-key>
+    <column id="140" parent="35" name="CENTRAL_IN_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="141" parent="35" name="PURCHASE_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="142" parent="35" name="IN_AMOUNT">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="143" parent="35" name="IN_DATE">
+      <Position>4</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="144" parent="35" name="NOTE">
+      <Position>5</Position>
+      <DataType>VARCHAR2(60)|0</DataType>
+    </column>
+    <index id="145" parent="35" name="CENTRAL_IN_ID">
+      <ObjectId>51558</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:08:09</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:08:09</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>CENTRAL_IN_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="146" parent="35" name="CENTRAL_IN_ID">
+      <ModifiedTimestamp>2018-06-19.10:08:09</ModifiedTimestamp>
+      <ColNames>CENTRAL_IN_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>CENTRAL_IN_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="147" parent="35" name="C_PURCHASE_ID">
+      <ModifiedTimestamp>2018-06-19.10:12:26</ModifiedTimestamp>
+      <ColNames>PURCHASE_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>PURCHASE_WAREHOUSE</RefTableName>
+      <RefKeyName>PURCHASE_WAREHOUSE_ID</RefKeyName>
+    </foreign-key>
+    <column id="148" parent="36" name="CENTRAL_OUT_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="149" parent="36" name="OUT_DATE">
+      <Position>2</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="150" parent="36" name="TRANSFER_ID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="151" parent="36" name="CENTRAL_OUT_ID">
+      <ObjectId>51561</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:08:22</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:08:22</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>CENTRAL_OUT_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="152" parent="36" name="CENTRAL_OUT_ID">
+      <ModifiedTimestamp>2018-06-19.10:08:22</ModifiedTimestamp>
+      <ColNames>CENTRAL_OUT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>CENTRAL_OUT_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="153" parent="36" name="TRANSFER_ID">
+      <ModifiedTimestamp>2018-06-19.10:34:05</ModifiedTimestamp>
+      <ColNames>TRANSFER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>TRANSFERSLIP</RefTableName>
+      <RefKeyName>TANSFER_ID</RefKeyName>
+    </foreign-key>
+    <column id="154" parent="37" name="CENTRAL_RIN_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="155" parent="37" name="SUB_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="156" parent="37" name="IN_DATE">
+      <Position>3</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="157" parent="37" name="CENTRAL_RIN_ID">
+      <ObjectId>51576</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:09:34</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:09:34</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>CENTRAL_RIN_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="158" parent="37" name="CENTRAL_RIN_ID">
+      <ModifiedTimestamp>2018-06-19.10:09:34</ModifiedTimestamp>
+      <ColNames>CENTRAL_RIN_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>CENTRAL_RIN_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="159" parent="37" name="SUB_ID">
+      <ModifiedTimestamp>2018-06-25.13:04:57</ModifiedTimestamp>
+      <ColNames>SUB_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>SUB_RETURN_OUT</RefTableName>
+      <RefKeyName>SUB_ROUT_ID</RefKeyName>
+    </foreign-key>
+    <column id="160" parent="38" name="CENTRAL_ROUT_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="161" parent="38" name="OUT_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="162" parent="38" name="OUT_DATE">
+      <Position>3</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="163" parent="38" name="CENTRAL_ROUT_ID">
+      <ObjectId>51579</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:09:42</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:09:42</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>CENTRAL_ROUT_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="164" parent="38" name="CENTRAL_ROUT_ID">
+      <ModifiedTimestamp>2018-06-19.10:09:42</ModifiedTimestamp>
+      <ColNames>CENTRAL_ROUT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>CENTRAL_ROUT_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="165" parent="38" name="CENTRAL_P_OUT_ID">
+      <ModifiedTimestamp>2018-06-19.10:17:37</ModifiedTimestamp>
+      <ColNames>OUT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>RETURN_GOODS</RefTableName>
+      <RefKeyName>RETURN_GOODS_ID</RefKeyName>
+    </foreign-key>
+    <column id="166" parent="39" name="CLASSIFYID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="167" parent="39" name="CLASSNAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="168" parent="39" name="CLASSDIS">
+      <Position>3</Position>
+      <DataType>VARCHAR2(120)|0</DataType>
+    </column>
+    <column id="169" parent="39" name="CLASSSTATE">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="170" parent="39" name="CLASSIFYID">
+      <ObjectId>52161</ObjectId>
+      <CreatedTimestamp>2018-07-19.10:36:26</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-19.10:36:26</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>CLASSIFYID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="171" parent="39" name="CLASSIFYID">
+      <ModifiedTimestamp>2018-07-19.10:36:28</ModifiedTimestamp>
+      <ColNames>CLASSIFYID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>CLASSIFYID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="172" parent="40" name="CID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="173" parent="40" name="USERID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="174" parent="40" name="SCORE">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="175" parent="40" name="CTEXT">
+      <Position>4</Position>
+      <DataType>VARCHAR2(280)|0</DataType>
+    </column>
+    <column id="176" parent="40" name="PRODUCT_ID">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="177" parent="40" name="PRAISE">
+      <Position>6</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="178" parent="40" name="CDATE">
+      <Position>7</Position>
+      <DataType>DATE|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <index id="179" parent="40" name="COMMENT_PK">
+      <ObjectId>52177</ObjectId>
+      <CreatedTimestamp>2018-07-20.09:40:20</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.09:40:20</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>CID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="180" parent="40" name="COMMENT_PK">
+      <ModifiedTimestamp>2018-07-20.09:40:20</ModifiedTimestamp>
+      <ColNames>CID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>COMMENT_PK</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="181" parent="41" name="PHOTO_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="182" parent="41" name="CID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="183" parent="41" name="PHOTOURL">
+      <Position>3</Position>
+      <DataType>VARCHAR2(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="184" parent="41" name="COMMENT_PHOTO_PK">
+      <ObjectId>52187</ObjectId>
+      <CreatedTimestamp>2018-07-20.09:51:09</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.09:51:09</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>PHOTO_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="185" parent="41" name="COMMENT_PHOTO_PK">
+      <ModifiedTimestamp>2018-07-20.09:51:09</ModifiedTimestamp>
+      <ColNames>PHOTO_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>COMMENT_PHOTO_PK</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="186" parent="41" name="COMMENT_PHOTO_CID">
+      <ModifiedTimestamp>2018-07-20.09:51:09</ModifiedTimestamp>
+      <ColNames>CID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>COMMENTINFO</RefTableName>
+      <RefKeyName>COMMENT_PK</RefKeyName>
+    </foreign-key>
+    <column id="187" parent="42" name="ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="188" parent="42" name="CID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="189" parent="42" name="NAME">
+      <Position>3</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+    </column>
+    <column id="190" parent="42" name="SUBSTATION_ID">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="191" parent="42" name="ID">
+      <ObjectId>51544</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:59:09</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.09:59:09</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="192" parent="42" name="CID">
+      <ObjectId>51543</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:59:09</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.09:59:09</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>CID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="193" parent="42" name="CID">
+      <ModifiedTimestamp>2018-06-19.09:59:09</ModifiedTimestamp>
+      <ColNames>CID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>CID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="194" parent="42" name="ID">
+      <ModifiedTimestamp>2018-06-19.09:59:09</ModifiedTimestamp>
+      <ColNames>ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>ID</UnderlyingIndexName>
+    </key>
+    <foreign-key id="195" parent="42" name="SUBSTATION_ID">
+      <ModifiedTimestamp>2018-06-26.11:36:23</ModifiedTimestamp>
+      <ColNames>SUBSTATION_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>DEPOT</RefTableName>
+      <RefKeyName>PK_DEPOT</RefKeyName>
+    </foreign-key>
+    <column id="196" parent="43" name="CS_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="197" parent="43" name="CS_NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="198" parent="43" name="PK_CS">
+      <ObjectId>52231</ObjectId>
+      <CreatedTimestamp>2018-07-23.10:25:40</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.10:25:40</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>CS_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="199" parent="43" name="PK_CS">
+      <ModifiedTimestamp>2018-07-23.10:25:40</ModifiedTimestamp>
+      <ColNames>CS_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_CS</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="200" parent="44" name="DEPOT_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="201" parent="44" name="DEPOT_NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="202" parent="44" name="DEPOT_ADDRESS">
+      <Position>3</Position>
+      <DataType>VARCHAR2(60)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="203" parent="44" name="DEPOT_MANAGER">
+      <Position>4</Position>
+      <DataType>VARCHAR2(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="204" parent="44" name="DEPOT_LEVEL">
+      <Position>5</Position>
+      <DataType>VARCHAR2(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="205" parent="44" name="PK_DEPOT">
+      <ObjectId>51597</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:29:30</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:29:30</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>DEPOT_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="206" parent="44" name="DE_DEPOT_NAME">
+      <ObjectId>51821</ObjectId>
+      <CreatedTimestamp>2018-06-28.10:43:49</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.10:43:49</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>DEPOT_NAME</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="207" parent="44" name="DE_DEPOT_ADDRESS">
+      <ObjectId>51820</ObjectId>
+      <CreatedTimestamp>2018-06-28.10:43:49</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.10:43:49</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>DEPOT_ADDRESS</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="208" parent="44" name="PK_DEPOT">
+      <ModifiedTimestamp>2018-06-19.10:29:30</ModifiedTimestamp>
+      <ColNames>DEPOT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_DEPOT</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="209" parent="44" name="DE_DEPOT_NAME">
+      <ModifiedTimestamp>2018-06-28.10:43:49</ModifiedTimestamp>
+      <ColNames>DEPOT_NAME</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>DE_DEPOT_NAME</UnderlyingIndexName>
+    </key>
+    <key id="210" parent="44" name="DE_DEPOT_ADDRESS">
+      <ModifiedTimestamp>2018-06-28.10:43:49</ModifiedTimestamp>
+      <ColNames>DEPOT_ADDRESS</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>DE_DEPOT_ADDRESS</UnderlyingIndexName>
+    </key>
+    <column id="211" parent="45" name="CENTERSTORAGE_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="212" parent="45" name="STORAGE_CENTER">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="213" parent="45" name="PRODUCT_ALERT">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="214" parent="45" name="PRODUCT_MAX">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="215" parent="45" name="PRODUCT_ID">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="216" parent="45" name="DE_CENTERSTORAGE_ID">
+      <ObjectId>51819</ObjectId>
+      <CreatedTimestamp>2018-06-28.10:42:59</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-28.10:42:59</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>CENTERSTORAGE_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="217" parent="45" name="DE_CENTERSTORAGE_ID">
+      <ModifiedTimestamp>2018-06-28.10:42:59</ModifiedTimestamp>
+      <ColNames>CENTERSTORAGE_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>DE_CENTERSTORAGE_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="218" parent="46" name="DEPTNO">
+      <Position>1</Position>
+      <DataType>NUMBER(2)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="219" parent="46" name="DNAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(14)|0</DataType>
+    </column>
+    <column id="220" parent="46" name="LOC">
+      <Position>3</Position>
+      <DataType>VARCHAR2(13)|0</DataType>
+    </column>
+    <index id="221" parent="46" name="PK_DEPT">
+      <ObjectId>51150</ObjectId>
+      <CreatedTimestamp>2005-08-30.15:06:10</CreatedTimestamp>
+      <ModifiedTimestamp>2005-08-30.15:06:10</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>DEPTNO</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="222" parent="46" name="PK_DEPT">
+      <ModifiedTimestamp>2005-08-30.15:06:10</ModifiedTimestamp>
+      <ColNames>DEPTNO</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_DEPT</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="223" parent="47" name="TABLEID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="224" parent="47" name="DID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="225" parent="47" name="TID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="226" parent="47" name="RID">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="227" parent="47" name="SENDATE">
+      <Position>5</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="228" parent="47" name="OKDATE">
+      <Position>6</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="229" parent="47" name="CLIENTNAME">
+      <Position>7</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+    </column>
+    <column id="230" parent="47" name="OPERATORID">
+      <Position>8</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="231" parent="47" name="OPERATEDATE">
+      <Position>9</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <index id="232" parent="47" name="TABLEID">
+      <ObjectId>51541</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:58:09</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.09:58:09</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>TABLEID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="233" parent="47" name="DID">
+      <ObjectId>51540</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:58:09</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.09:58:09</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>DID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="234" parent="47" name="DID">
+      <ModifiedTimestamp>2018-06-19.09:58:09</ModifiedTimestamp>
+      <ColNames>DID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>DID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="235" parent="47" name="TABLEID">
+      <ModifiedTimestamp>2018-06-19.09:58:09</ModifiedTimestamp>
+      <ColNames>TABLEID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>TABLEID</UnderlyingIndexName>
+    </key>
+    <foreign-key id="236" parent="47" name="DIS_TASK_ID">
+      <ModifiedTimestamp>2018-06-19.10:41:34</ModifiedTimestamp>
+      <ColNames>TID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>MISSIONLIST</RefTableName>
+      <RefKeyName>MISSIONID</RefKeyName>
+    </foreign-key>
+    <foreign-key id="237" parent="47" name="DISTRIBUTION_RID">
+      <ModifiedTimestamp>2018-06-19.10:06:38</ModifiedTimestamp>
+      <ColNames>RID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>RECEIPT</RefTableName>
+      <RefKeyName>RID</RefKeyName>
+    </foreign-key>
+    <column id="238" parent="48" name="EMPNO">
+      <Position>1</Position>
+      <DataType>NUMBER(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="239" parent="48" name="ENAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(10)|0</DataType>
+    </column>
+    <column id="240" parent="48" name="JOB">
+      <Position>3</Position>
+      <DataType>VARCHAR2(9)|0</DataType>
+    </column>
+    <column id="241" parent="48" name="MGR">
+      <Position>4</Position>
+      <DataType>NUMBER(4)|0</DataType>
+    </column>
+    <column id="242" parent="48" name="HIREDATE">
+      <Position>5</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="243" parent="48" name="SAL">
+      <Position>6</Position>
+      <DataType>NUMBER(7,2)|0</DataType>
+    </column>
+    <column id="244" parent="48" name="COMM">
+      <Position>7</Position>
+      <DataType>NUMBER(7,2)|0</DataType>
+    </column>
+    <column id="245" parent="48" name="DEPTNO">
+      <Position>8</Position>
+      <DataType>NUMBER(2)|0</DataType>
+    </column>
+    <index id="246" parent="48" name="PK_EMP">
+      <ObjectId>51152</ObjectId>
+      <CreatedTimestamp>2005-08-30.15:06:10</CreatedTimestamp>
+      <ModifiedTimestamp>2005-08-30.15:06:10</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>EMPNO</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="247" parent="48" name="PK_EMP">
+      <ModifiedTimestamp>2005-08-30.15:06:10</ModifiedTimestamp>
+      <ColNames>EMPNO</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_EMP</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="248" parent="48" name="FK_DEPTNO">
+      <ModifiedTimestamp>2005-08-30.15:06:10</ModifiedTimestamp>
+      <ColNames>DEPTNO</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>DEPT</RefTableName>
+      <RefKeyName>PK_DEPT</RefKeyName>
+    </foreign-key>
+    <column id="249" parent="49" name="FC_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="250" parent="49" name="FC_NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="251" parent="49" name="FC_INFO">
+      <Position>3</Position>
+      <DataType>VARCHAR2(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="252" parent="49" name="STATUS">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="253" parent="49" name="OPERATOR_ID">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="254" parent="49" name="OPERATOR_DATE">
+      <Position>6</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="255" parent="49" name="FC_ID_PK">
+      <ObjectId>51581</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:18:47</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:18:47</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>FC_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="256" parent="49" name="FC_ID_PK">
+      <ModifiedTimestamp>2018-06-19.10:18:47</ModifiedTimestamp>
+      <ColNames>FC_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>FC_ID_PK</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="257" parent="49" name="FC_ADMIN_ID">
+      <ModifiedTimestamp>2018-06-19.10:23:42</ModifiedTimestamp>
+      <ColNames>OPERATOR_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>ADMINSTRATOR</RefTableName>
+      <RefKeyName>ADMIN_ID</RefKeyName>
+    </foreign-key>
+    <column id="258" parent="50" name="ACTIVITYID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="259" parent="50" name="PRODUCTID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="260" parent="50" name="GROUP_BUYING_PRICE">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="261" parent="50" name="REQUIREDNUMBER">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="262" parent="50" name="GROUPSTARTDATE">
+      <Position>5</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="263" parent="50" name="GROUPENDDATE">
+      <Position>6</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="264" parent="50" name="ACTIVITYSTATUS">
+      <Position>7</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="265" parent="50" name="GROUP_BUYING_ACTIVITY_PK">
+      <ObjectId>52168</ObjectId>
+      <CreatedTimestamp>2018-07-19.11:40:55</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-19.11:40:55</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>ACTIVITYID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="266" parent="50" name="GROUP_BUYING_ACTIVITY_PK">
+      <ModifiedTimestamp>2018-07-19.11:40:56</ModifiedTimestamp>
+      <ColNames>ACTIVITYID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>GROUP_BUYING_ACTIVITY_PK</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="267" parent="50" name="GROUP_BUYING_ACTIVITY_FK">
+      <ModifiedTimestamp>2018-07-23.09:13:27</ModifiedTimestamp>
+      <ColNames>PRODUCTID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>PRODUCT</RefTableName>
+      <RefKeyName>PK_PRODUCT</RefKeyName>
+    </foreign-key>
+    <column id="268" parent="51" name="GROUPID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="269" parent="51" name="LEADERID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="270" parent="51" name="ACTIVITYID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="271" parent="51" name="CURRENTNUMBER">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="272" parent="51" name="GROUPSTATUS">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="273" parent="51" name="GROUP_BUYING_LIST_PK">
+      <ObjectId>52170</ObjectId>
+      <CreatedTimestamp>2018-07-19.11:44:29</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-19.11:44:29</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>GROUPID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="274" parent="51" name="GROUP_BUYING_LIST_PK">
+      <ModifiedTimestamp>2018-07-19.11:44:29</ModifiedTimestamp>
+      <ColNames>GROUPID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>GROUP_BUYING_LIST_PK</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="275" parent="51" name="GROUP_BUYING_LIST_FK1">
+      <ModifiedTimestamp>2018-07-23.09:16:27</ModifiedTimestamp>
+      <ColNames>LEADERID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>USERINFO</RefTableName>
+      <RefKeyName>U_USERID</RefKeyName>
+    </foreign-key>
+    <foreign-key id="276" parent="51" name="GROUP_BUYING_LIST_FK3">
+      <ModifiedTimestamp>2018-07-19.11:44:29</ModifiedTimestamp>
+      <ColNames>ACTIVITYID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>GROUP_BUYING_ACTIVITY</RefTableName>
+      <RefKeyName>GROUP_BUYING_ACTIVITY_PK</RefKeyName>
+    </foreign-key>
+    <column id="277" parent="52" name="INVOICE_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="278" parent="52" name="AMOUNT">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="279" parent="52" name="REGISTER_DATE">
+      <Position>3</Position>
+      <DataType>DATE|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="280" parent="52" name="RECEIPT_DATE">
+      <Position>4</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="281" parent="52" name="RECEIPT_ID">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="282" parent="52" name="LOST_DATE">
+      <Position>6</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="283" parent="52" name="LOST_ID">
+      <Position>7</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="284" parent="52" name="SUBSTATION_CODE">
+      <Position>8</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="285" parent="52" name="STATUS">
+      <Position>9</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="286" parent="52" name="ORDER_ID">
+      <Position>10</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="287" parent="52" name="SUB_SUBSTATION_DATE">
+      <Position>11</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <index id="288" parent="52" name="PK_INVOICE_ID">
+      <ObjectId>51591</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:28:07</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:28:07</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>INVOICE_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="289" parent="52" name="PK_INVOICE_ID">
+      <ModifiedTimestamp>2018-06-19.10:28:07</ModifiedTimestamp>
+      <ColNames>INVOICE_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_INVOICE_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="290" parent="52" name="INVOICE_ADMIN_ID">
+      <ModifiedTimestamp>2018-06-28.15:18:11</ModifiedTimestamp>
+      <ColNames>RECEIPT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>ADMINSTRATOR</RefTableName>
+      <RefKeyName>ADMIN_ID</RefKeyName>
+    </foreign-key>
+    <foreign-key id="291" parent="52" name="INVOICE_LOST_ID">
+      <ModifiedTimestamp>2018-06-28.15:18:11</ModifiedTimestamp>
+      <ColNames>LOST_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>ADMINSTRATOR</RefTableName>
+      <RefKeyName>ADMIN_ID</RefKeyName>
+    </foreign-key>
+    <column id="292" parent="53" name="JOIN_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="293" parent="53" name="JOINER_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="294" parent="53" name="GROUP_ID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="295" parent="53" name="JOIN_DATE">
+      <Position>4</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="296" parent="53" name="RECEIVER_NAME">
+      <Position>5</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="297" parent="53" name="RECEIVER_TEL">
+      <Position>6</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="298" parent="53" name="RECEIVER_POSTCODE">
+      <Position>7</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="299" parent="53" name="RECEIVER_ADDRESS">
+      <Position>8</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="300" parent="53" name="BILL_NEEDED">
+      <Position>9</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="301" parent="53" name="JOIN_GROUP_LIST_PK">
+      <ObjectId>52174</ObjectId>
+      <CreatedTimestamp>2018-07-19.13:34:07</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-19.13:34:07</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>JOIN_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="302" parent="53" name="JOIN_GROUP_LIST_PK">
+      <ModifiedTimestamp>2018-07-19.13:34:07</ModifiedTimestamp>
+      <ColNames>JOIN_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>JOIN_GROUP_LIST_PK</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="303" parent="53" name="JOIN_GROUP_LIST_FK1">
+      <ModifiedTimestamp>2018-07-23.09:17:25</ModifiedTimestamp>
+      <ColNames>JOINER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>USERINFO</RefTableName>
+      <RefKeyName>U_USERID</RefKeyName>
+    </foreign-key>
+    <foreign-key id="304" parent="53" name="JOIN_GROUP_LIST_FK2">
+      <ModifiedTimestamp>2018-07-19.13:34:08</ModifiedTimestamp>
+      <ColNames>GROUP_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>GROUP_BUYING_LIST</RefTableName>
+      <RefKeyName>GROUP_BUYING_LIST_PK</RefKeyName>
+    </foreign-key>
+    <column id="305" parent="54" name="KEYID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="306" parent="54" name="KEYNAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="307" parent="54" name="KEYNUM">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="308" parent="54" name="KEYID">
+      <ObjectId>52163</ObjectId>
+      <CreatedTimestamp>2018-07-19.10:38:41</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-19.10:38:41</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>KEYID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="309" parent="54" name="KEYID">
+      <ModifiedTimestamp>2018-07-19.10:38:42</ModifiedTimestamp>
+      <ColNames>KEYID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>KEYID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="310" parent="55" name="MISSION_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="311" parent="55" name="ORDER_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="312" parent="55" name="SUBSTATION_CODE">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="313" parent="55" name="COURIER_CODE">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="314" parent="55" name="MISSION_TYPE">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="315" parent="55" name="MISSION_STATE">
+      <Position>6</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="316" parent="55" name="ISACCOUNT">
+      <Position>7</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="317" parent="55" name="OPERATION_ID">
+      <Position>8</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="318" parent="55" name="OPERATION_DATE">
+      <Position>9</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="319" parent="55" name="NOTE">
+      <Position>10</Position>
+      <DataType>VARCHAR2(30)|0</DataType>
+    </column>
+    <index id="320" parent="55" name="MISSIONID">
+      <ObjectId>51587</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:27:11</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:27:11</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>MISSION_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="321" parent="55" name="MISSIONID">
+      <ModifiedTimestamp>2018-06-19.10:27:11</ModifiedTimestamp>
+      <ColNames>MISSION_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>MISSIONID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="322" parent="55" name="MISS_OPERATOR_ID">
+      <ModifiedTimestamp>2018-06-19.10:39:08</ModifiedTimestamp>
+      <ColNames>OPERATION_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>ADMINSTRATOR</RefTableName>
+      <RefKeyName>ADMIN_ID</RefKeyName>
+    </foreign-key>
+    <column id="323" parent="56" name="OPENID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="324" parent="56" name="GROUPID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="325" parent="56" name="OPENDATE">
+      <Position>3</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="326" parent="56" name="RECEIVERNAME">
+      <Position>4</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="327" parent="56" name="RECEIVERTEL">
+      <Position>5</Position>
+      <DataType>VARCHAR2(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="328" parent="56" name="RECEIVERPOSTCODE">
+      <Position>6</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="329" parent="56" name="RECEIVERADDRESS">
+      <Position>7</Position>
+      <DataType>VARCHAR2(40)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="330" parent="56" name="BILLNEEDED">
+      <Position>8</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="331" parent="56" name="LEADERID">
+      <Position>9</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="332" parent="56" name="OPEN_GROUP_LIST_PK">
+      <ObjectId>52172</ObjectId>
+      <CreatedTimestamp>2018-07-19.11:48:41</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-19.11:48:41</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>OPENID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="333" parent="56" name="OPEN_GROUP_LIST_PK">
+      <ModifiedTimestamp>2018-07-19.11:48:41</ModifiedTimestamp>
+      <ColNames>OPENID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>OPEN_GROUP_LIST_PK</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="334" parent="56" name="OPEN_GROUP_LIST_FK2">
+      <ModifiedTimestamp>2018-07-19.11:48:41</ModifiedTimestamp>
+      <ColNames>GROUPID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>GROUP_BUYING_LIST</RefTableName>
+      <RefKeyName>GROUP_BUYING_LIST_PK</RefKeyName>
+    </foreign-key>
+    <foreign-key id="335" parent="56" name="OPEN_GROUP_LIST_FK1">
+      <ModifiedTimestamp>2018-07-20.15:01:32</ModifiedTimestamp>
+      <ColNames>LEADERID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>USERINFO</RefTableName>
+      <RefKeyName>U_USERID</RefKeyName>
+    </foreign-key>
+    <column id="336" parent="57" name="ORDER_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="337" parent="57" name="ADDRESS_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="338" parent="57" name="PAY_METHOD">
+      <Position>3</Position>
+      <DataType>VARCHAR2(15)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="339" parent="57" name="PAY_DATE">
+      <Position>4</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="340" parent="57" name="CREATE_DATE">
+      <Position>5</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="341" parent="57" name="ORDER_TYPE">
+      <Position>6</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="342" parent="57" name="ORDER_ID">
+      <ObjectId>52221</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:53:52</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:53:52</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>ORDER_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="343" parent="57" name="ORDER_ID">
+      <ModifiedTimestamp>2018-07-20.13:53:52</ModifiedTimestamp>
+      <ColNames>ORDER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>ORDER_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="344" parent="57" name="ADDR_ID">
+      <ModifiedTimestamp>2018-07-20.13:53:52</ModifiedTimestamp>
+      <ColNames>ADDRESS_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>ACCEPT_ADDRESS</RefTableName>
+      <RefKeyName>A_ADDRESSID</RefKeyName>
+    </foreign-key>
+    <column id="345" parent="58" name="PRODUCT_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="346" parent="58" name="PRODUCT_PRICE">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="347" parent="58" name="ORDER_ID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="348" parent="58" name="PRODUCT_NUMBER">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="349" parent="58" name="CREATE_DATE">
+      <Position>5</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="350" parent="58" name="OR_ID">
+      <ObjectId>52232</ObjectId>
+      <CreatedTimestamp>2018-07-23.13:23:48</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.13:23:48</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>ORDER_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="351" parent="58" name="OR_ID">
+      <ModifiedTimestamp>2018-07-23.13:23:48</ModifiedTimestamp>
+      <ColNames>ORDER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>OR_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="352" parent="58" name="P_ID">
+      <ModifiedTimestamp>2018-07-23.13:23:48</ModifiedTimestamp>
+      <ColNames>PRODUCT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>PRODUCT</RefTableName>
+      <RefKeyName>PK_PRODUCT</RefKeyName>
+    </foreign-key>
+    <column id="353" parent="59" name="PARAMETER_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="354" parent="59" name="PARAMETER_URL">
+      <Position>2</Position>
+      <DataType>VARCHAR2(200)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="355" parent="59" name="PRODUCT_ID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="356" parent="59" name="PK_PARAMETER">
+      <ObjectId>52193</ObjectId>
+      <CreatedTimestamp>2018-07-20.10:06:41</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.10:06:41</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>PARAMETER_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="357" parent="59" name="PK_PARAMETER">
+      <ModifiedTimestamp>2018-07-20.10:06:42</ModifiedTimestamp>
+      <ColNames>PARAMETER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_PARAMETER</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="358" parent="59" name="FK_PARAMETER_PRODUCT">
+      <ModifiedTimestamp>2018-07-20.10:06:42</ModifiedTimestamp>
+      <ColNames>PRODUCT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>PRODUCT</RefTableName>
+      <RefKeyName>PK_PRODUCT</RefKeyName>
+    </foreign-key>
+    <column id="359" parent="60" name="PRAISE_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="360" parent="60" name="USERID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="361" parent="60" name="CID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="362" parent="60" name="IS_PRAISE">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="363" parent="60" name="PRAISE_PK">
+      <ObjectId>52181</ObjectId>
+      <CreatedTimestamp>2018-07-20.09:46:02</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.09:46:02</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>PRAISE_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="364" parent="60" name="PRAISE_PK">
+      <ModifiedTimestamp>2018-07-20.09:46:02</ModifiedTimestamp>
+      <ColNames>PRAISE_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PRAISE_PK</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="365" parent="61" name="PRAISE_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="366" parent="61" name="USERID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="367" parent="61" name="CID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="368" parent="61" name="IS_PRAISE">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="369" parent="61" name="PRAISEINFO_PK">
+      <ObjectId>52185</ObjectId>
+      <CreatedTimestamp>2018-07-20.09:47:49</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.09:47:49</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>PRAISE_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="370" parent="61" name="PRAISEINFO_PK">
+      <ModifiedTimestamp>2018-07-20.09:47:49</ModifiedTimestamp>
+      <ColNames>PRAISE_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PRAISEINFO_PK</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="371" parent="61" name="PRAISE_CID">
+      <ModifiedTimestamp>2018-07-20.09:47:49</ModifiedTimestamp>
+      <ColNames>CID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>COMMENTINFO</RefTableName>
+      <RefKeyName>COMMENT_PK</RefKeyName>
+    </foreign-key>
+    <column id="372" parent="62" name="PRODUCT_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="373" parent="62" name="PRODUCT_NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="374" parent="62" name="CLASSIFY_ID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="375" parent="62" name="ORIGINAL_PRICE">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="376" parent="62" name="DISCOUNT_PRICE">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="377" parent="62" name="PRODUCT_INFO">
+      <Position>6</Position>
+      <DataType>VARCHAR2(400)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="378" parent="62" name="COVER_URL">
+      <Position>7</Position>
+      <DataType>VARCHAR2(200)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="379" parent="62" name="STATUS">
+      <Position>8</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="380" parent="62" name="ON_DATE">
+      <Position>9</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <index id="381" parent="62" name="PK_PRODUCT">
+      <ObjectId>52189</ObjectId>
+      <CreatedTimestamp>2018-07-20.10:01:39</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.10:01:39</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>PRODUCT_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="382" parent="62" name="PK_PRODUCT">
+      <ModifiedTimestamp>2018-07-20.10:01:39</ModifiedTimestamp>
+      <ColNames>PRODUCT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK_PRODUCT</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="383" parent="62" name="FK_PRODUCT_CLASSIFY">
+      <ModifiedTimestamp>2018-07-20.10:01:39</ModifiedTimestamp>
+      <ColNames>CLASSIFY_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>CLASSIFY</RefTableName>
+      <RefKeyName>CLASSIFYID</RefKeyName>
+    </foreign-key>
+    <column id="384" parent="63" name="PURCHASE_WAREHOUSE_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="385" parent="63" name="PRODUCT_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="386" parent="63" name="PURCHASE_QUANTITY">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="387" parent="63" name="PW_DATE">
+      <Position>4</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="388" parent="63" name="STATUS">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="389" parent="63" name="ORDER_ID">
+      <Position>6</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="390" parent="63" name="PURCHASE_WAREHOUSE_ID">
+      <ObjectId>51551</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:00:29</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:00:29</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>PURCHASE_WAREHOUSE_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="391" parent="63" name="PURCHASE_WAREHOUSE_ID">
+      <ModifiedTimestamp>2018-06-19.10:00:29</ModifiedTimestamp>
+      <ColNames>PURCHASE_WAREHOUSE_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PURCHASE_WAREHOUSE_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="392" parent="64" name="TAID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="393" parent="64" name="RID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="394" parent="64" name="NOTE">
+      <Position>3</Position>
+      <DataType>VARCHAR2(120)|0</DataType>
+    </column>
+    <column id="395" parent="64" name="EVALUATE">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="396" parent="64" name="MONEY">
+      <Position>5</Position>
+      <DataType>BINARY_DOUBLE|0</DataType>
+    </column>
+    <column id="397" parent="64" name="GID">
+      <Position>6</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="398" parent="64" name="GNAME">
+      <Position>7</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+    </column>
+    <column id="399" parent="64" name="AMOUNT">
+      <Position>8</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="400" parent="64" name="OPERATORID">
+      <Position>9</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="401" parent="64" name="OPERATEDATE">
+      <Position>10</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <index id="402" parent="64" name="TAID">
+      <ObjectId>51547</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:59:40</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.09:59:40</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>TAID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="403" parent="64" name="RID">
+      <ObjectId>51546</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:59:40</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.09:59:40</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>RID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="404" parent="64" name="RID">
+      <ModifiedTimestamp>2018-06-19.09:59:40</ModifiedTimestamp>
+      <ColNames>RID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>RID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="405" parent="64" name="TAID">
+      <ModifiedTimestamp>2018-06-19.09:59:40</ModifiedTimestamp>
+      <ColNames>TAID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>TAID</UnderlyingIndexName>
+    </key>
+    <column id="406" parent="65" name="REMIND_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="407" parent="65" name="SECKILLPRODUCT_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="408" parent="65" name="USER_ID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="409" parent="65" name="REMIND_ID">
+      <ObjectId>52197</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:10:39</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:10:39</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>REMIND_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="410" parent="65" name="REMIND_ID">
+      <ModifiedTimestamp>2018-07-20.13:10:39</ModifiedTimestamp>
+      <ColNames>REMIND_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>REMIND_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="411" parent="65" name="R_SECKILLPRODUCT_ID">
+      <ModifiedTimestamp>2018-07-20.13:10:39</ModifiedTimestamp>
+      <ColNames>SECKILLPRODUCT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>SECKILL_PRODUCT</RefTableName>
+      <RefKeyName>SECKILLPRODUCT_ID</RefKeyName>
+    </foreign-key>
+    <foreign-key id="412" parent="65" name="R_USER_ID">
+      <ModifiedTimestamp>2018-07-20.13:59:57</ModifiedTimestamp>
+      <ColNames>USER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>USERINFO</RefTableName>
+      <RefKeyName>U_USERID</RefKeyName>
+    </foreign-key>
+    <column id="413" parent="66" name="RID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="414" parent="66" name="USERID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="415" parent="66" name="RTEXT">
+      <Position>3</Position>
+      <DataType>VARCHAR2(280)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="416" parent="66" name="CID">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="417" parent="66" name="RDATE">
+      <Position>5</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="418" parent="66" name="REPLY_PK">
+      <ObjectId>52179</ObjectId>
+      <CreatedTimestamp>2018-07-20.09:43:15</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.09:43:15</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>RID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="419" parent="66" name="REPLY_PK">
+      <ModifiedTimestamp>2018-07-20.09:43:15</ModifiedTimestamp>
+      <ColNames>RID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>REPLY_PK</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="420" parent="66" name="REPLY_CID">
+      <ModifiedTimestamp>2018-07-20.09:43:15</ModifiedTimestamp>
+      <ColNames>CID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>COMMENTINFO</RefTableName>
+      <RefKeyName>COMMENT_PK</RefKeyName>
+    </foreign-key>
+    <column id="421" parent="67" name="RESTOCK_RECORDID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="422" parent="67" name="RESTOCK_REASON">
+      <Position>2</Position>
+      <DataType>VARCHAR2(40)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="423" parent="67" name="RESTOCK_DATE">
+      <Position>3</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="424" parent="67" name="ORDER_ID">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="425" parent="67" name="OPERATOR_ID">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="426" parent="67" name="OPERATE_DATE">
+      <Position>6</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="427" parent="67" name="RESTOCK_RECORDID">
+      <ObjectId>51536</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:45:59</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.09:45:59</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>RESTOCK_RECORDID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="428" parent="67" name="RESTOCK_RECORDID">
+      <ModifiedTimestamp>2018-06-19.09:45:59</ModifiedTimestamp>
+      <ColNames>RESTOCK_RECORDID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>RESTOCK_RECORDID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="429" parent="67" name="RESTOCK_OPERATOR_ID">
+      <ModifiedTimestamp>2018-06-19.09:45:59</ModifiedTimestamp>
+      <ColNames>OPERATOR_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>ADMINSTRATOR</RefTableName>
+      <RefKeyName>ADMIN_ID</RefKeyName>
+    </foreign-key>
+    <column id="430" parent="68" name="RETURN_GOODS_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="431" parent="68" name="PRODUCT_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="432" parent="68" name="RETURN_QUANTITY">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="433" parent="68" name="RG_DATE">
+      <Position>4</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="434" parent="68" name="STATUS">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="435" parent="68" name="RETURN_RECORDID">
+      <Position>6</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="436" parent="68" name="RETURN_GOODS_ID">
+      <ObjectId>51553</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:00:44</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:00:44</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>RETURN_GOODS_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="437" parent="68" name="RETURN_GOODS_ID">
+      <ModifiedTimestamp>2018-06-19.10:00:44</ModifiedTimestamp>
+      <ColNames>RETURN_GOODS_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>RETURN_GOODS_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="438" parent="68" name="RETURN_GOODS_RETURN_RECORDID">
+      <ModifiedTimestamp>2018-06-19.10:05:46</ModifiedTimestamp>
+      <ColNames>RETURN_RECORDID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>RETURN_GOODS_RECORD</RefTableName>
+      <RefKeyName>RETURN_RECORDID</RefKeyName>
+    </foreign-key>
+    <column id="439" parent="69" name="RETURN_RECORDID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="440" parent="69" name="RETURN_DATE">
+      <Position>2</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="441" parent="69" name="RETURN_REASON">
+      <Position>3</Position>
+      <DataType>VARCHAR2(40)|0</DataType>
+    </column>
+    <column id="442" parent="69" name="RETURN_AMOUNT">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="443" parent="69" name="ORDER_ID">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="444" parent="69" name="OPERATOR_ID">
+      <Position>6</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="445" parent="69" name="OPERATOR_DATE">
+      <Position>7</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <index id="446" parent="69" name="RETURN_RECORDID">
+      <ObjectId>51538</ObjectId>
+      <CreatedTimestamp>2018-06-19.09:51:12</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.09:51:12</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>RETURN_RECORDID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="447" parent="69" name="RETURN_RECORDID">
+      <ModifiedTimestamp>2018-06-19.09:51:12</ModifiedTimestamp>
+      <ColNames>RETURN_RECORDID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>RETURN_RECORDID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="448" parent="69" name="RETURN_OPERATOR_ID">
+      <ModifiedTimestamp>2018-06-19.09:51:12</ModifiedTimestamp>
+      <ColNames>OPERATOR_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>ADMINSTRATOR</RefTableName>
+      <RefKeyName>ADMIN_ID</RefKeyName>
+    </foreign-key>
+    <column id="449" parent="70" name="GRADE">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="450" parent="70" name="LOSAL">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="451" parent="70" name="HISAL">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="452" parent="71" name="SECKILLORDER_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="453" parent="71" name="SECKILLPRODUCT_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="454" parent="71" name="ORDER_TIME">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="455" parent="71" name="STATUS">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="456" parent="71" name="ADDRESS_ID">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="457" parent="71" name="USER_ID">
+      <Position>6</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="458" parent="71" name="SECKILLORDER_ID">
+      <ObjectId>52200</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:13:28</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:13:28</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>SECKILLORDER_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="459" parent="71" name="SECKILLORDER_ID">
+      <ModifiedTimestamp>2018-07-20.13:13:28</ModifiedTimestamp>
+      <ColNames>SECKILLORDER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SECKILLORDER_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="460" parent="71" name="SO_SECKILLPRODUCT_ID">
+      <ModifiedTimestamp>2018-07-20.13:13:28</ModifiedTimestamp>
+      <ColNames>SECKILLPRODUCT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>SECKILL_PRODUCT</RefTableName>
+      <RefKeyName>SECKILLPRODUCT_ID</RefKeyName>
+    </foreign-key>
+    <foreign-key id="461" parent="71" name="SO_ADDRESS_ID">
+      <ModifiedTimestamp>2018-07-20.14:01:29</ModifiedTimestamp>
+      <ColNames>ADDRESS_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>ACCEPT_ADDRESS</RefTableName>
+      <RefKeyName>A_ADDRESSID</RefKeyName>
+    </foreign-key>
+    <foreign-key id="462" parent="71" name="SO_USER_ID">
+      <ModifiedTimestamp>2018-07-20.14:01:29</ModifiedTimestamp>
+      <ColNames>USER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>USERINFO</RefTableName>
+      <RefKeyName>U_USERID</RefKeyName>
+    </foreign-key>
+    <column id="463" parent="72" name="SECKILLPRODUCT_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="464" parent="72" name="PRODUCT_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="465" parent="72" name="START_TIME">
+      <Position>3</Position>
+      <DataType>TIMESTAMP(6)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="466" parent="72" name="ALL_AMOUNT">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="467" parent="72" name="SECKILL_PRICE">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="468" parent="72" name="STATUS">
+      <Position>6</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="469" parent="72" name="SECKILLPRODUCT_ID">
+      <ObjectId>52195</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:08:22</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:08:22</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>SECKILLPRODUCT_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="470" parent="72" name="SECKILLPRODUCT_ID">
+      <ModifiedTimestamp>2018-07-20.13:08:22</ModifiedTimestamp>
+      <ColNames>SECKILLPRODUCT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SECKILLPRODUCT_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="471" parent="72" name="SP_PRODUCT_ID">
+      <ModifiedTimestamp>2018-07-20.13:08:22</ModifiedTimestamp>
+      <ColNames>PRODUCT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>PRODUCT</RefTableName>
+      <RefKeyName>PK_PRODUCT</RefKeyName>
+    </foreign-key>
+    <column id="472" parent="73" name="BLEID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="473" parent="73" name="SAID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="474" parent="73" name="AID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="475" parent="73" name="STATIONID">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="476" parent="73" name="BLEID">
+      <ObjectId>51556</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:01:23</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:01:23</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>BLEID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="477" parent="73" name="SAID">
+      <ObjectId>51555</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:01:23</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:01:23</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>SAID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="478" parent="73" name="SAID">
+      <ModifiedTimestamp>2018-06-19.10:01:23</ModifiedTimestamp>
+      <ColNames>SAID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SAID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="479" parent="73" name="BLEID">
+      <ModifiedTimestamp>2018-06-19.10:01:23</ModifiedTimestamp>
+      <ColNames>BLEID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>BLEID</UnderlyingIndexName>
+    </key>
+    <foreign-key id="480" parent="73" name="SU_ADMINISTRATOR_ID">
+      <ModifiedTimestamp>2018-06-19.10:07:28</ModifiedTimestamp>
+      <ColNames>AID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>ADMINSTRATOR</RefTableName>
+      <RefKeyName>ADMIN_ID</RefKeyName>
+    </foreign-key>
+    <column id="481" parent="74" name="CLEARING_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="482" parent="74" name="AMOUNT">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="483" parent="74" name="SUBSTATION_CODE">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <column id="484" parent="74" name="BEGIN_DATE">
+      <Position>4</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="485" parent="74" name="END_DATE">
+      <Position>5</Position>
+      <DataType>DATE|0</DataType>
+    </column>
+    <column id="486" parent="74" name="CLEARING_DATE">
+      <Position>6</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="487" parent="74" name="OPERATOR_ID">
+      <Position>7</Position>
+      <DataType>NUMBER(*)|0</DataType>
+    </column>
+    <index id="488" parent="74" name="PK1_CLEARING_ID">
+      <ObjectId>51593</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:28:17</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:28:17</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>CLEARING_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="489" parent="74" name="PK1_CLEARING_ID">
+      <ModifiedTimestamp>2018-06-19.10:28:17</ModifiedTimestamp>
+      <ColNames>CLEARING_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>PK1_CLEARING_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="490" parent="74" name="SUB_CLE_ADMIN_ID">
+      <ModifiedTimestamp>2018-06-28.15:19:13</ModifiedTimestamp>
+      <ColNames>OPERATOR_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>ADMINSTRATOR</RefTableName>
+      <RefKeyName>ADMIN_ID</RefKeyName>
+    </foreign-key>
+    <column id="491" parent="75" name="SUB_IN_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="492" parent="75" name="CHECK_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="493" parent="75" name="IN_AMOUNT">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="494" parent="75" name="IN_DATE">
+      <Position>4</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="495" parent="75" name="NOTE">
+      <Position>5</Position>
+      <DataType>VARCHAR2(60)|0</DataType>
+    </column>
+    <index id="496" parent="75" name="SUB_IN_ID">
+      <ObjectId>51564</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:08:35</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:08:35</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>SUB_IN_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="497" parent="75" name="SUB_IN_ID">
+      <ModifiedTimestamp>2018-06-19.10:08:35</ModifiedTimestamp>
+      <ColNames>SUB_IN_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SUB_IN_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="498" parent="75" name="CHECK_ID">
+      <ModifiedTimestamp>2018-06-19.10:14:00</ModifiedTimestamp>
+      <ColNames>CHECK_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>CENTRAL_DEPOT_OUT</RefTableName>
+      <RefKeyName>CENTRAL_OUT_ID</RefKeyName>
+    </foreign-key>
+    <column id="499" parent="76" name="SUB_OUT_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="500" parent="76" name="TASK_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="501" parent="76" name="OUT_ID">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="502" parent="76" name="OUT_DATE">
+      <Position>4</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="503" parent="76" name="NOTE">
+      <Position>5</Position>
+      <DataType>VARCHAR2(60)|0</DataType>
+    </column>
+    <index id="504" parent="76" name="SUB_OUT_ID">
+      <ObjectId>51567</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:08:53</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:08:53</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>SUB_OUT_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="505" parent="76" name="SUB_OUT_ID">
+      <ModifiedTimestamp>2018-06-19.10:08:53</ModifiedTimestamp>
+      <ColNames>SUB_OUT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SUB_OUT_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="506" parent="76" name="TASK_ID">
+      <ModifiedTimestamp>2018-06-19.10:34:36</ModifiedTimestamp>
+      <ColNames>TASK_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>MISSIONLIST</RefTableName>
+      <RefKeyName>MISSIONID</RefKeyName>
+    </foreign-key>
+    <foreign-key id="507" parent="76" name="OUT_ID">
+      <ModifiedTimestamp>2018-06-19.10:14:49</ModifiedTimestamp>
+      <ColNames>OUT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>COURIER</RefTableName>
+      <RefKeyName>CID</RefKeyName>
+    </foreign-key>
+    <column id="508" parent="77" name="SUB_RIN_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="509" parent="77" name="TASK_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="510" parent="77" name="SUBIN_DATE">
+      <Position>3</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="511" parent="77" name="SUB_RIN_ID">
+      <ObjectId>51571</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:09:02</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:09:02</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>SUB_RIN_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="512" parent="77" name="SUB_RIN_ID">
+      <ModifiedTimestamp>2018-06-19.10:09:02</ModifiedTimestamp>
+      <ColNames>SUB_RIN_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SUB_RIN_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="513" parent="77" name="SR_TASK_ID">
+      <ModifiedTimestamp>2018-06-19.10:34:57</ModifiedTimestamp>
+      <ColNames>TASK_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>MISSIONLIST</RefTableName>
+      <RefKeyName>MISSIONID</RefKeyName>
+    </foreign-key>
+    <column id="514" parent="78" name="SUB_ROUT_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="515" parent="78" name="RETURN_ORDER_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="516" parent="78" name="SUBOUT_DATE">
+      <Position>3</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="517" parent="78" name="SUB_ROUT_ID">
+      <ObjectId>51574</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:09:11</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:09:11</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>SUB_ROUT_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="518" parent="78" name="SUB_ROUT_ID">
+      <ModifiedTimestamp>2018-06-19.10:09:11</ModifiedTimestamp>
+      <ColNames>SUB_ROUT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SUB_ROUT_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="519" parent="78" name="SUB_MIS_ID">
+      <ModifiedTimestamp>2018-06-19.10:35:44</ModifiedTimestamp>
+      <ColNames>RETURN_ORDER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>MISSIONLIST</RefTableName>
+      <RefKeyName>MISSIONID</RefKeyName>
+    </foreign-key>
+    <column id="520" parent="79" name="TRANSFER_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="521" parent="79" name="MISSION_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="522" parent="79" name="OUTWAREHOUSE_CODE">
+      <Position>3</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="523" parent="79" name="INWAREHOUSE_CODE">
+      <Position>4</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="524" parent="79" name="OUTWAREHOUSEDATE">
+      <Position>5</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="525" parent="79" name="OPERATION_ID">
+      <Position>6</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="526" parent="79" name="OPERATION_DATE">
+      <Position>7</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="527" parent="79" name="TANSFER_ID">
+      <ObjectId>51603</ObjectId>
+      <CreatedTimestamp>2018-06-19.10:31:29</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-19.10:31:29</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>TRANSFER_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="528" parent="79" name="TANSFER_ID">
+      <ModifiedTimestamp>2018-06-19.10:31:29</ModifiedTimestamp>
+      <ColNames>TRANSFER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>TANSFER_ID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="529" parent="79" name="MISSION_ID">
+      <ModifiedTimestamp>2018-06-19.10:31:29</ModifiedTimestamp>
+      <ColNames>MISSION_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>MISSIONLIST</RefTableName>
+      <RefKeyName>MISSIONID</RefKeyName>
+    </foreign-key>
+    <foreign-key id="530" parent="79" name="TRANS_ADMIN_ID">
+      <ModifiedTimestamp>2018-06-19.10:39:43</ModifiedTimestamp>
+      <ColNames>OPERATION_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>ADMINSTRATOR</RefTableName>
+      <RefKeyName>ADMIN_ID</RefKeyName>
+    </foreign-key>
+    <column id="531" parent="80" name="USER_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="532" parent="80" name="PASSWORD">
+      <Position>2</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="533" parent="80" name="USERNAME">
+      <Position>3</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="534" parent="80" name="USER_EMAIL">
+      <Position>4</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="535" parent="80" name="USER_PHONE">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="536" parent="80" name="NAME">
+      <Position>6</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="537" parent="80" name="USER_BIRTHDAY">
+      <Position>7</Position>
+      <DataType>DATE|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="538" parent="80" name="USER_GENDAR">
+      <Position>8</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="539" parent="80" name="USER_AVATARURL">
+      <Position>9</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="540" parent="80" name="U_USERID">
+      <ObjectId>52212</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:36:21</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:36:21</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>USER_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="541" parent="80" name="U_USERNAME">
+      <ObjectId>52203</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:27:48</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:27:48</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>USERNAME</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="542" parent="80" name="U_EMAIL">
+      <ObjectId>52213</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:36:21</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:36:21</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>USER_EMAIL</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="543" parent="80" name="U_PHONE">
+      <ObjectId>52202</ObjectId>
+      <CreatedTimestamp>2018-07-20.13:27:48</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-20.13:27:48</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>USER_PHONE</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="544" parent="80" name="U_USERID">
+      <ModifiedTimestamp>2018-07-20.13:36:21</ModifiedTimestamp>
+      <ColNames>USER_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>U_USERID</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="545" parent="80" name="U_USERNAME">
+      <ModifiedTimestamp>2018-07-20.13:27:48</ModifiedTimestamp>
+      <ColNames>USERNAME</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>U_USERNAME</UnderlyingIndexName>
+    </key>
+    <key id="546" parent="80" name="U_EMAIL">
+      <ModifiedTimestamp>2018-07-20.13:36:21</ModifiedTimestamp>
+      <ColNames>USER_EMAIL</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>U_EMAIL</UnderlyingIndexName>
+    </key>
+    <key id="547" parent="80" name="U_PHONE">
+      <ModifiedTimestamp>2018-07-20.13:27:48</ModifiedTimestamp>
+      <ColNames>USER_PHONE</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>U_PHONE</UnderlyingIndexName>
+    </key>
+    <column id="548" parent="81" name="MESSAGEID">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="549" parent="81" name="USERID">
+      <Position>2</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="550" parent="81" name="MESSAGETITLE">
+      <Position>3</Position>
+      <DataType>VARCHAR2(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="551" parent="81" name="MESSAGEBODY">
+      <Position>4</Position>
+      <DataType>VARCHAR2(400)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="552" parent="81" name="ISREAD">
+      <Position>5</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="553" parent="81" name="USER_MESSAGE_PK">
+      <ObjectId>52227</ObjectId>
+      <CreatedTimestamp>2018-07-23.09:20:05</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-23.09:20:05</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>MESSAGEID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="554" parent="81" name="USER_MESSAGE_PK">
+      <ModifiedTimestamp>2018-07-23.09:20:05</ModifiedTimestamp>
+      <ColNames>MESSAGEID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>USER_MESSAGE_PK</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="555" parent="81" name="USER_MESSAGE_FK1">
+      <ModifiedTimestamp>2018-07-23.09:20:05</ModifiedTimestamp>
+      <ColNames>USERID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <RefTableName>USERINFO</RefTableName>
+      <RefKeyName>U_USERID</RefKeyName>
+    </foreign-key>
+    <column id="556" parent="82" name="ZZ">
+      <Position>1</Position>
+      <DataType>NUMBER(*)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="557" parent="82" name="Z">
+      <ObjectId>51690</ObjectId>
+      <CreatedTimestamp>2018-06-22.15:43:22</CreatedTimestamp>
+      <ModifiedTimestamp>2018-06-22.15:43:22</ModifiedTimestamp>
+      <TablespaceName>USERS</TablespaceName>
+      <ColNames>ZZ</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="558" parent="82" name="Z">
+      <ModifiedTimestamp>2018-06-22.15:43:22</ModifiedTimestamp>
+      <ColNames>ZZ</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>Z</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
