@@ -41,8 +41,7 @@
 
     <div class="aui-list-product-float-item">
         <a href="javascript:;" class="aui-list-product-fl-item">
-            <div class="aui-list-product-fl-img">
-                <img src="themes/img/pd/sf-10.jpg" alt="">
+            <div class="aui-list-product-fl-img" id="product_url">
             </div>
 
             <!--查数据-->
@@ -91,31 +90,33 @@
 
     <script type="application/javascript">
         $("#open_group_button").click(function(){
-            var activityID = $("#open_group_activityID").val();
-//            从cookie中获取userid
-            $.cookie('leaderID', 1, { expires: 7 ,path:'/'});
-            //从cookie中取joinerID
-            var leaderID = 1;
-            leaderID = $.cookie('leaderID');
-
-            var openDate = $("#open_group_openDate").val();
-            var receiverName = $("#open_group_receiverName").val();
-            var receiverTEL = $("#open_group_receiverTEL").val();
-            var receiverPostcode = $("#open_group_receiverPostcode").val();
-            var receiverAddress = $("#open_group_receiverAddress").val();
-            var billNeeded = $("#open_group_billNeeded").val();
-
-            $.ajax({
-                url:"initiateGroupBuying/"+activityID+"/"+leaderID+"/"+openDate+"/"+receiverName+"/"+receiverTEL
-                +"/"+receiverPostcode+"/"+receiverAddress+"/"+billNeeded,
-                type:"post",
-                dataType:"json",
-                success:function(data)
-                {
-                    console.log(data);
-                    alert(data);
-                }
-            });
+//            var activityID = $("#open_group_activityID").val();
+////            从cookie中获取userid
+//            $.cookie('leaderID', 1, { expires: 7 ,path:'/'});
+//            //从cookie中取joinerID
+//            var leaderID = 1;
+//            leaderID = $.cookie('leaderID');
+//
+//            var openDate = $("#open_group_openDate").val();
+//            var receiverName = $("#open_group_receiverName").val();
+//            var receiverTEL = $("#open_group_receiverTEL").val();
+//            var receiverPostcode = $("#open_group_receiverPostcode").val();
+//            var receiverAddress = $("#open_group_receiverAddress").val();
+//            var billNeeded = $("#open_group_billNeeded").val();
+//
+//            $.ajax({
+//                url:"initiateGroupBuying/"+activityID+"/"+leaderID+"/"+openDate+"/"+receiverName+"/"+receiverTEL
+//                +"/"+receiverPostcode+"/"+receiverAddress+"/"+billNeeded,
+//                type:"post",
+//                dataType:"json",
+//                success:function(data)
+//                {
+//                    console.log(data);
+//                    alert(data);
+//                }
+//            });
+            var groupID=1;
+            window.location.href="after_open_group.html?groupID="+groupID;
         });
     </script>
 

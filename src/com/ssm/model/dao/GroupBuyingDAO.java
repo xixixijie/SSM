@@ -1,9 +1,6 @@
 package com.ssm.model.dao;
 
-import com.ssm.model.bean.Activity;
-import com.ssm.model.bean.Group;
-import com.ssm.model.bean.JoinGroupList;
-import com.ssm.model.bean.OpenGroupList;
+import com.ssm.model.bean.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -104,11 +101,6 @@ public interface GroupBuyingDAO {
      */
     public int searchLeader(int groupID);
 
-    /**
-     * 根据userID，messageTitle,messageBody往user_message数据表中插入数据
-     * @param map
-     */
-    public void addMessage(Map<String, Object> map);
 
 
     /**
@@ -124,5 +116,11 @@ public interface GroupBuyingDAO {
      * @return
      */
     public Activity searchActivityInfo(int activityID);
+
+    /**
+     * 获得排序最高，价格最低的团购活动
+     * @return
+     */
+    public ArrayList<Activity> getRecommendedGroupBuying();
 }
 

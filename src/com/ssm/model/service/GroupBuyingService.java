@@ -1,9 +1,6 @@
 package com.ssm.model.service;
 
-import com.ssm.model.bean.Activity;
-import com.ssm.model.bean.Group;
-import com.ssm.model.bean.JoinGroupList;
-import com.ssm.model.bean.OpenGroupList;
+import com.ssm.model.bean.*;
 import com.ssm.model.dao.GroupBuyingDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -126,20 +123,6 @@ public class GroupBuyingService {
     }
 
     /**
-     * 根据userID，messageTitle,messageBody往user_message数据表中插入数据
-     * @param userID
-     * @param messageTitle
-     * @param messageBody
-     */
-    public void addMessage(int userID, String messageTitle, String messageBody) {
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("userID",userID);
-        map.put("messageTitle",messageTitle);
-        map.put("messageBody",messageBody);
-        groupBuyingDAO.addMessage(map);
-    }
-
-    /**
      * 根据groupID查询团购队伍的相关信息
      * @param groupID
      * @return
@@ -155,6 +138,15 @@ public class GroupBuyingService {
      */
     public Activity searchActivityInfo(int activityID) {
         return groupBuyingDAO.searchActivityInfo(activityID);
+    }
+
+
+    /**
+     * 获得排序最高，价格最低的团购活动
+     * @return
+     */
+    public Activity getRecommendedGroupBuying() {
+        return groupBuyingDAO.getRecommendedGroupBuying().get(0);
     }
 }
 

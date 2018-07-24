@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>搜索团购活动</title>
     <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
-    <link rel="stylesheet" href="lobibox-master/dist/css/Lobibox.min.css"/>
+    <link rel="stylesheet" href="lobibox-master/dist/css/lobibox.css"/>
 </head>
 <body>
-<script src="lobibox-master/dist/js/Lobibox.min.js"></script>
-<script src="lobibox-master/dist/js/notifications.min.js"></script>
+<script src="lobibox-master/js/lobibox.js"></script>
+<script src="lobibox-master/js/notifications.js"></script>
 <div id="search_activity_div">
     <div id="div_testStr"></div>
     <input type="text" id="search_activity_productName"/>
@@ -190,26 +190,58 @@
         });
     </script>
 </div>
-<!--&lt;!&ndash;messagebox放置的地方&ndash;&gt;-->
-<!--<script type="text/javascript">-->
-    <!--var int=self.setInterval("getMessage()",1000);-->
-    <!--var userID;-->
-    <!--function getMessage()-->
-    <!--{-->
-        <!--$.ajax({-->
-            <!--url:"getMessage/"+userID,-->
-            <!--type:"post",-->
-            <!--dataType:"json",-->
-            <!--success:function(data)-->
-            <!--{-->
-                <!--console.log(data);-->
-                <!--alert(data);-->
-            <!--}-->
-        <!--});-->
-    <!--}-->
-<!--</script>-->
-
-<!--<button onclick="int=window.clearInterval(int)">停止</button>-->
+<!--messagebox放置的地方-->
+<script type="text/javascript">
+    var int=self.setInterval("getMessage()",10000);
+    var userID=1;
+    function getMessage()
+    {
+        $.ajax({
+            url:"getMessage/"+userID,
+            type:"post",
+            dataType:"json",
+            success:function(data)
+            {
+                console.log(data);
+                for(var i=0;i<data.length;i++){
+                    if(data[i].isRead==0){
+                        var str = data[i].messageTitle + data[i].messageBody + data[i].user.name;
+                        var messageID = data[i].messageID;
+                        //从cookie中获取userID
+//                        $.cookie('userID', 1, { expires: 7 ,path:'/'});
+                        //从cookie中取userID
+                        var userID = 1;
+//                        userID = $.cookie('userID');
+                        Lobibox.notify('info', {
+                            size: 'mini',
+                            rounded: true,
+                            delayIndicator: false,
+                            delay: false,
+                            msg:'尊敬的'+data[i].user.name+'， '+data[i].messageTitle,
+                            onClick: function(){
+                                // your code goes here
+                                //设置已读
+                                $.ajax({
+                                    url:"readMessage/"+messageID,
+                                    type:"post",
+                                    dataType:"json",
+                                    success:function(data) {
+                                        //donothing
+//                                        显示消息页面
+                                    }
+                                });
+                                window.location.href="my_message.html?userID="+userID;
+                                int=self.setInterval("getMessage()",10000)
+                            }
+                        });
+                        int=window.clearInterval(int)
+                    }
+                }
+            }
+        });
+    }
+</script>
+<button onclick="int=window.clearInterval(int)">停止</button>
 <button type="button" id="testButton1">测试团购成功</button>
 <button type="button" id="testButton2">测试团购失败</button>
 <script>

@@ -1,16 +1,17 @@
 package com.ssm.model.bean;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by chenyufeng on 2018/7/19.
  */
 public class Group {
-    int groupID;
-    UserInfo leader;
-    Activity activity;
-    int current_num;
-    int state;
+    private int groupID;
+    private UserInfo leader;
+    private Activity activity;
+    private int current_num;
+    private int state;
 
 
     public int getGroupID() {

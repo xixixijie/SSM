@@ -2,6 +2,7 @@ package com.ssm.controller;
 
 import com.ssm.model.bean.*;
 import com.ssm.model.service.GroupBuyingService;
+import com.ssm.model.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,8 @@ import java.util.Date;
 public class GroupBuyingController {
     @Autowired
     private GroupBuyingService groupBuyingService;
+    @Autowired
+    private MessageService messageService;
 
     /**
      * 根据搜索条件搜索对应的活动集合
@@ -100,6 +103,17 @@ public class GroupBuyingController {
         return groupBuyingService.searchGroups(activity_id);
     }
 
+
+    /**
+     * 获得排序最高，价格最低的团购活动
+     * @return
+     */
+    @RequestMapping(value = "/getRecommendedGroupBuying", method = RequestMethod.POST)
+    @ResponseBody
+    public Activity getRecommendedGroupBuying() {
+        return groupBuyingService.getRecommendedGroupBuying();
+    }
+
     /**
      * 开团操作
      *
@@ -171,7 +185,7 @@ public class GroupBuyingController {
     /**
      * 发布团购活动
      */
-    @RequestMapping(value = "releaseActivity/{productID}/{requiredNum}/{group_buying_price}/{groupStartDate}" +
+    @RequestMapping(value = "/releaseActivity/{productID}/{requiredNum}/{group_buying_price}/{groupStartDate}" +
             "/{groupEndDate}", method = RequestMethod.POST)
     @ResponseBody
     public void releaseActivity(@PathVariable int productID, @PathVariable int requiredNum, @PathVariable double group_buying_price,
@@ -233,7 +247,7 @@ public class GroupBuyingController {
      *
      * @return
      */
-    @RequestMapping(value = "searchGroupInfo/{groupID}", method = RequestMethod.POST)
+    @RequestMapping(value = "/searchGroupInfo/{groupID}", method = RequestMethod.POST)
     @ResponseBody
     public Group searchGroupInfo(@PathVariable int groupID) {
         return groupBuyingService.searchGroupInfo(groupID);
@@ -242,12 +256,13 @@ public class GroupBuyingController {
 
     /**
      * 根据activityID查询团购活动的相关信息
+     *
      * @param activityID
      * @return
      */
-    @RequestMapping(value = "searchActivityInfo/{activityID}",method = RequestMethod.POST)
+    @RequestMapping(value = "/searchActivityInfo/{activityID}", method = RequestMethod.POST)
     @ResponseBody
-    public Activity searchActivityInfo(@PathVariable int activityID){
+    public Activity searchActivityInfo(@PathVariable int activityID) {
         return groupBuyingService.searchActivityInfo(activityID);
     }
 
@@ -305,7 +320,7 @@ public class GroupBuyingController {
             for (int userID : userIDs) {
                 String messageTitle = "团购成功！";
                 String messageBody = "您的团购成功了";
-                groupBuyingService.addMessage(userID, messageTitle, messageBody);
+                messageService.addMessage(userID, messageTitle, messageBody);
             }
         }
     }
