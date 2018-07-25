@@ -196,10 +196,10 @@ public class ProductController {
         return productService.getRecord(record);
     }
 
-    @RequestMapping(value = "introProduct")
+    @RequestMapping(value = "introProduct/{userid}")
     @ResponseBody
-    public List<Product> introProduct(){
+    public List<Product> introProduct(@PathVariable int userid){
         System.out.println("-----推荐商品Controller-----");
-        return productService.introProduct();
+        return productService.introProduct(userid);
     }
 }

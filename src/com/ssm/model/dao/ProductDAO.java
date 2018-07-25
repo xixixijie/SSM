@@ -25,4 +25,6 @@ public interface ProductDAO {
     public List<Product> findAllProduct();
     public Product getProductById(int product_id);
     public int getAllPageCount();
+
+    List<Integer> getBought(int userid);
 }

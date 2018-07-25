@@ -14,6 +14,8 @@
 	<link href="123.png" sizes="114x114" rel="apple-touch-icon-precomposed">
 
 	<script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+
 	<!--<script type="text/javascript" src="js/class.js" ></script>-->
 	<script>
         /**
@@ -49,49 +51,27 @@
             //
             // });
 
-            //推荐商品
-            $.ajax({
-                url:"introProduct",
-                type:"get",
-                dataType:"json",
-                success:function(data)
-                {
-                    //alert(data.length);
-                    for(var j=0; j<data.length;j++)
-                    {
-                        var str='<a href="ui-product.html?product_id'+data[j].product_id+'" class="aui-grid-row-item">'+
-                            '<i class="aui-icon-large aui-icon-sign"><img src="themes/img/ad/x-sf-1.jpg" alt=""></i>'+
-                            '<p class="aui-grid-row-label">'+data[j].product_name+'</p>'+
-                            '</a>';
+			function load() {
 
-                        $("#block0").append(str);
-                    }
-
-
-                }
-
-            });
-
-            //加载所有商品
-            for(var i=1;i<11;i++){
+			    var userid=$.cookie('userid');
+                //alert("in");
+                //推荐商品
                 $.ajax({
-                    url:"getProductsByClassifyID/"+i,
+                    url:"introProduct/"+1,
                     type:"get",
                     dataType:"json",
                     success:function(data)
                     {
+
                         //alert(data.length);
                         for(var j=0; j<data.length;j++)
                         {
-
-
-                            var str='<a href="ui-product.html?product_id='+data[j].product_id+'" class="aui-grid-row-item">'+
+                            var str='<a href="ui-product.html?product_id'+data[j].product_id+'" class="aui-grid-row-item">'+
                                 '<i class="aui-icon-large aui-icon-sign"><img src="themes/img/ad/x-sf-1.jpg" alt=""></i>'+
                                 '<p class="aui-grid-row-label">'+data[j].product_name+'</p>'+
                                 '</a>';
 
-                            //alert("#block"+i+ data[j].product_name )
-                            $("#block"+data[j].classify.classifyID).append(str);
+                            $("#block0").append(str);
                         }
 
 
@@ -99,7 +79,38 @@
 
                 });
 
+                //加载所有商品
+                for(var i=1;i<11;i++) {
+                    $.ajax({
+                        url: "getProductsByClassifyID/" + i,
+                        type: "get",
+                        dataType: "json",
+                        success: function (data) {
+                            //alert(data.length);
+                            for (var j = 0; j < data.length; j++) {
+
+
+                                var str = '<a href="ui-product.html?product_id=' + data[j].product_id + '" class="aui-grid-row-item">' +
+                                    '<i class="aui-icon-large aui-icon-sign"><img src="themes/img/ad/x-sf-1.jpg" alt=""></i>' +
+                                    '<p class="aui-grid-row-label">' + data[j].product_name + '</p>' +
+                                    '</a>';
+
+                                //alert("#block"+i+ data[j].product_name )
+                                $("#block" + data[j].classify.classifyID).append(str);
+                            }
+
+
+                        }
+
+                    });
+                }
             }
+
+            load();
+
+
+
+
 
 
         })
@@ -322,7 +333,7 @@
 		</a>
 	</footer>
 
-	<script src="themes/js/jquery.min.js"></script>
+
 	<script src="themes/js/aui.js"></script>
 </body>
 </html>

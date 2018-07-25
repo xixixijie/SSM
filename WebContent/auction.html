@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!-- saved from url=(0111)http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>拍卖</title>
+
+    <meta id="viewport" name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="./auction/mui.min.css">
+    <link href="./auction/style.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+    <script>
+        $(function () {
+
+
+            $.ajax({
+                url: "getAuctions",
+                type: "get",
+                dataType: "json",
+                success: function (data) {
+
+                    alert(data.length);
+                    for (var j = 0; j < data.length; j++) {
+                        var str = '<a href="auctiondetail.html?aid='+data[j].auctionID+'" class="wrap">' +
+                            '<img src="./auction/'+data[j].cover_url+'" alt="">' +
+                            '<div>'+data[j].auction_name+'</div>' +
+                            '<p>开拍时间: '+data[j].begin+'</p>' +
+                            '<p>结束时间: '+data[j].end+'</p>' +
+                            '<p>拍卖状态: <span>竞拍中 围观'+data[j].visited+' 出价'+data[j].wanted+'</span></p>' +
+                            '<p>最高价:<span>￥'+data[j].highest_price+'</span></p>' +
+                            '</a>';
+
+                        $("#main").append(str);
+                    }
+
+
+                }
+
+            });
+
+
+        });
+    </script>
+
+</head>
+<body class="special_all">
+<a class="banner">
+    <img src="./auction/supreme.jpg" alt="">
+</a>
+<div class="br">
+    <div class="left"></div>
+    <div class="middle"><h2>拍卖</h2></div>
+    <div class="right"></div>
+</div>
+<div class="main" id="main">
+
+
+
+</div>
+
+<!-- 焦点图2 -->
+<div class="bottomwrap">
+    <p>今日推荐</p>
+    <div class="swiper-container2">
+        <div class="swiper-wrapper"
+             style="width: 1920px; height: 250px; transform: translate3d(-1440px, 0px, 0px); transition-duration: 0.3s;">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="swiper-slide" style="width: 480px; height: 250px;">
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+            </div>
+            <div class="swiper-slide" style="width: 480px; height: 250px;">
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+            </div>
+            <div class="swiper-slide" style="width: 480px; height: 250px;">
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+            </div>
+
+            <div xmlns="http://www.w3.org/1999/xhtml" class="swiper-slide swiper-slide-visible swiper-slide-active"
+                 style="width: 480px; height: 250px;">
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+                <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"
+                   class="wrap">
+                    <img src="./auction/1.jpg" alt="">
+                    <p>日安艺拍下期预告</p>
+                    <p>当前价 ￥0</p>
+                </a>
+            </div>
+        </div>
+        <!--  焦点图按钮 -->
+        <div class="pagination2"><span
+                class="swiper-pagination-switch swiper-visible-switch swiper-active-switch"></span><span
+                class="swiper-pagination-switch"></span></div>
+    </div>
+</div>
+<!-- 底部 -->
+<footer>
+    <div>
+        <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/index.html"><img
+                src="./auction/home.png" alt=""><span class="now">首页</span></a></div>
+    <div>
+        <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/collect.html"><img
+                src="./auction/collection.png" alt=""> <span>收藏</span></a></div>
+    <div>
+        <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"><img
+                src="./auction/personal.png" alt=""> <span>个人中心</span></a></div>
+</footer>
+
+
+<!-- js -->
+<script type="text/javascript" src="./auction/swiper-2.1.min.js"></script>
+<script src="./auction/mui.min.js"></script>
+<script type="text/javascript" src="./auction/numkeyboard.js"></script>
+<script>
+    $(document).ready(function (e) {
+
+        var mySwiper = new Swiper('.swiper-container1', {    //初始化焦点图1
+            pagination: '.pagination1',
+            loop: true,
+            autoplay: 2000,
+            paginationClickable: true,
+            onSlideChangeStart: function () {
+                //回调函数
+            }
+        });
+        var mySwiper = new Swiper('.swiper-container2', {    //初始化焦点图2
+            pagination: '.pagination2',
+            loop: true,
+            autoplay: 2000,
+            paginationClickable: true,
+            onSlideChangeStart: function () {
+                //回调函数
+            }
+        });
+        $(".numkeyboard").numkeyboard({ 	//初始化虚拟键盘
+
+        });
+
+    });
+</script>
+
+</body>
+</html>

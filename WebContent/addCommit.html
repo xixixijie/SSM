@@ -5,7 +5,35 @@
     <title>Title</title>
     <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="css/layui.css">
+    <script type="text/javascript" src="js/layui.js"></script>
     <script>
+
+        function getCommentsByKeyword(data) {
+            var keyword=data.value;
+
+            $.ajax({
+                url:"getComment/"+encodeURI(encodeURI(keyword)),
+                type:"get",
+                dataType:"json",
+                success:function(data)
+                {
+
+                    alert(data.length);
+                    for(var j=0; j<data.length;j++)
+                    {
+                        var str='<button  value="'+data[j].keyName+'"  onclick="getCommentsByKeyword();"  class="layui-btn layui-btn-primary layui-btn-sm" >'+data[j].ctext+'</button>';
+
+                        $("#comments").append(str);
+                    }
+
+
+                }
+
+            });
+
+        }
+
         $(function(){
             $("#addComment").click(function(){
 
@@ -37,24 +65,42 @@
 
             });
 
+
+
             function load() {
+
+
                 $.ajax({
                     url:"getKeyword",
-                    type:"post",
+                    type:"get",
                     dataType:"json",
                     success:function(data)
                     {
 
-                        //{result:true}
+
+                        for(var j=0; j<data.length;j++)
+                        {
+                          var str='<button onclick="getCommentsByKeyword(this);" value="'+data[j].keyName+'"  onclick="getCommentsByKeyword();"  class="layui-btn layui-btn-primary layui-btn-sm" >'+data[j].keyName+'</button>';
+
+                            $("#block0").append(str);
+                        }
+
 
                     }
+
                 });
-                alert(1)
+
+
+
 
             }
 
             load()
+
+
         })
+
+
     </script>
 </head>
 <body>
@@ -63,6 +109,14 @@
     请输入评价<input id="Comment" name="ctext" type="text" value="">
     <button id="addComment">添加</button>
 </form>
+
+<div id="block0">
+
+</div>
+
+<div id="comments">
+
+</div>
 
 </body>
 </html>

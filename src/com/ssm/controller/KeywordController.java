@@ -5,6 +5,7 @@ import com.ssm.model.service.KeywordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class KeywordController {
     private KeywordService keywordService;
 
     @RequestMapping(value = "getKeyword")
+    @ResponseBody
     public List<Keyword> getTopKeys(){
         System.out.println("-----获得最高的关键词Controller-----");
         return keywordService.getTopKeys();
