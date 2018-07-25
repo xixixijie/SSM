@@ -4,8 +4,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.model.dao.GroupBuyingDAO">
 
-
-
     <!--根据条件查询团购活动-->
     <select id="searchActivities"  parameterType="Activity" resultMap="ActivityResult">
     	select * from group_buying_activity g JOIN product p on g.productID = p.product_id
@@ -179,7 +177,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <select id="getRecommendedGroupBuying" resultMap="ActivityResult">
-        select * from group_buying_activity g JOIN product p on g.productID = p.product_id order by g.groupBuyingPrice desc
+        select * from group_buying_activity g JOIN product p on g.productID = p.product_id order by g.group_Buying_Price desc
     </select>
 </mapper>
 
