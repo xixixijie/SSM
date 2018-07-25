@@ -148,5 +148,19 @@ public class GroupBuyingService {
     public Activity getRecommendedGroupBuying() {
         return groupBuyingDAO.getRecommendedGroupBuying().get(0);
     }
+
+    /**
+     * 修改团购信息
+     * @param activityID
+     * @param requiredNumber
+     * @param group_buying_price
+     */
+    public void modifyActivityInfo(int activityID, int requiredNumber, double group_buying_price) {
+        Activity activity = new Activity();
+        activity.setActivityID(activityID);
+        activity.setRequiredNumber(requiredNumber);
+        activity.setGroup_buying_price(group_buying_price);
+        groupBuyingDAO.modifyActivityInfo(activity);
+    }
 }
 

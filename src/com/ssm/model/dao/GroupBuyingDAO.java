@@ -122,5 +122,11 @@ public interface GroupBuyingDAO {
      * @return
      */
     public ArrayList<Activity> getRecommendedGroupBuying();
+
+    /**
+     * 修改团购信息
+     * @param activity
+     */
+    public void modifyActivityInfo(Activity activity);
 }
 

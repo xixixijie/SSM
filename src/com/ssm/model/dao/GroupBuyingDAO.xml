@@ -179,6 +179,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="getRecommendedGroupBuying" resultMap="ActivityResult">
         select * from group_buying_activity g JOIN product p on g.productID = p.product_id order by g.group_Buying_Price desc
     </select>
+
+    <update id="modifyActivityInfo" parameterType="Activity">
+        update group_buying_activity set requiredNumber = #{requiredNumber},group_buying_price=#{group_buying_price}
+        WHERE activityID = #{activityID}
+    </update>
 </mapper>
 
 

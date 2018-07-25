@@ -182,9 +182,8 @@ public class ProductController {
     @RequestMapping(value = "/showDetailProduct/{productID}")
     @ResponseBody
     public void showDetailProduct(@PathVariable int productID){
-
+        System.out.println("-----商品信息查询Controller-----");
         productService.storeRecord(productID);
-
     }
 
 

@@ -30,19 +30,16 @@ public class GroupBuyingController {
      *
      * @return
      */
-    @RequestMapping(value = "/searchActivities/{productName}/{activityStatus}/{groupStartDate}/{groupEndDate}", method = RequestMethod.POST)
+    @RequestMapping(value = "/searchActivities/{productName}/{groupStartDate}/{groupEndDate}", method = RequestMethod.POST)
     @ResponseBody
-    public ArrayList<Activity> searchActivities(@PathVariable String productName, @PathVariable int activityStatus,
+    public ArrayList<Activity> searchActivities(@PathVariable String productName,
                                                 @PathVariable String groupStartDate, @PathVariable String groupEndDate
     ) {
         System.out.println(productName);
-        System.out.println(activityStatus);
         System.out.println(groupStartDate);
         System.out.println(groupEndDate);
         Activity activity = new Activity();
-        if (activityStatus != -1) {
-            activity.setActivityStatus(activityStatus);
-        }
+
         Date startDate = null;
         if (groupStartDate != null & !"-1".equals(groupStartDate)) {
             try {
@@ -352,6 +349,18 @@ public class GroupBuyingController {
      */
     public void deleteActivities(int[] a_id) {
 
+    }
+
+    /**
+     * 修改团购信息
+     * @param activityID
+     * @param requiredNumber
+     * @param group_buying_price
+     */
+    @RequestMapping (value = "/modifyActivityInfo/{activityID}/{requiredNumber}/{group_buying_price}")
+    @ResponseBody
+    public void modifyActivityInfo(@PathVariable int activityID,@PathVariable int requiredNumber,@PathVariable double group_buying_price){
+        groupBuyingService.modifyActivityInfo(activityID,requiredNumber,group_buying_price);
     }
 
 }
