@@ -16,8 +16,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 	<!-- 配置分页插件 -->
 	<plugins>
-		<plugin interceptor="com.github.pagehelper.PageHelper">
-			<property name="dialect" value="oracle"/>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
+			<!--<property name="dialect" value="oracle"/>-->
 		</plugin>
 	</plugins>
  	
