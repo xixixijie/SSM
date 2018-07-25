@@ -4,8 +4,10 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.ssm.model.bean.Classify;
 import com.ssm.model.bean.Product;
+import com.ssm.model.bean.UserInfo;
 import com.ssm.model.dao.CommentDAO;
 import com.ssm.model.dao.ProductDAO;
+import com.ssm.model.dao.UserInfoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,11 @@ public class ProductService {
 
     @Autowired
     private CommentDAO commentDAO;
+
+    @Autowired
+    private UserInfoDAO userInfoDAO;
+
+    @Autowired
 
     //范东升
     public List<Classify> getAllClassify(){
@@ -101,6 +108,7 @@ public class ProductService {
 
     public List<Product> getProducts(int classifyID) {
         System.out.println("-----获取分类商品service-----");
+        //System.out.println(classifyID);
         List<Product> list = productDAO.getProducts(classifyID);
         if (list == null || list.size() == 0) {
             System.out.println("-----获得商品种类" + classifyID + "失败-----");
@@ -142,25 +150,159 @@ public class ProductService {
         return plist;
     }
 
-
-    public List<Product> introProduct() {
+    //基于用户的协同过滤推荐算法及商品热度排序混合推荐
+    public List<Product> introProduct(int userid) {
         System.out.println("-----推荐商品service-----");
         //获取所有商品
         List<Product> list = productDAO.getAllProduct();
-
-
-        return chooseProduct(list);
+        //热度排序选了9个
+        List<Product> list1=chooseProduct(list);
+        //基于用户的协同过滤算法
+        List<Product> list2=chooseProduct(userid,list);
+        //list1.addAll(list2);
+        return list1;
     }
 
+
+    private List<Product> chooseProduct(int userid,List<Product> list) {
+        //获取用户
+        //System.out.println(userid);
+        List<UserInfo> userlist=userInfoDAO.selectUsers();
+        //System.out.println("用户大小"+userlist.size());
+
+        //用户与物品的关系
+        Map<Integer,List<Integer>> User2Product_map=new HashMap<>();
+
+        for(UserInfo u:userlist){
+            //根据用户id 获得用户买过的商品id
+            User2Product_map.put(u.getUser_id(),getBought(u.getUser_id()));
+        }
+        //物品与用户的关系
+        Map<Integer,List<Integer>> Product2User_map=new HashMap<>();
+        //时间复杂度 O（nm） n用户数 m商品数
+        for(Product p:list){
+            //买过该商品的客户 userids
+            List<Integer> userids=new ArrayList<>();
+            for(Integer key:User2Product_map.keySet()){
+                if(User2Product_map.get(key).contains(p.getProduct_id())){
+                    userids.add(key);
+                }
+            }
+            Product2User_map.put(p.getProduct_id(),userids);
+        }
+
+        //创建相似数组
+        int userSize=userlist.size();
+        double[] array=new double[userSize];
+        //填写相似数组
+
+        //遍历所有商品
+        for(Integer key:Product2User_map.keySet()){
+            //得到买过这商品的所有用户
+            List<Integer> users=Product2User_map.get(key);
+
+            //如果该商品被当前用户买过
+            if(users.contains(userid)){
+                //两两+1
+                for(int i=0;i<users.size();i++){
+                    //得到非当前用户的id
+                    int u1=users.get(i);
+                    //如果不是当前用户
+                    if(u1!=userid){
+                        //找出非当前用户在所有用户list中的index
+                        for(int j=0;j<userSize;j++){
+                            if(userlist.get(j).getUser_id()==u1){
+                                array[j]++;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+
+
+
+        }
+
+
+        //计算相似度
+        for(int j=0;j<userSize;j++){
+
+            array[j]=calcuSimilarity(userid,j,User2Product_map,userlist);
+        }
+
+        //找出和userid相似度最高的用户
+        int point=0;
+        double max=array[0];
+        for(int i=1;i<userSize;i++){
+            if(array[i]>max){
+                point=i;
+                max=array[i];
+
+            }
+        }
+
+        List<Integer> pids1=User2Product_map.get(userid);
+        List<Integer> pids2=User2Product_map.get(userlist.get(point).getUser_id());
+        List<Product> newList=new ArrayList<>();
+        //把用户2买过而当前用户没买过的商品推荐给当前用户
+        for(Integer pid:pids2){
+            if(!pids1.contains(pid)){
+                //遍历所有商品
+                for(Product p:list){
+                    if(p.getProduct_id()==pid){
+                        newList.add(p);
+                    }
+                }
+            }
+        }
+
+
+
+        return newList;
+    }
+
+    private double calcuSimilarity(int userid,int j, Map<Integer, List<Integer>> user2Product_map, List<UserInfo> userlist) {
+        //根据index查对应用户
+
+        int u1=userlist.get(j).getUser_id();
+        //根据用户得到用户买过的商品
+        List<Integer> p1=user2Product_map.get(userid);
+        List<Integer> p2=user2Product_map.get(u1);
+
+        //计算相交 N（u1）交 N（u2）
+        int count=0;
+        for(int m=0;m<p1.size();m++){
+            for(int n=0;n<p2.size();n++){
+                if(p1.get(m)==p2.get(n)){
+                    count++;
+                }
+            }
+        }
+
+        return count/Math.sqrt(p1.size()*p2.size());
+
+
+    }
+
+
+    //根据用户id 获得用户买过的商品id
+    public List<Integer> getBought(int userid){
+        List<Integer> list=productDAO.getBought(userid);
+        //System.out.println(userid+"买过的商品大小"+list.size());
+        return list;
+    }
 
     private List<Product> chooseProduct(List<Product> list) {
         System.out.println("-----推荐商品方法-----");
         //计算每个商品的热度
         List<Hot> hotList = caculateHot(list);
-        //根据热度排序，选最高的10个
+        //根据热度排序，选最高的6个
         Collections.sort(hotList);
         List<Product> newList = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 9; i++) {
+            //System.out.println(hotList.get(i).getScore()+" "+hotList.get(i).getProduct().getProduct_name());
             newList.add(hotList.get(i).getProduct());
         }
         return newList;
@@ -185,7 +327,8 @@ public class ProductService {
         //获得和该商品有关的评论数
         int count = commentDAO.getCommentNum(product.getProduct_id());
 
-        return hour * 0.4 + count * 0.6;
+        
+        return hour * 0.2 + count * 0.8;
     }
 
 

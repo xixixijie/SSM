@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <select id="getCommentByKey" parameterType="String" resultType="Keyword">
-        SELECT * FROM keyword where keyname=#{keyname}
+        SELECT * FROM commentinfo where ctext like '%'||#{keyname}||'%'
     </select>
 
 

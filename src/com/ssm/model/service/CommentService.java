@@ -15,7 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.List;
+import java.util.*;
 import java.util.zip.GZIPInputStream;
 
 /**
@@ -39,6 +39,7 @@ public class CommentService {
     public void addComment(CommentInfo comment){
         System.out.println("-----提交评论service-----");
         //分析评论
+
         analysComment(comment);
 
 
@@ -49,14 +50,21 @@ public class CommentService {
         System.out.println("-----分析service-----");
 
         String content=comment.getCtext();
+        System.out.println(content);
 
         //先判断是否已经包含了已有关键词
         //包含了就不用调用api
         List<Keyword> keywordList=keywordDAO.getAllKeyword();
+        Set<String> disSet=new HashSet<>();
+
+        System.out.println("关键词大小"+keywordList.size());
         for(Keyword k:keywordList){
             if(content.contains(k.getKeyName())){
                 //key出现次数+1
-                keywordDAO.addNum(k.getKeyID());
+                Map<String,Integer> map=new HashMap<>();
+                map.put("keyid",k.getKeyID());
+                map.put("keynum",k.getKeyNum()+1);
+                keywordDAO.addNum(map);
                 return;
             }
         }
@@ -65,7 +73,11 @@ public class CommentService {
         if(adj.equals("fail")){
             System.out.println("-----分词失败------");
         }else{
-            keywordDAO.addKeyword(adj);
+            System.out.println("分词的形容词"+adj);
+            Keyword keyword=new Keyword();
+            keyword.setKeyName(adj);
+            keyword.setKeyNum(1);
+            keywordDAO.addKeyword(keyword);
         }
 
 
@@ -94,14 +106,19 @@ public class CommentService {
 
         System.out.println(jsonResult);
 
-        int from=jsonResult.indexOf("adj");
-        int to=jsonResult.indexOf("sentiment");
-        if(jsonResult.length()==0){
-            return "fail";
-        }
-        String adj=jsonResult.substring(from+6,to-3);
+        int from0=jsonResult.indexOf("error_code");
+        int to0=jsonResult.indexOf(",");
+        if(jsonResult.substring(from0+12,to0).equals("0")){
+            System.out.println(jsonResult);
+            int from=jsonResult.indexOf("adj");
+            int to=jsonResult.indexOf("sentiment");
+            String adj=jsonResult.substring(from+6,to-3);
 
-        return adj;
+            return adj;
+        }else {
+            return "fali";
+        }
+
     }
 
 
