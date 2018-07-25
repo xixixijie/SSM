@@ -80,8 +80,8 @@ public class SimpleTriggerRunner {
             scheduler.scheduleJob(jobDetail,trigger);
             scheduler.scheduleJob(jobDetail2,trigger2);
 
-//            Thread.sleep(60000);
-//            scheduler.shutdown();
+            Thread.sleep(60000);
+            scheduler.shutdown();
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
