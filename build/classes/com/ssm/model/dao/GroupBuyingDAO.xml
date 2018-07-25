@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.model.dao.GroupBuyingDAO">
+
+    <!--根据条件查询团购活动-->
+    <select id="searchActivities"  parameterType="Activity" resultMap="ActivityResult">
+    	select * from group_buying_activity g JOIN product p on g.productID = p.product_id
+    	<where>
+            <if test="product.product_name!=null and product.product_name!= ''">
+                and product_Name like '%'||#{product.product_name}||'%'
+            </if>
+            <if test="activityStatus!=null and activityStatus!= 0">
+                and activityStatus=#{activityStatus}
+            </if>
+            <if test="groupStartDate!=null">
+                and groupStartDate &lt;= #{groupStartDate}
+            </if>
+            <if test="groupEndDate!=null">
+                and groupEndDate &gt;= #{groupEndDate}
+            </if>
+        </where>
+    </select>
+
+
+    <resultMap id="ActivityResult" type="Activity">
+        <result property="activityID" column="activityID"/>
+        <result property="requiredNumber" column="requiredNumber"/>
+        <result property="groupStartDate" column="groupStartDate"/>
+        <result property="groupEndDate" column="groupEndDate"/>
+        <result property="activityStatus" column="activityStatus"/>
+        <result property="group_buying_price" column="group_buying_price"/>
+
+        <association property="product" column="productID" javaType="Product" resultMap="productResult"/>
+    </resultMap>
+
+        <resultMap id="productResult" type="Product">
+            <result column="product_id" property="product_id"/>
+            <result column="product_name" property="product_name"/>
+            <result column="original_price" property="original_price"/>
+            <result column="discount_price" property="discount_price"/>
+            <result column="product_info" property="product_info"/>
+            <result column="cover_url" property="cover_url"/>
+            <result column="on_date" property="on_date"/>
+        </resultMap>
+
+
+
+    <!--根据活动ID查询参与此活动的团队的集合-->
+    <select id="searchGroups" parameterType="java.lang.Integer" resultMap="GroupResult">
+        select * from ((group_buying_list  JOIN group_buying_activity  ON
+        group_buying_list.activityID = group_buying_activity.activityID) JOIN userinfo  ON group_buying_list.leaderID = userinfo.user_id) JOIN product on group_buying_activity.productID = product.product_id
+        WHERE group_buying_list.activityID = #{activityID}
+    </select>
+
+    <resultMap id="GroupResult" type="Group">
+        <result property="groupID" column="groupID"/>
+        <result property="current_num" column="currentNumber"/>
+        <result property="state" column="groupStatus"/>
+
+        <association property="leader" column="leaderID" javaType="UserInfo" resultMap="userResult"/>
+        <association property="activity" column="activityID" javaType="Activity" resultMap="ActivityResult"/>
+    </resultMap>
+
+
+    <resultMap id="userResult" type="UserInfo">
+        <result column="user_id" property="user_id"/>
+        <result column="password" property="password"/>
+        <result column="username" property="username"/>
+        <result column="user_email" property="user_email"/>
+        <result column="user_phone" property="user_phone"/>
+        <result column="name" property="name"/>
+        <result column="user_birthday" property="user_birthday"/>
+        <result column="user_gender" property="user_gender"/>
+        <result column="user_avatarurl" property="user_avatarurl"/>
+    </resultMap>
+
+    <select id="searchGroupInfo" parameterType="int" resultMap="GroupResult">
+        select * from (((group_buying_list  JOIN group_buying_activity  ON
+        group_buying_list.activityID = group_buying_activity.activityID) JOIN userinfo  ON group_buying_list.leaderID = userinfo.user_id) JOIN product on group_buying_activity.productID = product.product_id)
+        JOIN join_group_list on group_buying_list.groupID = join_group_list.groupID
+        WHERE group_buying_list.groupID = #{groupID}
+    </select>
+
+
+    <select id="searchActivityInfo" parameterType="int" resultMap="ActivityResult">
+        select * from group_buying_activity g JOIN product p on g.productID = p.product_id
+        where activityID = #{activityID}
+    </select>
+
+
+    <!--&lt;!&ndash;批量删除活动&ndash;&gt;-->
+    <!--&lt;!&ndash;批量修改活动的状态为3&ndash;&gt;-->
+    <!--<update id="deleteActivities" >-->
+        <!--UPDATE group_buying_activity set activityStatus = 3-->
+        <!--WHERE activityID in-->
+        <!--<foreach collection="array" item="item" open="(" separator="," close=")">-->
+            <!--#{item}-->
+        <!--</foreach>-->
+    <!--</update>-->
+
+    <!--检查是否可以删除，如果已经开始就不能删除，DAO层做的工作就是返回其开始时间-->
+    <select id="checkIfCanDelete" parameterType="Activity" resultType="Date">
+        select groupStartDate from group_buying_activity where activityID = #{activityID}
+    </select>
+
+    <!--检查是否已经达到要求参与的人数,DAO层做的主要工作就是返回当前人数-->
+    <select id="checkIfEnough" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT currentNumber from group_buying_list
+        where groupID = #{groupID}
+    </select>
+
+
+    <!--返回此团队需要的人数,配合checkIfEnough使用-->
+    <select id="getRequiredNumber" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT requiredNumber from group_buying_list l JOIN group_buying_activity a ON l.activityID = a.activityID
+        where groupID = #{groupID}
+    </select>
+
+    <!--发布团购活动-->
+    <insert id="releaseActivity" parameterType="Activity">
+        <selectKey keyProperty="activityID" resultType="int" order="BEFORE">
+            select nvl(max(activityID),0)+1 from group_buying_activity
+        </selectKey>
+        insert into group_buying_activity
+        VALUES (#{activityID},#{product.product_id},#{group_buying_price},#{requiredNumber},#{groupStartDate},#{groupEndDate},#{activityStatus})
+    </insert>
+
+
+    <!--开团操作-->
+    <insert id="initiateGroupBuying" parameterType="Group">
+        <selectKey keyProperty="groupID" resultType="int">
+            select nvl(max(groupID),0)+1 from group_buying_list
+        </selectKey>
+        insert into group_buying_list
+        VALUES  (#{groupID},#{leader.userID},#{product.productID},#{activity.activityID},1,1);
+    </insert>
+
+    <!--开团附属操作，记录-->
+    <insert id="initiateGroupBuyingSuffix" parameterType="map">
+        <selectKey keyProperty="openID" resultType="int">
+            select nvl(max(openID),0)+1 from open_group_list
+        </selectKey>
+        insert into open_group_list
+        VALUES  (#{openID},#{OpenGroupList.leader.userID},#{groupID},#{OpenGroupList.openDate},#{OpenGroupList.receiverName},#{OpenGroupList.receiverTelephone},#{OpenGroupList.receiverPostCode},#{OpenGroupList.receiverAddress},#{OpenGroupList.billNeeded});
+    </insert>
+
+    <!--获得当前最大的groupID-->
+    <select id="getGroupID" resultType="int">
+            select nvl(max(groupID),0) from group_buying_list
+    </select>
+
+    <!--跟团操作-->
+    <insert id="joinGroupBuying" parameterType="JoinGroupList">
+        UPDATE group_buying_list set currentNumber=(
+        SELECT currentNumber+1 from group_buying_list
+        where groupID = #{group.groupID}
+        );
+        <selectKey keyProperty="joinID" resultType="int">
+            select nvl(max(joinID),0)+1 from join_group_list
+        </selectKey>
+        insert into join_group_list
+        VALUES  (#{joinID},#{joiner.userID},#{group.groupID},#{joinDate},#{receiverName},#{receiverTelephone},#{receiverPostCode},#{receiverAddress},#{billNeeded});
+    </insert>
+
+
+    <select id="searchJoiners" parameterType="int" resultType="int">
+        SELECT joinerID FROM join_group_list
+        WHERE groupID = #{groupID}
+    </select>
+
+
+    <select id="searchLeader" parameterType="int" resultType="int">
+        SELECT leaderID from open_group_list
+        where GROUPID = #{groupID}
+    </select>
+
+    <select id="getRecommendedGroupBuying" resultMap="ActivityResult">
+        select * from group_buying_activity g JOIN product p on g.productID = p.product_id order by g.group_Buying_Price desc
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
