@@ -8,6 +8,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from auction WHERE state=1
     </select>
 
+    <select id="getAuction"  parameterType="int" resultType="Auction">
+        select * from AUCTION where auctionid=#{aid}
+    </select>
+
 </mapper>
 
 

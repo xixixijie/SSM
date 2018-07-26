@@ -24,6 +24,7 @@ public class AuctionService {
 
     public Auction gAuction(int aid) {
         System.out.println("-----获得拍卖品Service-----");
+
         return dao.getAuction(aid);
     }
 }
