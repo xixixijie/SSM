@@ -14,12 +14,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	 	<package name="com.ssm.model.bean"/>	
 	 </typeAliases>
 
-	<!-- 配置分页插件 -->
-	<!--<plugins>-->
-		<!--<plugin interceptor="com.github.pagehelper.PageHelper">-->
+	 <!-- 配置分页插件 -->
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
 			<!--<property name="dialect" value="oracle"/>-->
-		<!--</plugin>-->
-	<!--</plugins>-->
+		</plugin>
+	</plugins>
  	
 </configuration>  
 

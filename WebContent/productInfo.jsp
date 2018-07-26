@@ -51,7 +51,7 @@
     <div class="layui-card " style="width: 820px;float: left">
         <div class="layui-card-header">商品概述</div>
         <div class="layui-card-body">
-           ${product.product_info}
+            ${product.product_info}
         </div>
     </div>
 
