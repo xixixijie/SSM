@@ -78,7 +78,35 @@
                 }
             });
 
+            $("#search_info").keyup(function () {
+                var search_info=$(this).val();
 
+                $.ajax({
+                    url:"/getFullName.action",
+                    async:false,
+                    type:"POST",
+                    data:{"search_info":search_info},
+                    success:function(data){
+                            $("#fullName").show().html("");
+                            if(data==""){
+                                $("#search_result").text("没有相关数据！");
+                            }else {
+                                $("#search_result").empty();
+                                $("#search_result").append(data);
+                                $("li").css({"font-size":"17px","line-height":"45px","margin-left":"45px"});
+                                $("li").click(function () {
+                                    var full_name=$(this).text();
+                                    $("#search_info").val(full_name);
+                                });
+                            }
+
+                    },
+                    error:function(){
+                        alert("获取完整商品名失败");
+                    },
+                    dataType:"html"
+                });
+            });
 
 
 
@@ -203,7 +231,7 @@
 </div>
 
 <footer class="aui-footer-default aui-footer-fixed">
-    <a href="style.html" class="aui-footer-item aui-footer-active">
+    <a href="index.html" class="aui-footer-item aui-footer-active">
         <span class="aui-footer-item-icon aui-icon aui-footer-icon-home"></span>
         <span class="aui-footer-item-text">首页</span>
     </a>
@@ -211,7 +239,7 @@
         <span class="aui-footer-item-icon aui-icon aui-footer-icon-class"></span>
         <span class="aui-footer-item-text">分类</span>
     </a>
-    <a href="find.html" class="aui-footer-item">
+    <a href="#" class="aui-footer-item">
         <span class="aui-footer-item-icon aui-icon aui-footer-icon-find"></span>
         <span class="aui-footer-item-text">发现</span>
     </a>
