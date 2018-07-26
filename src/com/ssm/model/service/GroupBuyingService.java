@@ -103,12 +103,12 @@ public class GroupBuyingService {
     }   
 
     /**
-     * 根据活动ID批量删除团购活动，具体做法为将团购活动的状态置为3（被删除）
+     * 根据活动ID批量删除团购活动，具体做法为将团购活动的状态置为0（被删除）
      *
-     * @param a_id
+     * @param checkID
      */
-    public void deleteActivities(int[] a_id) {
-
+    public void deleteActivities(int[] checkID) {
+        groupBuyingDAO.deleteActivities(checkID);
     }
 
     /**

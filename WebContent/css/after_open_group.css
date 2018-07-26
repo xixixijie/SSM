@@ -146,7 +146,8 @@ section {
 .j-component-func>ul{overflow: hidden;}
 .j-component-func>ul>li{float:left; width:25%; text-align:center; padding:2px 0;}
 .j-component-func>ul>li>a{display:block;font:1em/25px 'microsoft yahei'; color:#505050;}
-.j-component-func .fdayicon{display:block; width:50px; height:50px; line-height:50px; border-radius:45%; margin:0 auto;}
+.j-component-func .fdayicon{display:block; width:50px; height:50px; line-height:50px; border-radius:45%; margin:0 auto;
+background: #2ad2c9 url("/img/home.png") no-repeat scroll 0% 0% / 117px auto;}
 .j-component-func .fdayicon-all{
     background-position: 12px 12px;
 }
@@ -751,6 +752,7 @@ h2 .mc-t>b{
 
 }
 .groups-avata-img ul.colonel::before,
+.win-icon::before{ background: transparent url("/img/home.png") no-repeat scroll;}
 .win-icon::before{
     background-size: 125px 355px;
     background-position: -95px -262px;
@@ -1379,6 +1381,7 @@ h2 .mc-t>b{
 .od-express ul li.place-cur{ border-color: #CE3B41; color: #CE3B41;}
 .od-express ul li::before,
 .od-express ul li::after{
+    background: url("/img/home.png") no-repeat scroll 0% 0% / 125px auto;
     position: absolute;
     content: "";
     display: inline-block;
