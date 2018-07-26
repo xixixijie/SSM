@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 /**
  * Created by chenyufeng on 2018/7/19.
@@ -67,9 +68,11 @@ public class GroupBuyingController {
         activity.setProduct(product);
         ArrayList<Activity> activities = checkIfCanDelete(groupBuyingService.searchActivities(activity));
         //分析时间
-        for (Activity activity1 : activities) {
+        Iterator<Activity> iterator = activities.iterator();
+        while (iterator.hasNext()){
+            Activity activity1 = iterator.next();
             if (activity1.getActivityStatus() == 0) {
-                activities.remove(activity1);
+                iterator.remove();
             } else {
                 Date nowTime = new Date();
                 if (nowTime.getTime() - activity1.getGroupEndDate().getTime() > 0) {
@@ -343,11 +346,14 @@ public class GroupBuyingController {
     }
 
     /**
-     * 根据活动ID批量删除团购活动，具体做法为将团购活动的状态置为3（被删除）
+     * 根据活动ID批量删除团购活动，具体做法为将团购活动的状态置为0（被删除）
      *
-     * @param a_id
+     * @param checkID
      */
-    public void deleteActivities(int[] a_id) {
+    @RequestMapping (value = "/deleteActivities/{checkID}")
+    @ResponseBody
+    public void deleteActivities(@PathVariable int[] checkID) {
+        groupBuyingService.deleteActivities(checkID);
 
     }
 

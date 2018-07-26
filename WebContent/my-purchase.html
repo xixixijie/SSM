@@ -8,7 +8,7 @@
 	<meta charset="UTF-8">
 	<title>拼团购物</title>
 	<script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
-	<link rel="stylesheet" href="lobibox-master/dist/css/Lobibox.min.css"/>
+	<link rel="stylesheet" href="lobibox-master/css/lobibox.css"/>
 	<link rel="stylesheet" href="themes/css/core.css">
 	<link rel="stylesheet" href="themes/css/icon.css">
 	<link rel="stylesheet" href="themes/css/home.css">
@@ -84,8 +84,8 @@
         $("#top-started").click();
     }
 </script>
-<script src="lobibox-master/dist/js/Lobibox.min.js"></script>
-<script src="lobibox-master/dist/js/notifications.min.js"></script>
+<script src="lobibox-master/js/lobibox.js"></script>
+<script src="lobibox-master/js/notifications.js"></script>
 
 	<header class="aui-header-default aui-header-fixed ">
 		<a href="javascript:history.back(-1)" class="aui-header-item">
@@ -128,11 +128,10 @@
                         }
                         $("#top-started").click(function(){
                             var productName = -1;
-                            var activityStatus = -1;
                             var groupStartDate = -1;
                             var groupEndDate = -1;
                             $.ajax({
-                                url:"searchActivities/"+productName+"/"+activityStatus+"/"+groupStartDate+"/"+groupEndDate,
+                                url:"searchActivities/"+productName+"/"+groupStartDate+"/"+groupEndDate,
                                 type:"post",
                                 dataType:"json",
                                 success:function(data)
@@ -168,11 +167,10 @@
 					<script type="application/javascript">
                         $("#top-ended").click(function() {
                             var productName = -1;
-                            var activityStatus = -1;
                             var groupStartDate = -1;
                             var groupEndDate = -1;
                             $.ajax({
-                                url: "searchActivities/" + productName + "/" + activityStatus + "/" + groupStartDate + "/" + groupEndDate,
+                                url: "searchActivities/" + productName +  "/" + groupStartDate + "/" + groupEndDate,
                                 type: "post",
                                 dataType: "json",
                                 success: function (data) {
@@ -207,11 +205,10 @@
 					<script type="application/javascript">
                         $("#top-future").click(function() {
                             var productName = -1;
-                            var activityStatus = -1;
                             var groupStartDate = -1;
                             var groupEndDate = -1;
                             $.ajax({
-                                url: "searchActivities/" + productName + "/" + activityStatus + "/" + groupStartDate + "/" + groupEndDate,
+                                url: "searchActivities/" + productName + "/" + groupStartDate + "/" + groupEndDate,
                                 type: "post",
                                 dataType: "json",
                                 success: function (data) {

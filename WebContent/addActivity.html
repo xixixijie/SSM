@@ -1,16 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: chenyufeng
-  Date: 2018/7/25
-  Time: 下午1:32
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>发布团购活动</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="/js/jquery-3.2.0.min.js"></script>
+    <link rel="stylesheet" href="css/frameui.css">
+    <link rel="stylesheet" href="css/recommended.css">
 </head>
 <body>
 <div class="panel panel-info">
@@ -18,19 +13,22 @@
         <h3 class="panel-title">发布团购活动</h3>
     </div>
     <div class="panel-body">
-        <%--首先三级联动获取商品--%>
-            <div class="form-group">
-                <label for="doc-select-1">商品分类</label>
-                <select class="form-control" id="doc-select-1" name="classifyId" onchange="classifyChange()"></select>
-            </div>
+        <!--首先三级联动获取商品-->
+        <div class="form-group">
+            <label for="doc-select-1">商品分类</label>
+            <select class="form-control" id="doc-select-1" name="classifyId" onchange="classifyChange()"></select>
+        </div>
 
-            <div class="form-group">
-                <label for="doc-select-2">商品名称</label>
-                <select class="form-control" id="doc-select-2" name="productId" onchange="productChange()"></select>
-            </div>
-            <div id="show_product_info">
+        <div class="form-group">
+            <label for="doc-select-2">商品名称</label>
+            <select class="form-control" id="doc-select-2" name="productId" onchange="productChange()"></select>
+        </div>
+        <div id="show_product_id">
 
-            </div>
+        </div>
+        <div id="show_product_info">
+
+        </div>
     </div>
 </div>
 <div class="panel panel-info">
@@ -77,7 +75,7 @@
                 console.log(data);
             }
         });
-        window.location.href="generateActivity.jsp";
+        window.location.href="generateActivity.html";
     });
 </script>
 
@@ -125,14 +123,21 @@
 <script language="javascript">
     function productChange(){
         var c=$('select[name="productId"]').val();
-        $('#show_product_info').append('<input id="productID" value="'+c+'"></input>');
+        $('#show_product_id').empty();
+        $('#show_product_id').append('<input id="productID" value="'+c+'" hidden>');
         $.ajax({
             url:"showDetailProduct/"+c,
             type:"post",
             dataType:"json",
             success:function(data)
             {
-//                $('select[name="show_product_info"]').append(data);
+                $('#show_product_info').empty();
+                var str='<div><img src="'+data.cover_url+'"></div><div class="details-body-box"><div class="tm">' +
+                    '<div class="td2"> <div class="td2_price">' +
+                    '<span>售价：<b>'+data.original_price+'</b>元</span></div><div class="td2_name">'+data.product_name+'</div>' +
+                    '<div class="td2_cx">'+data.product_info+'</div></div></div></div>';
+                $('#show_product_info').append(str);
+
             }
         });
     }

@@ -3,27 +3,60 @@
  */
 $(function () {
     var index = location.href.lastIndexOf("=");
-    var activityID = location.href.substr(index+1);
+    var activityID = location.href.substr(index + 1);
 
     $.ajax({
-        url:"searchGroups/"+activityID,
-        type:"POST",
-        dataType:"json",
-        success:function (data) {
+        url: "searchGroups/" + activityID,
+        type: "POST",
+        dataType: "json",
+        success: function (data) {
             console.log(data);
-            // 清除原有的数据
-            $("#show_groups").empty();
-            for(var i=0;i<data.length;i++){
-                var str = '<li class="aui-slide-item-item"> <a href="join_group.html?groupID='+data[0].groupID+'" class="v-link"> <img class="v-img" src="img/join.png"> <p class="aui-slide-item-title aui-slide-item-f-els">团长：' +
-                    data[i].leader.name+'</p><p class="aui-slide-item-info"><span class="aui-slide-item-price">当前人数'+data[i].current_num+'/'+data[i].activity.requiredNumber+'</span> </p> </a> </li>';
+            for (var i = 0; i < data.length; i++) {
+                var str = '<div><div class="myorder-sum fl"><img src="/img/join.png"></div><div class="myorder-text">' +
+                    ' <h1>团长：' + data[i].leader.name + '</h1> <div class="tuan_g_core"> <div class="tuan_g_price"> ' +
+                    '<span>当前' + data[i].current_num + '/' + data[i].activity.requiredNumber + '</span></div> <div class="tuan_g_btn"></div> ' +
+                    '</div> </div> </div> <div class="groups-dowm-bnt">拼团进行中 <a href="join_group.html?groupID=' + data[0].groupID + '" class="btn fr">加入团购</a>' +
+                    ' <a href="show_group_info.html?groupID=' + data[0].groupID + '" class="btn fr">查看团详情</a> </div>';
                 $("#show_groups").append(str);
             }
-            var str2 = '<li class="aui-slide-item-item"><a href="open_group.html?activityID='+data[0].activity.activityID+'" class="v-link"><img class="v-img" src="img/open.png"> <p class="aui-slide-item-title aui-slide-item-f-els"></p> <p class="aui-slide-item-info"> <span class="aui-slide-item-price">我来开团</span> </p> </a></li>';
-            $("#show_groups").append(str2);
-            $("#show_product_name").append('<h3>'+data[0].activity.product.product_info+'</h3>');
-            $('#show_product_price').append(' <span class="aui-list-product-item-price"><em>¥</em>'+data[0].activity.group_buying_price+' </span><span class="aui-list-product-item-del-price">'+data[0].activity.product.original_price+'</span>');
-            $('#show_product_pic').append(' <img src="'+data[0].activity.product.cover_url+'" alt="">');
         }
-    })
+    });
+
+    $.ajax({
+        url: "searchActivityInfo/" + activityID,
+        type: "POST",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            $("#show_number").empty();
+            $("#show_number").append('<p>' + data.requiredNumber + '人团</p><p>¥' + data.group_buying_price + '</p>');
+
+
+            $("#product_img").empty();
+            $("#product_img").append('<img src="' + data.product.cover_url + '">');
+
+
+            $("#show_product_info").empty();
+            $("#show_product_info").append('<p class="tuan_g_name">' +
+                data.product.product_name + '</p> <p class="tuan_g_cx">' +
+                data.product.product_info + '</p>');
+
+            $("#show_price").empty();
+            $("#show_price").append(' <div id="triangle-right"></div><div class="tuan_g_price"><span>' +
+                data.requiredNumber + '人团只需</span> <b>¥' + data.group_buying_price + '</b> </div> <div class="tuan_g_btn">我要拼</div>');
+
+            $("#show_origin_price").empty();
+            $("#show_origin_price").append('<s>原价:￥' + data.product.original_price + '</s>');
+
+            // 清除原有的数据
+            $("#show_groups").empty();
+            var str2 = '<div><div class="myorder-sum fl"><img src="/img/open.png"></div><div class="myorder-text">' +
+                '<h1>你是下一个团长么?</h1>' + ' <div class="tuan_g_core"> <div class="tuan_g_price"> ' + '<span>立刻开团</span>' +
+                '</div> <div class="tuan_g_btn"></div> ' +
+                '</div> </div> </div> <div class="groups-dowm-bnt"><a href="open_group.html?activityID=' + data.activityID + '" class="btn fr">我来开团</a>' +
+                '</div>';
+            $("#show_groups").append(str2);
+        }
+    });
 
 });
