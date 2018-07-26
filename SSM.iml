@@ -29,7 +29,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="false">
+  <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/build/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
@@ -41,5 +41,6 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0.52" level="application_server_libraries" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="application" />
+    <orderEntry type="library" name="servlet-api" level="application" />
   </component>
 </module>

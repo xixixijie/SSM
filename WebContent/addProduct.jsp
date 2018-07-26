@@ -14,7 +14,7 @@
     <title>添加商品</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
     <script src="../layui/layui.js"></script>
-
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -28,14 +28,14 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">商品名</label>
                 <div class="layui-input-block">
-                    <input type="text" name="product_name"  placeholder="25个字以内" autocomplete="off" class="layui-input">
+                    <input type="text" maxlength="25" required lay-verify="required" name="product_name"  placeholder="25个字以内" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
             <div class="layui-form-item">
                 <label class="layui-form-label">商品分类</label>
                 <div class="layui-input-block">
-                    <select name="classify.classifyID" >
+                    <select name="classify.classifyID" lay-verify="required">
                         <c:forEach items="${classifyList}" var="cla">
                             <option value="${cla.classifyID}">${cla.className}</option>
                         </c:forEach>
@@ -46,27 +46,28 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">原价</label>
                 <div class="layui-input-block">
-                    <input type="number" name="original_price"  placeholder="不超过50000元" autocomplete="off" class="layui-input">
+                    <input type="number" id="original_price" name="original_price" step="any" placeholder="不超过50000元" required lay-verify="required" autocomplete="off" class="layui-input" max="50000" min="1">
                 </div>
             </div>
 
             <div class="layui-form-item">
                 <label class="layui-form-label">折扣价</label>
                 <div class="layui-input-block">
-                    <input type="number" name="discount_price" placeholder="不超过50000元" autocomplete="off" class="layui-input">
+                    <input type="number" id="discount_price" name="discount_price" step="any" placeholder="不超过50000元" required lay-verify="required" autocomplete="off" class="layui-input" max="50000" min="1">
+                    <span id="checkDiscount"></span>
                 </div>
             </div>
 
             <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">商品概述</label>
+                <label class="layui-form-label" >商品概述</label>
                 <div class="layui-input-block">
-                    <textarea name="product_info" placeholder="请输入200字以内的商品概述" class="layui-textarea"></textarea>
+                    <textarea name="product_info" maxlength="200" required lay-verify="required" placeholder="请输入200字以内的商品概述" class="layui-textarea"></textarea>
                 </div>
             </div>
             <div class="layui-form-item layui-upload-form">
                 <label class="layui-form-label">商品封面</label>
                 <div class="layui-input-block">
-                    <input type="file"  name="cover"    style="margin-top: 5px">
+                    <input type="file" required lay-verify="required" name="cover"    style="margin-top: 5px">
                 </div>
             </div>
 
@@ -77,21 +78,21 @@
             <div class="layui-form-item layui-upload-form">
                 <label class="layui-form-label">商品外观图</label>
                 <div class="layui-input-block">
-                    <input type="file" multiple="multiple" name="aspectPics"    style="margin-top: 5px">
+                    <input type="file" required lay-verify="required" multiple="multiple" name="aspectPics"    style="margin-top: 5px">
                 </div>
             </div>
             <br>
             <div class="layui-form-item layui-upload-form">
                 <label class="layui-form-label">商品参数图</label>
                 <div class="layui-input-block">
-                    <input type="file" multiple="multiple" name="parameterPics"    style="margin-top: 5px">
+                    <input type="file" required lay-verify="required" multiple="multiple" name="parameterPics"    style="margin-top: 5px">
                 </div>
             </div>
 
 
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button type="submit" class="layui-btn "  >立即提交</button>
+                    <button id="subtn" type="submit" class="layui-btn "  >立即提交</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
@@ -115,6 +116,25 @@
 
     });
 
+    $(function () {
+        $("#original_price").keyup(function () {
+            var originalPrice=$(this).val();
+            $("#discount_price").attr("value",originalPrice);
+        });
+
+        $("#discount_price").blur(function () {
+            var originalPrice=$("#original_price").val();
+            var discountPrice=$("#discount_price").val();
+            if(discountPrice>originalPrice){
+                $("#checkDiscount").css("color","red");
+                $("#checkDiscount").html("折扣价不能超过原价");
+                $("#subtn").attr("disabled",true);
+            }else {
+                $("#checkDiscount").html("");
+                $("#subtn").attr("disabled",false);
+            }
+        })
+    })
 
 
 </script>

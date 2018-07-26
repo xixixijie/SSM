@@ -56,7 +56,6 @@ public class ProductService {
         return product_id;
     }
 
-
     public void addAspect(String aspect_url,int product_id){
         Map<String, Object> map=new HashMap<String, Object>();
         map.put("aspect_url", aspect_url);
@@ -102,6 +101,95 @@ public class ProductService {
         Product product=new Product();
         product=productDAO.getProductById(product_id);
         return product;
+    }
+
+    public void updateProduct(Product product){
+        productDAO.updateProduct(product);
+    }
+
+    public List<Product> getProductByName(String search_info,int pageNum){
+        int pageSize=8;
+        List<Product> list=new ArrayList<Product>();
+        Page<Product> page= PageHelper.startPage(pageNum,pageSize);
+        productDAO.getProductByName(search_info);
+        list=page.getResult();
+        return list;
+    }
+
+    public int getPageCountByName(String search_info){
+        int count=0;
+        int pageSize=8;
+        int pagecount = 0;
+        count=productDAO.getPageCountByName(search_info);
+        if(count%pageSize==0){
+            pagecount = count/pageSize;
+        }else{
+            pagecount = count/pageSize+1;
+        }
+        return pagecount;
+    }
+
+    public List<String> getFullName(String search_info){
+        List<String> nameList=new ArrayList<String>();
+        nameList=productDAO.getFullName(search_info);
+        return nameList;
+    }
+
+    public void deleteProduct(int[] ids){
+        productDAO.deleteProduct(ids);
+    }
+
+    public List<Product> getProductForUserByName(String search_info){
+        List<Product> list=new ArrayList<Product>();
+        list=productDAO.getProductByName(search_info);
+        return list;
+    }
+
+    public List<String> getAspectForUser(int product_id){
+        List<String> aspectList=new ArrayList<String>();
+        aspectList=productDAO.getAspectForUser(product_id);
+        return aspectList;
+    }
+
+    public Product getProductForUser(int product_id){
+        Product product=new Product();
+        product=productDAO.getProductForUser(product_id);
+        return product;
+    }
+
+    public List<String> getParameterForUser(int product_id){
+        List<String> parameterList=new ArrayList<String>();
+        parameterList=productDAO.getParameterForUser(product_id);
+        return parameterList;
+    }
+
+    public List<Product> getNewPhone(){
+        List<Product> phoneList=new ArrayList<Product>();
+        phoneList=productDAO.getNewPhone();
+        return phoneList;
+    }
+
+    public List<Product> getNewTV(){
+        List<Product> tvList=new ArrayList<Product>();
+        tvList=productDAO.getNewTV();
+        return tvList;
+    }
+
+    public List<Product> getNewPC(){
+        List<Product> pcList=new ArrayList<Product>();
+        pcList=productDAO.getNewPC();
+        return pcList;
+    }
+
+    public List<Product> getNewElec(){
+        List<Product> elecList=new ArrayList<Product>();
+        elecList=productDAO.getNewElec();
+        return elecList;
+    }
+
+    public boolean checkProDelete(int product_id){
+        int count=productDAO.checkProDelete(product_id);
+        return count>0?false:true;
     }
 
     //范东升end
