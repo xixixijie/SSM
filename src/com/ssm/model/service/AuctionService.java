@@ -1,10 +1,15 @@
 package com.ssm.model.service;
 
 import com.ssm.model.bean.Auction;
+import com.ssm.model.bean.AuctionPic;
+import com.ssm.model.bean.History;
 import com.ssm.model.dao.AuctionDAO;
+import com.ssm.model.dao.UserInfoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,6 +21,9 @@ public class AuctionService {
     @Autowired
     private AuctionDAO dao;
 
+    @Autowired
+    private UserInfoDAO userdao;
+
     public List<Auction> getAuctions() {
         System.out.println("-----获得所有拍卖品Service-----");
         //System.out.println(dao.getAuctions().size());
@@ -26,5 +34,31 @@ public class AuctionService {
         System.out.println("-----获得拍卖品Service-----");
 
         return dao.getAuction(aid);
+    }
+
+    public List<AuctionPic> gAuctionPic(int aid) {
+        System.out.println("-----获得轮播图Service-----");
+        return dao.getAuctionPic(aid);
+    }
+
+    public List<History> gHistory(int aid) {
+        System.out.println("-----获得历史Service-----");
+        List<History> list =dao.getHistory(aid);
+        for(History h:list){
+            h.setUsername(userdao.getUsername(h.getUserID()));
+            h.change();
+        }
+        return list;
+
+    }
+
+    public void addHistory(int userid, int aid, double price) {
+        System.out.println("-----添加历史Service-----");
+        History history=new History();
+        history.setUserID(userid);
+        history.setAuctionID(aid);
+        history.setPrice(price);
+        history.setTime(new Timestamp(new Date().getTime()));
+        dao.addHistory(history);
     }
 }
