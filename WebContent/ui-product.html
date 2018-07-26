@@ -449,6 +449,31 @@
 
 </script>
 
+<script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+<!--<script type="text/javascript" src="js/test.js" ></script>-->
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script>
+	$(function () {
+        var index = location.href.lastIndexOf("=");
+        var pid= location.href.substr(index+1);
+        function writeCookie(productid) {
+
+            //alert(productid)
+            if($.cookie('record')!= "null"){
+
+                var record=$.cookie('record');
+                $.cookie('record',record+','+productid)
+            }else {
+
+
+                $.cookie('record',productid);
+            }
+        }
+        writeCookie(pid);
+
+    })
+</script>
+
 
 
 

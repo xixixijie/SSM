@@ -32,8 +32,8 @@ public class AuctionController {
     }
 
     @RequestMapping(value = "getAuction/{aid}")
+    @ResponseBody
     public Auction getAuction(@PathVariable int aid){
-
         System.out.println("-----获得拍卖品Controller-----");
         return service.gAuction(aid);
     }

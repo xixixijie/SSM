@@ -229,7 +229,12 @@ public class ProductService {
         System.out.println("-----获得记录service-----");
         String strs[]=record.split(",");
         List<Product> plist=new ArrayList<>();
+        List<String> pids=new ArrayList<>();
         for(String pid:strs){
+            if(pid.equals("undefined"))
+                continue;
+            if(pids.contains(pid))
+                continue;
             Product p=productDAO.getProduct(Integer.parseInt(pid));
             p.setCommentNum(commentDAO.getCommentNum(Integer.parseInt(pid)));
             plist.add(p);
