@@ -5,28 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ssm.model.dao.AuctionDAO">
 
     <select id="getAuctions" resultType="Auction">
-        select * from auction WHERE state=1 order by ENDDATE asc
+        select * from auction WHERE state=1
     </select>
-    <select id="getAuction" parameterType="int" resultType="Auction">
-        select * from auction where state=1 and auctionid=#{aid}
-    </select>
-
-    <select id="gAuctionPics" parameterType="int" resultType="AuctionPic">
-        select * from AUCTIONPIC where AUCTIONID=#{aid}
-    </select>
-    <!--加一个用户名字-->
-    <select id="getHistory" parameterType="int" resultType="History">
-        select * from HISTORY a where  Auctionid=#{aid} order by PRICE desc
-    </select>
-
-    <insert id="addHistory" parameterType="History" flushCache="true">
-        <selectKey keyProperty="HistoryID" resultType="int" order="BEFORE">
-            SELECT nvl(max(HistoryID),0)+1 from HISTORY
-        </selectKey>
-      insert into history
-       values (#{HistoryID},#{userID},#{price},#{time},#{auctionID},#{username})
-    </insert>
-
 
 </mapper>
 
