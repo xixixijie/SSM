@@ -12,8 +12,8 @@
 <head>
     <meta charset="UTF-8">
     <title>添加商品</title>
-    <link rel="stylesheet" href="../layui/css/layui.css">
-    <script src="../layui/layui.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="layui/layui.js"></script>
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
