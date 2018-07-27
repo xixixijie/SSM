@@ -27,6 +27,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into History
         values (#{HistoryID},#{userID},#{price},#{time},#{auctionID})
     </insert>
+
+    <update id="addWanted" parameterType="Map">
+        update Auction
+        set WANTED=#{wanted}
+        where AUCTIONID=#{aid}
+    </update>
 </mapper>
 
 

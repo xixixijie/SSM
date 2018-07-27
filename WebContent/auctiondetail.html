@@ -16,7 +16,7 @@
             var index = location.href.lastIndexOf("=");
             var aid= location.href.substr(index+1);
 			var price;
-
+			var wanted;
 
 			function load(){
                 $.ajax({
@@ -33,6 +33,7 @@
                         $('#introduction').html('结束时间:'+data.introduction)
 						$('#cover_url').attr('src','img/'+data.cover_url+'')
 						price=data.highest_price;
+                        wanted=data.wanted;
                         //alert('img/'+data.cover_url);
                     }
 
@@ -115,7 +116,7 @@
                         $.ajax({
 
 							//userid+aid+myprice
-                            url: "addHistory/"+1+"/"+1+"/"+myprice,
+                            url: "addHistory/"+1+"/"+1+"/"+myprice+'/'+wanted,
                             type: "get",
                             dataType: "json",
                             success: function () {
@@ -123,7 +124,7 @@
                         });
 
                         alert("竞拍成功");
-                        loadHistory();
+                        load();
 					}else{
 			            return
 					}

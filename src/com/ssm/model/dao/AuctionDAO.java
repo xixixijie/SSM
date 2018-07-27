@@ -5,6 +5,7 @@ import com.ssm.model.bean.AuctionPic;
 import com.ssm.model.bean.History;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by xixi on 2018/7/24.
@@ -19,4 +20,6 @@ public interface AuctionDAO {
     List<History> getHistory(int aid);
 
     void addHistory(History history);
+
+    void addWanted(Map<String,Integer> map);
 }

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by xixi on 2018/7/24.
@@ -46,14 +48,14 @@ public class AuctionService {
         System.out.println(aid);
         List<History> list =dao.getHistory(aid);
         for(History h:list){
-            h.setUsername(userdao.getUsername(h.getUserID()));
+            h.setUsername(userdao.getUsername (h.getUserID()));
             h.change();
         }
         return list;
 
     }
 
-    public void addHistory(int userid, int aid, double price) {
+    public void addHistory(int userid, int aid, double price,int wanted) {
         System.out.println("-----添加历史Service-----");
         History history=new History();
         history.setUserID(userid);
@@ -61,5 +63,10 @@ public class AuctionService {
         history.setPrice(price);
         history.setTime(new Timestamp(new Date().getTime()));
         dao.addHistory(history);
+        //想要人数加一
+        Map<String,Integer> map=new HashMap<>();
+        map.put("aid",aid);
+        map.put("wanted",wanted+1);
+        dao.addWanted(map);
     }
 }

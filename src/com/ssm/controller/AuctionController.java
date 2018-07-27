@@ -57,10 +57,10 @@ public class AuctionController {
 
     }
 
-    @RequestMapping(value = "addHistory/{userid}/{aid}/{price}")
+    @RequestMapping(value = "addHistory/{userid}/{aid}/{price}/{wanted}")
     @ResponseBody
-    public void addHistory(@PathVariable int userid,@PathVariable int aid,@PathVariable double price){
+    public void addHistory(@PathVariable int userid,@PathVariable int aid,@PathVariable double price,@PathVariable int wanted){
         System.out.println("-----添加历史Controller-----");
-        service.addHistory(userid,aid,price);
+        service.addHistory(userid,aid,price,wanted);
     }
 }
