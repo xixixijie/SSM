@@ -34,6 +34,7 @@ public class AuctionImp implements AuctionDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return list;
     }
 
@@ -49,7 +50,25 @@ public class AuctionImp implements AuctionDAO {
 
     @Override
     public List<History> getHistory(int aid) {
-        return null;
+        Connection conn=DBUtil.getConn();
+        String sql="select * from HISTORY where AUCTIONID="+aid;
+        List<History> list=new ArrayList<>();
+        try {
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+
+            while(rs.next()){
+                History history=new History();
+                history.setUserID(rs.getInt("userid"));
+                history.setPrice(rs.getDouble("price"));
+                history.setAuctionID(rs.getInt("auctionid"));
+                list.add(history);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 
     @Override
@@ -61,4 +80,22 @@ public class AuctionImp implements AuctionDAO {
     public void addWanted(Map<String, Integer> map) {
 
     }
+
+    public void Abortive(int auctionID) {
+        Connection conn=DBUtil.getConn();
+        String sql="update auction set state=3 where id="+auctionID;
+
+        try {
+            PreparedStatement preparedStatement=conn.prepareStatement(sql);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
 }

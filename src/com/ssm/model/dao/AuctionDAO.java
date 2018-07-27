@@ -22,4 +22,5 @@ public interface AuctionDAO {
     void addHistory(History history);
 
     void addWanted(Map<String,Integer> map);
+
 }

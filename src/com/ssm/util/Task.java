@@ -1,6 +1,7 @@
 package com.ssm.util;
 
 import com.ssm.model.bean.Auction;
+import com.ssm.model.bean.History;
 import com.ssm.model.dao.AuctionImp;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -26,14 +27,22 @@ public class Task extends TimerTask {
         if (!isRunning) {
             isRunning = true;
             logger.info("开始执行任务。");
+            AuctionImp dao=new AuctionImp();
 
-
-            List<Auction> list=new AuctionImp().getAuctions();
+            List<Auction> list=dao.getAuctions();
 
             for(Auction a:list){
                 if(a.getEndDate().getTime()<=new Date().getTime()){
-                    System.out.println(a.getAuction_name());
-                    System.out.println("有拍卖结束");
+                    if(a.getWanted()<1){
+                        //流拍
+                        dao.Abortive(a.getAuctionID());
+                    }else{
+                        //生成订单
+                        List<History> histories=dao.getHistory(a.getAuctionID());
+                        //获取关于该商品的所有竞拍记录
+                        History history=new History();
+
+                    }
                 }
             }
 
