@@ -66,9 +66,9 @@ public class Task extends TimerTask {
                             auctionOrder.setState(1);
                             auctionOrder.setUsername(history.getUsername());
                             dao.addAuctionOrder(auctionOrder);
-                            System.out.println("添加订单");
+                            //System.out.println("添加订单");
                             //修改拍卖品状态
-                            //dao.modifyAuction(a.getAuctionID());
+                            dao.modifyAuction(a.getAuctionID());
                             //其余的通知失败
                             List<Integer> userids=new ArrayList<>();
                             for(int i=1;i<histories.size();i++){

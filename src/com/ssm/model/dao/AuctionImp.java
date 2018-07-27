@@ -1,5 +1,6 @@
 package com.ssm.model.dao;
 
+
 import com.ssm.model.bean.*;
 import com.ssm.util.DBUtil;
 
@@ -151,9 +152,9 @@ public class AuctionImp implements AuctionDAO {
         Connection connection=DBUtil.getConn();
         String sql1="select nvl(max(AOID),0)+1 as maxid from AUCTIONORDER";
         String sql2="select * from ACCEPT_ADDRESS where USER_ID="+auctionOrder.getUserid();
-        String sql3="insert into AUCTIONORDER values (?,?,?,?,?,?,?,?,?)";
+        String sql3="insert into AUCTIONORDER values (?,?,?,?,?,?,?,?,?,?,?,?)";
         int maxid=-1;
-        int addressid=-1;
+
         Address address=new Address();
         try {
             PreparedStatement preparedStatement=connection.prepareStatement(sql1);
@@ -164,11 +165,11 @@ public class AuctionImp implements AuctionDAO {
             preparedStatement=connection.prepareStatement(sql2);
             resultSet=preparedStatement.executeQuery();
             if(resultSet.next()){
-                address.setAddressID(resultSet.getInt(1));
-                address.setAddress(resultSet.getString(3));
-                address.setPostcode(resultSet.getInt(4));
-                address.setAcceptPhone(resultSet.getInt(5));
-                address.setAcceptName(resultSet.getString(6));
+                address.setAddressID(resultSet.getInt("address_id"));
+                address.setAddress(resultSet.getString("address"));
+                address.setPostcode(resultSet.getInt("postcode"));
+                address.setAcceptPhone(resultSet.getLong("accept_phone"));
+                address.setAcceptName(resultSet.getString("accept_name"));
             }
             preparedStatement=connection.prepareStatement(sql3);
             preparedStatement.setInt(1,maxid);
@@ -179,7 +180,11 @@ public class AuctionImp implements AuctionDAO {
             preparedStatement.setTimestamp(6,auctionOrder.getDate());
             preparedStatement.setInt(7,auctionOrder.getState());
             preparedStatement.setString(8,auctionOrder.getAuction_name());
-            preparedStatement.setInt(9,addressid);
+            preparedStatement.setString(9,address.getAddress());
+            preparedStatement.setInt(10,address.getPostcode());
+            preparedStatement.setLong(11,address.getAcceptPhone());
+            preparedStatement.setString(12,address.getAcceptName());
+
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
