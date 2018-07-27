@@ -39,8 +39,13 @@ public class Task extends TimerTask {
                     }else{
                         //生成订单
                         List<History> histories=dao.getHistory(a.getAuctionID());
-                        //获取关于该商品的所有竞拍记录
-                        History history=new History();
+                        //获取关于该商品的最高竞拍记录
+                        History history=histories.get(0);
+                        //生成通知消息
+                        String title="恭喜您的竞拍"+a.getAuction_name()+"，竞拍成功";
+                        String body="您的竞拍"+a+
+                        dao.addMessage(history.getUserID(),title,body);
+
 
                     }
                 }
