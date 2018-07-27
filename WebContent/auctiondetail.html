@@ -30,7 +30,7 @@
 						$('#wanted').html('参与人数:'+data.wanted)
 						$('#begin').html('参与时间:'+data.begin)
                         $('#end').html('结束时间:'+data.end)
-                        $('#introduction').html('结束时间:'+data.introduction)
+                        $('#introduction').html(data.introduction)
 						$('#cover_url').attr('src','img/'+data.cover_url+'')
 						price=data.highest_price;
                         wanted=data.wanted;
@@ -226,9 +226,8 @@
 
 <!-- 底部 -->
 <footer>
-	   <div><a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/index.html"><img src="./auctiondetail/home.png" alt=""><span class="now">首页</span></a></div>
-	   <div><a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/collect.html"><img src="./auctiondetail/collection.png" alt=""> <span>收藏</span></a></div>
-	   <div><a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special.html"><img src="./auctiondetail/personal.png" alt=""> <span>个人中心</span></a></div>
+	   <div><a href="auction.html"><img src="./auctiondetail/home.png" alt=""><span class="now">首页</span></a></div>
+	   <div><a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special.html"><img src="./auctiondetail/personal.png" alt=""> <span>我的拍卖</span></a></div>
 </footer>
 
 
