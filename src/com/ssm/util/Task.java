@@ -42,8 +42,9 @@ public class Task extends TimerTask {
                         //获取关于该商品的最高竞拍记录
                         History history=histories.get(0);
                         //生成通知消息
-                        String title="恭喜您的竞拍"+a.getAuction_name()+"，竞拍成功";
-                        String body="您的竞拍"+a+
+                        String title="竞拍成功";
+                        String body="您的竞拍"+a.getAuction_name()+"成功"+",成交价"+history.getPrice()+"元";
+                        System.out.println(title+" "+body);
                         dao.addMessage(history.getUserID(),title,body);
 
 

@@ -20,7 +20,7 @@ public class TimerListener implements ServletContextListener{
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);//每天
         //定制每天的11:00:00执行
-        calendar.set(year, month, day, 10, 24, 00);
+        calendar.set(year, month, day, 11, 15, 00);
         java.util.Date date = calendar.getTime();
         int period = 30 * 1000;
         //每天的date时刻执行TestTask，每隔30秒重复执行

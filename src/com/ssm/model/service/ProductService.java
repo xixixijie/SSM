@@ -235,6 +235,7 @@ public class ProductService {
                 continue;
             if(pids.contains(pid))
                 continue;
+            pids.add(pid);
             Product p=productDAO.getProduct(Integer.parseInt(pid));
             p.setCommentNum(commentDAO.getCommentNum(Integer.parseInt(pid)));
             plist.add(p);
