@@ -9,7 +9,7 @@ import java.util.Date;
 public class History {
     private int HistoryID;
     private int userID;
-    private int username;
+    private String username;
     private double price;
     private int auctionID;
     private Timestamp time;
@@ -31,11 +31,11 @@ public class History {
         this.userID = userID;
     }
 
-    public int getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(int username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 

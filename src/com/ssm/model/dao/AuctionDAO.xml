@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <select id="getHistory" parameterType="int" resultType="History" flushCache="true">
-        select * from HISTORY where AUCTIONID=#{aid} order by PRICE desc;
+        select * from HISTORY where AUCTIONID=#{aid} order by PRICE desc
     </select>
 
     <insert id="addHistory" parameterType="History">

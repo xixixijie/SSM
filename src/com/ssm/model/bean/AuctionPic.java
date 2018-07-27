@@ -3,7 +3,7 @@ package com.ssm.model.bean;
 public class AuctionPic {
     private int auctionpicID;
     private int auctionID;
-    private int picName;
+    private String picName;
 
     public int getAuctionpicID() {
         return auctionpicID;
@@ -21,11 +21,11 @@ public class AuctionPic {
         this.auctionID = auctionID;
     }
 
-    public int getPicName() {
+    public String getPicName() {
         return picName;
     }
 
-    public void setPicName(int picName) {
+    public void setPicName(String picName) {
         this.picName = picName;
     }
 }

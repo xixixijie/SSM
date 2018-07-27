@@ -37,7 +37,9 @@ public class AuctionController {
     @ResponseBody
     public Auction getAuction(@PathVariable int aid){
         System.out.println("-----获得拍卖品Controller-----");
-        return service.gAuction(aid);
+        Auction auction=service.gAuction(aid);
+        auction.change();
+        return auction;
     }
 
     @RequestMapping(value = "getAuctionPic/{aid}")
@@ -55,7 +57,7 @@ public class AuctionController {
 
     }
 
-    @RequestMapping(value = "addHistory/{useerid}/{aid}/{price}")
+    @RequestMapping(value = "addHistory/{userid}/{aid}/{price}")
     @ResponseBody
     public void addHistory(@PathVariable int userid,@PathVariable int aid,@PathVariable double price){
         System.out.println("-----添加历史Controller-----");

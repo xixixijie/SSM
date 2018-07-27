@@ -8,5 +8,5 @@ public interface UserInfoDAO {
 	public List<UserInfo> selectUsers();
 	public void addUser(UserInfo user);
 
-    int getUsername(int userID);
+    String getUsername(int userID);
 }

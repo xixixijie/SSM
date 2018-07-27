@@ -43,6 +43,7 @@ public class AuctionService {
 
     public List<History> gHistory(int aid) {
         System.out.println("-----获得历史Service-----");
+        System.out.println(aid);
         List<History> list =dao.getHistory(aid);
         for(History h:list){
             h.setUsername(userdao.getUsername(h.getUserID()));

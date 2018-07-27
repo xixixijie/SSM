@@ -6,6 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectUsers"  resultType="UserInfo">
     	select * from userinfo
     </select>
+
+    <select id="getUsername" parameterType="int"   resultType="String">
+        select username from USERINFO where USER_ID=#{userid}
+    </select>
     
 </mapper>
 

@@ -6,10 +6,11 @@
 
 	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 	<link rel="stylesheet" href="./auctiondetail/mui.min.css">
     <link href="./auctiondetail/style.css" rel="stylesheet">
-	<script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
 	<script>
 		$(function () {
             var index = location.href.lastIndexOf("=");
@@ -30,8 +31,9 @@
 						$('#begin').html('参与时间:'+data.begin)
                         $('#end').html('结束时间:'+data.end)
                         $('#introduction').html('结束时间:'+data.introduction)
-						$('cover_url').attr('src','img/'+data.cover_url+'')
+						$('#cover_url').attr('src','img/'+data.cover_url+'')
 						price=data.highest_price;
+                        //alert('img/'+data.cover_url);
                     }
 
                 });
@@ -53,18 +55,20 @@
                     }
 
                 });
+
                 loadHistory();
 
 			}
 
 			function loadHistory() {
+                //alert(aid);
                 $.ajax({
-                    url: "getHistory/"+aid,
+                    url: "getHistory/"+1,
                     type: "get",
                     dataType: "json",
                     success: function (data) {
-
-                        alert(data.length);
+                        $("#History").empty();
+                        //alert(data.length);
                         for (var j = 0; j < data.length; j++) {
                             var str;
                             if(j==0) {
@@ -102,11 +106,12 @@
 
 			$("#btn").click(function () {
 				var myprice=$("#myprice").val();
-			    if(myprice<price){
+			    if(myprice<=price){
 			        alert("出价要高于当前最高价")
 					return;
 				}else{
 			        if(confirm("是否确定参与竞拍")){
+			            //alert(myprice)
                         $.ajax({
 
 							//userid+aid+myprice
@@ -116,8 +121,9 @@
                             success: function () {
                             }
                         });
-                        loadHistory();
+
                         alert("竞拍成功");
+                        loadHistory();
 					}else{
 			            return
 					}
@@ -138,10 +144,12 @@
 		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 	</ol>
 	<!-- 轮播（Carousel）项目 -->
-	<div class="carousel-inner" id="pic">
-		<div class="item active">
+	<div class="carousel-inner"  id="pic">
+		<div class="item active" >
 			<img id="cover_url" src="" alt="First slide">
+
 		</div>
+
 	</div>
 	<!-- 轮播（Carousel）导航 -->
 	<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -162,8 +170,8 @@
 <!-- 拍卖按钮区域 -->
 <div class="up">
 	<div class="wrap">
-		<p id="begin"></p>
-		<p id="end"></p>
+		<p id="begin"></p><br>
+		<p id="end"></p><br>
 		<p id="highest_price"></p>
 		<p id="wanted"></p>
 	</div>
@@ -226,7 +234,6 @@
 
 <!-- js -->
 
-<script type="text/javascript" src="./auctiondetail/swiper-2.1.min.js"></script>
-<script src="./auctiondetail/mui.min.js"></script>
+
 
 </body></html>
