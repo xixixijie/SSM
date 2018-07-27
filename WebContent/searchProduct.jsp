@@ -93,9 +93,9 @@
             <th>商品名</th>
             <th>
                 <form method="post" action="/getProductByName?pageNumPro=1">
-                    <input type="text" id="search_info" value="${search_info}" name="search_info" style="width: 150px;height: 25px">
+                    <input type="text" id="search_info" value="${search_info}" name="search_info" style="width: 180px;height: 25px">
                     <button type="submit" class="layui-btn layui-btn-normal layui-btn-xs" style="height: 29px;width: 50px">搜索</button>
-                    <div id="fullName" style="width:150px;border:solid 1px #CCCCCC;display:none;font-size:13px;z-index:999;position: absolute;background-color: white"></div>
+                    <div id="fullName" style="width:180px;border:solid 1px #CCCCCC;display:none;font-size:13px;z-index:999;position: absolute;background-color: white"></div>
                 </form>
             </th>
             <th>

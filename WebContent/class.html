@@ -66,8 +66,8 @@
                         //alert(data.length);
                         for(var j=0; j<data.length;j++)
                         {
-                            var str='<a href="ui-product.html?product_id'+data[j].product_id+'" class="aui-grid-row-item">'+
-                                '<i class="aui-icon-large aui-icon-sign"><img src="themes/img/ad/x-sf-1.jpg" alt=""></i>'+
+                            var str='<a href="ui-product.html?product_id='+data[j].product_id+'" class="aui-grid-row-item">'+
+                                '<i class="aui-icon-large aui-icon-sign"><img src="img/'+data[j].cover_url+'" alt=""></i>'+
                                 '<p class="aui-grid-row-label">'+data[j].product_name+'</p>'+
                                 '</a>';
 
@@ -91,7 +91,7 @@
 
 
                                 var str = '<a href="ui-product.html?product_id=' + data[j].product_id + '" class="aui-grid-row-item">' +
-                                    '<i class="aui-icon-large aui-icon-sign"><img src="themes/img/ad/x-sf-1.jpg" alt=""></i>' +
+                                    '<i class="aui-icon-large aui-icon-sign"><img src="img/'+data[j].cover_url+'" alt=""></i>' +
                                     '<p class="aui-grid-row-label">' + data[j].product_name + '</p>' +
                                     '</a>';
 

@@ -7,6 +7,8 @@ import com.ssm.model.bean.UserInfo;
 
 public interface UserInfoDAO {
 	public void addUser(UserInfo user);
+
+    String getUsername(int userID);
 	public void editUser(UserInfo user);
 	public UserInfo getUser(int userID);
 	public void editPassword(UserInfo user);

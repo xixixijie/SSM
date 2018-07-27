@@ -8,6 +8,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select * from auction WHERE state=1
     </select>
 
+    <select id="getAuction"  parameterType="int" resultType="Auction">
+        select * from AUCTION where auctionid=#{aid}
+    </select>
+
+    <select id="getAuctionPic" parameterType="int" resultType="AuctionPic">
+        select * from AUCTIONPIC where AUCTIONID=#{aid}
+    </select>
+
+    <select id="getHistory" parameterType="int" resultType="History" flushCache="true">
+        select * from HISTORY where AUCTIONID=#{aid} order by PRICE desc
+    </select>
+
+    <insert id="addHistory" parameterType="History">
+        <selectKey keyProperty="HistoryID" resultType="int" order="BEFORE">
+            SELECT nvl(max(HISTORYID),0)+1 from HISTORY
+        </selectKey>
+        insert into History
+        values (#{HistoryID},#{userID},#{price},#{time},#{auctionID})
+    </insert>
+
+    <update id="addWanted" parameterType="Map">
+        update Auction
+        set WANTED=#{wanted}
+        where AUCTIONID=#{aid}
+    </update>
 </mapper>
 
 

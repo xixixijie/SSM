@@ -11,8 +11,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../layui/css/layui.css">
-    <script src="../layui/layui.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="layui/layui.js"></script>
 </head>
 <body style="background-color: #f2f2f2">
 
@@ -26,9 +26,9 @@
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;">分类管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;">选项一</a></dd>
-                    <dd><a href="javascript:;">选项二</a></dd>
-                    <dd><a href="javascript:;">选项三</a></dd>
+                    <dd><a href="addClassifyPage.html;" target="mainFrame">添加分类</a></dd>
+                    <dd><a href="showClassifyPage.html" target="mainFrame">管理分类</a></dd>
+
                 </dl>
             </li>
             <li class="layui-nav-item">

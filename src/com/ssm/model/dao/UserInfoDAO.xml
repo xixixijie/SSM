@@ -30,6 +30,11 @@
         SELECT * FROM USERINFO WHERE USER_ID=#{userID}
     </select>
 
+    <select id="getUsername" parameterType="int"   resultType="String">
+        select username from USERINFO where USER_ID=#{userid}
+    </select>
+
+
     <update id="editUser" parameterType="UserInfo">
         UPDATE USERINFO
         set ADDRESS=#{address},
@@ -50,7 +55,6 @@
     </update>
 
 </mapper>
-
 
 
 
