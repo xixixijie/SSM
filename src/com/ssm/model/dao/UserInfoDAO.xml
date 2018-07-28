@@ -1,12 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.model.dao.UserInfoDAO">
-    <select id="selectUsers"  resultType="UserInfo">
-    	select * from userinfo
+
+    <insert id="addBankcard" parameterType="Bankcard">
+        <selectKey keyProperty="bankcardID" resultType="int" order="BEFORE">
+            SELECT nvl(max(BANKCARD_ID),0)+1 from BANKCARD
+        </selectKey>
+        INSERT into BANKCARD
+        values(#{bankcardID},#{userID},#{bankcardNumber},1)
+    </insert>
+
+    <update id="deleteBankcard" >
+        update BANKCARD
+        set STATUS=0
+        WHERE BANKCARD_ID=#{bankcardID}
+    </update>
+
+    <insert id="addUser" parameterType="UserInfo">
+        <selectKey keyProperty="userID" resultType="int" order="BEFORE">
+            SELECT nvl(max(USER_ID),0)+1 from USERINFO
+        </selectKey>
+        INSERT into USERINFO
+        values(#{userID},#{password},#{username},#{user_email},#{user_phone},#{name},#{user_birthday},#{user_gendar},d:\)
+    </insert>
+
+    <select id="getUser" parameterType="int" resultType="UserInfo">
+        SELECT * FROM USERINFO WHERE USER_ID=#{userID}
     </select>
-    
+
+    <select id="getUsername" parameterType="int"   resultType="String">
+        select username from USERINFO where USER_ID=#{userid}
+    </select>
+
+
+    <update id="editUser" parameterType="UserInfo">
+        UPDATE USERINFO
+        set ADDRESS=#{address},
+        POSTCODE=#{postcode}
+        WHERE USER_ID=#{userID}
+    </update>
+
+    <update id="editPassword" parameterType="UserInfo">
+        UPDATE USERINFO
+        set PASSWORD=#{password}
+        WHERE USER_ID=#{userID}
+    </update>
+
+    <update id="editAvatar" parameterType="UserInfo">
+        UPDATE USERINFO
+        set USER_AVATARURL=#{user_avatarurl}
+        WHERE USER_ID=#{userID}
+    </update>
+
 </mapper>
 
 

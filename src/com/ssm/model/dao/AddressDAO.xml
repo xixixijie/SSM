@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.model.dao.AddressDAO">
+
+    <update id="deleteAddress" >
+        update ACCEPT_ADDRESS
+        set STATUS=0
+        WHERE ADDRESS_ID=#{addressID}
+    </update>
+
+    <insert id="addAddress" parameterType="Address">
+        <selectKey keyProperty="addressID" resultType="int" order="BEFORE">
+            SELECT nvl(max(ADDRESS_ID),0)+1 from ACCEPT_ADDRESS
+        </selectKey>
+        INSERT into ACCEPT_ADDRESS
+        values(#{addressID},#{userID},#{address},#{postcode},#{acceptPhone},#{acceptName},1)
+    </insert>
+
+    <select id="getAddress" parameterType="int" resultType="Address">
+        SELECT * FROM ACCEPT_ADDRESS WHERE ADDRESS_ID=#{addressID} AND STATUS=1
+    </select>
+
+    <update id="editAddress" parameterType="Address">
+        UPDATE ACCEPT_ADDRESS
+        set ADDRESS=#{address},
+        POSTCODE=#{postcode}
+        WHERE ADDRESS_ID=#{addressID}
+    </update>
+
+    <select id="showAddress" resultType="Address">
+        SELECT * from ACCEPT_ADDRESS where STATUS=1 and USER_ID=#{user_ID}
+    </select>
+</mapper>
+

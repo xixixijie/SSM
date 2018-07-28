@@ -14,6 +14,8 @@ public class Product {
     private String product_info;
     private String cover_url;
     private Date on_date;
+    private boolean isDelete;
+    private int commentNum;
 
     public int getProduct_id() {
         return product_id;
@@ -71,11 +73,28 @@ public class Product {
         this.cover_url = cover_url;
     }
 
+
     public Date getOn_date() {
         return on_date;
     }
 
     public void setOn_date(Date on_date) {
         this.on_date = on_date;
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
+
+    public int getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(int commentNum) {
+        this.commentNum = commentNum;
+
     }
 }

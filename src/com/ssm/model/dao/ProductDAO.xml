@@ -4,6 +4,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.model.dao.ProductDAO">
 
+    <select id="getBought" parameterType="int" resultType="int">
+    SELECT a.PRODUCT_ID from (SELECT PRODUCT_ID,ADDRESS_ID FROM ORDERINFO a,ORDERPRODUCT b WHERE a.ORDER_ID=b.ORDER_ID) a,ACCEPT_ADDRESS b
+    WHERE a.ADDRESS_ID=b.ADDRESS_ID AND b.USER_ID=#{userid}
+    </select>
+
     <select id="getProducts" parameterType="int" resultMap="proResult">
        select * FROM classify a,product b
        WHERE a.classifyID=b.classify_ID and b.classify_ID=#{classifyID} AND b.status=1
@@ -40,6 +45,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="getProduct" parameterType="int" resultType="Product">
         select * from product where product_id=#{pid}
     </select>
+
+
+
 
     <select id="getAllClassify"  resultType="Classify">
         select * from CLASSIFY
@@ -80,7 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <select id="getProductById" parameterType="int" resultMap="proResultNo1">
-        select p.PRODUCT_ID,p.PRODUCT_NAME,c.CLASSNAME,p.ORIGINAL_PRICE,p.DISCOUNT_PRICE,p.PRODUCT_INFO
+        select p.PRODUCT_ID,p.PRODUCT_NAME,c.CLASSIFYID,c.CLASSNAME,p.ORIGINAL_PRICE,p.DISCOUNT_PRICE,p.PRODUCT_INFO
         from product p,classify c
         where STATUS=1 and p.CLASSIFY_ID=c.CLASSIFYID and PRODUCT_ID=#{product_id}
     </select>
@@ -99,9 +107,68 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="classname" property="className" />
     </resultMap>
 
-
     <select id="getAllPageCount" resultType="int">
         SELECT COUNT (*) FROM PRODUCT WHERE STATUS=1
+    </select>
+
+    <update id="updateProduct" parameterType="Product" >
+        UPDATE PRODUCT
+        SET PRODUCT_NAME=#{product_name} , CLASSIFY_ID=#{classify.classifyID} ,
+        ORIGINAL_PRICE=#{original_price} , DISCOUNT_PRICE=#{discount_price} ,
+        PRODUCT_INFO=#{product_info}
+        WHERE PRODUCT_ID=#{product_id}
+    </update>
+
+    <select id="getProductByName" parameterType="String" resultType="Product">
+        SELECT * FROM PRODUCT WHERE PRODUCT_NAME LIKE '%'||#{search_info}||'%' AND STATUS=1
+    </select>
+
+    <select id="getPageCountByName" parameterType="String" resultType="int">
+        SELECT COUNT (*) FROM PRODUCT WHERE PRODUCT_NAME LIKE '%'||#{search_info}||'%' AND STATUS=1
+    </select>
+
+    <select id="getFullName" parameterType="String" resultType="String">
+        SELECT PRODUCT_NAME FROM PRODUCT WHERE PRODUCT_NAME LIKE '%'||#{search_info}||'%' AND STATUS=1
+    </select>
+
+    <update id="deleteProduct" >
+        UPDATE PRODUCT
+        SET STATUS=0 WHERE PRODUCT_ID IN
+        <foreach collection="array" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <select id="getAspectForUser" parameterType="int" resultType="String">
+        SELECT ASPECT_URL FROM ASPECT WHERE PRODUCT_ID=#{product_id}
+    </select>
+
+    <select id="getProductForUser" parameterType="int" resultType="Product">
+        SELECT * FROM PRODUCT WHERE PRODUCT_ID=#{product_id}
+    </select>
+
+    <select id="getParameterForUser" parameterType="int" resultType="String">
+        SELECT PARAMETER_URL FROM PARAMETER WHERE PRODUCT_ID=#{product_id}
+    </select>
+
+    <select id="getNewPhone" resultType="Product">
+        SELECT * FROM PRODUCT WHERE CLASSIFY_ID=1 AND STATUS=1 ORDER BY ON_DATE
+    </select>
+
+    <select id="getNewTV" resultType="Product">
+        SELECT * FROM PRODUCT WHERE CLASSIFY_ID=3 AND STATUS=1 ORDER BY ON_DATE
+    </select>
+
+    <select id="getNewPC" resultType="Product">
+        SELECT * FROM PRODUCT WHERE CLASSIFY_ID=4 AND STATUS=1 ORDER BY ON_DATE
+    </select>
+
+    <select id="getNewElec" resultType="Product">
+        SELECT * FROM PRODUCT WHERE CLASSIFY_ID=2 AND STATUS=1 ORDER BY ON_DATE
+    </select>
+
+    <select id="checkProDelete" parameterType="int" resultType="int">
+        SELECT COUNT (*) FROM ORDERPRODUCT WHERE PRODUCT_ID =#{product_id}
     </select>
 </mapper>
 

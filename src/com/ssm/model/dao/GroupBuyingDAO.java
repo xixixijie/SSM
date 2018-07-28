@@ -1,9 +1,6 @@
 package com.ssm.model.dao;
 
-import com.ssm.model.bean.Activity;
-import com.ssm.model.bean.Group;
-import com.ssm.model.bean.JoinGroupList;
-import com.ssm.model.bean.OpenGroupList;
+import com.ssm.model.bean.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +15,8 @@ public interface GroupBuyingDAO {
      * @return
      */
     public ArrayList<Activity> searchActivities(Activity activity);
+
+
 
     /**
      * 根据团购活动号查询参与此团购活动的队伍
@@ -83,10 +82,51 @@ public interface GroupBuyingDAO {
     public Date checkIfCanDelete(Activity activity);
 
     /**
-     * 根据活动ID批量删除团购活动，具体做法为将团购活动的状态置为3（被删除）
-     * @param a_id
+     * 根据活动ID批量删除团购活动，具体做法为将团购活动的状态置为0（被删除）
+     * @param checkID
      */
-    public void deleteActivities(int[] a_id);
+    public void deleteActivities(int[] checkID);
 
+    /**
+     * 根据groupID查询joiner
+     * @param groupID
+     * @return
+     */
+    public ArrayList<Integer> searchJoiners(int groupID);
+
+    /**
+     * 根据groupID查询leader
+     * @param groupID
+     * @return
+     */
+    public int searchLeader(int groupID);
+
+
+
+    /**
+     * 根据groupID查询团购队伍的相关信息
+     * @param groupID
+     * @return
+     */
+    public Group searchGroupInfo(int groupID);
+
+    /**
+     * 根据activityID查询团购活动的相关信息
+     * @param activityID
+     * @return
+     */
+    public Activity searchActivityInfo(int activityID);
+
+    /**
+     * 获得排序最高，价格最低的团购活动
+     * @return
+     */
+    public ArrayList<Activity> getRecommendedGroupBuying();
+
+    /**
+     * 修改团购信息
+     * @param activity
+     */
+    public void modifyActivityInfo(Activity activity);
 }
 

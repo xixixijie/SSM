@@ -1,9 +1,6 @@
 package com.ssm.model.service;
 
-import com.ssm.model.bean.Activity;
-import com.ssm.model.bean.Group;
-import com.ssm.model.bean.JoinGroupList;
-import com.ssm.model.bean.OpenGroupList;
+import com.ssm.model.bean.*;
 import com.ssm.model.dao.GroupBuyingDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +27,6 @@ public class GroupBuyingService {
     public ArrayList<Activity> searchActivities(Activity activity) {
         return groupBuyingDAO.searchActivities(activity);
     }
-
-    //
 
     /**
      * 根据团购活动号查询参与此团购活动的队伍
@@ -108,14 +103,64 @@ public class GroupBuyingService {
     }   
 
     /**
-     * 根据活动ID批量删除团购活动，具体做法为将团购活动的状态置为3（被删除）
+     * 根据活动ID批量删除团购活动，具体做法为将团购活动的状态置为0（被删除）
      *
-     * @param a_id
+     * @param checkID
      */
-    public void deleteActivities(int[] a_id) {
+    public void deleteActivities(int[] checkID) {
+        groupBuyingDAO.deleteActivities(checkID);
+    }
 
+    /**
+     * 根据groupID取得所有的参与的UserID
+     * @param groupID
+     * @return
+     */
+    public ArrayList<Integer> searchJoiners(int groupID) {
+        ArrayList<Integer> userIDs = groupBuyingDAO.searchJoiners(groupID);
+        userIDs.add(groupBuyingDAO.searchLeader(groupID));
+        return userIDs;
+    }
+
+    /**
+     * 根据groupID查询团购队伍的相关信息
+     * @param groupID
+     * @return
+     */
+    public Group searchGroupInfo(int groupID) {
+        return groupBuyingDAO.searchGroupInfo(groupID);
+    }
+
+    /**
+     * 根据activityID查询团购活动的相关信息
+     * @param activityID
+     * @return
+     */
+    public Activity searchActivityInfo(int activityID) {
+        return groupBuyingDAO.searchActivityInfo(activityID);
     }
 
 
+    /**
+     * 获得排序最高，价格最低的团购活动
+     * @return
+     */
+    public Activity getRecommendedGroupBuying() {
+        return groupBuyingDAO.getRecommendedGroupBuying().get(0);
+    }
+
+    /**
+     * 修改团购信息
+     * @param activityID
+     * @param requiredNumber
+     * @param group_buying_price
+     */
+    public void modifyActivityInfo(int activityID, int requiredNumber, double group_buying_price) {
+        Activity activity = new Activity();
+        activity.setActivityID(activityID);
+        activity.setRequiredNumber(requiredNumber);
+        activity.setGroup_buying_price(group_buying_price);
+        groupBuyingDAO.modifyActivityInfo(activity);
+    }
 }
 

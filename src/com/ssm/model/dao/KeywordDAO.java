@@ -3,14 +3,15 @@ package com.ssm.model.dao;
 import com.ssm.model.bean.Keyword;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by xixi on 2018/7/19.
  */
 public interface KeywordDAO {
-    public void addKeyword(String keyword);
+    public void addKeyword(Keyword content);
 
     public List<Keyword> getAllKeyword();
 
-    void addNum(int keyID);
+    void addNum(Map map);
 }

@@ -11,10 +11,115 @@
 	<link rel="stylesheet" href="themes/css/icon.css">
 	<link rel="stylesheet" href="themes/css/home.css">
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
-	<link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+	<link href="123.png" sizes="114x114" rel="apple-touch-icon-precomposed">
 
 	<script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
-	<script type="text/javascript" src="js/class.js" ></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+	<!--<script type="text/javascript" src="js/class.js" ></script>-->
+	<script>
+        /**
+         * Created by xixi on 2018/7/19.
+         */
+        $(function(){
+
+            // //获得所有分类参数
+            // $.ajax({
+            //     url:"showClassify",
+            //     type:"post",
+            //     dataType:"json",
+            //     success:function(data)
+            //     {
+            //
+            //             // $("#leftDiv").empty();
+            //             for(var i=0; i<data.length;i++)
+            //             {
+            //
+            //                 var str='	<a href="#" class="aui-scroll-item aui-crt">'+
+            //                     '<div class="aui-scroll-item-icon"></div>'+
+            //                     '<div class="aui-scroll-item-text">'+data[i].className+'</div>'+
+            //                     ' </a>';
+            //                 $("#leftDiv").append(str);
+            //             }
+            //             //动态加载js
+            //             // var script=document.createElement("script");
+            //             // script.type="text/javascript";
+            //             // script.src="themes/js/aui.js";
+            //             // document.getElementsByTagName('head')[0].appendChild(script);
+            //
+            //     }
+            //
+            // });
+
+			function load() {
+
+			    var userid=$.cookie('userid');
+                //alert("in");
+                //推荐商品
+                $.ajax({
+                    url:"introProduct/"+1,
+                    type:"get",
+                    dataType:"json",
+                    success:function(data)
+                    {
+
+                        //alert(data.length);
+                        for(var j=0; j<data.length;j++)
+                        {
+                            var str='<a href="ui-product.html?product_id='+data[j].product_id+'" class="aui-grid-row-item">'+
+                                '<i class="aui-icon-large aui-icon-sign"><img src="img/'+data[j].cover_url+'" alt=""></i>'+
+                                '<p class="aui-grid-row-label">'+data[j].product_name+'</p>'+
+                                '</a>';
+
+                            $("#block0").append(str);
+                        }
+
+
+                    }
+
+                });
+
+                //加载所有商品
+                for(var i=1;i<11;i++) {
+                    $.ajax({
+                        url: "getProductsByClassifyID/" + i,
+                        type: "get",
+                        dataType: "json",
+                        success: function (data) {
+                            //alert(data.length);
+                            for (var j = 0; j < data.length; j++) {
+
+
+                                var str = '<a href="ui-product.html?product_id=' + data[j].product_id + '" class="aui-grid-row-item">' +
+                                    '<i class="aui-icon-large aui-icon-sign"><img src="img/'+data[j].cover_url+'" alt=""></i>' +
+                                    '<p class="aui-grid-row-label">' + data[j].product_name + '</p>' +
+                                    '</a>';
+
+                                //alert("#block"+i+ data[j].product_name )
+                                $("#block" + data[j].classify.classifyID).append(str);
+                            }
+
+
+                        }
+
+                    });
+                }
+            }
+
+            load();
+
+
+
+
+
+
+        })
+
+
+
+
+
+	</script>
 </head>
 <body>
 
@@ -22,16 +127,8 @@
 		<a href="#" class="aui-header-item">
 			<i class="aui-icon aui-icon-back"></i>
 		</a>
-		<div class="aui-header-center aui-header-center-clear">
-			<div class="aui-header-search-box">
-				<i class="aui-icon aui-icon-small-search"></i>
-				<input id="" type="text"  placeholder="iphone8 手机钢化膜" class="aui-header-search">
-			</div>
-		</div>
-		<a href="#" class="aui-header-item-icon">
-			<i class="aui-icon aui-icon-packet"></i>
-			<i class="aui-icon aui-icon-member"></i>
-		</a>
+
+
 	</header>
 	<section class="aui-scroll-contents">
 		<div class="aui-scroll-box" data-ydui-scrolltab>
@@ -79,7 +176,7 @@
 				</a>
 				<a href="#" class="aui-scroll-item aui-crt">
 					<div class="aui-scroll-item-icon"></div>
-					<div class="aui-scroll-item-text">配件</div>
+					<div class="aui-scroll-item-text">杂货</div>
 				</a>
 			</div>
 			<!--右边内容-->
@@ -110,7 +207,7 @@
 				</div>
 				<div class="aui-scroll-content-item">
 					<div class="aui-class-img">
-						<img src="img/jdTitle.jpg" alt="">
+						<img src="img/jiadian.jpg" alt="">
 					</div>
 					<strong class="aui-scroll-content-title">智能家电</strong>
 					<section class="aui-grid-content" >
@@ -131,6 +228,9 @@
 					</section>
 				</div>
 				<div class="aui-scroll-content-item">
+					<div class="aui-class-img">
+						<img src="img/note.png" alt="">
+					</div>
 					<strong class="aui-scroll-content-title">笔记本</strong>
 					<section class="aui-grid-content" >
 						<div class="aui-grid-row aui-grid-row-clear" id="block4">
@@ -139,6 +239,9 @@
 					</section>
 				</div>
 				<div class="aui-scroll-content-item">
+					<div class="aui-class-img">
+						<img src="img/jiaju.jpg" alt="">
+					</div>
 					<strong class="aui-scroll-content-title">健康家居</strong>
 					<section class="aui-grid-content" >
 						<div class="aui-grid-row aui-grid-row-clear" id="block5">
@@ -147,6 +250,9 @@
 					</section>
 				</div>
 				<div class="aui-scroll-content-item">
+					<div class="aui-class-img">
+						<img src="img/chuxing.jpg" alt="">
+					</div>
 					<strong class="aui-scroll-content-title">出行</strong>
 					<section class="aui-grid-content" >
 						<div class="aui-grid-row aui-grid-row-clear" id="block6">
@@ -155,6 +261,9 @@
 					</section>
 				</div>
 				<div class="aui-scroll-content-item">
+					<div class="aui-class-img">
+						<img src="img/luyouqi.png" alt="">
+					</div>
 					<strong class="aui-scroll-content-title">路由器</strong>
 					<section class="aui-grid-content" >
 						<div class="aui-grid-row aui-grid-row-clear" id="block7">
@@ -163,6 +272,9 @@
 					</section>
 				</div>
 				<div class="aui-scroll-content-item">
+					<div class="aui-class-img">
+						<img src="img/bank.png" alt="">
+					</div>
 					<strong class="aui-scroll-content-title">移动电源</strong>
 					<section class="aui-grid-content" >
 						<div class="aui-grid-row aui-grid-row-clear" id="block8">
@@ -171,6 +283,9 @@
 					</section>
 				</div>
 				<div class="aui-scroll-content-item">
+					<div class="aui-class-img">
+						<img src="img/earphone.png" alt="">
+					</div>
 					<strong class="aui-scroll-content-title">耳机</strong>
 					<section class="aui-grid-content" >
 						<div class="aui-grid-row aui-grid-row-clear" id="block9">
@@ -179,7 +294,10 @@
 					</section>
 				</div>
 				<div class="aui-scroll-content-item">
-					<strong class="aui-scroll-content-title">配件</strong>
+					<div class="aui-class-img">
+						<img src="img/maojin.jpg" alt="">
+					</div>
+					<strong class="aui-scroll-content-title">杂货</strong>
 					<section class="aui-grid-content" >
 						<div class="aui-grid-row aui-grid-row-clear" id="block10">
 
@@ -193,7 +311,7 @@
 
 
 	<footer class="aui-footer-default aui-footer-fixed">
-		<a href="style.html" class="aui-footer-item ">
+		<a href="index.html" class="aui-footer-item ">
 			<span class="aui-footer-item-icon aui-icon aui-footer-icon-home"></span>
 			<span class="aui-footer-item-text">首页</span>
 		</a>
@@ -215,7 +333,7 @@
 		</a>
 	</footer>
 
-	<script src="themes/js/jquery.min.js"></script>
+
 	<script src="themes/js/aui.js"></script>
 </body>
 </html>
