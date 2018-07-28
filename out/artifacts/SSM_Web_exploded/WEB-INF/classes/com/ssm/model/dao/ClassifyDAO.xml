@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.model.dao.ClassifyDAO">
+
+    <select id="findClassify" parameterType="String" resultType="Classify">
+        select * from classify WHERE className like '%'#{content}'%' OR classDis LIKE '%'#{content}'%' AND classState=1
+    </select>
+
+
+  <update id="deleteClassify" >
+      undate classify
+      set classState=0
+      WHERE classifyID IN
+      <foreach collection="array" item="cID"
+               index="index" open="(" close=")" separator=",">
+          #{cID}
+      </foreach>
+
+  </update>
+
+  <insert id="addClassify" parameterType="Classify">
+      <selectKey keyProperty="ClassifyID" resultType="int" order="BEFORE">
+          SELECT nvl(max(classifyID),0)+1 from classify
+      </selectKey>
+      INSERT into classify
+      values(#{ClassifyID},#{className},#{classDis},1)
+  </insert>
+
+    <select id="getClassify" parameterType="int" resultType="Classify">
+        SELECT * FROM classify WHERE classifyID=#{classifyID} AND classState=1
+    </select>
+
+    <update id="ModifyClassify" parameterType="Classify">
+        UPDATE classify
+        set className=#{className},
+        classDis=#{classDis}
+        WHERE classifyID=#{classifyID}
+    </update>
+
+    <select id="showClassify" resultType="Classify">
+        SELECT * from classify where classstate=1
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
