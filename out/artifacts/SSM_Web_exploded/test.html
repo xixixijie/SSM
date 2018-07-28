@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+    <!--<script type="text/javascript" src="js/test.js" ></script>-->
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script>
+        /**
+         * Created by xixi on 2018/7/19.
+         */
+        $(function(){
+
+
+
+
+            function writeCookie(productid) {
+                //alert(productid)
+                if($.cookie('record')!= "null"){
+                    alert("in1");
+
+                    var record=$.cookie('record');
+                    $.cookie('record',record+','+productid)
+                }else {
+                    alert("in2");
+
+                    $.cookie('record',productid);
+                }
+            }
+
+v           var record=$.cookie('record');
+
+
+            // //获得所有分类参数
+             $.ajax({
+                 url:"getRecord/"+record,
+                 type:"post",
+                 dataType:"json",
+                 success:function(data)
+                 {
+
+                         // $("#leftDiv").empty();
+                         for(var i=0; i<data.length;i++)
+                         {
+
+                             var str='	<a href="#" class="aui-scroll-item aui-crt">'+
+                                 '<div class="aui-scroll-item-icon"></div>'+
+                                 '<div class="aui-scroll-item-text">'+data[i].className+'</div>'+
+                                 ' </a>';
+                             $("#leftDiv").append(str);
+                         }
+                         //动态加载js
+                         // var script=document.createElement("script");
+                         // script.type="text/javascript";
+                         // script.src="themes/js/aui.js";
+                         // document.getElementsByTagName('head')[0].appendChild(script);
+
+                 }
+
+             });
+
+
+
+        })
+    </script>
+</head>
+<body>
+<button id="compu">哈哈哈哈哈</button>
+</body>
+</html>
