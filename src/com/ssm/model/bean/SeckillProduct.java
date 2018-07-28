@@ -10,6 +10,15 @@ public class SeckillProduct {
     private double seckill_price;
     private Product product;
     private boolean canDelete;
+    private boolean canBuy;
+
+    public boolean isCanBuy() {
+        return canBuy;
+    }
+
+    public void setCanBuy(boolean canBuy) {
+        this.canBuy = canBuy;
+    }
 
     public int getSeckillproduct_id() {
         return seckillproduct_id;
