@@ -16,4 +16,6 @@ public interface UserInfoDAO {
 	public void userLogin(UserInfo user);
 	public void addBankcard(Bankcard bankcard);
 	public void deleteBankcard(int bankcardID);
+
+	List<UserInfo> selectUsers();
 }

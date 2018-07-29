@@ -80,8 +80,8 @@ public class Product {
 
     public void setOn_date(Date on_date) {
         this.on_date = on_date;
-
-    public boolean isDelete() {
+    }
+    public boolean isDelete(){
         return isDelete;
     }
 
