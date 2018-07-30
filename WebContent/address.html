@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <meta charset="UTF-8">
+    <title>收货地址</title>
+    <link rel="stylesheet" href="themes/css/core.css">
+    <link rel="stylesheet" href="themes/css/icon.css">
+    <link rel="stylesheet" href="themes/css/home.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="123.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+    <script>
+        $(function() {
+            function load() {
+                var user_ID= 1;
+                alert(11);
+                $.ajax({
+                    url: "showAddress" ,
+                    type: "get",
+                    dataType: "json",
+                    success: function (data) {
+                        alert(data.length);
+
+                    }
+
+
+
+                });
+            }
+            load();
+        })
+    </script>
+</head>
+<body>
+
+</body>
+</html>

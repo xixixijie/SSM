@@ -45,9 +45,10 @@ $(function () {
             for (var k=1;k<nowNum+1;k++){
                 str4+='<li><div class="man-name-img fl"><img src="img/join.jpg"></div>团员'+k+'</li>';
             }
-            for (var l=nowNum;l<requiredNum+1;l++){
-                str4+='<li><div class="man-name-img fl"><img src="img/notjoin.jpg"></div>座位没主人，快去邀请好友占领吧</li> </ul>';
+            for (var l=0;l<requiredNum-nowNum;l++){
+                str4+='<li><div class="man-name-img fl"><img src="img/notjoin.jpg"></div>座位没主人，快去邀请好友占领吧</li>';
             }
+            str4+=' </ul>';
             $("#show_group_info2").append(str4);
 
             $("#show_num_info2").empty();

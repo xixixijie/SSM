@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.model.dao.AuctionDAO">
+
+    <select id="getAuctions" parameterType="java.sql.Timestamp" resultType="Auction">
+        select * from auction WHERE state=1 and BEGINDATE>#{date}
+    </select>
+
+    <select id="getAuction"  parameterType="int" resultType="Auction">
+        select * from AUCTION where auctionid=#{aid}
+    </select>
+
+    <select id="getAuctionPic" parameterType="int" resultType="AuctionPic">
+        select * from AUCTIONPIC where AUCTIONID=#{aid}
+    </select>
+
+    <select id="getHistory" parameterType="int" resultType="History" flushCache="true">
+        select * from HISTORY where AUCTIONID=#{aid} order by PRICE desc
+    </select>
+
+    <insert id="addHistory" parameterType="History">
+        <selectKey keyProperty="HistoryID" resultType="int" order="BEFORE">
+            SELECT nvl(max(HISTORYID),0)+1 from HISTORY
+        </selectKey>
+        insert into History
+        values (#{HistoryID},#{userID},#{price},#{time},#{auctionID})
+    </insert>
+
+    <update id="addWanted" parameterType="Map">
+        update Auction
+        set WANTED=#{wanted},
+        HIGHEST_PRICE=#{price}
+        where AUCTIONID=#{aid}
+    </update>
+    <select id="getAuctionOrder" resultType="AuctionOrder">
+        select * from AUCTIONORDER
+    </select>
+
+    <select id="getMAXID" resultType="int">
+        SELECT nvl(max(AUCTIONID),0)+1 from AUCTION
+    </select>
+
+    <insert id="addAuction" parameterType="Auction">
+        insert into AUCTION
+        values (#{auctionID},#{auction_name},
+        #{cover_url},#{beginDate},#{endDate},
+        #{state},#{visited},#{wanted},
+        #{begin_price},#{highest_price},#{introduction})
+    </insert>
+
+    <insert id="addAuctionPic" parameterType="AuctionPic">
+        <selectKey keyProperty="auctionpicID" resultType="int" order="BEFORE">
+            SELECT nvl(max(AUCTIONPICID),0)+1 from AUCTIONPIC
+        </selectKey>
+        insert into auctionPic
+        values (#{auctionpicID},#{auctionID},#{picName})
+    </insert>
+</mapper>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- saved from url=(0107)http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/myorder.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>我的订单</title>
+
+	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="./auctionOrder/mui.min.css">
+	<link href="./auctionOrder/style.css" rel="stylesheet">
+	<script src="js/jquery-3.2.0.min.js"></script>
+	<script>
+        $(function(){
+
+            //获得所有
+            function load() {
+                //获得所有分类参数
+                $.ajax({
+                    url:"getAuctionOrder",
+                    type:"post",
+                    dataType:"json",
+                    success:function(data)
+                    {
+
+                        //alert(data.length);
+
+                        for(var i=0;i<data.length;i++){
+
+                            var str='<li class="mui-table-view-cell">' +
+                                '<div class="main">' +
+                                '<div class="wrap main-wrap">' +
+                                '<img src="img/'+data[i].cover_url+'" alt="">' +
+                                '<div class="text">' +
+                                '<p>'+data[i].auction_name+'</p>' +
+                                '<p> 拍卖人：'+data[i].username+'</p>'+
+                                '<p>成交金额：￥'+data[i].price+'</p>' +
+                                '<p>成交日期：'+data[i].time+'</p>' +
+                                '<p>送货地址：'+data[i].address+'</p>' +
+                                '<p> 收获人：'+data[i].acceptName+'</p>' +
+                                '<p>收获电话：'+data[i].acceptPhone+'</p>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</li>'
+                            $("#allOrder").append(str)
+                        }
+                    }
+
+                });
+            }
+            load();
+
+
+        });
+	</script>
+</head>
+<body class="myorder">
+
+<div class="mui-content">
+
+	<div>
+		<div id="segmentedControl" class="mui-segmented-control">
+
+			<a class="mui-control-item mui-active" href="auctionOrder.html#item4">全部订单</a>
+
+		</div>
+	</div>
+	<!-- 全部订单 -->
+	<div>
+
+		<!-- 待收货 -->
+		<div id="item4" class="mui-control-content mui-active">
+			<ul class="mui-table-view" id="allOrder">
+
+
+			</ul>
+		</div>
+
+
+	</div>
+
+	<script src="./我的订单_files/mui.min.js"></script>
+
+</div></body></html>

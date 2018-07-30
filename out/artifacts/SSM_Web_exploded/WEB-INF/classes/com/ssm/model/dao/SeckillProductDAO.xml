@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.model.dao.SeckillProductDAO">
+
+    <!-- 添加新的秒杀商品 -->
+    <insert id="addSeckillProduct" parameterType="SeckillProduct">
+        <selectKey keyProperty="seckillproduct_id" resultType="int" order="BEFORE">
+            SELECT nvl(max(seckillproduct_id),0)+1 from seckill_Product
+        </selectKey>
+        INSERT into seckill_Product
+        values(#{seckillproduct_id},#{product_id},#{start_time},#{all_amount},#{seckill_price},1)
+    </insert>
+
+    <!-- 通过商品分类查找商品 -->
+    <select id="getProducts" parameterType="int" resultMap="proResult">
+       select * FROM classify a,product b
+       WHERE a.classifyID=b.classify_ID and b.classify_ID=#{classifyID} AND b.status=1
+    </select>
+
+    <resultMap id="proResult" type="Product">
+        <result property="product_id" column="product_id"/>
+        <result property="product_name" column="product_name"/>
+        <result property="cover_url" column="cover_url"/>
+        <result property="original_price" column="original_price"/>
+        <association property="classify" column="classifyID" javaType="Classify" resultMap="claResult"/>
+    </resultMap>
+
+    <resultMap id="claResult" type="Classify">
+        <result property="classifyID" column="classifyID"/>
+    </resultMap>
+
+
+    <!-- 查找秒杀商品通过秒杀id-->
+    <select id="selectSeckillProduct" parameterType="int" resultMap="seckillProductResult">
+        select *
+        from seckill_product s,product p
+        where s.product_id=p.product_id
+        and s.seckillproduct_id=#{seckillProductId}
+    </select>
+
+    <!-- 查找符合条件的秒杀商品,商品名模糊查询，日期起止时间 -->
+    <select id="selectSeckillProducts" parameterType="map" resultMap="seckillProductResult">
+        select seckillproduct_id,s.product_id sproduct_id,start_time,all_amount,seckill_price,p.product_id pproduct_id,product_name,original_price
+        from seckill_product s,product p
+        <where>
+            <if test="fromtime!=null">
+                and start_time>#{fromtime}
+            </if>
+            <if test="totime!=null">
+                and #{totime}>start_time
+            </if>
+            <if test="name!=null and name!=''">
+                and product_name like '%'||#{name}||'%'
+            </if>
+            and s.product_id=p.product_id
+            and s.status=1
+        </where>
+    </select>
+
+
+    <resultMap id="seckillProductResult" type="SeckillProduct">
+        <result column="seckillproduct_id" property="seckillproduct_id"/>
+        <result column="sproduct_id" property="product_id"/>
+        <result column="start_time" property="start_time"/>
+        <result column="all_amount" property="all_amount"/>
+        <result column="seckill_price" property="seckill_price"/>
+        <association property="product" javaType="Product" resultMap="productResult"/>
+    </resultMap>
+    <resultMap id="productResult" type="Product">
+        <result column="pproduct_id" property="product_id" />
+        <result column="product_name" property="product_name" />
+        <result column="original_price" property="original_price" />
+    </resultMap>
+
+    <!-- 修改秒杀商品 -->
+    <update id="editSeckillProduct" parameterType="SeckillProduct" >
+        UPDATE seckill_Product
+        set
+        all_amount=#{all_amount},
+        seckill_price=#{seckill_price}
+        WHERE seckillProduct_id=#{seckillproduct_id}
+    </update>
+
+    <!-- 删除秒杀商品 -->
+    <update id="deleteSeckillProduct" parameterType="int">
+        update seckill_Product
+        set
+        status=0
+        where seckillProduct_id=#{seckillProductId}
+    </update>
+
+    <!-- 查找页数 -->
+    <select id="selectPageCount" parameterType="map" resultType="int">
+        select count(*) from seckill_product s,product p
+        <where>
+            <if test="fromtime!=null">
+                and start_time>#{fromtime}
+            </if>
+            <if test="totime!=null">
+                and #{totime}>start_time
+            </if>
+            <if test="name!=null and name!=''">
+                and product_name like '%'||#{name}||'%'
+            </if>
+            and s.product_id=p.product_id
+            and s.status=1
+        </where>
+    </select>
+</mapper>

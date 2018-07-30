@@ -19,31 +19,31 @@
 </head>
 <body>
 
-<form class="layui-form" action="/updateProduct" method="post">
 
 
 
-    <div class="layui-col-md8" style="margin-top: 30px">
+
+<div class="layui-col-md8" style="margin-top: 30px">
+    <form class="layui-form" action="/updateProduct" method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">商品名</label>
             <div class="layui-input-block">
-                <input type="text" value="${product.product_name}" name="product_name" placeholder="25个字以内" autocomplete="off" class="layui-input">
+                <input type="text" maxlength="25" required lay-verify="required" value="${product.product_name}" name="product_name" id="product_name" placeholder="25个字以内" autocomplete="off" class="layui-input">
+                <span id="checkPro"></span>
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">商品分类</label>
             <div class="layui-input-block">
-                <select name="classify.classifyID" >
-                    <option selected value="${product.classify.classifyID}">${product.classify.className}</option>
+                <select name="classify.classifyID" lay-verify="required">
+                    <option selected="selected" value="${product.classify.classifyID}">${product.classify.className}</option>
                     <c:forEach items="${classifyList}" var="cla">
-                        <%--<c:if test="${cla.classifyID eq product.classify.classifyID}">--%>
-                            <%--<option selected value="${cla.classifyID}">${cla.className}</option>--%>
-                        <%--</c:if>--%>
-                        <%--<c:if test="${cla.classifyID ne product.classify.classifyID}">--%>
-                            <%--<option value="${cla.classifyID}">${cla.className}</option>--%>
-                        <%--</c:if>--%>
-                        <option value="${cla.classifyID}">${cla.className}</option>
+
+                        <c:if test="${cla.classifyID ne product.classify.classifyID}">
+                            <option value="${cla.classifyID}">${cla.className}</option>
+                        </c:if>
+
                     </c:forEach>
                 </select>
             </div>
@@ -52,37 +52,38 @@
         <div class="layui-form-item">
             <label class="layui-form-label">原价</label>
             <div class="layui-input-block">
-                <input type="number" value="${product.original_price}" name="original_price" placeholder="不超过50000元" autocomplete="off" class="layui-input">
+                <input id="original_price" step="any" type="number" required lay-verify="required" value="${product.original_price}" name="original_price" placeholder="不超过50000元" autocomplete="off" class="layui-input" max="50000" min="1">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">折扣价</label>
             <div class="layui-input-block">
-                <input type="number" value="${product.discount_price}" name="discount_price"  placeholder="不超过50000元" autocomplete="off" class="layui-input">
+                <input id="discount_price" step="any" type="number" required lay-verify="required" value="${product.discount_price}" name="discount_price"  placeholder="不超过50000元" autocomplete="off" class="layui-input" max="50000" min="1">
+                <span id="checkDiscount"></span>
             </div>
         </div>
 
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">商品概述</label>
             <div class="layui-input-block">
-                <textarea name="product_info" placeholder="请输入200字以内的商品概述" class="layui-textarea">${product.product_info}</textarea>
+                <textarea name="product_info" required lay-verify="required" placeholder="请输入200字以内的商品概述" class="layui-textarea" maxlength="200">${product.product_info}</textarea>
             </div>
         </div>
 
         <input type="hidden" value="${product.product_id}" name="product_id">
-        <input type="hidden" value="${successMsg}" id="successMsg">
 
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn " type="submit">立即提交</button>
-
+                <button id="subtn" class="layui-btn" type="submit" >确认修改</button>
+                <button id="backButton" class="layui-btn layui-btn-primary" >返回</button>
             </div>
         </div>
+    </form>
+</div>
 
-    </div>
 
-</form><button id="backButton" class="layui-btn layui-btn-primary" style="float: left">返回</button>
+
 <script>
     layui.use('form', function(){
         var form = layui.form;
@@ -97,15 +98,42 @@
     });
 
     $(function () {
-        var successMsg=$("#successMsg").val();
-        if(successMsg!=""){
-            alert(successMsg);
-        }
+
+        $("#product_name").blur(function() {
+            var product_name=$(this).val();
+            $.ajax({
+                url:"/checkProName.action",
+                async:false,
+                type:"POST",
+                data:{"product_name":product_name},
+                success:function(data){
+                    $("#checkPro").html(data);
+                    $("#checkPro").css("color","red");
+                    $("#subtn").attr("disabled",true);
+                },
+                error:function(){
+                    alert("查询商品名失败");},
+                dataType:"text"
+            });
+
+
+        });
+
+        $("#discount_price").blur(function () {
+            var originalPrice=$("#original_price").val();
+            var discountPrice=$("#discount_price").val();
+            if(discountPrice>originalPrice){
+                $("#checkDiscount").css("color","red");
+                $("#checkDiscount").html("折扣价不能超过原价");
+                $("#subtn").attr("disabled",true);
+            }else {
+                $("#checkDiscount").html("");
+                $("#subtn").attr("disabled",false);
+            }
+        })
     })
 
-    $("#backButton").click(function () {
-        window.location.href="/goToSearchProduct.action?pageNumPro="+${pageNumPro};
-    });
+
 
 
 </script>

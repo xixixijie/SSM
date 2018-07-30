@@ -12,7 +12,6 @@
 <div id="search_activity_div">
     <div id="div_testStr"></div>
     <input type="text" id="search_activity_productName"/>
-    <input type="text" id="search_activity_activityStatus"/>
     <input type="text" id="search_activity_groupStartDate"/>
     <input type="text" id="search_activity_groupEndDate"/>
 
@@ -24,10 +23,6 @@
             if(productName==''){
                 productName=-1;
             }
-            var activityStatus = $("#search_activity_activityStatus").val();
-            if(activityStatus==''){
-                activityStatus=-1;
-            }
             var groupStartDate = $("#search_activity_groupStartDate").val();
             if(groupStartDate==''){
                 groupStartDate=-1;
@@ -37,7 +32,7 @@
                 groupEndDate=-1;
             }
                 $.ajax({
-                    url:"searchActivities/"+productName+"/"+activityStatus+"/"+groupStartDate+"/"+groupEndDate,
+                    url:"searchActivities/"+productName+"/"+groupStartDate+"/"+groupEndDate,
                     type:"post",
                     dataType:"json",
                     success:function(data)

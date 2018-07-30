@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ssm.model.dao.GroupBuyingDAO">
 
     <!--根据条件查询团购活动-->
-    <select id="searchActivities"  parameterType="Activity" resultMap="ActivityResult">
+    <select id="searchActivities"  parameterType="Activity" resultMap="ActivityResult" flushCache="true">
     	select * from group_buying_activity g JOIN product p on g.productID = p.product_id
     	<where>
             <if test="product.product_name!=null and product.product_name!= ''">
@@ -79,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="searchGroupInfo" parameterType="int" resultMap="GroupResult">
         select * from (((group_buying_list  JOIN group_buying_activity  ON
         group_buying_list.activityID = group_buying_activity.activityID) JOIN userinfo  ON group_buying_list.leaderID = userinfo.user_id) JOIN product on group_buying_activity.productID = product.product_id)
-        JOIN join_group_list on group_buying_list.groupID = join_group_list.groupID
+--         JOIN join_group_list on group_buying_list.groupID = join_group_list.group_ID
         WHERE group_buying_list.groupID = #{groupID}
     </select>
 
@@ -90,15 +90,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
 
-    <!--&lt;!&ndash;批量删除活动&ndash;&gt;-->
-    <!--&lt;!&ndash;批量修改活动的状态为3&ndash;&gt;-->
-    <!--<update id="deleteActivities" >-->
-        <!--UPDATE group_buying_activity set activityStatus = 3-->
-        <!--WHERE activityID in-->
-        <!--<foreach collection="array" item="item" open="(" separator="," close=")">-->
-            <!--#{item}-->
-        <!--</foreach>-->
-    <!--</update>-->
+    <!--批量删除活动-->
+    <!--批量修改活动的状态为0-->
+    <update id="deleteActivities" >
+        UPDATE group_buying_activity set activityStatus = 0
+        WHERE activityID in
+        <foreach collection="array" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
 
     <!--检查是否可以删除，如果已经开始就不能删除，DAO层做的工作就是返回其开始时间-->
     <select id="checkIfCanDelete" parameterType="Activity" resultType="Date">
@@ -179,6 +179,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="getRecommendedGroupBuying" resultMap="ActivityResult">
         select * from group_buying_activity g JOIN product p on g.productID = p.product_id order by g.group_Buying_Price desc
     </select>
+
+    <update id="modifyActivityInfo" parameterType="Activity">
+        update group_buying_activity set requiredNumber = #{requiredNumber},group_buying_price=#{group_buying_price}
+        WHERE activityID = #{activityID}
+    </update>
 </mapper>
 
 

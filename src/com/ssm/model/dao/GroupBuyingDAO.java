@@ -82,10 +82,10 @@ public interface GroupBuyingDAO {
     public Date checkIfCanDelete(Activity activity);
 
     /**
-     * 根据活动ID批量删除团购活动，具体做法为将团购活动的状态置为3（被删除）
-     * @param a_id
+     * 根据活动ID批量删除团购活动，具体做法为将团购活动的状态置为0（被删除）
+     * @param checkID
      */
-    public void deleteActivities(int[] a_id);
+    public void deleteActivities(int[] checkID);
 
     /**
      * 根据groupID查询joiner
@@ -122,5 +122,11 @@ public interface GroupBuyingDAO {
      * @return
      */
     public ArrayList<Activity> getRecommendedGroupBuying();
+
+    /**
+     * 修改团购信息
+     * @param activity
+     */
+    public void modifyActivityInfo(Activity activity);
 }
 

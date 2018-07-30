@@ -2,7 +2,6 @@ package com.ssm.controller;
 
 import com.ssm.model.bean.Classify;
 import com.ssm.model.bean.Product;
-import com.ssm.model.dao.ProductDAO;
 import com.ssm.model.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +38,7 @@ public class ProductController {
     }
 
     @RequestMapping(value="addProduct", method = RequestMethod.POST)
-    public String addProduct(@ModelAttribute Product product, @RequestParam MultipartFile cover, @RequestParam MultipartFile[] aspectPics, @RequestParam MultipartFile[] parameterPics){
+    public String addProduct(@ModelAttribute Product product,@RequestParam MultipartFile cover, @RequestParam MultipartFile[] aspectPics, @RequestParam MultipartFile[] parameterPics){
 
         String oldAspectName="";
         String oldParameterName="";
@@ -48,9 +48,9 @@ public class ProductController {
         String newParameterName="";
         String newCoverName="";
 
-        String aspectUrl="D:\\ABC/aspect/";
-        String parameterUrl="D:\\ABC/parameter/";
-        String coverUrl="D:\\\\ABC/cover/";
+        String aspectUrl="D:\\javaWeb/SSM/WebContent/img";
+        String parameterUrl="D:\\javaWeb/SSM/WebContent/img";
+        String coverUrl="D:\\javaWeb/SSM/WebContent/img";
 
         String aspect_url="";
         String parameter_url="";
@@ -69,7 +69,7 @@ public class ProductController {
 
         cover_url=coverUrl+newCoverName;
 
-        product.setCover_url(cover_url);
+        product.setCover_url(newCoverName);
 
 //        System.out.println(product.getProduct_name()+"  "+product.getClassify().getClassifyID()
 //                +"  "+product.getOriginal_price()+"  "+product.getDiscount_price()+"  "+product.getProduct_info()+"  "
@@ -88,7 +88,7 @@ public class ProductController {
             try {
                 aspectPics[i].transferTo(file);
                 aspect_url=aspectUrl+newAspectName;
-                productService.addAspect(aspect_url,product_id);
+                productService.addAspect(newAspectName,product_id);
 //                System.out.println(aspect_url);
             } catch (IllegalStateException e) {
                 e.printStackTrace();
@@ -105,7 +105,7 @@ public class ProductController {
             try {
                 parameterPics[i].transferTo(file);
                 parameter_url=parameterUrl+newParameterName;
-                productService.addParameter(parameter_url,product_id);
+                productService.addParameter(newParameterName,product_id);
 
 //                System.out.println(parameter_url);
             } catch (IllegalStateException e) {
@@ -120,8 +120,15 @@ public class ProductController {
     @RequestMapping("goToSearchProduct")
     public String goToSearchProduct(Model model, int pageNumPro, HttpSession session){
         int pageCount=0;
+
         List<Product> productList=new ArrayList<Product>();
         productList=productService.getAllPageProduct(pageNumPro);
+        for (Product pro:productList) {
+            int pro_id = pro.getProduct_id();
+            boolean isDelete=productService.checkProDelete(pro_id);
+            System.out.println(pro_id+"  "+isDelete);
+            pro.setDelete(isDelete);
+        }
         pageCount=productService.getAllPageCount();
 //        for (Product product:productList) {
 //            System.out.println(product.getProduct_id()+"  "+product.getProduct_name());
@@ -165,9 +172,144 @@ public class ProductController {
         System.out.println(product.getProduct_id()+"  "+product.getProduct_name()+"  "
                 +product.getClassify().getClassifyID()+"  "+product.getOriginal_price()+"  "+
                 product.getDiscount_price()+"  "+product.getProduct_info());
-
+        productService.updateProduct(product);
         return "redirect:goToSearchProduct.action?pageNumPro="+pageNumPro;
     }
+
+    @RequestMapping("getProductByName")
+    public String getProductByName(String search_info,int pageNumPro,Model model,HttpSession session){
+        int pageCount=0;
+//        int pageNumPro=1;
+        List<Product> productList=new ArrayList<Product>();
+        if (search_info != null && !"".equals(search_info)){
+            productList=productService.getProductByName(search_info,pageNumPro);
+            pageCount=productService.getPageCountByName(search_info);
+        }else {
+            productList=productService.getAllPageProduct(pageNumPro);
+            pageCount=productService.getAllPageCount();
+        }
+
+//        for (Product product:productList) {
+//            System.out.println(product.getProduct_id()+"  "+product.getProduct_name());
+//       }
+
+        model.addAttribute("productList",productList);
+        model.addAttribute("pageCount",pageCount);
+        session.setAttribute("search_info",search_info);
+        session.setAttribute("pageNumPro",pageNumPro);
+        return "searchProduct";
+    }
+
+    @RequestMapping(value = "getFullName",produces={"text/html;charset=UTF-8;","application/json;"})
+    @ResponseBody
+    public String getFullName(String search_info){
+        List<String> nameList=new ArrayList<String>();
+        nameList=productService.getFullName(search_info);
+        StringBuilder sb=new StringBuilder("");
+        if (nameList!=null){
+            sb.append("<ul>");
+            for (String fullName:nameList){
+                sb.append("<li><b>"+fullName+"</b></li>");
+            }
+            sb.append("</ul>");
+        }
+        System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+    @RequestMapping("deleteProduct")
+    public String deleteProduct(HttpServletRequest request, HttpSession session){
+        String pageNumPro=session.getAttribute("pageNumPro").toString();
+        String[] chks = request.getParameterValues("chk");
+//        for (int i = 0; i < chks.length; i++) {
+//            System.out.println(chks[i]);
+//        }
+        int[] ids=new int[chks.length];
+        for (int i = 0; i < chks.length; i++) {
+            ids[i]=Integer.parseInt(chks[i]);
+        }
+        productService.deleteProduct(ids);
+        return "redirect:goToSearchProduct.action?pageNumPro="+pageNumPro;
+    }
+
+    @RequestMapping(value = "/getProductForUserByName/{search_info}",method=RequestMethod.POST)
+    @ResponseBody
+    public List<Product> getProductForUserByName(@PathVariable String search_info){
+        List<Product> productList=new ArrayList<Product>();
+        productList=productService.getProductForUserByName(search_info);
+        return productList;
+    }
+
+    @RequestMapping(value = "/getAspectForUser/{product_id}",produces={"text/html;charset=UTF-8;","application/json;"})
+    @ResponseBody
+    public List<String> getAspectForUser(@PathVariable int product_id){
+        List<String> aspectList=new ArrayList<String>();
+        aspectList=productService.getAspectForUser(product_id);
+
+
+        return aspectList;
+    }
+
+    @RequestMapping(value = "/getProductForUser/{product_id}",produces={"text/html;charset=UTF-8;","application/json;"})
+    @ResponseBody
+    public Product getProductForUser(@PathVariable int product_id){
+        Product product=new Product();
+        product=productService.getProductForUser(product_id);
+        return product;
+    }
+
+    @RequestMapping(value = "/getParameterForUser/{product_id}",produces={"text/html;charset=UTF-8;","application/json;"})
+    @ResponseBody
+    public List<String> getParameterForUser(@PathVariable int product_id){
+        List<String> parameterList=new ArrayList<String>();
+        parameterList=productService.getParameterForUser(product_id);
+        return parameterList;
+    }
+
+
+    @RequestMapping("getNewPhone")
+    @ResponseBody
+    public List<Product> getNewPhone(){
+        List<Product> phoneList=new ArrayList<Product>();
+        phoneList=productService.getNewPhone();
+        return phoneList;
+    }
+
+    @RequestMapping("getNewTV")
+    @ResponseBody
+    public List<Product> getNewTV(){
+        List<Product> tvList=new ArrayList<Product>();
+        tvList=productService.getNewTV();
+        return tvList;
+    }
+
+    @RequestMapping("getNewPC")
+    @ResponseBody
+    public List<Product> getNewPC(){
+        List<Product> pcList=new ArrayList<Product>();
+        pcList=productService.getNewPC();
+        return pcList;
+    }
+
+    @RequestMapping("getNewElec")
+    @ResponseBody
+    public List<Product> getNewElec(){
+        List<Product> elecList=new ArrayList<Product>();
+        elecList=productService.getNewElec();
+        return elecList;
+    }
+
+    @RequestMapping(value="checkProName",produces={"text/html;charset=UTF-8;","application/json;"})
+    @ResponseBody
+    public String checkProName(String product_name){
+        String existCode="";
+        boolean isExist=productService.checkProName(product_name);
+        if (isExist){
+            existCode="此商品名已存在，请输入新的商品名";
+        }
+        return existCode;
+    }
+
     //范东升 end
 
     @RequestMapping(value = "/getProductsByClassifyID/{classifyID}")
@@ -182,9 +324,8 @@ public class ProductController {
     @RequestMapping(value = "/showDetailProduct/{productID}")
     @ResponseBody
     public void showDetailProduct(@PathVariable int productID){
-
+        System.out.println("-----商品信息查询Controller-----");
         productService.storeRecord(productID);
-
     }
 
 

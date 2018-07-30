@@ -16,6 +16,7 @@ public interface ProductDAO {
     public Product getProduct(int pid);
 
 
+    List<Integer> getBought(int userid);
 
     public List<Classify> getAllClassify();
     public void addProduct(Map<String, Object> map);
@@ -25,6 +26,18 @@ public interface ProductDAO {
     public List<Product> findAllProduct();
     public Product getProductById(int product_id);
     public int getAllPageCount();
-
-    List<Integer> getBought(int userid);
+    public void updateProduct(Product product);
+    public List<Product> getProductByName(String search_info);
+    public int getPageCountByName(String search_info);
+    public List<String> getFullName(String search_info);
+    public void deleteProduct(int[] ids);
+    public List<String> getAspectForUser(int product_id);
+    public Product getProductForUser(int product_id);
+    public List<String> getParameterForUser(int product_id);
+    public List<Product> getNewPhone();
+    public List<Product> getNewTV();
+    public List<Product> getNewPC();
+    public List<Product> getNewElec();
+    public int checkProDelete(int product_id);
+    public int checkProName(String product_name);
 }

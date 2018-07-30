@@ -1,5 +1,6 @@
 
 
+
 $(function() {
     var index1 = location.href.lastIndexOf("product_id=");
     var index2 = location.href.lastIndexOf("&userID=");
@@ -97,6 +98,7 @@ $(function() {
             }
         });
     });
+
 
 
 

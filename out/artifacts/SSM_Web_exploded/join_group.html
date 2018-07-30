@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我来参团</title>
+    <link rel="stylesheet" href="themes/css/core.css">
+    <link rel="stylesheet" href="themes/css/icon.css">
+    <link rel="stylesheet" href="themes/css/home.css">
+    <script src="/js/jquery-3.2.0.min.js"></script>
+    <script src="/carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
+    <script src="/js/join_group.js"></script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="123.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+</head>
+<body>
+<header class="aui-header-default aui-header-fixed ">
+    <a href="javascript:history.back(-1)" class="aui-header-item">
+        <i class="aui-icon aui-icon-back"></i>
+    </a>
+    <div class="aui-header-center aui-header-center-clear">
+        <div class="aui-header-center-logo">
+            <div class="">我来参团</div>
+        </div>
+    </div>
+    <a href="#" class="aui-header-item-icon" style="min-width:0">
+        <i class="aui-icon aui-icon-member"></i>
+    </a>
+</header>
+        <section class="aui-address-content">
+            <div class="aui-address-box">
+                <div class="aui-address-box-list">
+                    <a href="#" class="aui-address-box-default">
+                        <select>
+                            <option>地址1</option>
+                            <option>地址2</option>
+                            <option>地址3</option>
+                        </select>
+                    </a>
+                </div>
+    </div>
+    <div class="aui-dri"></div>
+
+    <div class="aui-list-product-float-item">
+        <a href="javascript:;" class="aui-list-product-fl-item">
+            <div class="aui-list-product-fl-img" id="product_url">
+            </div>
+
+            <!--查数据-->
+            <div class="aui-list-product-fl-text" id="show_product">
+                <!--在此显示商品的相关信息-->
+            </div>
+            <div class="aui-list-product-fl-text" id="show_group_info">
+               <!--在此显示团队的相关信息-->
+            </div>
+        </a>
+    </div>
+
+    <div class="aui-address-well" style="height: 50px">
+        <a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
+            <div class="aui-address-cell-bd">纸质发票</div>
+            <div class="aui-address-cell-ft"><input class="aui-switch" type="checkbox" checked="checked" id="join_group_billNeeded"></div>
+        </a>
+    </div>
+    <div class="aui-prompt" id="bill_hint"><i class="aui-icon aui-prompt-sm"></i>纸质发票将在5日内另外寄出</div>
+
+    <div class="aui-dri"></div>
+    <a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
+        <div class="aui-address-cell-bd">收货人姓名</div>
+        <div class="aui-address-cell-ft" id="join_group_receiverName">收货人姓名</div>
+    </a>
+    <div class="aui-dri"></div>
+    <a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
+        <div class="aui-address-cell-bd">收货人电话</div>
+        <div class="aui-address-cell-ft" id="join_group_receiverTEL">收货人电话</div>
+    </a>
+    <div class="aui-dri"></div>
+    <a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
+        <div class="aui-address-cell-bd">收获人邮编</div>
+        <div class="aui-address-cell-ft" id="join_group_receiverPostcode">收获人邮编</div>
+    </a>
+    <div class="aui-dri"></div>
+    <a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
+        <div class="aui-address-cell-bd">收货地址</div>
+        <div class="aui-address-cell-ft" id="join_group_receiverAddress">收货地址</div>
+    </a>
+    <input id="join_group_groupID" hidden>
+
+    <!--确认金额-->
+    <div class="aui-payment-bar">
+        <div class="shop-total" id="show_price">
+        </div>
+        <a href="#" class="settlement" id="join_group_button">加入团购</a>
+    </div>
+    <script type="application/javascript">
+        $("#join_group_button").click(function(){
+            //往cookie中存joinerID
+            $.cookie('joinerID', 1, { expires: 7 ,path:'/'});
+            //从cookie中取joinerID
+            var joinerID = 1;
+            joinerID = $.cookie('joinerID');
+
+            var groupID = $("#join_group_groupID").val();
+            var joinDate = $("#join_group_openDate").val();
+            var receiverName = $("#join_group_receiverName").val();
+            var receiverTEL = $("#join_group_receiverTEL").val();
+            var receiverPostcode = $("#join_group_receiverPostcode").val();
+            var receiverAddress = $("#join_group_receiverAddress").val();
+            var billNeeded = $("#join_group_billNeeded").val();
+
+            $.ajax({
+                url:"joinGroupBuying/"+joinerID+"/"+groupID+"/"+joinDate+"/"+receiverName+"/"+receiverTEL
+                +"/"+receiverPostcode+"/"+receiverAddress+"/"+billNeeded,
+                type:"post",
+                dataType:"json",
+                success:function(data)
+                {
+                    console.log(data);
+                    window.location.href = 'index.html';
+                }
+            });
+        });
+    </script>
+
+</section>
+
+</body>
+</html>

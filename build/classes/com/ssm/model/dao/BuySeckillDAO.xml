@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.model.dao.BuySeckillDAO">
+
+    <!-- 查找当前时间段的所有秒杀商品 -->
+    <select id="getSeckillProducts" parameterType="map" resultMap="seckillProductResult">
+        select seckillproduct_id,s.product_id sproduct_id,start_time,all_amount,seckill_price,p.product_id pproduct_id,product_name,original_price,COVER_URL,PRODUCT_INFO
+        from SECKILL_PRODUCT s,PRODUCT p
+        where START_TIME=#{t} and s.STATUS=1 and s.PRODUCT_ID = p.PRODUCT_ID
+    </select>
+    <resultMap id="seckillProductResult" type="SeckillProduct">
+        <result column="seckillproduct_id" property="seckillproduct_id"/>
+        <result column="sproduct_id" property="product_id"/>
+        <result column="start_time" property="start_time"/>
+        <result column="all_amount" property="all_amount"/>
+        <result column="seckill_price" property="seckill_price"/>
+        <association property="product" javaType="Product" resultMap="productResult"/>
+    </resultMap>
+    <resultMap id="productResult" type="Product">
+        <result column="pproduct_id" property="product_id" />
+        <result column="product_name" property="product_name" />
+        <result column="original_price" property="original_price" />
+        <result column="product_info" property="product_info"/>
+        <result column="cover_url" property="cover_url"/>
+    </resultMap>
+
+    <select id="getCount" parameterType="int" resultType="int">
+        select count(*) from SECKILL_ORDER where SECKILLPRODUCT_ID=#{seckillproduct_id}
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+

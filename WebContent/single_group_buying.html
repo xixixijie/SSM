@@ -8,28 +8,34 @@
     <link rel="stylesheet" href="themes/css/home.css">
     <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
     <script type="text/javascript" src="js/getGroups.js"></script>
+    <link rel="stylesheet" href="css/frameui.css">
+    <link rel="stylesheet" href="css/recommended.css">
 </head>
 <body>
 <div class="aui-list-item">
-    <div>
-        <a href="javascript:;" class="aui-list-product-item">
-        <div class="aui-list-product-item-img" style="height: 400px;width: 400px;" id="show_product_pic">
-        </div>
-        <div class="aui-list-product-item-text">
-            <div id="show_product_name"></div>
-            <div class="aui-list-product-mes-box">
-                <div id="show_product_price">
+    <div id="tuan" class="tuan">
+        <div class="tuan_g" data-vtuan="0" data-cat="1" data-num="12058">
+            <i></i>
+            <a href="#">
+                <div class="tuan_g_img">
+                    <div class="tally_box" id="show_number">
+                    </div>
+                    <div id="product_img"></div>
                 </div>
-            </div>
+                <div class="tuan_g_info" id="show_product_info">
+                </div>
+
+                <div class="tuan_g_core" id="show_price">
+                </div>
+                <div class="tuan_g_yj" id="show_origin_price"></div>
+            </a>
         </div>
-        </a>
     </div>
 
-    <div class="aui-slide-box">
-        <div class="aui-slide-list">
-            <ul class="aui-slide-item-list" id="show_groups">
-                <!--循环体li-->
-            </ul>
+    <div class="groups-box">
+        <!-- 拼团列表 -->
+        <div class="groups-m mc-sum-box" id="show_groups">
+
         </div>
     </div>
 </div>

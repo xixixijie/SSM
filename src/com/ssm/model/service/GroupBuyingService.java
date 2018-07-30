@@ -103,12 +103,12 @@ public class GroupBuyingService {
     }   
 
     /**
-     * 根据活动ID批量删除团购活动，具体做法为将团购活动的状态置为3（被删除）
+     * 根据活动ID批量删除团购活动，具体做法为将团购活动的状态置为0（被删除）
      *
-     * @param a_id
+     * @param checkID
      */
-    public void deleteActivities(int[] a_id) {
-
+    public void deleteActivities(int[] checkID) {
+        groupBuyingDAO.deleteActivities(checkID);
     }
 
     /**
@@ -147,6 +147,20 @@ public class GroupBuyingService {
      */
     public Activity getRecommendedGroupBuying() {
         return groupBuyingDAO.getRecommendedGroupBuying().get(0);
+    }
+
+    /**
+     * 修改团购信息
+     * @param activityID
+     * @param requiredNumber
+     * @param group_buying_price
+     */
+    public void modifyActivityInfo(int activityID, int requiredNumber, double group_buying_price) {
+        Activity activity = new Activity();
+        activity.setActivityID(activityID);
+        activity.setRequiredNumber(requiredNumber);
+        activity.setGroup_buying_price(group_buying_price);
+        groupBuyingDAO.modifyActivityInfo(activity);
     }
 }
 

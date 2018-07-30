@@ -4,7 +4,7 @@ public class Address {
     private int addressID;
     private String address;
     private int postcode;
-    private int acceptPhone;
+    private long acceptPhone;
     private String acceptName;
 
     public int getAddressID() {
@@ -31,11 +31,11 @@ public class Address {
         this.postcode = postcode;
     }
 
-    public int getAcceptPhone() {
+    public long getAcceptPhone() {
         return acceptPhone;
     }
 
-    public void setAcceptPhone(int acceptPhone) {
+    public void setAcceptPhone(long acceptPhone) {
         this.acceptPhone = acceptPhone;
     }
 

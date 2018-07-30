@@ -44,6 +44,7 @@
 
             function load() {
                 var myRecord = $.cookie('record');
+
                 // //获得所有分类参数
                 $.ajax({
                     url: "getRecord/"+myRecord,
@@ -51,12 +52,13 @@
                     dataType: "json",
                     success: function (data) {
                         //alert(data.length);
+                        //alert(data.length);
                         $('#myRecord').empty();
                         for (var i = 0; i < data.length; i++) {
 
                             var str = '<a href="ui-product.html" class="aui-list-product-item">' +
                                 '<div class="aui-list-product-item-img">' +
-                                '<img src="themes/img/pd/pd-zf-6.jpg" alt="">' +
+                                '<img src="img/'+data[i].cover_url+'" alt="">' +
                                 '</div>' +
                                 '<div class="aui-list-product-item-text">' +
                                 '<h3>'+data[i].product_name+'</h3>' +
@@ -223,26 +225,6 @@
         </div>
         <section class="aui-list-product">
             <div class="aui-list-product-box" id="myRecord">
-                <a href="ui-product.html" class="aui-list-product-item">
-                    <div class="aui-list-product-item-img">
-                        <img src="themes/img/pd/pd-zf-6.jpg" alt="">
-                    </div>
-                    <div class="aui-list-product-item-text">
-                        <h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-                        <div class="aui-list-product-mes-box">
-                            <div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-                                <span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-                            </div>
-                            <div class="aui-comment">986评论</div>
-                        </div>
-                    </div>
-                </a>
 
             </div>
         </section>

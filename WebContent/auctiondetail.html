@@ -5,40 +5,131 @@
 	<title>拍品详情</title>
 
 	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="./auctiondetail/mui.min.css">
     <link href="./auctiondetail/style.css" rel="stylesheet">
-	<script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
 	<script>
 		$(function () {
             var index = location.href.lastIndexOf("=");
             var aid= location.href.substr(index+1);
+			var price;
+			var wanted;
 
-
-
-
-            $.ajax({
-                url: "getAuction/"+aid,
-                type: "get",
-                dataType: "json",
-                success: function (data) {
-
-                    alert(data.length);
-                    for (var j = 0; j < data.length; j++) {
-                        var str = '<a href="auctiondetail.html?aid='+data[j].auctionID+'" class="wrap">' +
-                            '<img src="./auction/'+data[j].cover_url+'" alt="">' +
-                            '<div>'+data[j].auction_name+'</div>' +
-                            '<p>开拍时间: '+data[j].begin+'</p>' +
-                            '<p>结束时间: '+data[j].end+'</p>' +
-                            '<p>拍卖状态: <span>竞拍中 围观'+data[j].visited+' 出价'+data[j].wanted+'</span></p>' +
-                            '<p>最高价:<span>￥'+data[j].highest_price+'</span></p>' +
-                            '</a>';
-
-                        $("#main").append(str);
+			function load(){
+                $.ajax({
+                    url: "getAuction/"+1,
+                    type: "get",
+                    dataType: "json",
+                    success: function (data) {
+						//alert(data.auction_name)
+                        $('#auction_name').html(data.auction_name)
+						$('#highest_price').html('当前出价:￥'+data.highest_price)
+						$('#wanted').html('参与人数:'+data.wanted)
+						$('#begin').html('参与时间:'+data.begin)
+                        $('#end').html('结束时间:'+data.end)
+                        $('#introduction').html(data.introduction)
+						$('#cover_url').attr('src','img/'+data.cover_url+'')
+						price=data.highest_price;
+                        wanted=data.wanted;
+                        //alert('img/'+data.cover_url);
                     }
 
+                });
 
-                }
+                $.ajax({
+                    url: "getAuctionPic/"+1,
+                    type: "get",
+                    dataType: "json",
+                    success: function (data) {
+                        $('#point').empty();
+            			for(var i=0;i<data.length;i++){
+            			    var str='<div class="item">' +
+                                '<img src="img/'+data[i].picName+'" alt="slide">' +
+                                '</div>';
+            			    $("#pic").append(str);
+
+            			    var str1='<li data-target="#myCarousel" data-slide-to="'+(i+1)+'"></li>'
+							$('#point').append(str1);
+            			}
+                    }
+
+                });
+
+                loadHistory();
+
+			}
+
+			function loadHistory() {
+                //alert(aid);
+                $.ajax({
+                    url: "getHistory/"+1,
+                    type: "get",
+                    dataType: "json",
+                    success: function (data) {
+                        $("#History").empty();
+                        //alert(data.length);
+                        for (var j = 0; j < data.length; j++) {
+                            var str;
+                            if(j==0) {
+                                str='' +
+                                    '<li class="mui-table-view-cell">' +
+                                    '<div class="history">' +
+                                    '<div class="p">' +
+                                    '<p><span class="left">'+data[j].username+'</span><span class="right">领先</span></p>' +
+                                    '<p><span class="left">￥'+data[j].price+'元</span><span class="right">'+data[j].t+'</span></p>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>'
+							}else {
+                                str='' +
+                                    '<li class="mui-table-view-cell">' +
+                                    '<div class="history">' +
+                                    '<div class="p">' +
+                                    '<p><span class="left">'+data[j].username+'</span><span class="right"></span></p>' +
+                                    '<p><span class="left">￥'+data[j].price+'元</span><span class="right">'+data[j].t+'</span></p>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>'
+							}
+
+
+                            $("#History").append(str);
+                        }
+
+
+                    }
+
+                });
+            }
+			load();
+
+			$("#btn").click(function () {
+				var myprice=$("#myprice").val();
+			    if(myprice<=price){
+			        alert("出价要高于当前最高价")
+					return;
+				}else{
+			        if(confirm("是否确定参与竞拍")){
+			            //alert(myprice)
+                        $.ajax({
+
+							//userid+aid+myprice
+                            url: "addHistory/"+1+"/"+1+"/"+myprice+'/'+wanted,
+                            type: "get",
+                            dataType: "json",
+                            success: function () {
+                            }
+                        });
+
+                        alert("竞拍成功");
+                        load();
+					}else{
+			            return
+					}
+				}
 
             });
 
@@ -49,39 +140,49 @@
 </head>
 <body class="special">
 <!-- 焦点图1 -->
-<div class="swiper-container1">
-    <div class="swiper-wrapper" style="width: 2400px; height: 250px; transform: translate3d(-960px, 0px, 0px); transition-duration: 0.3s;"><div xmlns="http://www.w3.org/1999/xhtml" class="swiper-slide" style="width: 480px; height: 250px;"><img src="./auctiondetail/4.jpg" alt=""></div>
-        <div class="swiper-slide" style="width: 480px; height: 250px;"><img src="./auctiondetail/2.jpg" alt=""></div>
-        <div class="swiper-slide swiper-slide-visible swiper-slide-active" style="width: 480px; height: 250px;"><img src="./auctiondetail/3.jpg" alt=""></div> 
-        <div class="swiper-slide" style="width: 480px; height: 250px;"><img src="./auctiondetail/4.jpg" alt=""></div> 
-    <div xmlns="http://www.w3.org/1999/xhtml" class="swiper-slide" style="width: 480px; height: 250px;"><img src="./auctiondetail/2.jpg" alt=""></div></div>	
-	<!--  焦点图按钮 -->
-     <div class="pagination1"><span class="swiper-pagination-switch"></span><span class="swiper-pagination-switch swiper-visible-switch swiper-active-switch"></span><span class="swiper-pagination-switch"></span></div>
- </div>
+<div id="myCarousel" class="carousel slide">
+	<!-- 轮播（Carousel）指标 -->
+	<ol class="carousel-indicators" id="point">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	</ol>
+	<!-- 轮播（Carousel）项目 -->
+	<div class="carousel-inner"  id="pic">
+		<div class="item active" >
+			<img id="cover_url" src="" alt="First slide">
+
+		</div>
+
+	</div>
+	<!-- 轮播（Carousel）导航 -->
+	<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
+</div>
 <!--  键盘按钮 -->
 <header>
 	<div class="wrap">
-		<h1>朱天曙《题吕欢呼桃花成扇》<span>包邮</span></h1>
-		<span><i class="icon icon-shoucang"></i>280</span>
-		<span><i class="icon icon-icon7"></i>280</span>
+		<h1 id="auction_name"><span>包邮</span></h1>
 	</div>
 </header>
 <!-- 拍卖按钮区域 -->
 <div class="up">
 	<div class="wrap">
-		<p>参与时间:2016/7/9 9:00</p>
-		<p>结束时间:2016/7/9 9:00</p>
-		<p>当前出价:￥14700</p>
-		<p>参与人数:26</p>
+		<p id="begin"></p><br>
+		<p id="end"></p><br>
+		<p id="highest_price"></p>
+		<p id="wanted"></p>
 	</div>
 </div>
 <div class="up1">
 	<div class="wrap">
-		<button type="button" id="btn">开始拍卖</button>
-		<span><i>起</i>￥1000元</span>
-		<span><i>加</i>￥300元</span>
-		<span><i>保</i>￥0元</span>
-		<span><i>延</i>5分钟</span>
+		<input id="myprice" type="number" />
+		<button type="button" id="btn">竞拍</button>
+
 	</div>
 </div>
 <!-- 介绍区域 -->
@@ -89,339 +190,51 @@
 	<div class="wrap">
 	
 		<p class="text1">商品简介:</p>
-		<div class="p1">
-			<p class="text2">
-				<span>作者：朱天曙</span>
-				<span>作品类型:专场拍卖</span>
-				<span>创作时间:2016年</span>
-			</p>
-			
-			<p class="text3">
-				<span>作品尺寸:1.9cm*1.9cm*5.7cm</span>
-				<span>作品材质:昌化玻璃白冻</span>
-			</p>
+		<div class="p1" id="introduction">
+
 		</div>
 	</div>
 </div>
-<div class="middle2">
-	<div class="wrap">
-		<p class="text1">详情介绍:</p>
-		<p class="text2">
-			玻璃白冻,微透明,玻璃地,凝结成冻,有黑针,石质色彩柔和,有种水乳交融之美,冻地佳,刀感好,雕兽钮。边缘润滑,形象饱满精致,而颇具古韵,无格裂,偶尔保养。玻
-		</p>
-	</div>
-</div>
+
 <!-- 评论区域 -->
 <div class="bottom">
 	<div class="mui-content">
 			<div>
 				<div id="segmentedControl" class="mui-segmented-control">
 					<a class="mui-control-item mui-active" href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special.html#item1">
-				出价历史
-			</a>
-					<a class="mui-control-item" href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special.html#item2">
-				评价
-			</a>
+						出价历史
+					</a>
+
+
 		
 				</div>
 			</div>
 			<div>
 
 				<div id="item1" class="mui-control-content mui-active">
-					<ul class="mui-table-view">
+					<ul class="mui-table-view" id="History">
 
-								<li class="mui-table-view-cell">
-									<div class="history">
-										<img src="./auctiondetail/1.jpg" alt="">
-										<div class="p">
-											<p><span class="left">莫言</span><span class="right">领先</span></p>
-											<p><span class="left">￥14700元</span><span class="right">2016/07/23 21:59:52</span></p>
-										</div>
-									</div>
-								</li>
 
-								<li class="mui-table-view-cell">
-									<div class="history">
-										<img src="./auctiondetail/1.jpg" alt="">
-										<div class="p">
-											<p><span class="left">莫言</span><span class="right">领先</span></p>
-											<p><span class="left">￥14700元</span><span class="right">2016/07/23 21:59:52</span></p>
-										</div>
-									</div>
-								</li>
-
-								<li class="mui-table-view-cell">
-									<div class="history">
-										<img src="./auctiondetail/1.jpg" alt="">
-										<div class="p">
-											<p><span class="left">莫言</span><span class="right">领先</span></p>
-											<p><span class="left">￥14700元</span><span class="right">2016/07/23 21:59:52</span></p>
-										</div>
-									</div>
-								</li>
-
-								<li class="mui-table-view-cell">
-									<div class="history">
-										<img src="./auctiondetail/1.jpg" alt="">
-										<div class="p">
-											<p><span class="left">莫言</span><span class="right">领先</span></p>
-											<p><span class="left">￥14700元</span><span class="right">2016/07/23 21:59:52</span></p>
-										</div>
-									</div>
-								</li>
-
-								<li class="mui-table-view-cell">
-									<div class="history">
-										<img src="./auctiondetail/1.jpg" alt="">
-										<div class="p">
-											<p><span class="left">莫言</span><span class="right">领先</span></p>
-											<p><span class="left">￥14700元</span><span class="right">2016/07/23 21:59:52</span></p>
-										</div>
-									</div>
-								</li>
 							
-							</ul>
+					</ul>
 						
 					
 				</div>
 
-				<div id="item2" class="mui-control-content">
-					<ul class="mui-table-view">
-
-						<li class="mui-table-view-cell">
-									<div class="history">
-										<img src="./auctiondetail/1.jpg" alt="">
-										<div class="p">
-											<p><span class="left">莫言</span><span class="right">2016/07/23 21:59:52</span></p>
-											<p>卖家服务态度很好，货很有艺术感，值得收藏与玩弄，大师级的作品就是不一样的,作哈哈品非常值得大家。</p>
-										</div>
-									</div>
-								</li>
-
-								<li class="mui-table-view-cell">
-									<div class="history">
-										<img src="./auctiondetail/1.jpg" alt="">
-										<div class="p">
-											<p><span class="left">莫言</span><span class="right">2016/07/23 21:59:52</span></p>
-											<p>卖家服务态度很好，货很有艺术感，值得收藏与玩弄，大师级的作品就是不一样的,作哈哈品非常值得大家。</p>
-										</div>
-									</div>
-								</li>
-
-								<li class="mui-table-view-cell">
-									<div class="history">
-										<img src="./auctiondetail/1.jpg" alt="">
-										<div class="p">
-											<p><span class="left">莫言</span><span class="right">2016/07/23 21:59:52</span></p>
-											<p>卖家服务态度很好，货很有艺术感，值得收藏与玩弄，大师级的作品就是不一样的,作哈哈品非常值得大家。</p>
-										</div>
-									</div>
-								</li>
-								
-								<div class="getnew">
-									<p>刷新</p>
-									<div>
-										<input type="text">
-										<span>发送</span>
-									</div>
-								</div>
-					</ul>
-				</div>
-				
 			</div>
 </div>
 </div>
-<!-- 焦点图2 -->
-<div class="bottomwrap">
-	<p>今日推荐</p>
- <div class="swiper-container2">
-    <div class="swiper-wrapper" style="width: 1920px; height: 250px; transform: translate3d(-1440px, 0px, 0px); transition-duration: 0.3s;"><div xmlns="http://www.w3.org/1999/xhtml" class="swiper-slide" style="width: 480px; height: 250px;">
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p><p>当前价 ￥0</p>
-			</div>
-        </div>
-        <div class="swiper-slide" style="width: 480px; height: 250px;">
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-        </div>
-        <div class="swiper-slide" style="width: 480px; height: 250px;">
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p><p>当前价 ￥0</p>
-			</div>
-        </div>
-        
-    <div xmlns="http://www.w3.org/1999/xhtml" class="swiper-slide swiper-slide-visible swiper-slide-active" style="width: 480px; height: 250px;">
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-			<div class="wrap">
-				<img src="./auctiondetail/1.jpg" alt="">
-				<p>日安艺拍下期预告</p>
-				<p>当前价 ￥0</p>
-			</div>
-        </div></div>
-	<!--  焦点图按钮 -->
-     <div class="pagination2"><span class="swiper-pagination-switch swiper-visible-switch swiper-active-switch"></span><span class="swiper-pagination-switch"></span></div>
- </div>
-</div>	
 
-	
-<!-- 虚拟键盘 -->
-<div id="auth_keybord7724" class="auth_keybord">
-	<div id="auth_keybord_exit" class="auth_keybord_exit">关闭</div>
-	<div id="auth_keybord_menu" class="auth_keybord_menu">请输入你的手机号码，方便卖家与你联系</div>
-
-	<div class="wrap">
-	<!-- 输入价格 -->
-	<div class="mui-numbox auth_pro_con" data-numbox-step="200" data-numbox-min="200" data-numbox-max="10000" style="width: 100%;height: 40px;" id="myinpt">
-		<ul>
-			<button class="mui-btn mui-btn-numbox-minus" type="button" disabled="">-</button>
-			<li><input class="mui-input-numbox numkeyboard" type="number" id="numkeyboard1" readonly="readonly" style="width: 100%;height: 40px;"></li>
-			<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
-		</ul>
-	</div>
-	<!-- 手机号短信验证 -->
-	<div class="next">
-		<input type="text" placeholder="请输入手机号码" class="test1 numkeyboard" readonly="" id="phone">
-		
-		<input type="text" placeholder="请输入验证码" class="test2 numkeyboard" readonly="">
-		<input type="button" id="send" value="发送">
-	</div>
-	<button id="next">下一步</button>
-	<button id="sure">确定</button>
-	</div>
-	<!-- 键盘数字 -->
-	<ul class="number_list" id="number_list">
-			<li><button type="button">7</button></li>
-			<li><button type="button">8</button></li>
-			<li><button type="button">9</button></li>
-			<li><button type="button">4</button></li>
-			<li><button type="button">5</button></li>
-			<li><button type="button">6</button></li>
-			<li><button type="button">1</button></li>
-			<li><button type="button">2</button></li>
-			<li><button type="button">3</button></li>
-			<li><button type="button">0</button></li>
-			<li><button type="submit">清除</button></li>
-			<li><button type="submit">退格</button></li>
-	</ul>
-</div>
 <!-- 底部 -->
 <footer>
-	   <div><a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/index.html"><img src="./auctiondetail/home.png" alt=""><span class="now">首页</span></a></div>
-	   <div><a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/collect.html"><img src="./auctiondetail/collection.png" alt=""> <span>收藏</span></a></div>
-	   <div><a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special.html"><img src="./auctiondetail/personal.png" alt=""> <span>个人中心</span></a></div>
+	<div><a href="auction.html"><img src="./auctiondetail/home.png" alt=""><span class="now">首页</span></a></div>
+	<div><a href="auctionOrder.html"><img src="./auctiondetail/personal.png" alt=""> <span>我的拍卖</span></a></div>
 </footer>
 
 
 
 <!-- js -->
 
-<script type="text/javascript" src="./auctiondetail/swiper-2.1.min.js"></script>
-<script src="./auctiondetail/mui.min.js"></script>
-<script type="text/javascript" src="./auctiondetail/numkeyboard.js"></script>
-<script type="text/javascript" src="./auctiondetail/script_y.js"></script>  
+
 
 </body></html>
