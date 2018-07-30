@@ -299,6 +299,17 @@ public class ProductController {
         return elecList;
     }
 
+    @RequestMapping(value="checkProName",produces={"text/html;charset=UTF-8;","application/json;"})
+    @ResponseBody
+    public String checkProName(String product_name){
+        String existCode="";
+        boolean isExist=productService.checkProName(product_name);
+        if (isExist){
+            existCode="此商品名已存在，请输入新的商品名";
+        }
+        return existCode;
+    }
+
     //范东升 end
 
     @RequestMapping(value = "/getProductsByClassifyID/{classifyID}")

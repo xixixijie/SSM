@@ -191,6 +191,11 @@ public class ProductService {
         return count>0?false:true;
     }
 
+    public boolean checkProName(String product_name){
+        int count=productDAO.checkProName(product_name);
+        return count>0?true:false;
+    }
+
     //范东升end
 
     public List<Product> getProducts(int classifyID) {

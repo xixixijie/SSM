@@ -6,7 +6,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 	<meta name="format-detection" content="telephone=no, email=no"/>
 	<meta charset="UTF-8">
-	<title>萌宝购物</title>
+	<title>小米商城</title>
 	<link rel="stylesheet" type="text/css" href="themes/css/core.css">
 	<link rel="stylesheet" type="text/css" href="themes/css/icon.css">
 	<link rel="stylesheet" type="text/css" href="themes/css/home.css">
@@ -261,7 +261,10 @@
                         str+='<img class="v-img" src="img/'+data[i].cover_url+'">';
                         str+='<p class="aui-slide-item-title aui-slide-item-f-els">'+data[i].product_name+'</p><p class="aui-slide-item-info">';
                         str+='<span class="aui-slide-item-price">¥'+data[i].discount_price+'</span>&nbsp;&nbsp;';
-                        str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
+                        if(data[i].discount_price!=data[i].original_price){
+                            str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
+						}
+
 
                         $("#sjList").append(str);
                     }
@@ -290,8 +293,9 @@
                         str+='<img class="v-img" src="img/'+data[i].cover_url+'">';
                         str+='<p class="aui-slide-item-title aui-slide-item-f-els">'+data[i].product_name+'</p><p class="aui-slide-item-info">';
                         str+='<span class="aui-slide-item-price">¥'+data[i].discount_price+'</span>&nbsp;&nbsp;';
-                        str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
-
+                        if(data[i].discount_price!=data[i].original_price){
+                            str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
+                        }
                         $("#pcList").append(str);
                     }
                 }
@@ -319,8 +323,9 @@
                         str+='<img class="v-img" src="img/'+data[i].cover_url+'">';
                         str+='<p class="aui-slide-item-title aui-slide-item-f-els">'+data[i].product_name+'</p><p class="aui-slide-item-info">';
                         str+='<span class="aui-slide-item-price">¥'+data[i].discount_price+'</span>&nbsp;&nbsp;';
-                        str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
-
+                        if(data[i].discount_price!=data[i].original_price){
+                            str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
+                        }
                         $("#tvList").append(str);
                     }
                 }
@@ -348,8 +353,9 @@
                         str+='<img class="v-img" src="img/'+data[i].cover_url+'">';
                         str+='<p class="aui-slide-item-title aui-slide-item-f-els">'+data[i].product_name+'</p><p class="aui-slide-item-info">';
                         str+='<span class="aui-slide-item-price">¥'+data[i].discount_price+'</span>&nbsp;&nbsp;';
-                        str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
-
+                        if(data[i].discount_price!=data[i].original_price){
+                            str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
+                        }
                         $("#elecList").append(str);
                     }
                 }
