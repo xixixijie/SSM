@@ -23,12 +23,12 @@ public class AuctionController {
     @Autowired
     private AuctionService service;
 
-    @RequestMapping(value = "getAuctions")
+    @RequestMapping(value = "getAuctions/{pagenum}")
     @ResponseBody
-    public List<Auction> getAuctions(){
+    public List<Auction> getAuctions(@PathVariable int pagenum){
 
         System.out.println("-----获得所有拍卖品Controller-----");
-        List<Auction> list=service.getAuctions();
+        List<Auction> list=service.getAuctions(pagenum, 1);
         for(Auction a:list){
             a.change();
         }

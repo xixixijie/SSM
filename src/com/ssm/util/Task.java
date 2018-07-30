@@ -6,7 +6,6 @@ import com.ssm.model.bean.History;
 import com.ssm.model.dao.AuctionImp;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;

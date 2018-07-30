@@ -1,19 +1,15 @@
 package com.ssm.model.service;
 
-import com.ssm.model.bean.Auction;
-import com.ssm.model.bean.AuctionOrder;
-import com.ssm.model.bean.AuctionPic;
-import com.ssm.model.bean.History;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.ssm.model.bean.*;
 import com.ssm.model.dao.AuctionDAO;
 import com.ssm.model.dao.UserInfoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by xixi on 2018/7/24.
@@ -27,10 +23,15 @@ public class AuctionService {
     @Autowired
     private UserInfoDAO userdao;
 
-    public List<Auction> getAuctions() {
+    public List<Auction> getAuctions(int pagenum, int pageSize) {
         System.out.println("-----获得所有拍卖品Service-----");
-        //System.out.println(dao.getAuctions().size());
-        return dao.getAuctions();
+        /* System.out.println(dao.getAuctions().size()); */
+        System.out.println("~~~"+pagenum+" "+pageSize);
+        List<Auction> list=new ArrayList<>();
+        Page<Auction> page= PageHelper.startPage(pagenum,pageSize);
+        dao.getAuctions();
+        list=page.getResult();
+        return list;
     }
 
     public Auction gAuction(int aid) {
