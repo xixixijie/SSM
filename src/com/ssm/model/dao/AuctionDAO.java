@@ -5,6 +5,7 @@ import com.ssm.model.bean.AuctionOrder;
 import com.ssm.model.bean.AuctionPic;
 import com.ssm.model.bean.History;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ import java.util.Map;
  * Created by xixi on 2018/7/24.
  */
 public interface AuctionDAO {
-    public List<Auction> getAuctions();
+    public List<Auction> getAuctions(Timestamp date);
 
     Auction getAuction(int aid);
 
@@ -25,4 +26,10 @@ public interface AuctionDAO {
     void addWanted(Map<String,Integer> map);
 
     List<AuctionOrder> getAuctionOrder();
+
+    int getMAXID();
+
+    void addAuction(Auction auction);
+
+    void addAuctionPic(AuctionPic auctionPic);
 }

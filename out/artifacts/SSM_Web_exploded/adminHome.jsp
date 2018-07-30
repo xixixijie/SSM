@@ -26,8 +26,9 @@
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;">分类管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="addClassifyPage.html;" target="mainFrame">添加分类</a></dd>
+                    <dd><a href="addClassifyPage.html" target="mainFrame">添加分类</a></dd>
                     <dd><a href="showClassifyPage.html" target="mainFrame">管理分类</a></dd>
+                    <dd><a href="updateModelPage.html" target="mainFrame">更新模型</a></dd>
 
                 </dl>
             </li>
@@ -36,6 +37,13 @@
                 <dl class="layui-nav-child">
                     <dd><a href="/goToAddProduct.action" target="mainFrame">添加商品</a></dd>
                     <dd><a href="/goToSearchProduct.action?pageNumPro=1" target="mainFrame">查询商品</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">拍卖管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="addAuctionPage.jsp" target="mainFrame">添加拍卖品</a></dd>
+                    <dd><a href="AuctionManager.html" target="mainFrame">查询拍卖品</a></dd>
                 </dl>
             </li>
         </ul>

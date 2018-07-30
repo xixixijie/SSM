@@ -89,5 +89,31 @@ public class ClassifyController {
 
     }
 
+    @RequestMapping(value = "updateModel")
+    @ResponseBody
+    public String updateModel(){
+        System.out.println("更新模型Controller");
+        classifyService.updateModel();
+        return "{\"result\":true}";
+    }
+
+    @RequestMapping(value = "getSimilarity/{word1}/{word2}")
+    @ResponseBody
+    public String getSimilarity(@PathVariable String word1,@PathVariable String word2){
+
+        try {
+            word1= java.net.URLDecoder.decode(word1,"UTF-8");
+            word2= java.net.URLDecoder.decode(word2,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(word1+" "+word2);
+        double similarity=classifyService.getSimilarity(word1,word2);
+        System.out.println(similarity);
+
+        return "{\"result\":"+similarity+"}";
+    }
+
 
 }

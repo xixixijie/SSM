@@ -7,6 +7,8 @@ import java.util.Date;
  * Created by xixi on 2018/7/24.
  */
 public class Auction {
+
+
     private int auctionID;
     private String auction_name;
     private String cover_url;

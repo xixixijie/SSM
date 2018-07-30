@@ -30,7 +30,7 @@ public class Task extends TimerTask {
             logger.info("开始执行任务。");
             AuctionImp dao=new AuctionImp();
 
-            List<Auction> list=dao.getAuctions();
+            List<Auction> list=dao.getAuctions(new Timestamp(new Date().getTime()));
             //System.out.println("auction大小"+list.size());
             for(Auction a:list){
 
