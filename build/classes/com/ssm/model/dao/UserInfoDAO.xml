@@ -54,8 +54,11 @@
         WHERE USER_ID=#{userID}
     </update>
 
-</mapper>
+    <select id="selectUsers" resultType="UserInfo">
+        select * from USERINFO
+    </select>
 
+</mapper>
 
 
 

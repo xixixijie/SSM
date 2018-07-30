@@ -1,6 +1,7 @@
 package com.ssm.model.dao;
 
 import com.ssm.model.bean.Auction;
+import com.ssm.model.bean.AuctionOrder;
 import com.ssm.model.bean.AuctionPic;
 import com.ssm.model.bean.History;
 
@@ -23,4 +24,5 @@ public interface AuctionDAO {
 
     void addWanted(Map<String,Integer> map);
 
+    List<AuctionOrder> getAuctionOrder();
 }

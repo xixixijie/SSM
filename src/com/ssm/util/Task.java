@@ -64,6 +64,7 @@ public class Task extends TimerTask {
                             auctionOrder.setUserid(history.getUserID());
                             auctionOrder.setPrice(history.getPrice());
                             auctionOrder.setState(1);
+                            auctionOrder.setCover_url(a.getCover_url());
                             auctionOrder.setUsername(history.getUsername());
                             dao.addAuctionOrder(auctionOrder);
                             //System.out.println("添加订单");

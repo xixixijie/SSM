@@ -1,6 +1,7 @@
 package com.ssm.controller;
 
 import com.ssm.model.bean.Auction;
+import com.ssm.model.bean.AuctionOrder;
 import com.ssm.model.bean.AuctionPic;
 import com.ssm.model.bean.History;
 import com.ssm.model.service.AuctionService;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,5 +64,16 @@ public class AuctionController {
     public void addHistory(@PathVariable int userid,@PathVariable int aid,@PathVariable double price,@PathVariable int wanted){
         System.out.println("-----添加历史Controller-----");
         service.addHistory(userid,aid,price,wanted);
+    }
+
+    @RequestMapping(value = "getAuctionOrder")
+    @ResponseBody
+    public List<AuctionOrder> getAuctionOrder(){
+        System.out.println("-----获取拍卖订单Controller-----");
+        List<AuctionOrder> list=service.getAuctionOrder();
+        for(AuctionOrder ao:list){
+            ao.change();
+        }
+        return list;
     }
 }

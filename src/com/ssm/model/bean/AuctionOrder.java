@@ -12,7 +12,29 @@ public class AuctionOrder {
     private int state;
     private String auction_name;
     private int addressid;
+    private String time;
 
+    public void change(){
+        this.time=date.toString();
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getCover_url() {
+        return cover_url;
+    }
+
+    public void setCover_url(String cover_url) {
+        this.cover_url = cover_url;
+    }
+
+    private String cover_url;
     private String address;
     private int postcode;
     private long acceptPhone;

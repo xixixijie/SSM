@@ -120,684 +120,362 @@
 		}
 
 	</style>
+
+
+
 </head>
 <body>
-	<header class="aui-header-default aui-header-fixed ">
-		<a href="javascript:history.back(-1)" class="aui-header-item">
-			<i class="aui-icon aui-icon-back"></i>
-		</a>
-		<div class="aui-header-center aui-header-center-clear">
-			<div class="aui-header-center-logo">
-				<div id="scrollSearchPro">
-					<span>iPhone X</span>
-				</div>
-			</div>
-		</div>
-		<a class="aui-header-item-icon select"    style="min-width:0;">
-			<i class="selectVal" onselectstart="return false"></i>
-			<div class="aui-header-drop-down selectList">
-				<div class="aui-header-drop-down-san"></div>
-				<div class="">
-					<p class="" onclick="location='http://www.a-ui.cn/'" >消息</p>
-					<p class="" onclick="location='index.html'">首页</p>
-					<p class="" onclick="location='index.html'">帮助</p>
-					<p class="" onclick="location='index.html'">分享</p>
-				</div>
-			</div>
-		</a>
-	</header>
-	<div class="aui-banner-content aui-fixed-top" data-aui-slider>
-		<div class="aui-banner-wrapper">
-			<div class="aui-banner-wrapper-item">
-				<a href="#">
-					<img src="themes/img/pd/pd-zf-1.jpg">
-				</a>
-			</div>
-			<div class="aui-banner-wrapper-item">
-				<a href="#">
-					<img src="themes/img/pd/pd-zf-2.jpg">
-				</a>
-			</div>
-			<div class="aui-banner-wrapper-item">
-				<a href="#">
-					<img src="themes/img/pd/pd-zf-3.jpg">
-				</a>
-			</div>
-			<div class="aui-banner-wrapper-item">
-				<a href="#">
-					<img src="themes/img/pd/pd-zf-4.jpg">
-				</a>
-			</div>
+<header class="aui-header-default aui-header-fixed ">
+	<a href="javascript:history.go(-1)" class="aui-header-item">
+		<i class="aui-icon aui-icon-back"></i>
+	</a>
+	<div class="aui-header-center aui-header-center-clear">
+		<div class="aui-header-center-logo">
+			<div id="scrollSearchPro">
 
+			</div>
 		</div>
-		<div class="aui-banner-pagination"></div>
+	</div>
+
+	<a class="aui-header-item-icon select"    style="min-width:0;">
+		<i class="selectVal" onselectstart="return false"></i>
+		<div class="aui-header-drop-down selectList">
+			<div class="aui-header-drop-down-san"></div>
+			<div class="">
+
+			</div>
+		</div>
+	</a>
+</header>
+<div class="aui-banner-content aui-fixed-top" data-aui-slider>
+	<div id="aspect_url" class="aui-banner-wrapper">
 
 	</div>
-	<div class="aui-product-content">
-		<div class="aui-real-price clearfix">
-			<span>
-				<i>￥</i>10888.00
+	<div class="aui-banner-pagination"></div>
+
+</div>
+<div class="aui-product-content">
+	<div class="aui-real-price clearfix">
+			<span id="discountPrice">
+
 			</span>
-			<del><span class="aui-font-num">￥18888</span></del>
-			<div class="aui-settle-choice">
-				<span>促销价</span>
-			</div>
+		<del><span class="aui-font-num" id="originalPrice"></span></del>
+		<div class="aui-settle-choice">
+			<span>价格</span>
 		</div>
-		<div class="aui-product-title">
-			<h2>
-				苹果（Apple） Apple iPhone X 移动联通电信全网通4G手机(深空灰)
-			</h2>
-			<p>
-				原封未拆，厂商授权！【服务】顺丰配送，7天无理由退货！
-			</p>
-		</div>
-		<div class="aui-product-boutique clearfix">
-			<img src="themes/img/icon/icon-sj.png" alt="">
-			<span class="aui-product-tag-text">所属分类： </span>
+	</div>
+	<div class="aui-product-title">
+		<h2 id="productName">
 
-			<span class="aui-product-tag-text">小米手机</span>
-		</div>
+		</h2>
+		<p id="productInfo">
 
-		<div class="aui-product-coupon">
+		</p>
+	</div>
+	<div class="aui-product-boutique clearfix">
+		<img src="themes/img/icon/icon-sj.png" alt="">
+		<span class="aui-product-tag-text">小米官方旗舰店</span>
 
-
-			<!-- 弹窗A begin -->
-			<div class="m-actionsheet" id="actionSheet">
-				<div style="position:relative">
-					<div class="aui-spec-menu-top">
-						<div class="aui-spec-first-pic">
-							<img src="themes/img/pd/pd-zf-1.jpg" alt="">
-						</div>
-						<div class="aui-spec-first-sif">
-							<h2>￥2299.00 </h2>
-							<p>重量:0.42kg</p>
-							<p>商品编号:00986534567</p>
-						</div>
-					</div>
-					<div class="aui-product-text-content">
-						<div class="aui-product-text-content-list">
-							<div class="aui-product-text-content-list-bd">
-								<span>已选</span>
-							</div>
-							<div class="aui-product-text-content-list-ft">
-								<span>黑 6GB 64GB 裸机 1件</span>
-							</div>
-						</div>
-						<div class="aui-product-text-content-list">
-							<div class="aui-product-text-content-list-bd">
-								<span>颜色</span>
-							</div>
-							<div class="aui-product-text-content-list-ft">
-								<a href="#" class="aui-selected">黑色</a>
-								<a href="#">蓝色</a>
-								<a href="#">白色</a>
-							</div>
-						</div>
-						<div class="aui-product-text-content-list">
-							<div class="aui-product-text-content-list-bd">
-								<span>版本</span>
-							</div>
-							<div class="aui-product-text-content-list-ft">
-								<a href="#" class="aui-selected">全网通64G</a>
-								<a href="#">全网通128G</a>
-								<a href="#">全网通256G</a>
-							</div>
-						</div>
-						<div class="aui-product-text-content-list">
-							<div class="aui-product-text-content-list-bd">
-								<span>数量</span>
-							</div>
-							<div class="aui-car-box-list-text-price">
-								<div class="aui-car-box-list-text-arithmetic" style="position:inherit">
-									<a href="javascript:;" class="minus">-</a>
-									<span class="num">1</span>
-									<a href="javascript:;" class="plus">+</a>
-								</div>
-							</div>
-						</div>
-						<div class="aui-product-text-content-list">
-							<div class="aui-product-text-content-list-bd">
-								<span>延保</span>
-							</div>
-							<div class="aui-product-text-content-list-ft">
-								<a href="#" class="aui-selected">屏碎保1年¥249.00</a>
-								<a href="#">屏碎保2年¥329.00</a>
-								<a href="#">全保修2年¥449.00</a>
-							</div>
-						</div>
-						<div class="aui-product-text-content-list">
-							<div class="aui-product-text-content-list-bd">
-								<span>意外</span>
-							</div>
-							<div class="aui-product-text-content-list-ft">
-								<a href="#" class="aui-selected">换新保2年¥449.00</a>
-								<a href="#">电池换2年¥39.00</a>
-								<a href="#">延长保2年¥279.00</a>
-							</div>
-						</div>
-					</div>
-
-					<a href="javascript:;" class="actionsheet-action" id="cancel"></a>
-					<div class="aui-product-function">
-						<a href="car.html" class="yellow-color">加入购物车</a>
-						<a href="order.html" class="red-color">立即购买</a>
-					</div>
-
-				</div>
-			</div>
-
-			<!-- 弹窗A end-->
-			<a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
-				<div class="aui-address-cell-bd">配送</div>
-				<div class="aui-address-cell-ft">
-					<input class="aui-Address-box-input" type="text" readonly="" id="J_Address"  readonly="readonly"  placeholder="所在地区" style="height:auto; border-bottom:none; padding-left:0; margin-bottom:0;">
-				</div>
-			</a>
-			<a  class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
-				<div class="aui-address-cell-bd">运费</div>
-				<div class="aui-address-cell-ft">免运费</div>
-			</a>
-			<a  class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
-				<div class="aui-address-cell-bd">说明</div>
-				<div class="aui-address-cell-ft">假一赔十 7天无忧退货</div>
-			</a>
-		</div>
-		<div class="aui-dri"></div>
-		<div class="aui-product-evaluate">
-			<a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
-				<div class="aui-address-cell-bd">商品评价   <em>(3290)</em></div>
-				<div class="aui-address-cell-ft">
-					<span>好评 100%</span>
-				</div>
-			</a>
-		</div>
-
-		</div>
-
-		<div class="aui-product-pages">
-			<div class="aui-dri"></div>
-			<div class="aui-product-pages-title">
-				<h2>图文详情</h2>
-			</div>
-
-			<div class="aui-product-pages-img">
-				<img src="themes/img/pd/pd-cp0.jpg" alt="">
-				<img src="themes/img/pd/pd-cp1.jpg" alt="">
-				<img src="themes/img/pd/pd-cp2.jpg" alt="">
-				<img src="themes/img/pd/pd-cp3.jpg" alt="">
-				<img src="themes/img/pd/pd-cp4.jpg" alt="">
-				<img src="themes/img/pd/pd-cp5.jpg" alt="">
-				<img src="themes/img/pd/pd-cp6.jpg" alt="">
-			</div>
-		</div>
-		<div class="aui-recommend">
-			<img src="themes/img/bg/icon-tj3.jpg" alt="">
-			<!--<h2>为你推荐</h2>-->
-		</div>
-		<section class="aui-list-product">
-			<div class="aui-list-product-box">
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-15.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-14.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-13.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-12.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-11.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-10.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-9.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-8.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-16.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-17.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-18.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-19.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-20.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-21.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-22.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-				<a href="javascript:;" class="aui-list-product-item">
-					<div class="aui-list-product-item-img">
-						<img src="themes/img/pd/sf-23.jpg" alt="">
-					</div>
-					<div class="aui-list-product-item-text">
-						<h3>KOBE LETTUCE 秋冬新款 女士日系甜美纯色半高领宽松套头毛衣针织衫</h3>
-						<div class="aui-list-product-mes-box">
-							<div>
-							<span class="aui-list-product-item-price">
-								<em>¥</em>
-								399.99
-							</span>
-								<span class="aui-list-product-item-del-price">
-								¥495.65
-							</span>
-							</div>
-							<div class="aui-comment">986评论</div>
-						</div>
-					</div>
-				</a>
-			</div>
-		</section>
 
 	</div>
 
-	<footer class="aui-footer-product">
-		<div class="aui-footer-product-fixed">
-			<div class="aui-footer-product-concern-cart">
-				<a href="#">
-					<span class="aui-f-p-icon"><img src="themes/img/icon/icon-kf.png" alt=""></span>
-					<span class="aui-f-p-focus-info">客服</span>
-				</a>
-				<a href="#">
-					<span class="aui-f-p-icon"><img src="themes/img/icon/icon-sc.png" alt=""></span>
-					<span class="aui-f-p-focus-info">收藏</span>
-				</a>
-				<a href="#">
-					<span class="aui-f-p-icon"><img src="themes/img/icon/icon-dp.png" alt=""></span>
-					<span class="aui-f-p-focus-info">店铺</span>
-				</a>
+	<div class="aui-product-coupon">
+
+
+
+		<a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
+			<div class="aui-address-cell-bd">配送</div>
+			<div class="aui-address-cell-ft">
+				<input class="aui-Address-box-input" type="text" readonly="" id="J_Address"  readonly="readonly"  placeholder="所在地区" style="height:auto; border-bottom:none; padding-left:0; margin-bottom:0;">
 			</div>
-			<div class="aui-footer-product-action-list">
-				<a href="car.html" class="yellow-color">加入购物车</a>
-				<a href="order.html" class="red-color">立即购买</a>
-			</div>
+		</a>
+		<a  class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
+			<div class="aui-address-cell-bd">运费</div>
+			<div class="aui-address-cell-ft">免运费</div>
+		</a>
+		<a  class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
+			<div class="aui-address-cell-bd">说明</div>
+			<div class="aui-address-cell-ft">假一赔十 7天无忧退货</div>
+		</a>
+	</div>
+	<div class="aui-dri"></div>
+	<div class="aui-product-evaluate">
+		<a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
+			<div class="aui-address-cell-bd">点击查看商品评价</div>
+
+		</a>
+	</div>
+
+</div>
+
+<div class="aui-product-pages">
+	<div class="aui-dri"></div>
+	<div class="aui-product-pages-title">
+		<h2>图文详情</h2>
+	</div>
+
+	<div id="paramterUrl" class="aui-product-pages-img">
+
+	</div>
+</div>
+</div>
+
+<footer class="aui-footer-product">
+	<div class="aui-footer-product-fixed">
+		<div class="aui-footer-product-concern-cart" style="width: 34%">
+
+
+			<a href="index.html" style="margin-left: 12px">
+				<span class="aui-f-p-icon"><img src="themes/img/icon/icon-dp.png" alt=""></span>
+				<span class="aui-f-p-focus-info">首页</span>
+			</a>
+			<a href="car.html" style="margin-left: 12px">
+
+				<span class="aui-f-p-icon"><img src="themes/img/icon/icon-sc.png"></span>
+
+				<span class="aui-f-p-focus-info">购物车</span>
+			</a>
 		</div>
-	</footer>
+		<div class="aui-footer-product-action-list" style="width: 66%">
 
-	<script src="themes/js/jquery.min.js"></script>
-	<script src="themes/js/aui.js"></script>
-	<script src="themes/js/aui-down.js"></script>
-	<script type="text/javascript" src="themes/js/city.js"></script>
-	<script type="text/javascript" >
-        /**
-         * Javascript API调用Tab
-         */
-        !function ($) {
-            var $tab = $('#J_Tab');
+			<a href="#" class="yellow-color">加入购物车</a>
+			<a href="order.html" class="red-color">立即购买</a>
+		</div>
+	</div>
+</footer>
 
-            $tab.tab({
-                nav: '.tab-nav-item',
-                panel: '.tab-panel-item',
-                activeClass: 'tab-active'
-            });
+<script src="themes/js/jquery.min.js"></script>
+<script src="themes/js/aui.js"></script>
+<script src="themes/js/aui-down.js"></script>
+<script type="text/javascript" src="themes/js/city.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" >
+    /**
+     * Javascript API调用Tab
+     */
+    !function ($) {
+        var $tab = $('#J_Tab');
 
-			/*
-			 $tab.find('.tab-nav-item').on('open.ydui.tab', function (e) {
-			 console.log('索引：%s - [%s]正在打开', e.index, $(this).text());
-			 });
-			 */
+        $tab.tab({
+            nav: '.tab-nav-item',
+            panel: '.tab-panel-item',
+            activeClass: 'tab-active'
+        });
 
-            $tab.find('.tab-nav-item').on('opened.ydui.tab', function (e) {
-                console.log('索引：%s - [%s]已经打开了', e.index, $(this).text());
-            });
-        }(jQuery);
-	</script>
-	<script>
-        /**
-         * 默认调用
-         */
-        !function () {
-            var $target = $('#J_Address');
+		/*
+		 $tab.find('.tab-nav-item').on('open.ydui.tab', function (e) {
+		 console.log('索引：%s - [%s]正在打开', e.index, $(this).text());
+		 });
+		 */
 
-            $target.citySelect();
+        $tab.find('.tab-nav-item').on('opened.ydui.tab', function (e) {
+            console.log('索引：%s - [%s]已经打开了', e.index, $(this).text());
+        });
+    }(jQuery);
+</script>
+<script>
+    /**
+     * 默认调用
+     */
+    !function () {
+        var $target = $('#J_Address');
 
-            $target.on('click', function (event) {
-                event.stopPropagation();
-                $target.citySelect('open');
-            });
+        $target.citySelect();
 
-            $target.on('done.ydui.cityselect', function (ret) {
-                $(this).val(ret.provance + ' ' + ret.city + ' ' + ret.area);
-            });
-        }();
-        /**
-         * 设置默认值
-         */
-        !function () {
-            var $target = $('#J_Address2');
+        $target.on('click', function (event) {
+            event.stopPropagation();
+            $target.citySelect('open');
+        });
 
-            $target.citySelect({
-                provance: '新疆',
-                city: '乌鲁木齐市',
-                area: '天山区'
-            });
+        $target.on('done.ydui.cityselect', function (ret) {
+            $(this).val(ret.provance + ' ' + ret.city + ' ' + ret.area);
+        });
+    }();
+    /**
+     * 设置默认值
+     */
+    !function () {
+        var $target = $('#J_Address2');
 
-            $target.on('click', function (event) {
-                event.stopPropagation();
-                $target.citySelect('open');
-            });
+        $target.citySelect({
+            provance: '新疆',
+            city: '乌鲁木齐市',
+            area: '天山区'
+        });
 
-            $target.on('done.ydui.cityselect', function (ret) {
-                $(this).val(ret.provance + ' ' + ret.city + ' ' + ret.area);
-            });
-        }();
-	</script>
-	<script type="text/javascript">
-        $(function () {
-            //绑定滚动条事件
-            //绑定滚动条事件
-            $(window).bind("scroll", function () {
-                var sTop = $(window).scrollTop();
-                var sTop = parseInt(sTop);
-                if (sTop >= 100) {
-                    if (!$("#scrollSearchPro").is(":visible")) {
-                        try {
-                            $("#scrollSearchPro").slideDown();
-                        } catch (e) {
-                            $("#scrollSearchPro").show();
-                        }
+        $target.on('click', function (event) {
+            event.stopPropagation();
+            $target.citySelect('open');
+        });
+
+        $target.on('done.ydui.cityselect', function (ret) {
+            $(this).val(ret.provance + ' ' + ret.city + ' ' + ret.area);
+        });
+    }();
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        //绑定滚动条事件
+        //绑定滚动条事件
+        $(window).bind("scroll", function () {
+            var sTop = $(window).scrollTop();
+            var sTop = parseInt(sTop);
+            if (sTop >= 100) {
+                if (!$("#scrollSearchPro").is(":visible")) {
+                    try {
+                        $("#scrollSearchPro").slideDown();
+
+                    } catch (e) {
+                        $("#scrollSearchPro").show();
                     }
                 }
-                else {
-                    if ($("#scrollSearchPro").is(":visible")) {
-                        try {
-                            $("#scrollSearchPro").slideUp();
-                        } catch (e) {
-                            $("#scrollSearchPro").hide();
-                        }
+            }
+            else {
+                if ($("#scrollSearchPro").is(":visible")) {
+                    try {
+                        $("#scrollSearchPro").slideUp();
+                    } catch (e) {
+                        $("#scrollSearchPro").hide();
                     }
                 }
+            }
+        });
+
+        var index = location.href.lastIndexOf("=");
+        var product_id= location.href.substr(index+1);
+
+        loadProduct();
+        loadAspect();
+        loadParameter();
+
+
+        function loadAspect() {
+            $.ajax({
+                url:"getAspectForUser/"+product_id,
+                type:"POST",
+                async:false,
+                success:function(data){
+                    console.log(data);
+                    //1.清除原有的数据
+                    $("#aspect_url").empty();
+
+                    for(var i=0;i<data.length;i++){
+                        var str = '<div class="aui-banner-wrapper-item"><a href="#">';
+                        str += '<img src="img/'+data[i]+'"></a></div>';
+                        $("#aspect_url").append(str);
+                    }
+                },
+                error:function(){
+                    alert("获取商品轮播图失败");
+                },
+                dataType:"json"
             });
-        })
-	</script>
+        }
 
-	<script>
-        /**
-         * Javascript API调用ActionSheet
-         */
-        !function ($) {
-            var $myAs = $('#J_ActionSheet');
 
-            $('#J_ShowActionSheet').on('click', function () {
-                $myAs.actionSheet('open');
+
+
+        function loadProduct() {
+            $.ajax({
+                url:"getProductForUser/"+product_id,
+                type:"POST",
+                async:false,
+                success:function(data){
+                    console.log(data);
+                    //1.清除原有的数据
+                    $("#aspect_url").empty();
+
+
+                    var str1 = '<i>￥</i>'+data.discount_price;
+                    $("#discountPrice").append(str1);
+                    var str2 = '￥'+data.original_price;
+                    if(data.discount_price!=data.original_price){
+                        $("#originalPrice").append(str2);
+                    }
+                    var str3 = data.product_name;
+                    $("#productName").append(str3);
+                    var str4 = data.product_info;
+                    $("#productInfo").append(str4);
+                    var str5 = '<span>'+data.product_name+'</span>';
+                    $("#scrollSearchPro").append(str5);
+                },
+                error:function(){
+                    alert("获取商品轮播图失败");
+                },
+                dataType:"json"
             });
+        }
 
-            $('#J_Cancel').on('click', function () {
-                $myAs.actionSheet('close');
+        function loadParameter() {
+            $.ajax({
+                url:"getParameterForUser/"+product_id,
+                type:"POST",
+                async:false,
+                success:function(data){
+                    console.log(data);
+                    //1.清除原有的数据
+                    $("#paramterUrl").empty();
+
+                    for(var i=0;i<data.length;i++){
+                        var str = '<img src="img/'+data[i]+'">';
+                        $("#paramterUrl").append(str);
+                    }
+                },
+                error:function(){
+                    alert("获取商品轮播图失败");
+                },
+                dataType:"json"
             });
+        }
+    })
+</script>
+<script>
+    /**
+     * Javascript API调用ActionSheet
+     */
+    !function ($) {
+        var $myAs = $('#J_ActionSheet');
 
-        }(jQuery);
-	</script>
+        $('#J_ShowActionSheet').on('click', function () {
+            $myAs.actionSheet('open');
+        });
+
+        $('#J_Cancel').on('click', function () {
+            $myAs.actionSheet('close');
+        });
+
+    }(jQuery);
+
+
+</script>
+
+<!--<script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>-->
+<!--<script type="text/javascript" src="js/test.js" ></script>-->
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script>
+	$(function () {
+        var index = location.href.lastIndexOf("=");
+        var pid= location.href.substr(index+1);
+        function writeCookie(productid) {
+
+            //alert(productid)
+            if($.cookie('record')!= "null"){
+
+                var record=$.cookie('record');
+                $.cookie('record',record+','+productid)
+            }else {
+
+
+                $.cookie('record',productid);
+            }
+        }
+        writeCookie(pid);
+
+    })
+</script>
+
+
 
 
 </body>
