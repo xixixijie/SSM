@@ -26,7 +26,7 @@
 
         <div style="width: 60%">
             <div class="layui-form-item">
-                <label class="layui-form-label">商品名</label>
+                <label class="layui-form-label">拍卖品名</label>
                 <div class="layui-input-block">
                     <input required lay-verify="required" type="text" maxlength="25"  name="auction_name" id="product_name"  autocomplete="off" class="layui-input">
                 </div>
@@ -35,7 +35,7 @@
 
 
             <div class="layui-form-item">
-                <label class="layui-form-label">原价</label>
+                <label class="layui-form-label">起拍价</label>
                 <div class="layui-input-block">
                     <input required lay-verify="required" type="number" id="original_price" name="begin_price" step="any"   autocomplete="off" class="layui-input" max="50000" min="1">
                 </div>
@@ -44,7 +44,7 @@
 
 
             <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label" >商品概述</label>
+                <label class="layui-form-label" >拍卖品介绍</label>
                 <div class="layui-input-block">
                     <textarea required lay-verify="required" name="introduction" maxlength="200"  class="layui-textarea"></textarea>
                 </div>
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="layui-form-item layui-upload-form">
-                <label class="layui-form-label">商品封面</label>
+                <label class="layui-form-label">拍卖品封面</label>
                 <div class="layui-input-block">
                     <input required lay-verify="required" type="file"  name="cover"    style="margin-top: 5px">
                 </div>
@@ -75,7 +75,7 @@
 
             <br>
             <div class="layui-form-item layui-upload-form">
-                <label class="layui-form-label">商品介绍图</label>
+                <label class="layui-form-label">拍卖品介绍图</label>
                 <div class="layui-input-block">
                     <input required lay-verify="required" type="file"  multiple="multiple" name="files"    style="margin-top: 5px">
                 </div>

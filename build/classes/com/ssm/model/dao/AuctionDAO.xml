@@ -4,8 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.model.dao.AuctionDAO">
 
-    <select id="getAuctions" resultType="Auction">
-        select * from auction WHERE state=1
+    <select id="getAuctions" parameterType="java.sql.Timestamp" resultType="Auction">
+        select * from auction WHERE state=1 and BEGINDATE>#{date}
     </select>
 
     <select id="getAuction"  parameterType="int" resultType="Auction">
@@ -37,6 +37,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="getAuctionOrder" resultType="AuctionOrder">
         select * from AUCTIONORDER
     </select>
+
+    <select id="getMAXID" resultType="int">
+        SELECT nvl(max(AUCTIONID),0)+1 from AUCTION
+    </select>
+
+    <insert id="addAuction" parameterType="Auction">
+        insert into AUCTION
+        values (#{auctionID},#{auction_name},
+        #{cover_url},#{beginDate},#{endDate},
+        #{state},#{visited},#{wanted},
+        #{begin_price},#{highest_price},#{introduction})
+    </insert>
+
+    <insert id="addAuctionPic" parameterType="AuctionPic">
+        <selectKey keyProperty="auctionpicID" resultType="int" order="BEFORE">
+            SELECT nvl(max(AUCTIONPICID),0)+1 from AUCTIONPIC
+        </selectKey>
+        insert into auctionPic
+        values (#{auctionpicID},#{auctionID},#{picName})
+    </insert>
 </mapper>
 
 

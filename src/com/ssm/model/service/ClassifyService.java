@@ -10,7 +10,13 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import vec.Learn;
+import vec.Word2VEC;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -151,6 +157,36 @@ public class ClassifyService {
         }
         return list1;
 
+
+    }
+
+    public void updateModel() {
+        System.out.println("更新模型service");
+        Learn learn = new Learn();
+        long start = System.currentTimeMillis();
+        try {
+            learn.learnFile(new File("/Users/xixi/Desktop/SSM/library/xh.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("use time " + (System.currentTimeMillis() - start));
+        learn.saveModel(new File("/Users/xixi/Desktop/SSM/library/javaVector"));
+
+    }
+
+
+    public double getSimilarity(String word1, String word2){
+        Word2VEC vec = new Word2VEC() ;
+
+        try {
+            vec.loadJavaModel("/Users/xixi/Desktop/SSM/library/javaVector") ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//		System.out.println(Arrays.toString(vec.getWordVector("漂亮")));
+
+        return vec.distanceWith2Words(word1,word2);
 
     }
 }
