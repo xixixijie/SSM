@@ -14,32 +14,45 @@
     <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
     <script>
         $(function () {
+            var pageNum=1;
+            load();
+            function load(){
+                $.ajax({
+                    url: "getAuctions/"+(pageNum++),
+                    type: "get",
+                    dataType: "json",
+                    success: function (data) {
+                        //alert(data.length);
+                        if(data.length==0)
+                        {
+                            $("#loadmore").html("没有更多数据了");
+                        }
+                        else{
+                            for (var j = 0; j < data.length; j++) {
+                                var str = '<a href="auctiondetail.html?aid='+data[j].auctionID+'" class="wrap">' +
+                                    '<img src="./auction/'+data[j].cover_url+'" alt="">' +
+                                    '<div>'+data[j].auction_name+'</div>' +
+                                    '<p>开拍时间: '+data[j].begin+'</p>' +
+                                    '<p>结束时间: '+data[j].end+'</p>' +
+                                    '<p>拍卖状态: <span>竞拍中 围观'+data[j].visited+' 出价'+data[j].wanted+'</span></p>' +
+                                    '<p>最高价:<span>￥'+data[j].highest_price+'</span></p>' +
+                                    '</a>';
+
+                                $("#main").append(str);
+                            }
+
+                        }
 
 
-            $.ajax({
-                url: "getAuctions",
-                type: "get",
-                dataType: "json",
-                success: function (data) {
 
-
-                    for (var j = 0; j < data.length; j++) {
-                        var str = '<a href="auctiondetail.html?aid='+data[j].auctionID+'" class="wrap">' +
-                            '<img src="./auction/'+data[j].cover_url+'" alt="">' +
-                            '<div>'+data[j].auction_name+'</div>' +
-                            '<p>开拍时间: '+data[j].begin+'</p>' +
-                            '<p>结束时间: '+data[j].end+'</p>' +
-                            '<p>拍卖状态: <span>竞拍中 围观'+data[j].visited+' 出价'+data[j].wanted+'</span></p>' +
-                            '<p>最高价:<span>￥'+data[j].highest_price+'</span></p>' +
-                            '</a>';
-
-                        $("#main").append(str);
                     }
 
+                });
+            }
 
-                }
-
-            });
+            $("#loadmore").click(function () {
+                load();
+            })
 
 
         });
@@ -60,19 +73,14 @@
 
 
 </div>
-
+<div id="loadmore" style="text-align: center">
+    点击加载更多
+</div>
 
 <!-- 底部 -->
 <footer>
-    <div>
-        <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/index.html"><img
-                src="./auction/home.png" alt=""><span class="now">首页</span></a></div>
-    <div>
-        <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/collect.html"><img
-                src="./auction/collection.png" alt=""> <span>收藏</span></a></div>
-    <div>
-        <a href="http://www.17sucai.com/preview/396215/2017-06-16/%E6%8B%8D%E5%8D%96%E6%9C%AC%E5%9C%B0%E7%89%88/special_all.html"><img
-                src="./auction/personal.png" alt=""> <span>个人中心</span></a></div>
+    <div><a href="auction.html"><img src="./auctiondetail/home.png" alt=""><span class="now">首页</span></a></div>
+    <div><a href="auctionOrder.html"><img src="./auctiondetail/personal.png" alt=""> <span>我的拍卖</span></a></div>
 </footer>
 
 

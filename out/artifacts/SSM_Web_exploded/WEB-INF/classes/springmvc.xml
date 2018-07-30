@@ -16,22 +16,34 @@
 			http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
 
-	<mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:annotation-driven>
+
+
+	</mvc:annotation-driven>
 
 
 	<!-- 配置静态资源的访问 -->
 	<mvc:default-servlet-handler/>
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize">
+			<value>52428800</value>
+		</property>
+	</bean>
+
 	<!-- 响应的配置 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="suffix" value=".jsp" />
 	</bean>
+
  	<context:component-scan base-package="com.ssm.controller"></context:component-scan>
  	<!-- 组建扫描Service -->
 	<context:component-scan base-package="com.ssm.model.service" ></context:component-scan>
  	    <!--配置service不需要实现接口  -->
  	    <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
 
-	<!--配置静态资源的访问-->
+	<!-- 配置静态资源的访问 -->
 	<mvc:default-servlet-handler/>
  </beans>   
 

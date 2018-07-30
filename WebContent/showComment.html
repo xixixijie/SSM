@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品评价</title>
+    <!-- wym，2018年7月24日 -->
+    <link rel="stylesheet" href="themes/css/core.css">
+    <link rel="stylesheet" href="themes/css/icon.css">
+    <link rel="stylesheet" href="themes/css/home.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+    <link href="css/showComment.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+    <script type="text/javascript" src="layui/layui.js" ></script>
+    <script type="text/javascript" src="js/showComment.js" ></script>
+</head>
+<body>
+    <header class="aui-header-default aui-header-fixed ">
+
+        <a href="javascript:history.back(-1)" class="aui-header-item">
+            <i class="aui-icon aui-icon-back"></i>
+        </a>
+        <div class="aui-header-center aui-header-center-clear">
+            <div class="aui-header-center-logo">
+                <div id="scrollSearchPro">
+                    <span>商品评价</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div style="position: absolute; top:49px; width: 100%">
+        <!-- 评价概况 -->
+        <div id="allcomment">
+            <!-- 评价数 ， 满意度 -->
+            <div style="width: 100%; float: left">
+                <div style="float: left">
+                    商品名（评价数）
+                </div>
+                <div style="float: right">
+                    满意度
+                </div>
+            </div>
+            <!-- 评价分类 -->
+            <div id="sortC">
+                评价分类
+
+            </div>
+
+        </div>
+
+        <!-- 评价信息分区 -->
+        <div id="commentPart">
+            <ul class="flow-default" id="comment">
+                <li>
+                    <!-- 每一条评价的结构 -->
+                    <div class="acomment" >
+                        <!-- 用户名 -->
+                        <div style="float: left; width: 75%">
+                            用户名
+                        <input name="userID" type="hidden" value="">
+                        </div>
+                        <!-- 评分 -->
+                        <div style="float: right; width: 25%">
+                            评分
+                            <input id="score" type="hidden" value="">
+                        </div>
+
+                        <!-- 评论主体 -->
+                        <div class="acomment">
+                            <!-- 文本 -->
+                            <div class="acomment">
+                                这是评论论的文本，我也不知道他可以有多少字，总之就是非常的多，多到我也数不清楚，毕竟炉石玩家只要计算到三十就可以了
+                            </div>
+                            <!-- 图片 -->
+                            <div class="acomment">图片
+                            </div>
+
+                        </div>
+                        <!-- 时间 点赞 回复按钮 -->
+                        <div>
+                            <div style="float: left"> 2018-7-25</div>
+                            <div style="float: right"><i class="layui-icon-praise" >&#xe6c6;</i></div>
+                            <div style="float: right">回复</div>
+                        </div>
+                        <!-- 回复内容 -->
+                        <div class="acomment">
+                            <p>评论1</p>
+                            <p>评论2</p>
+                            <p>评论3</p>
+                            <p >更多评论</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+
+
+
+            <div style="float: left; width: 100% ">
+                <button style="width: 100%; text-align: center">加载更多或已到末尾</button>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+</html>

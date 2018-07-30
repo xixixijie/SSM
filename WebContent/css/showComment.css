@@ -1,0 +1,23 @@
+
+#allcomment{
+
+
+    float: left;
+    width: 95%;
+    margin-left: 2.5%;
+}
+#sortC{
+    float: left;
+    width: 100%;
+
+}
+#commentPart{
+   float: left;
+   width: 95%;
+   margin-left: 2.5%;
+}
+
+.acomment{
+    float: left;
+    width: 100%
+}

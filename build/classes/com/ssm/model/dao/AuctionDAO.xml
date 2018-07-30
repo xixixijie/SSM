@@ -30,9 +30,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <update id="addWanted" parameterType="Map">
         update Auction
-        set WANTED=#{wanted}
+        set WANTED=#{wanted},
+        HIGHEST_PRICE=#{price}
         where AUCTIONID=#{aid}
     </update>
+    <select id="getAuctionOrder" resultType="AuctionOrder">
+        select * from AUCTIONORDER
+    </select>
 </mapper>
 
 
