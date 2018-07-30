@@ -28,7 +28,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">商品名</label>
                 <div class="layui-input-block">
-                    <input type="text" maxlength="25" required lay-verify="required" name="product_name"  placeholder="25个字以内" autocomplete="off" class="layui-input">
+                    <input type="text" maxlength="25" required lay-verify="required" name="product_name" id="product_name" placeholder="25个字以内" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
@@ -121,6 +121,8 @@
             var originalPrice=$(this).val();
             $("#discount_price").attr("value",originalPrice);
         });
+
+
 
         $("#discount_price").blur(function () {
             var originalPrice=$("#original_price").val();
