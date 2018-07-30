@@ -68,6 +68,7 @@ public class AuctionService {
         Map<String,Integer> map=new HashMap<>();
         map.put("aid",aid);
         map.put("wanted",wanted+1);
+        map.put("price",(int)price);
         dao.addWanted(map);
     }
 

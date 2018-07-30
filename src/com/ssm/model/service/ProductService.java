@@ -253,7 +253,13 @@ public class ProductService {
         //基于用户的协同过滤算法
         List<Product> list2=chooseProduct(userid,list);
         //list1.addAll(list2);
-        return list1;
+        int l2size=list2.size();
+        System.out.println("~~~推荐商品大小"+l2size);
+        int l1size=9-l2size;
+        for(int i=0;i<l1size;i++){
+            list2.add(list1.get(i));
+        }
+        return list2;
     }
 
 
