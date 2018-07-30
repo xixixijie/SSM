@@ -44,6 +44,7 @@
                     type: "get",
                     dataType: "json",
                     success: function (data) {
+                        $('#point').empty();
             			for(var i=0;i<data.length;i++){
             			    var str='<div class="item">' +
                                 '<img src="img/'+data[i].picName+'" alt="slide">' +
