@@ -33,6 +33,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         set WANTED=#{wanted}
         where AUCTIONID=#{aid}
     </update>
+    <select id="getAuctionOrder" resultType="AuctionOrder">
+        select * from AUCTIONORDER
+    </select>
 </mapper>
 
 
