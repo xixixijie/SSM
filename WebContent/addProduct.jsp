@@ -29,6 +29,7 @@
                 <label class="layui-form-label">商品名</label>
                 <div class="layui-input-block">
                     <input type="text" maxlength="25" required lay-verify="required" name="product_name" id="product_name" placeholder="25个字以内" autocomplete="off" class="layui-input">
+                    <span id="checkPro"></span>
                 </div>
             </div>
 
@@ -47,6 +48,7 @@
                 <label class="layui-form-label">原价</label>
                 <div class="layui-input-block">
                     <input type="number" id="original_price" name="original_price" step="any" placeholder="不超过50000元" required lay-verify="required" autocomplete="off" class="layui-input" max="50000" min="1">
+                    <span id="checkO"></span>
                 </div>
             </div>
 
@@ -123,6 +125,25 @@
         });
 
 
+        $("#product_name").blur(function() {
+            var product_name=$(this).val();
+            $.ajax({
+                url:"/checkProName.action",
+                async:false,
+                type:"POST",
+                data:{"product_name":product_name},
+                success:function(data){
+                    $("#checkPro").html(data);
+                    $("#checkPro").css("color","red");
+                    $("#subtn").attr("disabled",true);
+                },
+                error:function(){
+                    alert("查询商品名失败");},
+                dataType:"text"
+            });
+
+
+        });
 
         $("#discount_price").blur(function () {
             var originalPrice=$("#original_price").val();

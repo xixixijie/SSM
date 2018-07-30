@@ -170,6 +170,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="checkProDelete" parameterType="int" resultType="int">
         SELECT COUNT (*) FROM ORDERPRODUCT WHERE PRODUCT_ID =#{product_id}
     </select>
+
+    <select id="checkProName" parameterType="String" resultType="int">
+        SELECT COUNT (*) FROM PRODUCT WHERE PRODUCT_NAME =#{product_name}
+    </select>
 </mapper>
 
 

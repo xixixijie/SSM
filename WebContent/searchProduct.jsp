@@ -137,11 +137,12 @@
 
     <div class="row" style="margin-left: 200px">
         <ul class="pagination">
+            <li><a href="/getProductByName?pageNumPro=1&search_info=${search_info}">首页</a></li>
             <c:if test="${pageNumPro==1}">
-                <li class="disabled"><a href="#">&laquo;</a></li>
+                <li class="disabled"><a href="#">上一页</a></li>
             </c:if>
             <c:if test="${pageNumPro!=1}">
-                <li><a href="/getProductByName?pageNumPro=${pageNumPro-1}&search_info=${search_info}">&laquo;</a></li>
+                <li><a href="/getProductByName?pageNumPro=${pageNumPro-1}&search_info=${search_info}">上一页</a></li>
             </c:if>
 
             <c:forEach begin="1" end="${pageCount}" var="p">
@@ -157,12 +158,14 @@
 
 
             <c:if test="${pageNumPro==pageCount}">
-                <li class="disabled"><a href="#">&raquo;</a></li>
+                <li class="disabled"><a href="#">下一页</a></li>
             </c:if>
             <c:if test="${pageNumPro!=pageCount}">
-                <li><a href="/getProductByName?pageNumPro=${pageNumPro+1}&search_info=${search_info}">&raquo;</a></li>
+                <li><a href="/getProductByName?pageNumPro=${pageNumPro+1}&search_info=${search_info}">下一页</a></li>
             </c:if>
+            <li><a href="/getProductByName?pageNumPro=${pageCount}&search_info=${search_info}">尾页</a></li>
         </ul>
+
     </div>
 
 

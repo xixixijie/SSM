@@ -39,4 +39,5 @@ public interface ProductDAO {
     public List<Product> getNewPC();
     public List<Product> getNewElec();
     public int checkProDelete(int product_id);
+    public int checkProName(String product_name);
 }
