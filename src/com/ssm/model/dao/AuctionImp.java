@@ -27,7 +27,8 @@ public class AuctionImp implements AuctionDAO {
                auction.setEndDate(rs.getTimestamp("enddate"));
                auction.setAuctionID(rs.getInt("auctionid"));
                auction.setAuction_name(rs.getString("auction_name"));
-                auction.setWanted(rs.getInt("wanted"));
+               auction.setCover_url(rs.getString("cover_url"));
+               auction.setWanted(rs.getInt("wanted"));
                list.add(auction);
            }
         } catch (SQLException e) {
@@ -79,6 +80,11 @@ public class AuctionImp implements AuctionDAO {
     @Override
     public void addWanted(Map<String, Integer> map) {
 
+    }
+
+    @Override
+    public List<AuctionOrder> getAuctionOrder() {
+        return null;
     }
 
     public void Abortive(int auctionID) {
@@ -152,7 +158,7 @@ public class AuctionImp implements AuctionDAO {
         Connection connection=DBUtil.getConn();
         String sql1="select nvl(max(AOID),0)+1 as maxid from AUCTIONORDER";
         String sql2="select * from ACCEPT_ADDRESS where USER_ID="+auctionOrder.getUserid();
-        String sql3="insert into AUCTIONORDER values (?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql3="insert into AUCTIONORDER values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         int maxid=-1;
 
         Address address=new Address();
@@ -184,7 +190,7 @@ public class AuctionImp implements AuctionDAO {
             preparedStatement.setInt(10,address.getPostcode());
             preparedStatement.setLong(11,address.getAcceptPhone());
             preparedStatement.setString(12,address.getAcceptName());
-
+            preparedStatement.setString(13,auctionOrder.getCover_url());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {

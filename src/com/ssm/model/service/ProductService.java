@@ -32,7 +32,6 @@ public class ProductService {
     @Autowired
     private UserInfoDAO userInfoDAO;
 
-    @Autowired
 
     //范东升
     public List<Classify> getAllClassify(){

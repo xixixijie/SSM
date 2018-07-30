@@ -168,7 +168,7 @@ body{
 
 }
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1470978649'); /* IE9*/
+  src: url("iconfont.eot?t=1470978649"); /* IE9*/
   src: url('iconfont.eot?t=1470978649#iefix') format('embedded-opentype'), /* IE6-IE8 */
   url('iconfont.woff?t=1470978649') format('woff'), /* chrome, firefox */
   url('iconfont.ttf?t=1470978649') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
@@ -641,7 +641,7 @@ vertical-align: middle;
 }
 .collect .main img{
 	width: 4.5rem;
-	height: 4rem;
+	height: 7rem;
 	margin-right: 0.6rem;
 }
 .collect .text h1{
@@ -1654,7 +1654,7 @@ vertical-align: middle;
 @media only screen and (min-width:481px){
 	/*ipad/windows*/	.special_all .main .wrap p{font-size: 0.6rem;}
 }
-}
+
 @media (min-width: 415px) and (max-width: 480px){
 	/*sony U*/.special_all .main .wrap p{font-size: 0.6rem;}
 }

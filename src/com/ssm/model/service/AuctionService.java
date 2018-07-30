@@ -1,6 +1,7 @@
 package com.ssm.model.service;
 
 import com.ssm.model.bean.Auction;
+import com.ssm.model.bean.AuctionOrder;
 import com.ssm.model.bean.AuctionPic;
 import com.ssm.model.bean.History;
 import com.ssm.model.dao.AuctionDAO;
@@ -68,5 +69,10 @@ public class AuctionService {
         map.put("aid",aid);
         map.put("wanted",wanted+1);
         dao.addWanted(map);
+    }
+
+    public List<AuctionOrder> getAuctionOrder() {
+        System.out.println("-----获取拍卖订单Service-----");
+        return dao.getAuctionOrder();
     }
 }
