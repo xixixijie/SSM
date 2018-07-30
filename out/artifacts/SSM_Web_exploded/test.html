@@ -30,37 +30,13 @@
                 }
             }
 
-v           var record=$.cookie('record');
+            writeCookie(1)
+            writeCookie(2)
+writeCookie(3)
+          var record=$.cookie('record');
 
 
-            // //获得所有分类参数
-             $.ajax({
-                 url:"getRecord/"+record,
-                 type:"post",
-                 dataType:"json",
-                 success:function(data)
-                 {
-
-                         // $("#leftDiv").empty();
-                         for(var i=0; i<data.length;i++)
-                         {
-
-                             var str='	<a href="#" class="aui-scroll-item aui-crt">'+
-                                 '<div class="aui-scroll-item-icon"></div>'+
-                                 '<div class="aui-scroll-item-text">'+data[i].className+'</div>'+
-                                 ' </a>';
-                             $("#leftDiv").append(str);
-                         }
-                         //动态加载js
-                         // var script=document.createElement("script");
-                         // script.type="text/javascript";
-                         // script.src="themes/js/aui.js";
-                         // document.getElementsByTagName('head')[0].appendChild(script);
-
-                 }
-
-             });
-
+          alert(record)
 
 
         })

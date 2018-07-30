@@ -4,6 +4,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.model.dao.KeywordDAO">
 
+    <select id="getAllKeyword" resultType="Keyword">
+       SELECT * from KEYWORD
+    </select>
+
+    <insert id="addKeyword" parameterType="Keyword">
+        <selectKey keyProperty="keyID" resultType="int" order="BEFORE">
+            SELECT nvl(max(keyID),0)+1 from keyword
+        </selectKey>
+        INSERT into KEYWORD VALUES (#{keyID},#{keyName},#{keyNum})
+    </insert>
+
+    <update id="addNum" parameterType="Map">
+        UPDATE keyword
+        set keynum=#{keynum}
+        WHERE keyid=#{keyid}
+    </update>
+
+
 </mapper>
 
 
