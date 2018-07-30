@@ -4,19 +4,16 @@ package com.ssm.model.dao;
 import com.ssm.model.bean.*;
 import com.ssm.util.DBUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class AuctionImp implements AuctionDAO {
     @Override
-    public  List<Auction> getAuctions() {
+    public  List<Auction> getAuctions(Timestamp date) {
         Connection conn=DBUtil.getConn();
-        String sql="select * from auction where state=1";
+        String sql="select * from auction where state=1 ";
         List<Auction> list=new ArrayList<>();
         try {
             PreparedStatement ps=conn.prepareStatement(sql);
@@ -85,6 +82,21 @@ public class AuctionImp implements AuctionDAO {
     @Override
     public List<AuctionOrder> getAuctionOrder() {
         return null;
+    }
+
+    @Override
+    public int getMAXID() {
+        return 0;
+    }
+
+    @Override
+    public void addAuction(Auction auction) {
+
+    }
+
+    @Override
+    public void addAuctionPic(AuctionPic auctionPic) {
+
     }
 
     public void Abortive(int auctionID) {

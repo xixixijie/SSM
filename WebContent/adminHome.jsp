@@ -38,6 +38,13 @@
                     <dd><a href="/goToSearchProduct.action?pageNumPro=1" target="mainFrame">查询商品</a></dd>
                 </dl>
             </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">拍卖管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/goToAddProduct.action" target="mainFrame">添加拍卖品</a></dd>
+                    <dd><a href="AuctionManager.html" target="mainFrame">查询拍卖品</a></dd>
+                </dl>
+            </li>
         </ul>
     </div>
     <div class="layui-col-md10">

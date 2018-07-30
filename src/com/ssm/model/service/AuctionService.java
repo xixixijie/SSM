@@ -7,6 +7,7 @@ import com.ssm.model.dao.AuctionDAO;
 import com.ssm.model.dao.UserInfoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
 import java.util.*;
@@ -29,7 +30,7 @@ public class AuctionService {
         System.out.println("~~~"+pagenum+" "+pageSize);
         List<Auction> list=new ArrayList<>();
         Page<Auction> page= PageHelper.startPage(pagenum,pageSize);
-        dao.getAuctions();
+        dao.getAuctions(new Timestamp(new Date().getTime()));
         list=page.getResult();
         return list;
     }
@@ -76,5 +77,21 @@ public class AuctionService {
     public List<AuctionOrder> getAuctionOrder() {
         System.out.println("-----获取拍卖订单Service-----");
         return dao.getAuctionOrder();
+    }
+
+    public void addAuction(Auction auction, String[] files) {
+        System.out.println("-----添加拍卖商品Service-----");
+        //获得最大id
+        int maxID=dao.getMAXID();
+        auction.setAuctionID(maxID);
+        dao.addAuction(auction);
+
+        //添加介绍图
+        for(String str:files){
+            AuctionPic auctionPic=new AuctionPic();
+            auctionPic.setAuctionID(maxID);
+            auctionPic.setPicName(str);
+            dao.addAuctionPic(auctionPic);
+        }
     }
 }
