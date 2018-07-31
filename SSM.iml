@@ -43,5 +43,6 @@
     <orderEntry type="library" name="ansj_seg-5.1.6" level="project" />
     <orderEntry type="library" name="nlp-lang-1.7.7" level="project" />
     <orderEntry type="library" name="7911982ansj_seg-20130808 " level="project" />
+    <orderEntry type="library" name="servlet-api" level="application" />
   </component>
 </module>

@@ -15,29 +15,30 @@ public interface ProductDAO {
 
     public Product getProduct(int pid);
 
-
     List<Integer> getBought(int userid);
 
-    public List<Classify> getAllClassify();
-    public void addProduct(Map<String, Object> map);
-    public int getCurrentProductId();
-    public void addAspect(Map<String, Object> map);
-    public void addParameter(Map<String, Object> map);
-    public List<Product> findAllProduct();
-    public Product getProductById(int product_id);
-    public int getAllPageCount();
-    public void updateProduct(Product product);
-    public List<Product> getProductByName(String search_info);
-    public int getPageCountByName(String search_info);
-    public List<String> getFullName(String search_info);
-    public void deleteProduct(int[] ids);
-    public List<String> getAspectForUser(int product_id);
-    public Product getProductForUser(int product_id);
-    public List<String> getParameterForUser(int product_id);
-    public List<Product> getNewPhone();
-    public List<Product> getNewTV();
-    public List<Product> getNewPC();
-    public List<Product> getNewElec();
-    public int checkProDelete(int product_id);
-    public int checkProName(String product_name);
+    //范东升部分 begin
+    public List<Classify> getAllClassify();    //获得所有分类
+    public void addProduct(Map<String, Object> map);   //添加商品信息
+    public int getCurrentProductId();     //获得当前添加商品的自增id
+    public void addAspect(Map<String, Object> map);    //添加商品的外观轮播图
+    public void addParameter(Map<String, Object> map);    //添加商品的参数图
+    public List<Product> findAllProduct();      //获取所有商品
+    public Product getProductById(int product_id);     //根据id获取商品
+    public int getAllPageCount();       //获取总页数
+    public void updateProduct(Product product);     //更新商品
+    public List<Product> getProductByName(String search_info);  //根据关键字获取商品列表并分页
+    public int getPageCountByName(String search_info);  //根据商品关键字获取商品列表的总页数
+    public List<String> getFullName(String search_info);    //智能补全商品名
+    public void deleteProduct(int[] ids);   //删除商品
+    public List<String> getAspectForUser(int product_id);   //根据id获得单个商品的外观轮播图
+    public Product getProductForUser(int product_id);       //根据id获得单个商品的信息
+    public List<String> getParameterForUser(int product_id);    //根据id获得单个商品的参数图
+    public List<Product> getNewPhone();     //按上市日期倒序获得最新手机商品列表
+    public List<Product> getNewTV();    //按上市日期倒序获得最新电视商品列表
+    public List<Product> getNewPC();    //按上市日期倒序获得最新笔记本商品列表
+    public List<Product> getNewElec();  //按上市日期倒序获得最新智能家居商品列表
+    public int checkProDelete(int product_id);  //检验商品是否可以删除
+    public int checkProName(String product_name);   //检验商品名是否重复
+    //范东升部分 end
 }
