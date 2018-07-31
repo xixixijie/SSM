@@ -18,25 +18,27 @@ import java.util.List;
 
 /**
  * Created by xixi on 2018/7/19.
+ * 商品管理模块的Controller
  */
 @Controller
 public class ProductController {
 
-    @Autowired
+    @Autowired      //注入service
     private ProductService productService;
 
+    //范东升部分 begin
 
-    //范东升 begin
+    //获取所有分类列表并跳转至添加商品页面
     @RequestMapping("goToAddProduct")
     public String goToAddProduct(Model model){
         List<Classify> classifyList=new ArrayList<Classify>();
         classifyList=productService.getAllClassify();
 
-
         model.addAttribute("classifyList",classifyList);
         return "addProduct";
     }
 
+    //添加商品
     @RequestMapping(value="addProduct", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute Product product,@RequestParam MultipartFile cover, @RequestParam MultipartFile[] aspectPics, @RequestParam MultipartFile[] parameterPics){
 
@@ -48,15 +50,9 @@ public class ProductController {
         String newParameterName="";
         String newCoverName="";
 
-        String aspectUrl="D:\\javaWeb/SSM/WebContent/img";
-        String parameterUrl="D:\\javaWeb/SSM/WebContent/img";
-        String coverUrl="D:\\javaWeb/SSM/WebContent/img";
-
-        String aspect_url="";
-        String parameter_url="";
-        String cover_url="";
-
-
+        String aspectUrl="D:\\javaWeb/MI2/WebContent/img";
+        String parameterUrl="D:\\javaWeb/MI2/WebContent/img";
+        String coverUrl="D:\\javaWeb/MI2/WebContent/img";
 
         oldCoverName=cover.getOriginalFilename();
         newCoverName=System.currentTimeMillis()+oldCoverName.substring(oldCoverName.indexOf("."));
@@ -67,18 +63,11 @@ public class ProductController {
             e.printStackTrace();
         }
 
-        cover_url=coverUrl+newCoverName;
-
         product.setCover_url(newCoverName);
 
-//        System.out.println(product.getProduct_name()+"  "+product.getClassify().getClassifyID()
-//                +"  "+product.getOriginal_price()+"  "+product.getDiscount_price()+"  "+product.getProduct_info()+"  "
-//                +product.getCover_url()
-//        );
         productService.addProduct(product);
+        //获得刚刚插入的商品的id
         int product_id=productService.getCurrentProductId();
-
-
 
         for (int i = 0; i < aspectPics.length; i++) {
             oldAspectName = aspectPics[i].getOriginalFilename();
@@ -87,9 +76,7 @@ public class ProductController {
             File file = new File(aspectUrl,newAspectName);
             try {
                 aspectPics[i].transferTo(file);
-                aspect_url=aspectUrl+newAspectName;
                 productService.addAspect(newAspectName,product_id);
-//                System.out.println(aspect_url);
             } catch (IllegalStateException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -104,19 +91,18 @@ public class ProductController {
             File file = new File(parameterUrl,newParameterName);
             try {
                 parameterPics[i].transferTo(file);
-                parameter_url=parameterUrl+newParameterName;
                 productService.addParameter(newParameterName,product_id);
-
-//                System.out.println(parameter_url);
             } catch (IllegalStateException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
         return "redirect:goToAddProduct.action";
     }
 
+    //进入搜索商品页面
     @RequestMapping("goToSearchProduct")
     public String goToSearchProduct(Model model, int pageNumPro, HttpSession session){
         int pageCount=0;
@@ -130,16 +116,13 @@ public class ProductController {
             pro.setDelete(isDelete);
         }
         pageCount=productService.getAllPageCount();
-//        for (Product product:productList) {
-//            System.out.println(product.getProduct_id()+"  "+product.getProduct_name());
-//       }
-
         model.addAttribute("productList",productList);
         model.addAttribute("pageCount",pageCount);
         session.setAttribute("pageNumPro",pageNumPro);
         return "searchProduct";
     }
 
+    //查看商品详细信息
     @RequestMapping("getProductInfo")
     public String getProductInfo(int product_id,Model model){
         Product product=new Product();
@@ -149,11 +132,13 @@ public class ProductController {
         return "productInfo";
     }
 
+    //进入编辑商品信息页面
     @RequestMapping("editProduct")
     public String editProduct(Model model,int product_id){
+        //获取分类列表
         List<Classify> classifyList=new ArrayList<Classify>();
         classifyList=productService.getAllClassify();
-
+        //根据id获取商品信息
         Product product=new Product();
         product=productService.getProductById(product_id);
 
@@ -163,6 +148,7 @@ public class ProductController {
         return "editProduct";
     }
 
+    //更新商品信息
     @RequestMapping("updateProduct")
     public String updateProduct(@ModelAttribute Product product, HttpSession session,Model model){
         String pageNumPro=session.getAttribute("pageNumPro").toString();
@@ -176,11 +162,12 @@ public class ProductController {
         return "redirect:goToSearchProduct.action?pageNumPro="+pageNumPro;
     }
 
+    //根据关键字查询相关商品
     @RequestMapping("getProductByName")
     public String getProductByName(String search_info,int pageNumPro,Model model,HttpSession session){
         int pageCount=0;
-//        int pageNumPro=1;
         List<Product> productList=new ArrayList<Product>();
+        //如果搜索内容为空，则查询所有商品；如果搜索内容不为空，则搜索包含该内容关键字的商品
         if (search_info != null && !"".equals(search_info)){
             productList=productService.getProductByName(search_info,pageNumPro);
             pageCount=productService.getPageCountByName(search_info);
@@ -188,11 +175,12 @@ public class ProductController {
             productList=productService.getAllPageProduct(pageNumPro);
             pageCount=productService.getAllPageCount();
         }
-
-//        for (Product product:productList) {
-//            System.out.println(product.getProduct_id()+"  "+product.getProduct_name());
-//       }
-
+        for (Product pro:productList) {
+            int pro_id = pro.getProduct_id();
+            boolean isDelete=productService.checkProDelete(pro_id);
+            System.out.println(pro_id+"  "+isDelete);
+            pro.setDelete(isDelete);
+        }
         model.addAttribute("productList",productList);
         model.addAttribute("pageCount",pageCount);
         session.setAttribute("search_info",search_info);
@@ -200,6 +188,7 @@ public class ProductController {
         return "searchProduct";
     }
 
+    //商品名智能补全
     @RequestMapping(value = "getFullName",produces={"text/html;charset=UTF-8;","application/json;"})
     @ResponseBody
     public String getFullName(String search_info){
@@ -217,21 +206,22 @@ public class ProductController {
         return sb.toString();
     }
 
+    //删除商品
     @RequestMapping("deleteProduct")
     public String deleteProduct(HttpServletRequest request, HttpSession session){
         String pageNumPro=session.getAttribute("pageNumPro").toString();
         String[] chks = request.getParameterValues("chk");
-//        for (int i = 0; i < chks.length; i++) {
-//            System.out.println(chks[i]);
-//        }
+
         int[] ids=new int[chks.length];
         for (int i = 0; i < chks.length; i++) {
             ids[i]=Integer.parseInt(chks[i]);
         }
+
         productService.deleteProduct(ids);
         return "redirect:goToSearchProduct.action?pageNumPro="+pageNumPro;
     }
 
+    //根据关键字查询相关商品（用于用户界面）
     @RequestMapping(value = "/getProductForUserByName/{search_info}",method=RequestMethod.POST)
     @ResponseBody
     public List<Product> getProductForUserByName(@PathVariable String search_info){
@@ -240,16 +230,16 @@ public class ProductController {
         return productList;
     }
 
+    //根据id获得单个商品的外观轮播图
     @RequestMapping(value = "/getAspectForUser/{product_id}",produces={"text/html;charset=UTF-8;","application/json;"})
     @ResponseBody
     public List<String> getAspectForUser(@PathVariable int product_id){
         List<String> aspectList=new ArrayList<String>();
         aspectList=productService.getAspectForUser(product_id);
-
-
         return aspectList;
     }
 
+    //根据id获得单个商品的信息
     @RequestMapping(value = "/getProductForUser/{product_id}",produces={"text/html;charset=UTF-8;","application/json;"})
     @ResponseBody
     public Product getProductForUser(@PathVariable int product_id){
@@ -258,6 +248,7 @@ public class ProductController {
         return product;
     }
 
+    //根据id获得单个商品的参数图
     @RequestMapping(value = "/getParameterForUser/{product_id}",produces={"text/html;charset=UTF-8;","application/json;"})
     @ResponseBody
     public List<String> getParameterForUser(@PathVariable int product_id){
@@ -266,7 +257,7 @@ public class ProductController {
         return parameterList;
     }
 
-
+    //按上市日期倒序获得最新手机商品列表
     @RequestMapping("getNewPhone")
     @ResponseBody
     public List<Product> getNewPhone(){
@@ -275,6 +266,7 @@ public class ProductController {
         return phoneList;
     }
 
+    //按上市日期倒序获得最新电视商品列表
     @RequestMapping("getNewTV")
     @ResponseBody
     public List<Product> getNewTV(){
@@ -283,6 +275,7 @@ public class ProductController {
         return tvList;
     }
 
+    //按上市日期倒序获得最新笔记本商品列表
     @RequestMapping("getNewPC")
     @ResponseBody
     public List<Product> getNewPC(){
@@ -291,6 +284,7 @@ public class ProductController {
         return pcList;
     }
 
+    //按上市日期倒序获得最新智能家居商品列表
     @RequestMapping("getNewElec")
     @ResponseBody
     public List<Product> getNewElec(){
@@ -299,6 +293,7 @@ public class ProductController {
         return elecList;
     }
 
+    //商品名称查重校验
     @RequestMapping(value="checkProName",produces={"text/html;charset=UTF-8;","application/json;"})
     @ResponseBody
     public String checkProName(String product_name){
@@ -310,7 +305,7 @@ public class ProductController {
         return existCode;
     }
 
-    //范东升 end
+    //范东升部分 end
 
     @RequestMapping(value = "/getProductsByClassifyID/{classifyID}")
     @ResponseBody

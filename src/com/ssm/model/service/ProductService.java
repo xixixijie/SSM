@@ -33,13 +33,15 @@ public class ProductService {
     private UserInfoDAO userInfoDAO;
 
 
-    //范东升
+    //范东升部分 begin
+    //获得所有分类
     public List<Classify> getAllClassify(){
         List<Classify> classifyList=new ArrayList<Classify>();
         classifyList=productDAO.getAllClassify();
         return classifyList;
     }
 
+    //添加商品信息
     public void addProduct(Product product){
         int status=1;
         Date on_date=new Date();
@@ -50,11 +52,13 @@ public class ProductService {
         productDAO.addProduct(map);
     }
 
+    //获得当前添加商品的自增id
     public int getCurrentProductId(){
         int product_id=productDAO.getCurrentProductId();
         return product_id;
     }
 
+    //添加商品的外观轮播图
     public void addAspect(String aspect_url,int product_id){
         Map<String, Object> map=new HashMap<String, Object>();
         map.put("aspect_url", aspect_url);
@@ -62,6 +66,7 @@ public class ProductService {
         productDAO.addAspect(map);
     }
 
+    //添加商品的参数图
     public void addParameter(String parameter_url,int product_id){
         Map<String, Object> map=new HashMap<String, Object>();
         map.put("parameter_url", parameter_url);
@@ -69,20 +74,19 @@ public class ProductService {
         productDAO.addParameter(map);
     }
 
+    //获取商品列表并分页
     public List<Product> getAllPageProduct(int pageNum){
         int pageSize=8;
         List<Product> list=new ArrayList<Product>();
+        //使用PageHelper插件进行分页
         Page<Product> page= PageHelper.startPage(pageNum,pageSize);
         productDAO.findAllProduct();
         list=page.getResult();
-//        System.out.println("公司打仨噶萨嘎上的噶");
-//        for (Product product:list) {
-//            System.out.println(product.getProduct_id()+"  "+product.getProduct_name());
-//      }
 
         return list;
     }
 
+    //获取总页数
     public int getAllPageCount(){
         int count=0;
         int pageSize=8;
@@ -96,16 +100,19 @@ public class ProductService {
         return pagecount;
     }
 
+    //根据商品id获得商品
     public Product getProductById(int product_id){
         Product product=new Product();
         product=productDAO.getProductById(product_id);
         return product;
     }
 
+    //更新商品
     public void updateProduct(Product product){
         productDAO.updateProduct(product);
     }
 
+    //根据关键字获取商品列表并分页
     public List<Product> getProductByName(String search_info,int pageNum){
         int pageSize=8;
         List<Product> list=new ArrayList<Product>();
@@ -115,6 +122,7 @@ public class ProductService {
         return list;
     }
 
+    //根据商品关键字获取商品列表的总页数
     public int getPageCountByName(String search_info){
         int count=0;
         int pageSize=8;
@@ -128,75 +136,87 @@ public class ProductService {
         return pagecount;
     }
 
+    //智能补全商品名
     public List<String> getFullName(String search_info){
         List<String> nameList=new ArrayList<String>();
         nameList=productDAO.getFullName(search_info);
         return nameList;
     }
 
+    //删除商品
     public void deleteProduct(int[] ids){
         productDAO.deleteProduct(ids);
     }
 
+    //根据关键字查询相关商品（用于用户界面）
     public List<Product> getProductForUserByName(String search_info){
         List<Product> list=new ArrayList<Product>();
         list=productDAO.getProductByName(search_info);
         return list;
     }
 
+    //根据id获得单个商品的外观轮播图
     public List<String> getAspectForUser(int product_id){
         List<String> aspectList=new ArrayList<String>();
         aspectList=productDAO.getAspectForUser(product_id);
         return aspectList;
     }
 
+    //根据id获得单个商品的信息
     public Product getProductForUser(int product_id){
         Product product=new Product();
         product=productDAO.getProductForUser(product_id);
         return product;
     }
 
+    //根据id获得单个商品的参数图
     public List<String> getParameterForUser(int product_id){
         List<String> parameterList=new ArrayList<String>();
         parameterList=productDAO.getParameterForUser(product_id);
         return parameterList;
     }
 
+    //按上架日期倒序获得最新手机商品列表
     public List<Product> getNewPhone(){
         List<Product> phoneList=new ArrayList<Product>();
         phoneList=productDAO.getNewPhone();
         return phoneList;
     }
 
+    //按上架日期倒序获得最新电视商品列表
     public List<Product> getNewTV(){
         List<Product> tvList=new ArrayList<Product>();
         tvList=productDAO.getNewTV();
         return tvList;
     }
 
+    //按上架日期倒序获得最新笔记本商品列表
     public List<Product> getNewPC(){
         List<Product> pcList=new ArrayList<Product>();
         pcList=productDAO.getNewPC();
         return pcList;
     }
 
+    //按上架日期倒序获得最新智能家居商品列表
     public List<Product> getNewElec(){
         List<Product> elecList=new ArrayList<Product>();
         elecList=productDAO.getNewElec();
         return elecList;
     }
 
+    //检验商品是否可以删除
     public boolean checkProDelete(int product_id){
         int count=productDAO.checkProDelete(product_id);
         return count>0?false:true;
     }
 
+    //检验商品名称是否重复
     public boolean checkProName(String product_name){
         int count=productDAO.checkProName(product_name);
         return count>0?true:false;
     }
 
-    //范东升end
+    //范东升部分 end
 
     public List<Product> getProducts(int classifyID) {
         System.out.println("-----获取分类商品service-----");
