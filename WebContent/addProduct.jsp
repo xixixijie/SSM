@@ -133,16 +133,19 @@
                 type:"POST",
                 data:{"product_name":product_name},
                 success:function(data){
-                    $("#checkPro").html(data);
-                    $("#checkPro").css("color","red");
-                    $("#subtn").attr("disabled",true);
+                    if(data!=""){
+                        $("#checkPro").html(data);
+                        $("#checkPro").css("color","red");
+                        $("#subtn").attr("disabled",true);
+                    }
+                    else {
+                        $("#subtn").attr("disabled",false);
+                    }
                 },
                 error:function(){
                     alert("查询商品名失败");},
                 dataType:"text"
             });
-
-
         });
 
         $("#discount_price").blur(function () {
@@ -157,7 +160,9 @@
                 $("#subtn").attr("disabled",false);
             }
         })
+
     })
+
 
 
 </script>

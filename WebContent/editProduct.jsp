@@ -103,13 +103,18 @@
             var product_name=$(this).val();
             $.ajax({
                 url:"/checkProName.action",
-                async:false,
                 type:"POST",
                 data:{"product_name":product_name},
                 success:function(data){
-                    $("#checkPro").html(data);
-                    $("#checkPro").css("color","red");
-                    $("#subtn").attr("disabled",true);
+                    if(data!=""){
+                        $("#checkPro").html(data);
+                        $("#checkPro").css("color","red");
+                        $("#subtn").attr("disabled",true);
+                    }
+                    else {
+                        $("#checkPro").html(data);
+                        $("#subtn").attr("disabled",false);
+                    }
                 },
                 error:function(){
                     alert("查询商品名失败");},
