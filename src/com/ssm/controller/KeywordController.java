@@ -18,6 +18,10 @@ public class KeywordController {
     @Autowired
     private KeywordService keywordService;
 
+    /**
+     * 获得评论数最高的关键标签
+     * @return
+     */
     @RequestMapping(value = "getKeyword")
     @ResponseBody
     public List<Keyword> getTopKeys(){
