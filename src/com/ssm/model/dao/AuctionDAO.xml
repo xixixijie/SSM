@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ssm.model.dao.AuctionDAO">
 
     <select id="getAuctions" parameterType="java.sql.Timestamp" resultType="Auction">
-        select * from auction WHERE state=1 and BEGINDATE>#{date}
+        select * from auction WHERE state=1 and BEGINDATE&lt;#{date}
     </select>
 
     <select id="getAuction"  parameterType="int" resultType="Auction">
@@ -34,8 +34,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         HIGHEST_PRICE=#{price}
         where AUCTIONID=#{aid}
     </update>
-    <select id="getAuctionOrder" resultType="AuctionOrder">
-        select * from AUCTIONORDER
+    <select id="getAuctionOrder" parameterType="int" resultType="AuctionOrder">
+        select * from AUCTIONORDER where USERID=#{userid}
     </select>
 
     <select id="getMAXID" resultType="int">

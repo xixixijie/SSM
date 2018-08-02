@@ -7,6 +7,15 @@ public class Keyword {
     private int keyID;
     private String keyName;
     private int keyNum;
+    private int labelID;
+
+    public int getLabelID() {
+        return labelID;
+    }
+
+    public void setLabelID(int labelID) {
+        this.labelID = labelID;
+    }
 
     public int getKeyID() {
         return keyID;

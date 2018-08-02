@@ -23,9 +23,9 @@ public interface AuctionDAO {
 
     void addHistory(History history);
 
-    void addWanted(Map<String,Integer> map);
+    void addWanted(Map<String, Integer> map);
 
-    List<AuctionOrder> getAuctionOrder();
+    List<AuctionOrder> getAuctionOrder(int userID);
 
     int getMAXID();
 

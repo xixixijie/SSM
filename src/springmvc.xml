@@ -36,8 +36,10 @@
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	<!--配置斯坦福分词-->
+	<context:property-placeholder location="classpath:CoreNLP-chinese.properties"/>
 
- 	<context:component-scan base-package="com.ssm.controller"></context:component-scan>
+	<context:component-scan base-package="com.ssm.controller"></context:component-scan>
  	<!-- 组建扫描Service -->
 	<context:component-scan base-package="com.ssm.model.service" ></context:component-scan>
  	    <!--配置service不需要实现接口  -->

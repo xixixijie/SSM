@@ -3,9 +3,11 @@ package com.ssm.util;
 import com.ssm.model.bean.Auction;
 import com.ssm.model.bean.AuctionOrder;
 import com.ssm.model.bean.History;
+import com.ssm.model.dao.AuctionDAO;
 import com.ssm.model.dao.AuctionImp;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -23,8 +25,12 @@ public class Task extends TimerTask {
 
 
 
+
     @Override
     public void run() {
+
+
+
         if (!isRunning) {
             isRunning = true;
             logger.info("开始执行任务。");
@@ -71,6 +77,7 @@ public class Task extends TimerTask {
                             dao.modifyAuction(a.getAuctionID());
                             //其余的通知失败
                             List<Integer> userids=new ArrayList<>();
+                            userids.add(history.getUserID());
                             for(int i=1;i<histories.size();i++){
                                 History h=histories.get(i);
                                 if(userids.contains(h.getUserID()))

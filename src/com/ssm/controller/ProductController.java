@@ -306,7 +306,11 @@ public class ProductController {
     }
 
     //范东升部分 end
-
+    /**
+     * 根据分类查询下属商品
+     * @param classifyID
+     * @return
+     */
     @RequestMapping(value = "/getProductsByClassifyID/{classifyID}")
     @ResponseBody
     public List<Product> getProducts(@PathVariable int classifyID){
@@ -315,15 +319,20 @@ public class ProductController {
         return productService.getProducts(classifyID);
     }
 
-    //展示详细商品
-    @RequestMapping(value = "/showDetailProduct/{productID}")
-    @ResponseBody
-    public void showDetailProduct(@PathVariable int productID){
-        System.out.println("-----商品信息查询Controller-----");
-        productService.storeRecord(productID);
-    }
+//    //展示详细商品
+//    @RequestMapping(value = "/showDetailProduct/{productID}")
+//    @ResponseBody
+//    public void showDetailProduct(@PathVariable int productID){
+//        System.out.println("-----商品信息查询Controller-----");
+//        productService.storeRecord(productID);
+//    }
 
 
+    /**
+     * 根据record获得浏览记录
+     * @param record
+     * @return
+     */
     @RequestMapping(value = "/getRecord/{record}")
     @ResponseBody
     public List<Product> getRecord(@PathVariable String record){
@@ -332,6 +341,11 @@ public class ProductController {
         return productService.getRecord(record);
     }
 
+    /**
+     * 推荐商品
+     * @param userid
+     * @return
+     */
     @RequestMapping(value = "introProduct/{userid}")
     @ResponseBody
     public List<Product> introProduct(@PathVariable int userid){
