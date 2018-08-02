@@ -517,6 +517,7 @@ background: #2ad2c9 url("/img/home.png") no-repeat scroll 0% 0% / 117px auto;}
 .detail_footer .return_home{
     width: 30px;
     height: 31px;
+    background-image: url("/img/footer-icon.png");
     background-size: 30px auto;
     background-position: 0px 0px;
     margin-right: 5px;
@@ -1445,7 +1446,7 @@ h2 .mc-t>b{
 }
 .footer li {
     float: left;
-    width: 25%;
+    width: 33%;
     text-align: center;
     margin-top: 10px;
     height: 100%;
@@ -1466,6 +1467,7 @@ h2 .mc-t>b{
 .fb-group,
 .fb-list,
 .fb-user{
+    background-image: url("/img/footer-icon.png");
     background-repeat: no-repeat;
     background-size: 30px auto;
     height: 31px;

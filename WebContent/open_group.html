@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>我来开团</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no, email=no"/>
     <link rel="stylesheet" href="themes/css/core.css">
     <link rel="stylesheet" href="themes/css/icon.css">
     <link rel="stylesheet" href="themes/css/home.css">
@@ -29,10 +33,27 @@
     <div class="aui-address-box">
         <div class="aui-address-box-list">
             <a href="#" class="aui-address-box-default">
-                <select>
-                    <option>地址1</option>
-                    <option>地址2</option>
-                    <option>地址3</option>
+                <select id="address_select" onchange="addressChange()">
+                    <script type="application/javascript">
+                        function addressChange() {
+                            var addressID = $("#address_select").val();
+                            $.ajax({
+                                url: "searchAddressInfo/" + addressID,
+                                type: "post",
+                                dataType: "json",
+                                success: function (data) {
+                                    $("#receiver_name").empty();
+                                    $("#receiver_name").append(data.accept_Name);
+                                    $("#receiver_tel").empty();
+                                    $("#receiver_tel").append(data.accept_Phone);
+                                    $("#receiver_postcode").empty();
+                                    $("#receiver_postcode").append(data.postcode);
+                                    $("#receiver_address").empty();
+                                    $("#receiver_address").append(data.address);
+                                }
+                            });
+                        }
+                    </script>
                 </select>
             </a>
         </div>
@@ -89,37 +110,64 @@
     </div>
 
     <script type="application/javascript">
-        $("#open_group_button").click(function(){
-//            var activityID = $("#open_group_activityID").val();
-////            从cookie中获取userid
+
+        function getNowFormatDate() {
+            var date = new Date();
+            var seperator1 = "-";
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+            return currentdate;
+        }
+
+        $("#open_group_button").click(function () {
+            var activityID = $("#open_group_activityID").val();
+//            从cookie中获取userid
 //            $.cookie('leaderID', 1, { expires: 7 ,path:'/'});
-//            //从cookie中取joinerID
-//            var leaderID = 1;
+            //从cookie中取joinerID
+            var leaderID = 1;
 //            leaderID = $.cookie('leaderID');
-//
-//            var openDate = $("#open_group_openDate").val();
-//            var receiverName = $("#open_group_receiverName").val();
-//            var receiverTEL = $("#open_group_receiverTEL").val();
-//            var receiverPostcode = $("#open_group_receiverPostcode").val();
-//            var receiverAddress = $("#open_group_receiverAddress").val();
+
+            var openDate = getNowFormatDate();
+            var receiverName = $("#receiver_name").html();
+            var receiverTEL = $("#receiver_tel").html();
+            var receiverPostcode = $("#receiver_postcode").html();
+            var receiverAddress = $("#receiver_address").html();
+            //默认需要
+            var billNeeded = 1;
 //            var billNeeded = $("#open_group_billNeeded").val();
-//
-//            $.ajax({
-//                url:"initiateGroupBuying/"+activityID+"/"+leaderID+"/"+openDate+"/"+receiverName+"/"+receiverTEL
-//                +"/"+receiverPostcode+"/"+receiverAddress+"/"+billNeeded,
-//                type:"post",
-//                dataType:"json",
-//                success:function(data)
-//                {
-//                    console.log(data);
-//                    alert(data);
-//                }
-//            });
-            var groupID=1;
-            window.location.href="after_open_group.html?groupID="+groupID;
+
+            $.ajax({
+                url: "initiateGroupBuying/" + activityID + "/" + leaderID + "/" + openDate + "/" + receiverName + "/" + receiverTEL
+                + "/" + receiverPostcode + "/" + receiverAddress + "/" + billNeeded,
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    alert(data);
+                }
+            });
+
+
+            //获取最新的groupID，也就是刚开团的
+            $.ajax({
+                url: "getNewGroupID",
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    window.location.href = "after_open_group.html?groupID=" + data;
+                }
+            });
+
         });
     </script>
-
 </section>
 </body>
 </html>

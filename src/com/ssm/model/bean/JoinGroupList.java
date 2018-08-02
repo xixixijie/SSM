@@ -5,16 +5,24 @@ import java.util.Date;
 /**
  * Created by chenyufeng on 2018/7/19.
  */
+
+/**
+ *  <p>
+ *      跟团记录实体类
+ *  </p>
+ *
+ *  @author chenyufeng
+ */
 public class JoinGroupList {
-    int joinID;
-    Group group;
-    UserInfo joiner;
-    Date joinDate;
-    String receiverName;
-    String receiverTelephone;
-    int receiverPostCode;
-    String receiverAddress;
-    int billNeeded;
+    int joinID;                                 //跟团记录ID，用于唯一区分跟团记录
+    Group group;                                //跟团记录对应的团购队伍，团购队伍的相关信息封装在Group对象中
+    UserInfo joiner;                            //跟团人，跟团人的相关信息封装在UserInfo对象汇总
+    Date joinDate;                              //跟团日期
+    String receiverName;                        //收货人姓名
+    String receiverTelephone;                   //收货人手机号
+    int receiverPostCode;                       //收获邮编
+    String receiverAddress;                     //具体收货地址
+    int billNeeded;                             //是否需要纸质发票  0不需要  1需要
 
     public Group getGroup() {
         return group;

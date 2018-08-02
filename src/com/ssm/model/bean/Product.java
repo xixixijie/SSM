@@ -4,19 +4,27 @@ import java.util.Date;
 
 /**
  * Created by fouter on 2018/7/17.
- * 商品实体类
  */
 public class Product {
-    private int product_id;     //商品id
-    private String product_name;        //商品名
-    private Classify classify;      //商品分类
-    private double original_price;      //原价
-    private double discount_price;      //折扣价
-    private String product_info;        //商品概述
-    private String cover_url;       //商品封面图
-    private Date on_date;       //商品上架日期
-    private boolean isDelete;       //是否可删除
-    private int commentNum;     //评论数
+    private int product_id;
+    private String product_name;
+    private Classify classify;
+    private double original_price;
+    private double discount_price;
+    private String product_info;
+    private String cover_url;
+    private Date on_date;
+    private boolean isDelete;
+    private int commentNum;
+
+    public Date getOn_date() {
+        return on_date;
+    }
+
+    public void setOn_date(Date on_date) {
+        this.on_date = on_date;
+    }
+
 
     public int getProduct_id() {
         return product_id;
@@ -74,15 +82,7 @@ public class Product {
         this.cover_url = cover_url;
     }
 
-
-    public Date getOn_date() {
-        return on_date;
-    }
-
-    public void setOn_date(Date on_date) {
-        this.on_date = on_date;
-    }
-    public boolean isDelete(){
+    public boolean isDelete() {
         return isDelete;
     }
 
@@ -96,6 +96,20 @@ public class Product {
 
     public void setCommentNum(int commentNum) {
         this.commentNum = commentNum;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        return product_id == product.product_id;
+    }
+
+    @Override
+    public int hashCode() {
+        return product_id;
     }
 }

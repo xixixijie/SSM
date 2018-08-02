@@ -2,80 +2,157 @@
 <html lang="en">
 <head>
     <title>发布团购活动</title>
+    <meta charset="UTF-8">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="/js/jquery-3.2.0.min.js"></script>
     <link rel="stylesheet" href="css/frameui.css">
     <link rel="stylesheet" href="css/recommended.css">
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
 </head>
+<style>
+    .error{
+        color:red;
+    }
+</style>
 <body>
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title">发布团购活动</h3>
-    </div>
-    <div class="panel-body">
-        <!--首先三级联动获取商品-->
-        <div class="form-group">
-            <label for="doc-select-1">商品分类</label>
-            <select class="form-control" id="doc-select-1" name="classifyId" onchange="classifyChange()"></select>
+<input id="original_price" value="9999" hidden>
+<form id="addActivityForm">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">发布团购活动</h3>
         </div>
+        <div class="panel-body">
+            <!--首先三级联动获取商品-->
+            <div class="form-group">
+                <label for="doc-select-1">商品分类</label>
+                <select class="form-control" id="doc-select-1" name="classifyId" onchange="classifyChange()"></select>
+            </div>
 
-        <div class="form-group">
-            <label for="doc-select-2">商品名称</label>
-            <select class="form-control" id="doc-select-2" name="productId" onchange="productChange()"></select>
-        </div>
-        <div id="show_product_id">
-
-        </div>
-        <div id="show_product_info">
-
-        </div>
-    </div>
-</div>
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title">设置团购信息</h3>
-    </div>
-    <div class="panel-body">
-        <div class="form-group">
-            <label for="group_buying_price">团购价格</label>
-            <input id="group_buying_price" type="text" class="form-control" value="0.00">
-        </div>
-        <div class="form-group">
-            <label for="requiredNumber">需要的人数</label>
-            <input id="requiredNumber" type="number" class="form-control" value="0">
-        </div>
-        <div class="form-group">
-            <label for="groupStartDate">开始时间</label>
-            <input id="groupStartDate" type="date" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="groupEndDate">结束时间</label>
-            <input id="groupEndDate" type="date" class="form-control" required>
+            <div class="form-group">
+                <label for="doc-select-2">商品名称</label>
+                <select class="form-control" id="doc-select-2" name="productId" onchange="productChange()"></select>
+            </div>
+            <div id="show_product_id">
+                <input id="productID" name="productID" value="-1" hidden>
+            </div>
+            <div id="show_product_info">
+            </div>
         </div>
     </div>
-    <button type="button" id="release_activity_button">发布</button>
-</div>
-
-
-<script type="application/javascript">
-    $("#release_activity_button").click(function(){
-        alert(11);
-        var productID = $("#productID").val();
-        var requiredNum = $("#requiredNumber").val();
-        var group_buying_price = $("#group_buying_price").val();
-        var groupStartDate = $("#groupStartDate").val();
-        var groupEndDate = $("#groupEndDate").val();
-
-        $.ajax({
-            url:"releaseActivity/"+productID+"/"+requiredNum+"/"+group_buying_price+"/"+groupStartDate+"/"+groupEndDate,
-            type:"post",
-            dataType:"json",
-            success:function(data)
-            {
-                console.log(data);
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">设置团购信息</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="group_buying_price">团购价格</label>
+                <input id="group_buying_price" type="text" class="form-control" value="0.00" name="group_buying_price">
+            </div>
+            <div class="form-group">
+                <label for="requiredNumber">需要的人数</label>
+                <input id="requiredNumber" type="number" class="form-control" value="0" name="requiredNumber">
+            </div>
+            <div class="form-group">
+                <label for="groupStartDate">开始时间</label>
+                <input id="groupStartDate" type="date" class="form-control" name="groupStartDate">
+            </div>
+            <div class="form-group">
+                <label for="groupEndDate">结束时间</label>
+                <input id="groupEndDate" type="date" class="form-control" name="groupEndDate">
+            </div>
+        </div>
+        <button type="button" id="release_activity_button" class="btn am-btn-success btn-lg btn-block" id="search_activity_button">发布</button>
+    </div>
+</form>
+<script>
+    $().ready(function() {
+        var original_price= $("#original_price").val();
+        $("#addActivityForm").validate({
+            debug:true,
+            rules: {
+                requiredNumber: {
+                    required: true,
+                    digits:true
+                },
+                group_buying_price: {
+                    required: true,
+                    number:true,
+                    max:original_price
+                },
+                groupStartDate: {
+                    required: true,
+                    dateISO:true
+                },
+                groupEndDate: {
+                    required: true,
+                    dateISO:true
+                }
+            },
+            messages: {
+                requiredNumber: {
+                    required: "请输入需要参加的人数",
+                    digits: "必须为整数"
+                },
+                group_buying_price: {
+                    required: "请输入团购价格",
+                    number:"必须为数字",
+                    max:"超过原价"
+                },
+                groupStartDate: {
+                    required: "请输入开始时间",
+                    dateISO:  "请输入正确的时间"
+                },
+                groupEndDate: {
+                    required: "请输入结束时间",
+                    dateISO:  "请输入正确的时间"
+                }
             }
         });
-        window.location.href="generateActivity.html";
+    });
+</script>
+
+<script type="application/javascript">
+    function check(startTime, endTime) {
+        if (startTime.length > 0 && endTime.length > 0) {
+            var startTmp = startTime.split("-");
+            var endTmp = endTime.split("-");
+            var sd = new Date(startTmp[0], startTmp[1], startTmp[2]);
+            var ed = new Date(endTmp[0], endTmp[1], endTmp[2]);
+            if (sd.getTime() > ed.getTime()) {
+                alert("开始日期不能大于结束日期");
+                return false;
+            }
+        }
+        return true;
+    }
+    $("#release_activity_button").click(function(){
+        if( $("#addActivityForm").valid()) {
+            if($("#productID").val()!=-1){
+                var productID = $("#productID").val();
+                var requiredNum = $("#requiredNumber").val();
+                var group_buying_price = $("#group_buying_price").val();
+                var groupStartDate = $("#groupStartDate").val();
+                var groupEndDate = $("#groupEndDate").val();
+                if(check(groupStartDate,groupEndDate)){
+                    $.ajax({
+                        url:"releaseActivity/"+productID+"/"+requiredNum+"/"+group_buying_price+"/"+groupStartDate+"/"+groupEndDate,
+                        type:"post",
+                        dataType:"json",
+                        success:function(data)
+                        {
+                            console.log(data);
+                        }
+                    });
+                    window.location.href="generateActivity.html";
+                }
+            }else{
+                alert("请选择商品");
+            }
+        }else{
+            //do nothing
+        }
     });
 </script>
 
@@ -123,8 +200,7 @@
 <script language="javascript">
     function productChange(){
         var c=$('select[name="productId"]').val();
-        $('#show_product_id').empty();
-        $('#show_product_id').append('<input id="productID" value="'+c+'" hidden>');
+        $("#productID").val(c);
         $.ajax({
             url:"showDetailProduct/"+c,
             type:"post",
@@ -132,12 +208,12 @@
             success:function(data)
             {
                 $('#show_product_info').empty();
-                var str='<div><img src="'+data.cover_url+'"></div><div class="details-body-box"><div class="tm">' +
+                var str='<div><img src="/img/'+data.cover_url+'"></div><div class="details-body-box"><div class="tm">' +
                     '<div class="td2"> <div class="td2_price">' +
                     '<span>售价：<b>'+data.original_price+'</b>元</span></div><div class="td2_name">'+data.product_name+'</div>' +
                     '<div class="td2_cx">'+data.product_info+'</div></div></div></div>';
                 $('#show_product_info').append(str);
-
+                $('#original_price').val(data.original_price);
             }
         });
     }

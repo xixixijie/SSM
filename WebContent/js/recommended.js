@@ -3,8 +3,10 @@
  */
 $(function () {
     //获得排序最高，价格最低的团购活动
+    var index = location.href.lastIndexOf("=");
+    var userID = location.href.substr(index+1);
     $.ajax({
-        url:"getRecommendedGroupBuying",
+        url:"getRecommendedGroupBuying/"+userID,
         type:"post",
         dataType:"json",
         success:function(data) {
@@ -16,7 +18,7 @@ $(function () {
 
 
             $("#product_img").empty();
-            $("#product_img").append('<img src="'+data.product.cover_url+'">');
+            $("#product_img").append('<img src="/img/'+data.product.cover_url+'">');
 
 
             $("#show_product_info").empty();

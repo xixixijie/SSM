@@ -29,5 +29,20 @@ $(function () {
             $("#show_price").append('  <span class="aui-red aui-size">总金额: <em>￥'+data.activity.group_buying_price+'</em></span>');
             $("#product_url").append('<img src="'+data.activity.product.cover_url+'" alt="">');
         }
+    });
+    var userID = 1;
+    $.ajax({
+        url: "getAddress/" + userID,
+        type: "POST",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            // 清除原有的数据
+            $("#address_select").empty();
+            for (var i=0;i<data.length;i++){
+                var str = '<option value="'+data[i].address_ID+'">地址：'+data[i].address+' 姓名：'+data[i].accept_Name+' 电话：'+data[i].accept_Phone+'</option>';
+                $("#address_select").append(str);
+            }
+        }
     })
 });

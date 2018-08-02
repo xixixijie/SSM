@@ -3,6 +3,19 @@ package com.ssm.model.bean;
 /**
  * Created by chenyufeng on 2018/7/24.
  */
+
+/**
+ * <p>
+ *     消息实体类
+ *     messageID  消息的ID，唯一标识区分消息
+ *     user       消息是发给哪一个用户的，用户信息封装在里面
+ *     messageTitle  消息标题，消息的简单归纳
+ *     messageBody   具体的消息部分
+ *     isRead        是否已读，0表示未读，1表示已读
+ * </p>
+ *
+ * @author chenyufeng
+ */
 public class Message {
     public int messageID;
     public UserInfo user;

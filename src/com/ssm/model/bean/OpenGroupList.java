@@ -5,15 +5,21 @@ import java.util.Date;
 /**
  * Created by chenyufeng on 2018/7/19.
  */
+
+/**
+ * <p>开团记录实体类</p>
+ *
+ * @author chenyufeng
+ */
 public class OpenGroupList {
-    int openID;
-    UserInfo leader;
-    Date openDate;
-    String receiverName;
-    String receiverTelephone;
-    int receiverPostCode;
-    String receiverAddress;
-    int billNeeded;
+    int openID;                         //开团记录ID，用于唯一区别开团记录
+    UserInfo leader;                    //开团人,开团人的相关信息封装在UserInfo对象汇总
+    Date openDate;                      //开团日期
+    String receiverName;                //收货人姓名
+    String receiverTelephone;           //收货人手机号
+    int receiverPostCode;               //收获邮编
+    String receiverAddress;             //具体收货地址
+    int billNeeded;                     //是否需要纸质发票  0不需要  1需要
 
     public UserInfo getLeader() {
         return leader;
