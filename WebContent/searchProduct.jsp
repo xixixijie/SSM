@@ -78,7 +78,7 @@
 </head>
 <body style="background-color: #f2f2f2">
 
-<div class="layui-col-md8" style="margin-top: 10px">
+<div class="layui-col-md9" style="margin-top: 10px">
 
     <table class="layui-table"  lay-skin="line" lay-size="lg">
         <colgroup>
@@ -100,7 +100,7 @@
             </th>
             <th>
 
-                <button onclick="deleteProduct()" class="layui-btn layui-btn-danger layui-btn-sm" style="float: right;margin-right: 25px;">删除</button></th>
+                <button onclick="deleteProduct()" class="layui-btn layui-btn-danger layui-btn-sm" style="float: right;margin-right: 33px;">删除</button></th>
 
         </tr>
         </thead>
@@ -167,8 +167,6 @@
         </ul>
 
     </div>
-
-
 
 </div>
 

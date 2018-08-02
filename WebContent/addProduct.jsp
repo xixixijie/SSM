@@ -69,7 +69,7 @@
             <div class="layui-form-item layui-upload-form">
                 <label class="layui-form-label">商品封面</label>
                 <div class="layui-input-block">
-                    <input type="file" required lay-verify="required" name="cover"    style="margin-top: 5px">
+                    <input type="file" required lay-verify="required" name="cover"  accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"  style="margin-top: 5px">
                 </div>
             </div>
 
@@ -80,14 +80,14 @@
             <div class="layui-form-item layui-upload-form">
                 <label class="layui-form-label">商品外观图</label>
                 <div class="layui-input-block">
-                    <input type="file" required lay-verify="required" multiple="multiple" name="aspectPics"    style="margin-top: 5px">
+                    <input type="file" required lay-verify="required" multiple="multiple" name="aspectPics" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"   style="margin-top: 5px">
                 </div>
             </div>
             <br>
             <div class="layui-form-item layui-upload-form">
                 <label class="layui-form-label">商品参数图</label>
                 <div class="layui-input-block">
-                    <input type="file" required lay-verify="required" multiple="multiple" name="parameterPics"    style="margin-top: 5px">
+                    <input type="file" required lay-verify="required" multiple="multiple" name="parameterPics"   accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" style="margin-top: 5px">
                 </div>
             </div>
 
@@ -133,16 +133,19 @@
                 type:"POST",
                 data:{"product_name":product_name},
                 success:function(data){
-                    $("#checkPro").html(data);
-                    $("#checkPro").css("color","red");
-                    $("#subtn").attr("disabled",true);
+                    if(data!=""){
+                        $("#checkPro").html(data);
+                        $("#checkPro").css("color","red");
+                        $("#subtn").attr("disabled",true);
+                    }
+                    else {
+                        $("#subtn").attr("disabled",false);
+                    }
                 },
                 error:function(){
                     alert("查询商品名失败");},
                 dataType:"text"
             });
-
-
         });
 
         $("#discount_price").blur(function () {
@@ -157,7 +160,9 @@
                 $("#subtn").attr("disabled",false);
             }
         })
+
     })
+
 
 
 </script>
