@@ -13,13 +13,18 @@ import java.util.List;
 
 /**
  * Created by xixi on 2018/7/19.
+ * 分类控制器
  */
 @Controller
 public class ClassifyController {
     @Autowired
     private ClassifyService classifyService;
 
-
+    /**
+     * 根据内容查找分类，返回分类list
+     * @param content
+     * @return
+     */
     @RequestMapping(value = "findClassify/{content}",produces={"application/json;","text/html;charset=UTF-8;"})
     @ResponseBody
     public List<Classify> findClassify(@PathVariable String content){
@@ -35,6 +40,12 @@ public class ClassifyController {
 
     }
 
+    /**
+     * 根据id数组，删除相应分类
+     * @param ids
+     * @return
+     */
+
     @RequestMapping(value = "deleteClassify/{ids}")
     @ResponseBody
     public String deleteClassify(@PathVariable String ids){
@@ -44,6 +55,11 @@ public class ClassifyController {
 
     }
 
+    /**
+     * 添加分类
+     * @param classify
+     * @return
+     */
     @RequestMapping(value = "addClassify")
     @ResponseBody
     public String addClassify(Classify classify){
@@ -52,6 +68,12 @@ public class ClassifyController {
         return "{\"result\":true}";
 
     }
+
+    /**
+     * 根据分类id 获得分类
+     * @param classifyID
+     * @return
+     */
 
     @RequestMapping(value = "getClassify/{classifyID}",produces={"application/json;","text/html;charset=UTF-8;"})
     @ResponseBody
@@ -62,6 +84,11 @@ public class ClassifyController {
         return classifyService.getClassify(classifyID);
     }
 
+    /**
+     * 修改分类信息
+     * @param classify
+     * @return
+     */
     @RequestMapping(value = "modifyClassify")
     @ResponseBody
     public String ModifyClassify(Classify classify){
@@ -71,6 +98,11 @@ public class ClassifyController {
         return "{\"result\":true}";
 
     }
+
+    /**
+     * 获得所有分类
+     * @return
+     */
     @RequestMapping(value = "showClassify")
     @ResponseBody
     public List<Classify> showClassify(){
@@ -79,6 +111,13 @@ public class ClassifyController {
         return classifyService.showClassify();
 
     }
+
+    /**
+     * 根据分类类型 和 ids数组 ，进行排序
+     * @param type
+     * @param ids
+     * @return
+     */
 
     @RequestMapping(value = "sortClassify/{type}/{ids}")
     @ResponseBody
@@ -89,11 +128,16 @@ public class ClassifyController {
 
     }
 
+    /**
+     * 更新向量模型
+     * @return
+     */
+
     @RequestMapping(value = "updateModel")
     @ResponseBody
     public String updateModel(){
         System.out.println("更新模型Controller");
-        classifyService.updateModel();
+        //classifyService.updateModel();
         return "{\"result\":true}";
     }
 

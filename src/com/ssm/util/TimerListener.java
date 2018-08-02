@@ -20,13 +20,13 @@ public class TimerListener implements ServletContextListener{
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);//每天
         //定制每天的00:00:00执行
-        calendar.set(year, month, day, 00, 00, 00);
+        calendar.set(year, month, day, 11, 14, 00);
         java.util.Date date = calendar.getTime();
 //        int period = 30 * 1000;
         //每天的date时刻执行TestTask，每隔30秒重复执行
 //        timer.schedule(new Task(), date, period);
         //每天的date时刻执行TestTask, 仅执行一次
-        //timer.schedule(new Task(), date);
+       // timer.schedule(new Task(), date);
     }
 
     @Override

@@ -43,7 +43,7 @@
                 <a href="javascript:;">拍卖管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="addAuctionPage.jsp" target="mainFrame">添加拍卖品</a></dd>
-                    <dd><a href="AuctionManager.html" target="mainFrame">查询拍卖品</a></dd>
+                    <%--<dd><a href="AuctionManager.html" target="mainFrame">查询拍卖品</a></dd>--%>
                 </dl>
             </li>
         </ul>

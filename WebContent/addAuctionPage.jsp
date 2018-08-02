@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>添加商品</title>
+    <title>添加拍卖品</title>
     <link rel="stylesheet" href="layui/css/layui.css">
     <script src="layui/layui.js"></script>
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
@@ -50,16 +50,18 @@
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label" >拍卖开始日期</label>
-                <div class="layui-input-block">
-                    <input required lay-verify="required" type="date"  name="begin" step="any" p  autocomplete="off" class="layui-input" max="50000" min="1">
+                <label class="layui-form-label" >开始日期</label>
+                <div class="layui-input-block" >
+                    <input required lay-verify="required" type="date" id="begin"  name="begin" step="any" p  autocomplete="off" class="layui-input" max="50000" min="1">
+                    <div id="alertbegin"></div>
 
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label" >拍卖结束日期</label>
-                <div class="layui-input-block">
-                    <input required lay-verify="required" type="date"  name="end" step="any"   autocomplete="off" class="layui-input" max="50000" min="1">
+                <label class="layui-form-label" >结束日期</label>
+                <div class="layui-input-block" >
+                    <input required lay-verify="required" type="date" id="end"  name="end" step="any"   autocomplete="off" class="layui-input" max="50000" min="1">
+                    <div id="alertend"></div>
 
                 </div>
             </div>
@@ -98,6 +100,43 @@
 </form>
 
 <script>
+
+    $(function () {
+
+        $("#begin").change(function () {
+            var curTime = new Date();
+
+            var begindate= new Date(Date.parse($("#begin").val()));
+            if(begindate<curTime){
+                $("#alertbegin").empty()
+                $("#alertbegin").append("开始日期须大于等于当前日期");
+                $("#alertbegin").css('color','red');
+            }else{
+                $("#alertbegin").empty()
+
+            }
+        })
+
+        $("#end").change(function () {
+            var begindate= new Date(Date.parse($("#begin").val()));
+
+
+            var enddate= new Date(Date.parse($("#end").val()));
+            if(enddate<=begindate){
+                $("#alertend").empty();
+                $("#alertend").append("结束日期应大于开始日期");
+                $("#alertend").css('color','red');
+
+            }else {
+                $("#alertend").empty();
+            }
+        })
+
+
+
+    })
+
+
     layui.use('form', function(){
         var form = layui.form;
 
@@ -110,27 +149,6 @@
 
     });
 
-    $(function () {
-        $("#original_price").keyup(function () {
-            var originalPrice=$(this).val();
-            $("#discount_price").attr("value",originalPrice);
-        });
-
-
-
-        $("#discount_price").blur(function () {
-            var originalPrice=$("#original_price").val();
-            var discountPrice=$("#discount_price").val();
-            if(discountPrice>originalPrice){
-                $("#checkDiscount").css("color","red");
-                $("#checkDiscount").html("折扣价不能超过原价");
-                $("#subtn").attr("disabled",true);
-            }else {
-                $("#checkDiscount").html("");
-                $("#subtn").attr("disabled",false);
-            }
-        })
-    })
 
 
 </script>

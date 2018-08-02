@@ -17,6 +17,11 @@ public class KeywordService {
     @Autowired
     private KeywordDAO keywordDAO;
 
+    /**
+     * 获得评论数最多的关键标签
+     * @return
+     */
+
     public List<Keyword> getTopKeys() {
         System.out.println("-----获得最高关键词Service-----");
         List<Keyword> list=keywordDAO.getAllKeyword();

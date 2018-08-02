@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="nlp-lang-1.7.7">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/WebContent/WEB-INF/lib/nlp-lang-1.7.7.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

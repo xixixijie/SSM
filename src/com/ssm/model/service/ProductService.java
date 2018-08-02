@@ -218,6 +218,12 @@ public class ProductService {
 
     //范东升部分 end
 
+    /**
+     * 获得分类下属商品
+     * @param classifyID
+     * @return
+     */
+
     public List<Product> getProducts(int classifyID) {
         System.out.println("-----获取分类商品service-----");
         //System.out.println(classifyID);
@@ -231,23 +237,12 @@ public class ProductService {
         return list;
     }
 
-    public void storeRecord(int productID) {
-        System.out.println("-----存记录service-----");
 
-        String fileName = "record";
-        try {
-            //使用这个构造函数时，如果存在kuka.txt文件，
-            //则直接往kuka.txt中追加字符串
-            FileWriter writer = new FileWriter(fileName, true);
-            SimpleDateFormat format = new SimpleDateFormat();
-            String time = format.format(new Date());
-            writer.write("\n\t" + time);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
+    /**
+     * 获得浏览记录商品
+     * @param record
+     * @return
+     */
 
     public List<Product> getRecord(String record) {
         System.out.println("-----获得记录service-----");
@@ -268,7 +263,13 @@ public class ProductService {
         return plist;
     }
 
-    //基于用户的协同过滤推荐算法及商品热度排序混合推荐
+    /**
+     * 基于用户的协同过滤推荐算法及商品热度排序混合推荐
+     * @param userid
+     * @return
+     */
+
+
     public List<Product> introProduct(int userid) {
         System.out.println("-----推荐商品service-----");
         //获取所有商品
@@ -287,7 +288,12 @@ public class ProductService {
         return list2;
     }
 
-
+    /**
+     * 基于用户的协同推荐
+     * @param userid
+     * @param list
+     * @return
+     */
     private List<Product> chooseProduct(int userid,List<Product> list) {
         //获取用户
         //System.out.println(userid);
@@ -387,6 +393,14 @@ public class ProductService {
         return newList;
     }
 
+    /**
+     * 计算用户相似度
+     * @param userid
+     * @param j
+     * @param user2Product_map
+     * @param userlist
+     * @return
+     */
     private double calcuSimilarity(int userid,int j, Map<Integer, List<Integer>> user2Product_map, List<UserInfo> userlist) {
         //根据index查对应用户
 
@@ -410,13 +424,24 @@ public class ProductService {
 
     }
 
+    /**
+     * 根据用户id 获得用户买过的商品id
+     * @param userid
+     * @return
+     */
 
-    //根据用户id 获得用户买过的商品id
+
     public List<Integer> getBought(int userid){
         List<Integer> list=productDAO.getBought(userid);
         //System.out.println(userid+"买过的商品大小"+list.size());
         return list;
     }
+
+    /**
+     * 选择商品
+     * @param list
+     * @return
+     */
 
     private List<Product> chooseProduct(List<Product> list) {
         System.out.println("-----推荐商品方法-----");
@@ -432,6 +457,12 @@ public class ProductService {
         return newList;
     }
 
+    /**
+     * 计算商品热度
+     * @param plist
+     * @return
+     */
+
     private List<Hot> caculateHot(List<Product> plist) {
         List<Hot> l = new ArrayList<>();
         for (Product p : plist) {
@@ -443,6 +474,12 @@ public class ProductService {
         }
         return l;
     }
+
+    /**
+     * 计算商品热度
+     * @param product
+     * @return
+     */
 
     private Double getProductHot(Product product) {
         //计算推出日期到现在的小时数，转换数量级
@@ -456,6 +493,9 @@ public class ProductService {
     }
 
 
+    /**
+     * 商品热度内部类
+     */
     class Hot implements Comparable {
          Hot(Product product) {
             this.product = product;

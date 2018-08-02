@@ -1,5 +1,6 @@
 package com.ssm.model.dao;
 
+import com.ssm.model.bean.keyLabel;
 import com.ssm.model.bean.Keyword;
 
 import java.util.List;
@@ -14,4 +15,11 @@ public interface KeywordDAO {
     public List<Keyword> getAllKeyword();
 
     void addNum(Map map);
+
+    void addKeyLabel(keyLabel keyLabel);
+
+
+    int getMaxLabelID();
+
+    void deleteAll();
 }
