@@ -200,7 +200,7 @@
 	</div>
 	<div class="aui-dri"></div>
 	<div class="aui-product-evaluate">
-		<a href="#" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
+		<a id="comment" class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
 			<div class="aui-address-cell-bd">点击查看商品评价</div>
 
 		</a>
@@ -428,6 +428,10 @@
                 dataType:"json"
             });
         }
+
+		$("#comment").click(function () {
+			$(this).attr("href","showComment.html?product_id="+product_id);
+        })
     })
 </script>
 <script>
