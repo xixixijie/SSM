@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.model.dao.GroupBuyingDAO">
 
     <!--根据条件查询团购活动-->
-    <select id="searchActivities"  parameterType="Activity" resultMap="ActivityResult" flushCache="true">
-    	select * from group_buying_activity g JOIN product p on g.productID = p.product_id
-    	<where>
+    <select id="searchActivities" parameterType="Activity" resultMap="ActivityResult" flushCache="true">
+        select * from group_buying_activity g JOIN product p on g.productID = p.product_id
+        <where>
             <if test="product.product_name!=null and product.product_name!= ''">
                 and product_Name like '%'||#{product.product_name}||'%'
             </if>
@@ -35,20 +35,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <association property="product" column="productID" javaType="Product" resultMap="productResult"/>
     </resultMap>
 
-        <resultMap id="productResult" type="Product">
-            <result column="product_id" property="product_id"/>
-            <result column="product_name" property="product_name"/>
-            <result column="original_price" property="original_price"/>
-            <result column="discount_price" property="discount_price"/>
-            <result column="product_info" property="product_info"/>
-            <result column="cover_url" property="cover_url"/>
-            <result column="on_date" property="on_date"/>
-        </resultMap>
-
+    <resultMap id="productResult" type="Product">
+        <result column="product_id" property="product_id"/>
+        <result column="product_name" property="product_name"/>
+        <result column="original_price" property="original_price"/>
+        <result column="discount_price" property="discount_price"/>
+        <result column="product_info" property="product_info"/>
+        <result column="cover_url" property="cover_url"/>
+        <result column="on_date" property="on_date"/>
+    </resultMap>
 
 
     <!--根据活动ID查询参与此活动的团队的集合-->
-    <select id="searchGroups" parameterType="java.lang.Integer" resultMap="GroupResult">
+    <select id="searchGroups" parameterType="java.lang.Integer" resultMap="GroupResult" flushCache="true">
         select * from ((group_buying_list  JOIN group_buying_activity  ON
         group_buying_list.activityID = group_buying_activity.activityID) JOIN userinfo  ON group_buying_list.leaderID = userinfo.user_id) JOIN product on group_buying_activity.productID = product.product_id
         WHERE group_buying_list.activityID = #{activityID}
@@ -76,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result column="user_avatarurl" property="user_avatarurl"/>
     </resultMap>
 
-    <select id="searchGroupInfo" parameterType="int" resultMap="GroupResult">
+    <select id="searchGroupInfo" parameterType="int" resultMap="GroupResult" flushCache="true">
         select * from (((group_buying_list  JOIN group_buying_activity  ON
         group_buying_list.activityID = group_buying_activity.activityID) JOIN userinfo  ON group_buying_list.leaderID = userinfo.user_id) JOIN product on group_buying_activity.productID = product.product_id)
 --         JOIN join_group_list on group_buying_list.groupID = join_group_list.group_ID
@@ -84,7 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
 
-    <select id="searchActivityInfo" parameterType="int" resultMap="ActivityResult">
+    <select id="searchActivityInfo" parameterType="int" resultMap="ActivityResult" flushCache="true">
         select * from group_buying_activity g JOIN product p on g.productID = p.product_id
         where activityID = #{activityID}
     </select>
@@ -92,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <!--批量删除活动-->
     <!--批量修改活动的状态为0-->
-    <update id="deleteActivities" >
+    <update id="deleteActivities">
         UPDATE group_buying_activity set activityStatus = 0
         WHERE activityID in
         <foreach collection="array" item="item" open="(" separator="," close=")">
@@ -124,26 +123,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             select nvl(max(activityID),0)+1 from group_buying_activity
         </selectKey>
         insert into group_buying_activity
-        VALUES (#{activityID},#{product.product_id},#{group_buying_price},#{requiredNumber},#{groupStartDate},#{groupEndDate},#{activityStatus})
+        VALUES
+        (#{activityID},#{product.product_id},#{group_buying_price},#{requiredNumber},#{groupStartDate},#{groupEndDate},#{activityStatus})
     </insert>
 
 
     <!--开团操作-->
     <insert id="initiateGroupBuying" parameterType="Group">
-        <selectKey keyProperty="groupID" resultType="int">
+        <selectKey keyProperty="groupID" resultType="int" order="BEFORE">
             select nvl(max(groupID),0)+1 from group_buying_list
         </selectKey>
         insert into group_buying_list
-        VALUES  (#{groupID},#{leader.userID},#{product.productID},#{activity.activityID},1,1);
+        VALUES (#{groupID},#{leader.user_id},#{activity.activityID},1,1)
     </insert>
 
     <!--开团附属操作，记录-->
     <insert id="initiateGroupBuyingSuffix" parameterType="map">
-        <selectKey keyProperty="openID" resultType="int">
+        <selectKey keyProperty="openID" resultType="int" order="BEFORE">
             select nvl(max(openID),0)+1 from open_group_list
         </selectKey>
         insert into open_group_list
-        VALUES  (#{openID},#{OpenGroupList.leader.userID},#{groupID},#{OpenGroupList.openDate},#{OpenGroupList.receiverName},#{OpenGroupList.receiverTelephone},#{OpenGroupList.receiverPostCode},#{OpenGroupList.receiverAddress},#{OpenGroupList.billNeeded});
+        VALUES
+        (#{openID},#{groupID},#{OpenGroupList.openDate},#{OpenGroupList.receiverName},#{OpenGroupList.receiverTelephone},#{OpenGroupList.receiverPostCode},#{OpenGroupList.receiverAddress},#{OpenGroupList.billNeeded},#{OpenGroupList.leader.user_id})
     </insert>
 
     <!--获得当前最大的groupID-->
@@ -152,22 +153,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <!--跟团操作-->
-    <insert id="joinGroupBuying" parameterType="JoinGroupList">
+    <update id="updateCurrentNumber" parameterType="JoinGroupList">
         UPDATE group_buying_list set currentNumber=(
         SELECT currentNumber+1 from group_buying_list
         where groupID = #{group.groupID}
-        );
-        <selectKey keyProperty="joinID" resultType="int">
-            select nvl(max(joinID),0)+1 from join_group_list
+        )
+        WHERE groupID = #{group.groupID}
+    </update>
+
+
+    <insert id="joinGroupBuying" parameterType="JoinGroupList">
+        <selectKey keyProperty="joinID" resultType="int" order="BEFORE">
+            select nvl(max(join_ID),0)+1 from join_group_list
         </selectKey>
         insert into join_group_list
-        VALUES  (#{joinID},#{joiner.userID},#{group.groupID},#{joinDate},#{receiverName},#{receiverTelephone},#{receiverPostCode},#{receiverAddress},#{billNeeded});
+        VALUES
+        (#{joinID},#{joiner.user_id},#{group.groupID},#{joinDate},#{receiverName},#{receiverTelephone},#{receiverPostCode},#{receiverAddress},#{billNeeded})
     </insert>
 
 
     <select id="searchJoiners" parameterType="int" resultType="int">
-        SELECT joinerID FROM join_group_list
-        WHERE groupID = #{groupID}
+        SELECT joiner_ID FROM join_group_list
+        WHERE group_ID = #{groupID}
     </select>
 
 
@@ -177,13 +184,76 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
     <select id="getRecommendedGroupBuying" resultMap="ActivityResult">
-        select * from group_buying_activity g JOIN product p on g.productID = p.product_id order by g.group_Buying_Price desc
+        select * from group_buying_activity g JOIN product p on g.productID = p.product_id order by g.group_Buying_Price asc
     </select>
 
     <update id="modifyActivityInfo" parameterType="Activity">
         update group_buying_activity set requiredNumber = #{requiredNumber},group_buying_price=#{group_buying_price}
         WHERE activityID = #{activityID}
     </update>
+
+
+    <select id="getOpenGroupList" parameterType="int" resultMap="OpenGroupListResult">
+        SELECT * FROM  open_group_list JOIN userinfo on open_group_list.leaderID = userinfo.user_id
+        WHERE open_group_list.groupID = #{groupID}
+    </select>
+
+    <resultMap id="OpenGroupListResult" type="OpenGroupList">
+        <result property="openID" column="openID"/>
+        <result property="openDate" column="openDate"/>
+        <result property="receiverName" column="receiverName"/>
+        <result property="receiverTelephone" column="receiverTel"/>
+        <result property="receiverPostCode" column="receiverPostCode"/>
+        <result property="receiverAddress" column="receiverAddress"/>
+        <result property="billNeeded" column="billNeeded"/>
+
+        <association property="leader" column="leaderID" javaType="UserInfo" resultMap="userResult"/>
+    </resultMap>
+
+    <select id="getJoinGroupList" parameterType="int" resultMap="JoinGroupListResult">
+        SELECT * FROM (join_group_list JOIN group_buying_list ON join_group_list.group_id = group_buying_list.groupID) JOIN userinfo ON join_group_list.joiner_id = userinfo.user_id
+        WHERE join_group_list.group_id = #{groupID}
+    </select>
+
+
+    <resultMap id="JoinGroupListResult" type="JoinGroupList">
+        <result property="joinID" column="join_ID"/>
+        <result property="joinDate" column="join_Date"/>
+        <result property="receiverName" column="receiver_Name"/>
+        <result property="receiverTelephone" column="receiver_Tel"/>
+        <result property="receiverPostCode" column="receiver_PostCode"/>
+        <result property="receiverAddress" column="receiver_Address"/>
+        <result property="billNeeded" column="bill_Needed"/>
+
+        <association property="joiner" column="joiner_id" javaType="UserInfo" resultMap="userResult"/>
+        <association property="group" column="group_id" javaType="Group" resultMap="GroupResult"/>
+    </resultMap>
+
+
+    <select id="getAddress" parameterType="int" resultType="Address">
+        select * from accept_address
+        WHERE user_id = #{userID}
+    </select>
+
+
+    <select id="searchAddressInfo" parameterType="int" resultType="Address">
+        select * from accept_address
+        WHERE address_id = #{addressID} and status = 1
+    </select>
+
+
+    <select id="searchGroupsByUserID" parameterType="int" resultMap="GroupResult">
+        select * from ((group_buying_list  JOIN group_buying_activity  ON
+        group_buying_list.activityID = group_buying_activity.activityID) JOIN userinfo  ON group_buying_list.leaderID = userinfo.user_id) JOIN product on group_buying_activity.productID = product.product_id
+        WHERE group_buying_list.leaderID = #{userID}
+    </select>
+
+    <select id="searchJoinGroupListByUserID" parameterType="int" resultMap="JoinGroupListResult">
+        SELECT * FROM (join_group_list JOIN group_buying_list ON join_group_list.group_id = group_buying_list.groupID) JOIN userinfo ON join_group_list.joiner_id = userinfo.user_id
+        WHERE join_group_list.joiner_id = #{userID}
+    </select>
+
+
 </mapper>
 
 

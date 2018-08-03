@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.model.dao.MessageDAO">
     <insert id="addMessage" parameterType="map">
-        <selectKey keyProperty="messageID" resultType="int">
+        <selectKey keyProperty="messageID" resultType="int" order="BEFORE">
             select nvl(max(messageID),0)+1 from user_message
         </selectKey>
         insert into user_message
-        VALUES #{messageID},#{userID},#{messageTitle},#{messageBody},0
+        VALUES(#{messageID},#{userID},#{messageTitle},#{messageBody},0)
     </insert>
 
 
@@ -43,4 +43,9 @@
         UPDATE user_message set isread = 1
         WHERE messageID = #{messageID}
     </update>
+
+    <select id="searchMessageInfo" parameterType="int" resultMap="MessageResult">
+        select * from user_message
+        WHERE messageID = #{messageID}
+    </select>
 </mapper>

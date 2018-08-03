@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- 启用360浏览器的极速模式(webkit) -->
+    <meta name="renderer" content="webkit">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+    <meta name="HandheldFriendly" content="true">
+    <!-- 微软的老式浏览器 -->
+    <meta name="MobileOptimized" content="320">
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- UC应用模式 -->
+    <meta name="browsermode" content="application">
+    <!-- QQ应用模式 -->
+    <meta name="x5-page-mode" content="app">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- 适应移动端end -->
+    <title>我的团购</title>
+    <link rel="stylesheet" href="css/after_open_group.css">
+    <script src="/js/jquery-3.2.0.min.js"></script>
+    <script src="/js/my_group_buying.js"></script>
+</head>
+<body>
+<div id="user-b">
+    <!--html5 nav-->
+    <nav class="j-nav navbar">
+        <a href="javascript:history.back(-1)"><img src="/img/return.png" style="width: 20px;height: inherit"></a>
+        <span class="user-title">我的拼团</span>
+    </nav>
+    <div class="groups-box">
+        <!-- 我的拼团列表 -->
+        <div id="my_open">
+        </div>
+        <div id="my_join">
+        </div>
+    </div>
+</div>
+<style>
+    /*------footer------*/
+    .footer {
+        width: 100%;
+        max-width: 640px;
+        height: 60px;
+        position: fixed;
+        bottom: 0;
+        overflow: hidden;
+        background-color: #FFF;
+        border-top: medium none #ECEDED;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+    }
+    .footer li {
+        float: left;
+        width: 33%;
+        text-align: center;
+        margin-top: 10px;
+        height: 100%;
+    }
+    .footer a {
+        color: #777;
+        font-size: 1.4rem;
+    }
+    #user-b{ margin-bottom: 68px;}
+    #user-b .footer a { font-size: .875rem;}
+    .footer a.active { color: #2ad2c9;}
+    .footer .nav-controller {
+        position: relative;
+        height: 100%;
+        display: block;
+    }
+    .fb-home,
+    .fb-group,
+    .fb-list,
+    .fb-user{
+        background-image: url("/img/footer-icon.png");
+        background-repeat: no-repeat;
+        background-size: 30px auto;
+        height: 31px;
+        margin: -3px auto auto;
+        width: 30px;
+        background-position: 0px 4px;
+    }
+    .fb-home{ background-position: 0px -124px;}
+    .active .fb-home { background-position: 0px 0;}
+    .fb-group { background-position: 0px -156px;}
+    .active .fb-group { background-position: 0px -31px;}
+    .fb-list { background-position: 0px -187px;}
+    .active .fb-list { background-position: 0px -62px;}
+    .fb-user { background-position: 0px -218px;}
+    .active .fb-user { background-position: 0px -92px;}
+
+</style>
+<footer class="footer">
+    <nav>
+        <ul>
+            <li><a href="my-purchase.html" class="nav-controller"><div class="fb-home"></div>团购首页</a></li>
+            <li><a href="javascript:void(0);" class="nav-controller active"><div class="fb-group"></div>我的拼团</a></li>
+            <li><a href="my_message.html?userID=1" class="nav-controller"><div class="fb-user"></div>我的消息</a></li>
+        </ul>
+    </nav>
+</footer>
+
+</body>
+</html>

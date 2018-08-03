@@ -3,33 +3,49 @@
 <html>
 <head>
     <title>管理团购活动</title>
+    <meta charset="UTF-8">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="/js/jquery-3.2.0.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/frameui.css">
     <link rel="stylesheet" href="css/recommended.css">
+    <!--<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>-->
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
 </head>
+<style>
+    .error {
+        color: red;
+    }
+</style>
 <body>
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title">查询团购活动</h3>
+<form id="searchActivityForm">
+    <input id="pageNum" value="1" hidden>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">查询团购活动</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="search_activity_productName">商品名称</label>
+                <input type="text" id="search_activity_productName" class="form-control"
+                       name="search_activity_productName"/>
+            </div>
+            <div class="form-group">
+                <label for="search_activity_productName">开始日期</label>
+                <input type="text" id="search_activity_groupStartDate" class="form-control"
+                       name="search_activity_groupStartDate"/>
+            </div>
+            <div class="form-group">
+                <label for="search_activity_productName">结束日期</label>
+                <input type="text" id="search_activity_groupEndDate" class="form-control"
+                       name="search_activity_groupEndDate"/>
+            </div>
+        </div>
+        <button type="button" class="btn am-btn-success btn-lg btn-block" id="search_activity_button">搜索</button>
     </div>
-    <div class="panel-body">
-        <div class="form-group">
-            <label for="search_activity_productName">商品名称</label>
-            <input type="text" id="search_activity_productName" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <label for="search_activity_productName">开始日期</label>
-            <input type="text" id="search_activity_groupStartDate" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <label for="search_activity_productName">结束日期</label>
-            <input type="text" id="search_activity_groupEndDate" class="form-control"/>
-        </div>
-    </div>
-    <button type="button" id="search_activity_button">搜索</button>
-</div>
+</form>
+
 <div class="panel panel-info">
     <div class="panel-heading">
         <h3 class="panel-title">查询结果</h3>
@@ -37,72 +53,145 @@
     <div class="panel-body">
         <table class="table table-striped" id="show_activitys"></table>
     </div>
-    <button type="button" id="delete_activity_button">删除</button>
+    <button id="load_more" type="button" class="btn btn-primary btn-lg btn-block">加载更多</button>
+
+    <button type="button" class="btn am-btn-danger btn-lg btn-block" id="delete_activity_button">删除</button>
 </div>
 </table>
 
 
 <script type="application/javascript">
-    $("#search_activity_button").click(function () {
-        var productName = $("#search_activity_productName").val();
-        if (productName == '') {
-            productName = -1;
-        }
-        var groupStartDate = $("#search_activity_groupStartDate").val();
-        if (groupStartDate == '') {
-            groupStartDate = -1;
-        }
-        var groupEndDate = $("#search_activity_groupEndDate").val();
-        if (groupEndDate == '') {
-            groupEndDate = -1;
-        }
-        $.ajax({
-            url: "searchActivities/" + productName + "/" + groupStartDate + "/" + groupEndDate,
-            type: "post",
-            dataType: "json",
-            success: function (data) {
-                console.log(data);
-                //1.清除原有的数据
-                $('#show_activitys').empty();
-                //2.追加符合条件的数据
-                $('#show_activitys').append('<thead><tr><th></th><th>商品名称</th> <th>活动金额</th><th>要求人数</th><th>开始时间</th><th>结束时间</th> ' +
-                    '<th>操作</th> </tr> </thead>');
-                for (var i = 0; i < data.length; i++) {
-                    var startDate = new Date(data[i].groupStartDate).toLocaleString();
-                    var endDate = new Date(data[i].groupEndDate).toLocaleString();
-                    if(data[i].activityStatus==3){
-                        var str = '<tbody> <tr class="success"><td><input type="checkbox" value="'+data[i].activityID+'" name="chk"></td> <td>' +
-                            data[i].product.product_name + '</td> <td>' + data[i].group_buying_price + '</td> <td>' +data[i].requiredNumber+'</td>'+
-                            '<td>' + startDate + '</td> <td>' + endDate + '</td> ' +
-                            '<td><button id="'+data[i].activityID+'%'+data[i].activityStatus+'%get_info_button" onclick="get_activity_info(this.id)">查看</button></td>' +
-                            '</tr> </tbody>';
-                        $('#show_activitys').append(str);
-                    }else{
-                        //已经开始的不能修改,也不能被删除
-                        var str = '<tbody> <tr class="danger"><td></td> <td>' +
-                            data[i].product.product_name + '</td> <input type="checkbox" value="'+data.activityID+'" name="chk" disabled="disabled"><td>' + data[i].group_buying_price + '</td><td>' +data[i].requiredNumber+'</td>'+
-                            '<td>' + startDate + '</td> <td>' + endDate + '</td> ' +
-                            '<td><button id="'+data[i].activityID+'%'+data[i].activityStatus+'%get_info_button" onclick="get_activity_info(this.id)">查看</button></td>' +
-                            '</tr> </tbody>';
-                        $('#show_activitys').append(str);
-                    }
-                }
+    function check(startTime, endTime) {
+        if (startTime.length > 0 && endTime.length > 0) {
+            var startTmp = startTime.split("-");
+            var endTmp = endTime.split("-");
+            var sd = new Date(startTmp[0], startTmp[1], startTmp[2]);
+            var ed = new Date(endTmp[0], endTmp[1], endTmp[2]);
+            if (sd.getTime() > ed.getTime()) {
+                alert("开始日期不能大于结束日期");
+                return false;
             }
-        });
+        }
+        return true;
+    }
+
+    function search_activity() {
+        var pageNum = $("#pageNum").val();
+        if ($("#searchActivityForm").valid()) {
+            var productName = $("#search_activity_productName").val();
+            if (productName == '') {
+                productName = -1;
+            }
+            var groupStartDate = $("#search_activity_groupStartDate").val();
+            if (groupStartDate == '') {
+                groupStartDate = -1;
+            }
+            var groupEndDate = $("#search_activity_groupEndDate").val();
+            if (groupEndDate == '') {
+                groupEndDate = -1;
+            }
+            if (groupStartDate != -1 && groupEndDate != -1) {
+                if (check(groupStartDate, groupEndDate)) {
+                    $.ajax({
+                        url: "searchActivities/" + productName + "/" + groupStartDate + "/" + groupEndDate + "/" + pageNum,
+                        type: "post",
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data);
+                            for (var i = 0; i < data.length; i++) {
+                                var startDate = new Date(data[i].groupStartDate).toLocaleString();
+                                var endDate = new Date(data[i].groupEndDate).toLocaleString();
+                                if (data[i].activityStatus == 3) {
+                                    var str = '<tbody> <tr class="success"><td><input type="checkbox" value="' + data[i].activityID + '" name="chk"></td> <td>' +
+                                        data[i].product.product_name + '</td> <td>' + data[i].group_buying_price + '</td> <td>' + data[i].requiredNumber + '</td>' +
+                                        '<td>' + startDate + '</td> <td>' + endDate + '</td> ' +
+                                        '<td><button id="' + data[i].activityID + '%' + data[i].activityStatus + '%get_info_button" onclick="get_activity_info(this.id)">查看</button></td>' +
+                                        '</tr> </tbody>';
+                                    $('#show_activitys').append(str);
+                                } else {
+                                    //已经开始的不能修改,也不能被删除
+                                    var str = '<tbody> <tr class="danger"><td></td> <td>' +
+                                        data[i].product.product_name + '</td> <input type="checkbox" value="' + data.activityID + '" name="chk" disabled="disabled"><td>' + data[i].group_buying_price + '</td><td>' + data[i].requiredNumber + '</td>' +
+                                        '<td>' + startDate + '</td> <td>' + endDate + '</td> ' +
+                                        '<td><button id="' + data[i].activityID + '%' + data[i].activityStatus + '%get_info_button" onclick="get_activity_info(this.id)">查看</button></td>' +
+                                        '</tr> </tbody>';
+                                    $('#show_activitys').append(str);
+                                }
+                            }
+                            if (data.length == 0) {
+                                alert("没有更多了");
+                            }
+                        }
+                    });
+                }
+            } else {
+                $.ajax({
+                    url: "searchActivities/" + productName + "/" + groupStartDate + "/" + groupEndDate + "/" + pageNum,
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        for (var i = 0; i < data.length; i++) {
+                            var startDate = new Date(data[i].groupStartDate).toLocaleString();
+                            var endDate = new Date(data[i].groupEndDate).toLocaleString();
+                            if (data[i].activityStatus == 3) {
+                                var str = '<tbody> <tr class="success"><td><input type="checkbox" value="' + data[i].activityID + '" name="chk"></td> <td>' +
+                                    data[i].product.product_name + '</td> <td>' + data[i].group_buying_price + '</td> <td>' + data[i].requiredNumber + '</td>' +
+                                    '<td>' + startDate + '</td> <td>' + endDate + '</td> ' +
+                                    '<td><button id="' + data[i].activityID + '%' + data[i].activityStatus + '%get_info_button" onclick="get_activity_info(this.id)">查看</button></td>' +
+                                    '</tr> </tbody>';
+                                $('#show_activitys').append(str);
+                            } else {
+                                //已经开始的不能修改,也不能被删除
+                                var str = '<tbody> <tr class="danger"><td></td> <td>' +
+                                    data[i].product.product_name + '</td> <input type="checkbox" value="' + data.activityID + '" name="chk" disabled="disabled"><td>' + data[i].group_buying_price + '</td><td>' + data[i].requiredNumber + '</td>' +
+                                    '<td>' + startDate + '</td> <td>' + endDate + '</td> ' +
+                                    '<td><button id="' + data[i].activityID + '%' + data[i].activityStatus + '%get_info_button" onclick="get_activity_info(this.id)">查看</button></td>' +
+                                    '</tr> </tbody>';
+                                $('#show_activitys').append(str);
+                            }
+                        }
+                        if (data.length == 0) {
+                            alert("没有更多了");
+                        }
+                    }
+                });
+            }
+        }
+
+
+    }
+    $("#search_activity_button").click(function () {
+        $("#pageNum").val(1);
+        //1.清除原有的数据
+        $('#show_activitys').empty();
+        //2.追加符合条件的数据
+        $('#show_activitys').append('<thead><tr><th></th><th>商品名称</th> <th>活动金额</th><th>要求人数</th><th>开始时间</th><th>结束时间</th> ' +
+            '<th>操作</th> </tr> </thead>');
+        search_activity();
     });
+
+    $("#load_more").click(function () {
+        var pageNum = $("#pageNum").val();
+        pageNum++;
+        $("#pageNum").val(pageNum);
+        search_activity();
+    });
+
+
 </script>
 
 <script type="application/javascript">
     $("#delete_activity_button").click(function () {
-        var checkID=[];
-        $("input[name='chk']:checked").each(function(i){
+        var checkID = [];
+        $("input[name='chk']:checked").each(function (i) {
             checkID[i] = $(this).val();
         });
         $.ajax({
             url: "deleteActivities/" + checkID,
             type: "post",
             dataType: "json",
-            traditional:true,
+            traditional: true,
             success: function (data) {
                 console.log(data);
             }
@@ -147,13 +236,61 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                 </button>
-                <div id="modify_div">
-                </div>
+                <form id="modifyForm">
+                    <div id="modify_div">
+                    </div>
+                </form>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+<script>
+    $().ready(function () {
+        $("#modifyForm").validate({
+            debug: true,
+            rules: {
+                requiredNumber: {
+                    required: true,
+                    digits: true
+                },
+                group_buying_price: {
+                    required: true,
+                    number: true
+                }
+            },
+            messages: {
+                requiredNumber: {
+                    required: "请输入需要的人数",
+                    digits: "请输入数字"
+                },
+                group_buying_price: {
+                    required: "请输入团购价格",
+                    number: "请输入数字"
+                }
+            }
+        });
 
+        $("#searchActivityForm").validate({
+            debug: true,
+            rules: {
+                search_activity_groupStartDate: {
+                    dateISO: true
+                },
+                search_activity_groupEndDate: {
+                    dateISO: true
+                }
+            },
+            messages: {
+                search_activity_groupStartDate: {
+                    dateISO: "请输入正确的时间"
+                },
+                search_activity_groupEndDate: {
+                    dateISO: "请输入正确的时间"
+                }
+            }
+        });
+    });
+</script>
 
 <script type="application/javascript">
     function get_activity_info(id) {
@@ -173,7 +310,7 @@
 
 
                 $("#product_img").empty();
-                $("#product_img").append('<img src="' + data.product.cover_url + '">');
+                $("#product_img").append('<img src="/img/' + data.product.cover_url + '">');
 
 
                 $("#show_product_info").empty();
@@ -192,12 +329,12 @@
                 if (status == 3) {
                     //还没开始的，可以被修改
                     $("#modify_div").empty();
-                    $("#modify_div").append('</div> <div class="form-group">' +
+                    $("#modify_div").append('<div class="form-group">' +
                         ' <label for="requiredNumber">需要人数</label> <input type="text" class="form-control"' +
-                        ' id="requiredNumber"value="'+data.requiredNumber+'"> </div> <div class="form-group"> <label for="group_buying_price">活动价格' +
-                        '</label> <input type="number" class="form-control" id="group_buying_price"value="'+data.group_buying_price+'"> </div>');
-                    $("#modify_div").append(' <button type="button" class="btn btn-primary" id="'+data.activityID+'%modify_button" data-dismiss="modal"  onclick="modify_activity(this.id)">提交更改</button>');
-                }else{
+                        ' id="requiredNumber" name="requiredNumber" value="' + data.requiredNumber + '"> </div> <div class="form-group"> <label for="group_buying_price">活动价格' +
+                        '</label> <input type="number" class="form-control" id="group_buying_price"  name="group_buying_price" value="' + data.group_buying_price + '"> </div>');
+                    $("#modify_div").append(' <button type="button" class="btn btn-primary" id="' + data.activityID + '%modify_button"  onclick="modify_activity(this.id)">提交更改</button>');
+                } else {
                     //已经开始的，不能被修改
                     $("#modify_div").empty();
                 }
@@ -206,23 +343,26 @@
         $('#show_activity_info').modal('show')
     }
 
-
-
     function modify_activity(id) {
-        var split_str = id.split('%');
-        var activityID = split_str[0];
-        var requiredNumber =  $("#requiredNumber").val();
-        var group_buying_price = $('#group_buying_price').val();
+        if ($("#modifyForm").valid()) {
+            var split_str = id.split('%');
+            var activityID = split_str[0];
+            var requiredNumber = $("#requiredNumber").val();
+            var group_buying_price = $('#group_buying_price').val();
 
-        $.ajax({
-            url: "modifyActivityInfo/" + activityID+"/"+requiredNumber+"/"+group_buying_price,
-            type: "post",
-            dataType: "json",
-            success: function (data) {
-                console.log(data);
-            }
-        });
-        $("#search_activity_button").click();
+            $.ajax({
+                url: "modifyActivityInfo/" + activityID + "/" + requiredNumber + "/" + group_buying_price,
+                type: "post",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+            $("#show_activity_info").modal('hide');
+            $("#search_activity_button").click();
+        } else {
+            //do nothing
+        }
     }
 
 </script>

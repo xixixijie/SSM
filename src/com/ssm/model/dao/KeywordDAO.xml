@@ -21,6 +21,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE keyid=#{keyid}
     </update>
 
+    <select id="getMaxLabelID" resultType="int">
+        SELECT nvl(max(LABELID),0)+1 from KEYLABEL
+    </select>
+    <insert id="addKeyLabel" parameterType="KeyLabel">
+        insert into KEYLABEL
+        values (#{labelID},#{labelName},#{labelNum})
+    </insert>
+
+    <delete id="deleteAll">
+        delete from KEYWORD;
+        delete from KEYLABEL
+    </delete>
+
 
 </mapper>
 

@@ -15,7 +15,7 @@ public class Word2VEC {
 
 		Word2VEC vec = new Word2VEC() ;
 
-		vec.loadJavaModel("library/javaVector") ;
+		vec.loadJavaModel("/Users/xixi/Desktop/SSM/library/javaVector") ;
 
 //		System.out.println(Arrays.toString(vec.getWordVector("漂亮")));
 

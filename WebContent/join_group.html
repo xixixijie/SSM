@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>我来参团</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no, email=no"/>
     <link rel="stylesheet" href="themes/css/core.css">
     <link rel="stylesheet" href="themes/css/icon.css">
     <link rel="stylesheet" href="themes/css/home.css">
@@ -26,17 +30,34 @@
         <i class="aui-icon aui-icon-member"></i>
     </a>
 </header>
-        <section class="aui-address-content">
-            <div class="aui-address-box">
-                <div class="aui-address-box-list">
-                    <a href="#" class="aui-address-box-default">
-                        <select>
-                            <option>地址1</option>
-                            <option>地址2</option>
-                            <option>地址3</option>
-                        </select>
-                    </a>
-                </div>
+<section class="aui-address-content">
+    <div class="aui-address-box">
+        <div class="aui-address-box-list">
+            <a href="#" class="aui-address-box-default">
+                <select id="address_select" onchange="addressChange()">
+                    <script type="application/javascript">
+                        function addressChange() {
+                            var addressID = $("#address_select").val();
+                            $.ajax({
+                                url: "searchAddressInfo/" + addressID,
+                                type: "post",
+                                dataType: "json",
+                                success: function (data) {
+                                    $("#join_group_receiverName").empty();
+                                    $("#join_group_receiverName").append(data.accept_Name);
+                                    $("#join_group_receiverTEL").empty();
+                                    $("#join_group_receiverTEL").append(data.accept_Phone);
+                                    $("#join_group_receiverPostcode").empty();
+                                    $("#join_group_receiverPostcode").append(data.postcode);
+                                    $("#join_group_receiverAddress").empty();
+                                    $("#join_group_receiverAddress").append(data.address);
+                                }
+                            });
+                        }
+                    </script>
+                </select>
+            </a>
+        </div>
     </div>
     <div class="aui-dri"></div>
 
@@ -92,20 +113,39 @@
         <a href="#" class="settlement" id="join_group_button">加入团购</a>
     </div>
     <script type="application/javascript">
+        function getNowFormatDate() {
+            var date = new Date();
+            var seperator1 = "-";
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+            return currentdate;
+        }
+
+
+
         $("#join_group_button").click(function(){
             //往cookie中存joinerID
-            $.cookie('joinerID', 1, { expires: 7 ,path:'/'});
+//            $.cookie('joinerID', 1, { expires: 7 ,path:'/'});
             //从cookie中取joinerID
             var joinerID = 1;
-            joinerID = $.cookie('joinerID');
+//            joinerID = $.cookie('joinerID');
 
             var groupID = $("#join_group_groupID").val();
-            var joinDate = $("#join_group_openDate").val();
-            var receiverName = $("#join_group_receiverName").val();
-            var receiverTEL = $("#join_group_receiverTEL").val();
-            var receiverPostcode = $("#join_group_receiverPostcode").val();
-            var receiverAddress = $("#join_group_receiverAddress").val();
-            var billNeeded = $("#join_group_billNeeded").val();
+
+            var joinDate = getNowFormatDate();
+            var receiverName = $("#join_group_receiverName").html();
+            var receiverTEL = $("#join_group_receiverTEL").html();
+            var receiverPostcode = $("#join_group_receiverPostcode").html();
+            var receiverAddress = $("#join_group_receiverAddress").html();
+            var billNeeded = 1;
+//            var billNeeded = $("#join_group_billNeeded").val();
 
             $.ajax({
                 url:"joinGroupBuying/"+joinerID+"/"+groupID+"/"+joinDate+"/"+receiverName+"/"+receiverTEL
@@ -115,9 +155,9 @@
                 success:function(data)
                 {
                     console.log(data);
-                    window.location.href = 'index.html';
                 }
             });
+            window.location.href = 'show_group_info.html?groupID ='+groupID;
         });
     </script>
 

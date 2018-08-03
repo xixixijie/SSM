@@ -80,7 +80,7 @@ public class AuctionImp implements AuctionDAO {
     }
 
     @Override
-    public List<AuctionOrder> getAuctionOrder() {
+    public List<AuctionOrder> getAuctionOrder(int userID) {
         return null;
     }
 

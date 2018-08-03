@@ -15,6 +15,7 @@
 		<!--加载db.pro文件的内容
 			location指定要加载的文件的位置
 		-->
+
 		<context:property-placeholder location="classpath:db.properties"  />
 		<!--配置数据源，dbcp  -->
 		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" >

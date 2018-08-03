@@ -2,16 +2,17 @@ package com.ssm.model.service;
 
 
 import com.ssm.model.bean.CommentInfo;
+import com.ssm.model.bean.Comment_photo;
 import com.ssm.model.bean.Keyword;
 import com.ssm.model.dao.CommentDAO;
 import com.ssm.model.dao.KeywordDAO;
+import com.ssm.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -29,6 +30,12 @@ public class CommentService {
     @Autowired
     private  CommentDAO commentDAO;
 
+    /**
+     * 根据关键词获得评论
+     * @param keyName
+     * @return
+     */
+
     public List<CommentInfo> getCommentByKey(String keyName){
         System.out.println("-----通过关键词获取评论service-----");
         List<CommentInfo> list=commentDAO.getCommentByKey(keyName);
@@ -36,21 +43,33 @@ public class CommentService {
         return list;
     }
 
+    /**
+     * 添加评论
+     * @param comment
+     */
+
     public void addComment(CommentInfo comment){
         System.out.println("-----提交评论service-----");
         //分析评论
 
         analysComment(comment);
-
-
-
     }
 
+    /**
+     * 分析评论
+     * @param comment
+     */
+
     private void analysComment(CommentInfo comment){
-        System.out.println("-----分析service-----");
+        System.out.println("-----分析评论service-----");
+
+        //写入语料库
 
         String content=comment.getCtext();
         System.out.println(content);
+        //写入语料库
+        FileUtil.write(content,"comments.txt");
+
 
         //先判断是否已经包含了已有关键词
         //包含了就不用调用api
@@ -85,6 +104,11 @@ public class CommentService {
     }
 
 
+    /**
+     * 通过神箭手接口 获得形容词
+     * @param evaluate
+     * @return
+     */
     //分词
     private static String getAdj(String evaluate){
         String text=null;
@@ -122,7 +146,12 @@ public class CommentService {
     }
 
 
-
+    /**
+     * 神箭手接口请求函数
+     * @param httpUrl
+     * @param httpArg
+     * @return
+     */
     private static String request(String httpUrl, String httpArg) {
 
         BufferedReader reader = null;
@@ -173,5 +202,52 @@ public class CommentService {
 
         return result;
 
+    }
+
+
+    /**
+     * 保存评论
+     * @param comment
+     * @param upload
+     * @param uploadpath
+     */
+    @Transactional
+    public void saveComment(CommentInfo comment, MultipartFile[] upload, String uploadpath){
+
+        analysComment(comment);
+
+        System.out.println("in SERVICE saveComment");
+        //文件上传
+        System.out.println("------"+uploadpath+"------");
+        for(int i=0; i<upload.length;i++)
+        {
+            String filename = System.currentTimeMillis()+upload[i].getOriginalFilename();
+            File f = new File(uploadpath,filename);
+            try {
+                upload[i].transferTo(f);
+            } catch (IllegalStateException | IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            if(i==0)
+            {
+                comment.setPraise(0);
+                comment.setCdate(new Date());
+
+                comment.setPhotourl(filename);
+                //2. 保存comment
+                System.out.println("----------commentDAO.saveComment(comment)--------");
+               // commentDAO.saveComment(comment);
+                //comment.setCid(commentDAO.getMaxCid());
+            }
+            System.out.println("----------"+comment.getCid()+"--------");
+
+            //保存图片
+            Comment_photo photo = new Comment_photo();
+            photo.setCid(comment.getCid());
+            photo.setPhotourl(filename);
+            System.out.println("----------savePhoto(photo)--------");
+            //commentDAO.savePhoto(photo);
+        }
     }
 }

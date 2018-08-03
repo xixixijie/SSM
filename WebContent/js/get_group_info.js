@@ -12,9 +12,9 @@ $(function () {
             console.log(data);
             // 清除原有的数据
             $("#show_product_info").empty();
-            var str = '<div class="myorder-sum fl"><img src="' +
+            var str = '<div class="myorder-sum fl"><img src="/img/' +
                 data.activity.product.cover_url+'"></div> <div class="myorder-text"> <h1>' +
-                data.activity.product.product_info+'</h1> <h2>'+data.activity.requiredNumber+'人团：<span class="mc-t">￥<b>' +
+                data.activity.product.product_info.substr(0,40)+'</h1> <h2>'+data.activity.requiredNumber+'人团：<span class="mc-t">￥<b>' +
                 +data.activity.group_buying_price+'</b>/件</span></h2> </div>';
             $("#show_product_info").append(str);
 
@@ -42,7 +42,7 @@ $(function () {
             var str4='<ul>';
             str4+='<li class="colonel"><div class="man-name-img fl"><img src="img/join.jpg"></div>团长' +
                 data.leader.name+'</li>';
-            for (var k=1;k<nowNum+1;k++){
+            for (var k=1;k<nowNum;k++){
                 str4+='<li><div class="man-name-img fl"><img src="img/join.jpg"></div>团员'+k+'</li>';
             }
             for (var l=0;l<requiredNum-nowNum;l++){

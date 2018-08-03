@@ -15,8 +15,22 @@
 
 
             $("#addClassifyButton").click(function(){
+
+
                 //1. 创建一个formdata对象
                 var formData = new FormData(document.getElementById("myform"));
+
+                //alert($("#className").val());
+                if($("#className").val()==""){
+                    //
+                    // $("#alertClassName").empty()
+                    // $("#alertClassName").append("用户名不能为空");
+                    // $("#alertClassName").css('color','red');
+                    alert("用户名不能为空");
+                    return;
+                }else {
+                    $("#alertClassName").empty()
+                }
 
                 $.ajax({
                     url:"addClassify",
@@ -40,7 +54,6 @@
                         }
                     }
                 });
-                alert("添加成功");
             });
         })
     </script>
@@ -62,7 +75,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">分类名</label>
         <div class="layui-input-block">
-            <input type="text" name="className" lay-verify="required" placeholder="请输入分类名" autocomplete="off" class="layui-input">
+            <input type="text" id="className" name="className" lay-verify="required" placeholder="请输入分类名" autocomplete="off" class="layui-input">
+            <div id="alertClassName"></div>
         </div>
     </div>
 
