@@ -145,10 +145,16 @@
 //            leaderID = $.cookie('leaderID');
 
             var openDate = getNowFormatDate();
-            var receiverName = $("#receiver_name").html();
+            var preReceiverName = $("#receiver_name").html();
             var receiverTEL = $("#receiver_tel").html();
             var receiverPostcode = $("#receiver_postcode").html();
-            var receiverAddress = $("#receiver_address").html();
+            var preReceiverAddress = $("#receiver_address").html();
+
+            //两次编码
+            var receiverName = encodeURI(encodeURI(preReceiverName), '');
+            var receiverAddress = encodeURI(encodeURI(preReceiverAddress), '');
+
+
             //默认需要
             var billNeeded = 1;
 //            var billNeeded = $("#open_group_billNeeded").val();

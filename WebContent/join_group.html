@@ -139,12 +139,17 @@
             var groupID = $("#join_group_groupID").val();
 
             var joinDate = getNowFormatDate();
-            var receiverName = $("#join_group_receiverName").html();
+            var preReceiverName = $("#join_group_receiverName").html();
             var receiverTEL = $("#join_group_receiverTEL").html();
             var receiverPostcode = $("#join_group_receiverPostcode").html();
-            var receiverAddress = $("#join_group_receiverAddress").html();
+            var preReceiverAddress = $("#join_group_receiverAddress").html();
             var billNeeded = 1;
 //            var billNeeded = $("#join_group_billNeeded").val();
+
+
+            //两次编码
+            var receiverName = encodeURI(encodeURI(preReceiverName), '');
+            var receiverAddress = encodeURI(encodeURI(preReceiverAddress), '');
 
             $.ajax({
                 url:"joinGroupBuying/"+joinerID+"/"+groupID+"/"+joinDate+"/"+receiverName+"/"+receiverTEL
