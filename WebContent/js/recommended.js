@@ -28,10 +28,11 @@ $(function () {
 
             $("#show_price").empty();
             $("#show_price").append(' <div id="triangle-right"></div><div class="tuan_g_price"><span>' +
-                data.requiredNumber+'人团只需</span> <b>¥'+data.group_buying_price+'</b> </div> <div class="tuan_g_btn">我要拼</div>');
+                data.requiredNumber+'人团只需</span> <b>¥'+data.group_buying_price+'</b> </div><a href="single_group_buying.html?activityID='+data.activityID+'"> <div class="tuan_g_btn">我要拼</div>');
 
             $("#show_origin_price").empty();
             $("#show_origin_price").append('<s>原价:￥'+data.product.original_price+'</s>');
+
         }
     })
 
