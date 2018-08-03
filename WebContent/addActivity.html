@@ -135,6 +135,7 @@
                     var group_buying_price = $("#group_buying_price").val();
                     var groupStartDate = $("#groupStartDate").val();
                     var groupEndDate = $("#groupEndDate").val();
+//                    检验团购价是否小于原价
                     if (original_price > group_buying_price) {
                         if (check(groupStartDate, groupEndDate)) {
                             $.ajax({
