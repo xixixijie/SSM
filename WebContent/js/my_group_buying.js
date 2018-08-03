@@ -38,9 +38,9 @@ $(function () {
             $("#my_join").empty();
             for (var i = 0; i < data.length; i++) {
                 var str = '<div class="groups-m mc-sum-box"><div><div class="myorder-sum fl">' +
-                    '<img src="'+data[i].group.activity.product.cover_url+'"></div> <div class="myorder-text"> ' +
+                    '<img src="/img/'+data[i].group.activity.product.cover_url+'"></div> <div class="myorder-text"> ' +
                     '<h1>' + data[i].group.activity.product.product_name + '</h1> ' +
-                    '<h2>' + data[i].group.activity.product.product_info.substring(0,40) + '</h2>' +
+                    '<h2>' + data[i].group.activity.product.product_info.substring(0,20) + '</h2>' +
                     '<div class="tuan_g_core"><div class="tuan_g_price"><span>成团价</span>' +
                     '<b>¥' + data[i].group.activity.group_buying_price + '</b> </div> <div class="tuan_g_btn"></div> </div> </div> </div>' +
                     ' <div class="groups-dowm-bnt">您参与的团购' +

@@ -27,12 +27,12 @@ $(function () {
 
             $("#join_group_groupID").val(data.groupID);
             $("#show_price").append('  <span class="aui-red aui-size">总金额: <em>￥'+data.activity.group_buying_price+'</em></span>');
-            $("#product_url").append('<img src="'+data.activity.product.cover_url+'" alt="">');
+            $("#product_url").append('<img src="/img/'+data.activity.product.cover_url+'" alt="">');
         }
     });
     var userID = 1;
     $.ajax({
-        url: "getAddress/" + userID,
+        url: "getAddresses/" + userID,
         type: "POST",
         dataType: "json",
         success: function (data) {

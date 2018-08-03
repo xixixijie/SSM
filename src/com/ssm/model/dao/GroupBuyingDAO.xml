@@ -249,7 +249,7 @@
     </select>
 
     <select id="searchJoinGroupListByUserID" parameterType="int" resultMap="JoinGroupListResult">
-        SELECT * FROM (join_group_list JOIN group_buying_list ON join_group_list.group_id = group_buying_list.groupID) JOIN userinfo ON join_group_list.joiner_id = userinfo.user_id
+        SELECT * FROM (((join_group_list JOIN group_buying_list ON join_group_list.group_id = group_buying_list.groupID) JOIN userinfo ON join_group_list.joiner_id = userinfo.user_id)JOIN group_buying_activity ON group_buying_list.activityID = group_buying_activity.activityID) JOIN product on group_buying_activity.productID = product.product_id
         WHERE join_group_list.joiner_id = #{userID}
     </select>
 

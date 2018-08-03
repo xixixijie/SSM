@@ -183,11 +183,11 @@ public class AuctionImp implements AuctionDAO {
             preparedStatement=connection.prepareStatement(sql2);
             resultSet=preparedStatement.executeQuery();
             if(resultSet.next()){
-                address.setAddressID(resultSet.getInt("address_id"));
+                address.setAddress_ID(resultSet.getInt("address_id"));
                 address.setAddress(resultSet.getString("address"));
                 address.setPostcode(resultSet.getInt("postcode"));
-                address.setAcceptPhone(resultSet.getLong("accept_phone"));
-                address.setAcceptName(resultSet.getString("accept_name"));
+                address.setAccept_Phone(resultSet.getLong("accept_phone"));
+                address.setAccept_Name(resultSet.getString("accept_name"));
             }
             preparedStatement=connection.prepareStatement(sql3);
             preparedStatement.setInt(1,maxid);
@@ -200,8 +200,8 @@ public class AuctionImp implements AuctionDAO {
             preparedStatement.setString(8,auctionOrder.getAuction_name());
             preparedStatement.setString(9,address.getAddress());
             preparedStatement.setInt(10,address.getPostcode());
-            preparedStatement.setLong(11,address.getAcceptPhone());
-            preparedStatement.setString(12,address.getAcceptName());
+            preparedStatement.setLong(11,address.getAccept_Phone());
+            preparedStatement.setString(12,address.getAccept_Name());
             preparedStatement.setString(13,auctionOrder.getCover_url());
             preparedStatement.executeUpdate();
 

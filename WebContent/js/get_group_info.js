@@ -14,7 +14,7 @@ $(function () {
             $("#show_product_info").empty();
             var str = '<div class="myorder-sum fl"><img src="/img/' +
                 data.activity.product.cover_url+'"></div> <div class="myorder-text"> <h1>' +
-                data.activity.product.product_info.substr(0,40)+'</h1> <h2>'+data.activity.requiredNumber+'人团：<span class="mc-t">￥<b>' +
+                data.activity.product.product_info.substr(0,20)+'</h1> <h2>'+data.activity.requiredNumber+'人团：<span class="mc-t">￥<b>' +
                 +data.activity.group_buying_price+'</b>/件</span></h2> </div>';
             $("#show_product_info").append(str);
 

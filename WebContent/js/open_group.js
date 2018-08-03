@@ -26,7 +26,7 @@ $(function () {
     });
     var userID = 1;
     $.ajax({
-        url: "getAddress/" + userID,
+        url: "getAddresses/" + userID,
         type: "POST",
         dataType: "json",
         success: function (data) {

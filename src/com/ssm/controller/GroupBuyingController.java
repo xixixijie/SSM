@@ -580,10 +580,10 @@ public class GroupBuyingController {
                     "        <!-- 商品详情 -->" +
                     "        <h4>商品详情</h4>" +
                     "        <div class=\"mc-sum-box\">" +
-                    "            <div class=\"myorder-sum fl\"><img src=\"" + group1.getActivity().getProduct().getCover_url() + "\"></div>" +
+                    "            <div class=\"myorder-sum fl\"><img src=\"/img/" + group1.getActivity().getProduct().getCover_url() + "\"></div>" +
                     "            <div class=\"myorder-text\">" +
                     "                <h1>" + group1.getActivity().getProduct().getProduct_name() + "</h1>" +
-                    "                <h2>" + group1.getActivity().getProduct().getProduct_info() + "</h2>" +
+                    "                <h2>" + group1.getActivity().getProduct().getProduct_info().substring(0,20) + "</h2>" +
                     "                <div class=\"myorder-cost\">" +
                     "                    <span>原价" + group1.getActivity().getProduct().getOriginal_price() + "</span>" +
                     "                    <span class=\"mc-t\">团购价￥" + group1.getActivity().getGroup_buying_price() + "/件</span>" +
@@ -667,10 +667,10 @@ public class GroupBuyingController {
                         "        <!-- 商品详情 -->" +
                         "        <h4>商品详情</h4>" +
                         "        <div class=\"mc-sum-box\">" +
-                        "            <div class=\"myorder-sum fl\"><img src=\"" + group1.getActivity().getProduct().getCover_url() + "\"></div>" +
+                        "            <div class=\"myorder-sum fl\"><img src=\"/img/" + group1.getActivity().getProduct().getCover_url() + "\"></div>" +
                         "            <div class=\"myorder-text\">" +
                         "                <h1>" + group1.getActivity().getProduct().getProduct_name() + "</h1>" +
-                        "                <h2>" + group1.getActivity().getProduct().getProduct_info() + "</h2>" +
+                        "                <h2>" + group1.getActivity().getProduct().getProduct_info().substring(0,20) + "</h2>" +
                         "                <div class=\"myorder-cost\">" +
                         "                    <span>原价" + group1.getActivity().getProduct().getOriginal_price() + "</span>" +
                         "                    <span class=\"mc-t\">团购价￥" + group1.getActivity().getGroup_buying_price() + "/件</span>" +
@@ -761,7 +761,7 @@ public class GroupBuyingController {
      * @param userID 用户ID，用于唯一区分用户
      * @return 该用户下所有的地址集合
      */
-    @RequestMapping(value = "/getAddress/{userID}", method = RequestMethod.POST)
+    @RequestMapping(value = "/getAddresses/{userID}", method = RequestMethod.POST)
     @ResponseBody
     public ArrayList<Address> getAddress(@PathVariable int userID) {
         return groupBuyingService.getAddress(userID);

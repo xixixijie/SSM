@@ -80,7 +80,7 @@ public class PromptGroupFailureTask implements Job {
                     "            <div class=\"shopping-cart fr\">" +
                     "            </div>" +
                     "        </nav>" +
-                    "<div class=\"od-details\"><img src=\"img/fail_group_buying.jpg/\"></div>" +
+                    "<div class=\"od-details\"><img src=\"/img/fail_group_buying.jpg\"></div>" +
                     "        <!-- 订单信息 -->" +
                     "        <div class=\"od-infor\">" +
                     "            <table cellpadding=\"1\" cellspacing=\"0\">" +
@@ -117,10 +117,10 @@ public class PromptGroupFailureTask implements Job {
                     "        <!-- 商品详情 -->" +
                     "        <h4>商品详情</h4>" +
                     "        <div class=\"mc-sum-box\">" +
-                    "            <div class=\"myorder-sum fl\"><img src=\"" + group1.getActivity().getProduct().getCover_url() + "\"></div>" +
+                    "            <div class=\"myorder-sum fl\"><img src=\"/img/" + group1.getActivity().getProduct().getCover_url() + "\"></div>" +
                     "            <div class=\"myorder-text\">" +
                     "                <h1>" + group1.getActivity().getProduct().getProduct_name() + "</h1>" +
-                    "                <h2>" + group1.getActivity().getProduct().getProduct_info().substring(0, 40) + "</h2>" +
+                    "                <h2>" + group1.getActivity().getProduct().getProduct_info().substring(0, 20) + "</h2>" +
                     "                <div class=\"myorder-cost\">" +
                     "                    <span>原价" + group1.getActivity().getProduct().getOriginal_price() + "</span>" +
                     "                    <span class=\"mc-t\">团购价￥" + group1.getActivity().getGroup_buying_price() + "/件</span>" +
@@ -188,10 +188,10 @@ public class PromptGroupFailureTask implements Job {
                         "        <!-- 商品详情 -->" +
                         "        <h4>商品详情</h4>" +
                         "        <div class=\"mc-sum-box\">" +
-                        "            <div class=\"myorder-sum fl\"><img src=\"" + group1.getActivity().getProduct().getCover_url() + "\"></div>" +
+                        "            <div class=\"myorder-sum fl\"><img src=\"/img/" + group1.getActivity().getProduct().getCover_url() + "\"></div>" +
                         "            <div class=\"myorder-text\">" +
                         "                <h1>" + group1.getActivity().getProduct().getProduct_name() + "</h1>" +
-                        "                <h2>" + group1.getActivity().getProduct().getProduct_info().substring(0, 40) + "</h2>" +
+                        "                <h2>" + group1.getActivity().getProduct().getProduct_info().substring(0, 20) + "</h2>" +
                         "                <div class=\"myorder-cost\">" +
                         "                    <span>原价" + group1.getActivity().getProduct().getOriginal_price() + "</span>" +
                         "                    <span class=\"mc-t\">团购价￥" + group1.getActivity().getGroup_buying_price() + "/件</span>" +

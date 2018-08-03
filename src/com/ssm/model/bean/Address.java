@@ -1,18 +1,19 @@
 package com.ssm.model.bean;
 
 public class Address {
-    private int addressID;
+    private int address_ID;
     private String address;
     private int postcode;
-    private long acceptPhone;
-    private String acceptName;
+    private long accept_Phone;
+    private String accept_Name;
+    private int status;
 
-    public int getAddressID() {
-        return addressID;
+    public int getAddress_ID() {
+        return address_ID;
     }
 
-    public void setAddressID(int addressID) {
-        this.addressID = addressID;
+    public void setAddress_ID(int address_ID) {
+        this.address_ID = address_ID;
     }
 
     public String getAddress() {
@@ -31,20 +32,28 @@ public class Address {
         this.postcode = postcode;
     }
 
-    public long getAcceptPhone() {
-        return acceptPhone;
+    public long getAccept_Phone() {
+        return accept_Phone;
     }
 
-    public void setAcceptPhone(long acceptPhone) {
-        this.acceptPhone = acceptPhone;
+    public void setAccept_Phone(long accept_Phone) {
+        this.accept_Phone = accept_Phone;
     }
 
-    public String getAcceptName() {
-        return acceptName;
+    public String getAccept_Name() {
+        return accept_Name;
     }
 
-    public void setAcceptName(String acceptName) {
-        this.acceptName = acceptName;
+    public void setAccept_Name(String accept_Name) {
+        this.accept_Name = accept_Name;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
 
