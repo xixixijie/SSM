@@ -110,6 +110,16 @@
     </div>
 
     <script type="application/javascript">
+        // numberMillis 毫秒
+        function sleep(numberMillis) {
+            var now = new Date();
+            var exitTime = now.getTime() + numberMillis;
+            while (true) {
+                now = new Date();
+                if (now.getTime() > exitTime)
+                    return;
+            }
+        }
 
         function getNowFormatDate() {
             var date = new Date();
@@ -135,10 +145,16 @@
 //            leaderID = $.cookie('leaderID');
 
             var openDate = getNowFormatDate();
-            var receiverName = $("#receiver_name").html();
+            var preReceiverName = $("#receiver_name").html();
             var receiverTEL = $("#receiver_tel").html();
             var receiverPostcode = $("#receiver_postcode").html();
-            var receiverAddress = $("#receiver_address").html();
+            var preReceiverAddress = $("#receiver_address").html();
+
+            //两次编码
+            var receiverName = encodeURI(encodeURI(preReceiverName), '');
+            var receiverAddress = encodeURI(encodeURI(preReceiverAddress), '');
+
+
             //默认需要
             var billNeeded = 1;
 //            var billNeeded = $("#open_group_billNeeded").val();
@@ -154,6 +170,7 @@
                 }
             });
 
+            sleep(1000);
 
             //获取最新的groupID，也就是刚开团的
             $.ajax({

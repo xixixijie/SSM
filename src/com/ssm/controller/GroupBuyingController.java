@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -294,6 +296,14 @@ public class GroupBuyingController {
                                     @PathVariable String openDate, @PathVariable String receiverName,
                                     @PathVariable String receiverTEL, @PathVariable int receiverPostcode,
                                     @PathVariable String receiverAddress, @PathVariable int billNeeded) {
+        //收获地址和收货人姓名解码
+        try {
+            receiverName = URLDecoder.decode(receiverName,"UTF-8");
+            receiverAddress=URLDecoder.decode(receiverAddress,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         //封装数据
         Group group = new Group();
         Activity activity = new Activity();
@@ -478,6 +488,14 @@ public class GroupBuyingController {
                                 @PathVariable String joinDate, @PathVariable String receiverName,
                                 @PathVariable String receiverTEL, @PathVariable int receiverPostcode,
                                 @PathVariable String receiverAddress, @PathVariable int billNeeded) {
+        //收获地址和收货人姓名解码
+        try {
+            receiverName = URLDecoder.decode(receiverName,"UTF-8");
+            receiverAddress=URLDecoder.decode(receiverAddress,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         //封装数据
         JoinGroupList joinGroupList = new JoinGroupList();
         Group group = new Group();
