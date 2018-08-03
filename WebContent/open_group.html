@@ -110,6 +110,16 @@
     </div>
 
     <script type="application/javascript">
+        // numberMillis 毫秒
+        function sleep(numberMillis) {
+            var now = new Date();
+            var exitTime = now.getTime() + numberMillis;
+            while (true) {
+                now = new Date();
+                if (now.getTime() > exitTime)
+                    return;
+            }
+        }
 
         function getNowFormatDate() {
             var date = new Date();
@@ -154,6 +164,7 @@
                 }
             });
 
+            sleep(1000);
 
             //获取最新的groupID，也就是刚开团的
             $.ajax({
