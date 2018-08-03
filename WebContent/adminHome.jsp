@@ -23,6 +23,13 @@
 <div class="layui-row">
     <div class="layui-col-md2">
         <ul class="layui-nav layui-nav-tree layui-inline layui-bg-black" lay-filter="demo" style="margin-right: 10px;">
+            <li class="layui-nav-item">
+                <a href="javascript:;">团购管理</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="addActivity.html" target="mainFrame">发布团购</a></dd>
+                    <dd><a href="generateActivity.html" target="mainFrame">管理团购</a></dd>
+                </dl>
+            </li>
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;">分类管理</a>
                 <dl class="layui-nav-child">

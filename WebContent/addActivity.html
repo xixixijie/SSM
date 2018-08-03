@@ -12,8 +12,8 @@
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
 </head>
 <style>
-    .error{
-        color:red;
+    .error {
+        color: red;
     }
 </style>
 <body>
@@ -63,31 +63,31 @@
                 <input id="groupEndDate" type="date" class="form-control" name="groupEndDate">
             </div>
         </div>
-        <button type="button" id="release_activity_button" class="btn am-btn-success btn-lg btn-block" id="search_activity_button">发布</button>
+        <button type="button" id="release_activity_button" class="btn am-btn-success btn-lg btn-block"
+                id="search_activity_button">发布
+        </button>
     </div>
 </form>
 <script>
-    $().ready(function() {
-        var original_price= $("#original_price").val();
+    $().ready(function () {
         $("#addActivityForm").validate({
-            debug:true,
+            debug: true,
             rules: {
                 requiredNumber: {
                     required: true,
-                    digits:true
+                    digits: true
                 },
                 group_buying_price: {
                     required: true,
-                    number:true,
-                    max:original_price
+                    number: true,
                 },
                 groupStartDate: {
                     required: true,
-                    dateISO:true
+                    dateISO: true
                 },
                 groupEndDate: {
                     required: true,
-                    dateISO:true
+                    dateISO: true
                 }
             },
             messages: {
@@ -97,16 +97,15 @@
                 },
                 group_buying_price: {
                     required: "请输入团购价格",
-                    number:"必须为数字",
-                    max:"超过原价"
+                    number: "必须为数字"
                 },
                 groupStartDate: {
                     required: "请输入开始时间",
-                    dateISO:  "请输入正确的时间"
+                    dateISO: "请输入正确的时间"
                 },
                 groupEndDate: {
                     required: "请输入结束时间",
-                    dateISO:  "请输入正确的时间"
+                    dateISO: "请输入正确的时间"
                 }
             }
         });
@@ -127,50 +126,53 @@
         }
         return true;
     }
-    $("#release_activity_button").click(function(){
-        if( $("#addActivityForm").valid()) {
-            if($("#productID").val()!=-1){
-                var productID = $("#productID").val();
-                var requiredNum = $("#requiredNumber").val();
-                var group_buying_price = $("#group_buying_price").val();
-                var groupStartDate = $("#groupStartDate").val();
-                var groupEndDate = $("#groupEndDate").val();
-                if(check(groupStartDate,groupEndDate)){
-                    $.ajax({
-                        url:"releaseActivity/"+productID+"/"+requiredNum+"/"+group_buying_price+"/"+groupStartDate+"/"+groupEndDate,
-                        type:"post",
-                        dataType:"json",
-                        success:function(data)
-                        {
-                            console.log(data);
+    $("#release_activity_button").click(function () {
+            if ($("#addActivityForm").valid()) {
+                if ($("#productID").val() != -1) {
+                    var original_price = $("#original_price").val();
+                    var productID = $("#productID").val();
+                    var requiredNum = $("#requiredNumber").val();
+                    var group_buying_price = $("#group_buying_price").val();
+                    var groupStartDate = $("#groupStartDate").val();
+                    var groupEndDate = $("#groupEndDate").val();
+                    if (original_price > group_buying_price) {
+                        if (check(groupStartDate, groupEndDate)) {
+                            $.ajax({
+                                url: "releaseActivity/" + productID + "/" + requiredNum + "/" + group_buying_price + "/" + groupStartDate + "/" + groupEndDate,
+                                type: "post",
+                                dataType: "json",
+                                success: function (data) {
+                                    console.log(data);
+                                }
+                            });
+                            window.location.href = "generateActivity.html";
                         }
-                    });
-                    window.location.href="generateActivity.html";
+                    } else {
+                        alert("超过原价");
+                    }
+                } else {
+                    alert("请选择商品");
                 }
-            }else{
-                alert("请选择商品");
+            } else {
+                //do nothing
             }
-        }else{
-            //do nothing
         }
-    });
+    );
 </script>
 
 
-
-<script language="javascript">window.onload=
-    function(){
+<script language="javascript">window.onload =
+    function () {
         $.ajax({
-            url:"showClassify",
-            type:"post",
-            dataType:"json",
-            contentType:false,
-            processData:false,
-            cache:false,
-            success:function(data)
-            {
-                for(var i=0;i<data.length;i++){
-                    $('select[name="classifyId"]').append("<option value='"+data[i].classifyID+"'>"+data[i].className+"</option>"
+            url: "showClassify",
+            type: "post",
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $('select[name="classifyId"]').append("<option value='" + data[i].classifyID + "'>" + data[i].className + "</option>"
                     );
                 }
 
@@ -179,18 +181,17 @@
     }
 </script>
 <script language="javascript">
-    function classifyChange(){
-        var c=$('select[name="classifyId"]').val();
+    function classifyChange() {
+        var c = $('select[name="classifyId"]').val();
 
         $.ajax({
-            url:"getProductsByClassifyID/"+c,
-            type:"post",
-            dataType:"json",
-            success:function(data1)
-            {
+            url: "getProductsByClassifyID/" + c,
+            type: "post",
+            dataType: "json",
+            success: function (data1) {
                 $('select[name="productId"]').empty();
-                for(var i=0;i<data1.length;i++){
-                    $('select[name="productId"]').append("<option value='"+data1[i].product_id+"'>"+data1[i].product_name+"</option>"
+                for (var i = 0; i < data1.length; i++) {
+                    $('select[name="productId"]').append("<option value='" + data1[i].product_id + "'>" + data1[i].product_name + "</option>"
                     );
                 }
             }
@@ -198,27 +199,25 @@
     }
 </script>
 <script language="javascript">
-    function productChange(){
-        var c=$('select[name="productId"]').val();
+    function productChange() {
+        var c = $('select[name="productId"]').val();
         $("#productID").val(c);
         $.ajax({
-            url:"showDetailProduct/"+c,
-            type:"post",
-            dataType:"json",
-            success:function(data)
-            {
-                $('#show_product_info').empty();
-                var str='<div><img src="/img/'+data.cover_url+'"></div><div class="details-body-box"><div class="tm">' +
-                    '<div class="td2"> <div class="td2_price">' +
-                    '<span>售价：<b>'+data.original_price+'</b>元</span></div><div class="td2_name">'+data.product_name+'</div>' +
-                    '<div class="td2_cx">'+data.product_info+'</div></div></div></div>';
-                $('#show_product_info').append(str);
+            url: "getProductForUser/" + c,
+            type: "post",
+            dataType: "json",
+            success: function (data) {
                 $('#original_price').val(data.original_price);
+                $('#show_product_info').empty();
+                var str = '<div><img src="/img/' + data.cover_url + '"></div><div class="details-body-box"><div class="tm">' +
+                    '<div class="td2"> <div class="td2_price">' +
+                    '<span>售价：<b>' + data.original_price + '</b>元</span></div><div class="td2_name">' + data.product_name + '</div>' +
+                    '<div class="td2_cx">' + data.product_info + '</div></div></div></div>';
+                $('#show_product_info').append(str);
             }
         });
     }
 </script>
-
 
 
 </body>
