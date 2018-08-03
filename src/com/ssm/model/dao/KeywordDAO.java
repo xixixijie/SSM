@@ -22,4 +22,8 @@ public interface KeywordDAO {
     int getMaxLabelID();
 
     void deleteAll();
+
+    keyLabel getKeyLabel(int labelID);
+
+    void updateLabel(keyLabel label);
 }

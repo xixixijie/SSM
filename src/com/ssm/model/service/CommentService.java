@@ -4,6 +4,7 @@ package com.ssm.model.service;
 import com.ssm.model.bean.CommentInfo;
 import com.ssm.model.bean.Comment_photo;
 import com.ssm.model.bean.Keyword;
+import com.ssm.model.bean.keyLabel;
 import com.ssm.model.dao.CommentDAO;
 import com.ssm.model.dao.KeywordDAO;
 import com.ssm.util.FileUtil;
@@ -66,7 +67,7 @@ public class CommentService {
         //写入语料库
 
         String content=comment.getCtext();
-        System.out.println(content);
+        //System.out.println(content);
         //写入语料库
         FileUtil.write(content,"comments.txt");
 
@@ -76,14 +77,23 @@ public class CommentService {
         List<Keyword> keywordList=keywordDAO.getAllKeyword();
         Set<String> disSet=new HashSet<>();
 
-        System.out.println("关键词大小"+keywordList.size());
+        //System.out.println("关键词大小"+keywordList.size());
         for(Keyword k:keywordList){
             if(content.contains(k.getKeyName())){
                 //key出现次数+1
+
                 Map<String,Integer> map=new HashMap<>();
+
                 map.put("keyid",k.getKeyID());
                 map.put("keynum",k.getKeyNum()+1);
                 keywordDAO.addNum(map);
+                int labelID=k.getLabelID();
+                keyLabel label=keywordDAO.getKeyLabel(labelID);
+                label.setLabelNum(label.getLabelNum()+1);
+
+                keywordDAO.updateLabel(label);
+
+
                 return;
             }
         }

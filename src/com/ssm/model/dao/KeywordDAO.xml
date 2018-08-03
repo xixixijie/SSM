@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="getMaxLabelID" resultType="int">
         SELECT nvl(max(LABELID),0)+1 from KEYLABEL
     </select>
-    <insert id="addKeyLabel" parameterType="KeyLabel">
+    <insert id="addKeyLabel" parameterType="keyLabel">
         insert into KEYLABEL
         values (#{labelID},#{labelName},#{labelNum})
     </insert>
@@ -33,6 +33,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         delete from KEYWORD;
         delete from KEYLABEL
     </delete>
+
+    <select id="getKeyLabel" resultType="keyLabel">
+        select * from KEYLABEL where LABELID=#{labelID}
+    </select>
+
+    <update id="updateLabel" parameterType="keyLabel">
+        update KEYLABEL set LABELNUM=#{labelNum}  where LABELID=#{labelID}
+    </update>
 
 
 </mapper>
