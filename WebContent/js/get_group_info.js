@@ -52,7 +52,7 @@ $(function () {
             $("#show_group_info2").append(str4);
 
             $("#show_num_info2").empty();
-            $("#show_num_info2").append('还差'+(requiredNum-nowNum)+'人组团成功');
+            $("#show_num_info2").append('<a href="my-purchase.html">还差'+(requiredNum-nowNum)+'人组团成功,点击返回团购首页</a>');
         }
 
     })
