@@ -28,6 +28,7 @@
                 <dl class="layui-nav-child">
                     <dd><a href="addActivity.html" target="mainFrame">发布团购</a></dd>
                     <dd><a href="generateActivity.html" target="mainFrame">管理团购</a></dd>
+                    <dd><a href="countActivities.html" target="mainFrame">团购人数统计</a ></dd>
                 </dl>
             </li>
             <li class="layui-nav-item layui-nav-itemed">

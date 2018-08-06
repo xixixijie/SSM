@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/cstreat.js"></script>
+</head>
+<body>
+<input id="cs_id" type="text" value="1" hidden="hidden">
+<h1 align="center">处理售后申请</h1>
+<div id="afterList" style="width: 100%;display:inline-block;position:absolute;left:50%;top:20%; margin-top:-100px;margin-left: -50%;border:solid #FFB800 5px;">
+</div>
+<div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    售后单详情
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div id="afterDetail">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+</html>

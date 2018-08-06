@@ -253,6 +253,11 @@
         WHERE join_group_list.joiner_id = #{userID}
     </select>
 
+    <select id="countActivities" resultType="ActivityForCount">
+        select activityID,sum(currentNumber) as COUNT
+        FROM group_buying_list
+        group by activityID
+    </select>
 
 </mapper>
 

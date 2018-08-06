@@ -217,5 +217,11 @@ public interface GroupBuyingDAO {
      *
      */
     public void updateCurrentNumber(JoinGroupList joinGroupList);
+
+    /**
+     * 统计团购商品的参团人数
+     * @return
+     */
+    public ArrayList<ActivityForCount> countActivities();
 }
 
