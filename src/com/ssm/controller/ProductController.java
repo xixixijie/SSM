@@ -352,4 +352,16 @@ public class ProductController {
         System.out.println("-----推荐商品Controller-----");
         return productService.introProduct(userid);
     }
+
+    //wym,2018年7月31日，begin
+    @RequestMapping("getProduct")
+    @ResponseBody
+    public Product getProductInfo(int product_id){
+        Product product=new Product();
+        product=productService.getProductById(product_id);
+        System.out.println("-----------product.getCover_url()"+product.getCover_url());
+        System.out.println("进入getProdcutInfo.action");
+        return product;
+    }
+    //王宇铭,end
 }

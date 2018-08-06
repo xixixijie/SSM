@@ -13,6 +13,109 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
 
 
+    <!-- wym,2018年7月25日重写,心疼
+      2018年7月31日，复制，再次心疼-->
+    <select id="getAllComment" resultType="CommentInfo">
+        SELECT * from commentinfo
+    </select>
+
+    <!-- 获取热门评论 -->
+    <select id="getPopularComment" parameterType="int" resultType="CommentInfo">
+        select * FROM commentinfo c , userInfo u
+        where c.product_id=#{product_id} and u.user_id=c.userid
+        ORDER BY c.praise DESC
+    </select>
+
+
+    <!-- 获得图片 -->
+    <select id="getCommentPhoto" parameterType="int" resultType="Comment_photo">
+        select * FROM Comment_photo
+        where cid=#{cid}
+    </select>
+    <!-- 获得回复 -->
+    <select id="getReply" parameterType="int" resultType="Reply">
+        select * FROM Reply r, userInfo u
+        where r.cid=#{cid} and u.user_id = r.userid
+    </select>
+
+    <!-- getCommentById -->
+    <select id="getCommentById" parameterType="int" resultType="CommentInfo">
+        select * FROM commentinfo c
+        WHERE c.cid=#{cid}
+
+    </select>
+
+    <!--保存评论;
+        2018年7月27日 ， 测试成功
+     -->
+    <insert id="saveComment" parameterType="CommentInfo">
+        <selectKey keyProperty="cid" resultType="int" order="BEFORE">
+            select nvl(max(cid),0)+1 from COMMENTINFO
+        </selectKey>
+        insert INTO COMMENTINFO
+        VALUES(#{cid},#{userID},#{score},#{ctext},#{product_id},#{praise},#{cdate,jdbcType=DATE})
+
+    </insert>
+
+    <!--保存图片
+     2018年7月27日，测试成功
+     -->
+    <insert id="savePhoto" parameterType="Comment_photo">
+        <selectKey keyProperty="photo_id" resultType="int" order="BEFORE">
+            select nvl(max(photo_id),0)+1 from COMMENT_PHOTO
+        </selectKey>
+        insert INTO COMMENT_PHOTO VALUES (#{photo_id},#{cid},#{photourl})
+    </insert>
+
+    <!--保存评论
+        2018年7月27日，测试成功
+     -->
+    <insert id="saveReply" parameterType="Reply">
+        <selectKey keyProperty="rid" resultType="int" order="BEFORE">
+            select nvl(max(rid),0)+1 from REPLY r
+        </selectKey>
+        INSERT INTO REPLY VALUES (#{rid},#{userid},#{rtext},#{cid},#{rdate,jdbcType=DATE})
+    </insert>
+
+    <!-- 更新评论（点赞数）
+    2018年7月27日，测试成功
+    -->
+    <update id="updateComment" parameterType="CommentInfo">
+        UPDATE COMMENTINFO SET PRAISE = #{praise}
+        WHERE cid=#{cid}
+    </update>
+
+    <!-- 获得点赞信息
+        2018年7月27日，查找成功，查找空值成功
+    -->
+    <select id="getPraise" parameterType="Praise" resultType="praise">
+        SELECT * FROM PRAISEINFO
+        WHERE CID=#{cid} and USERID=#{userid}
+    </select>
+
+    <!-- 修改点赞的信息
+    2018年7月27日，测试成功
+    -->
+    <update id="updatePraise" parameterType="Praise">
+        UPDATE PRAISEINFO SET IS_PRAISE = #{is_praise}
+        where CID=#{cid} AND USERID=#{userid}
+    </update>
+
+    <!-- 添加点赞的信息
+    2018年7月30日,测试成功
+    -->
+    <insert id="savePraise" parameterType="Praise">
+        <selectKey keyProperty="praise_id" resultType="int" order="BEFORE">
+            select nvl(max(praise_id),0)+1 from PRAISEINFO
+        </selectKey>
+        INSERT INTO PRAISEINFO
+        VALUES (#{praise_id},#{userid},#{cid},#{is_praise})
+    </insert>
+
+    <select id="getMaxCid" resultType="int">
+        select max(cid) from COMMENTINFO
+    </select>
+
 
 </mapper>
 

@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编写评论</title>
+    <link rel="stylesheet" href="themes/css/core.css">
+    <link rel="stylesheet" href="themes/css/icon.css">
+    <link rel="stylesheet" href="themes/css/home.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="layui/layui.js" ></script>
+    <script type="text/javascript" src="js/writeComment.js" ></script>
+    <link href="css/writeComment.css" type="text/css" rel="stylesheet">
+    <!-- wym,2018年7月23日 -->
+</head>
+
+<body>
+<header class="aui-header-default aui-header-fixed ">
+
+    <a href="javascript:history.back(-1)" class="aui-header-item">
+        <i class="aui-icon aui-icon-back"></i>
+    </a>
+    <div class="aui-header-center aui-header-center-clear">
+        <div class="aui-header-center-logo">
+            <div id="scrollSearchPro">
+                <span>编写评价</span>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<!-- 编写评论的整个界面框 -->
+<div id="writeCmo">
+    <form  id="myform"  method="post"  enctype="multipart/form-data">
+    <!-- 原商品的展示 -->
+
+    <div id="showProduct">
+        <input id="userID" name="userID" type="hidden" value="">
+        <input id="product_id" name="product_id" type="hidden" value="">
+        <div id="photoP" STYLE="float: left"><img id="productPhoto" src=""></div>
+        <div id="nameP" STYLE="float: left"> <p id="productName"></p></div>
+    </div>
+
+    <!-- 评分 -->
+    <div id="score0">
+        <div id="nameS"><p>商品评分</p></div>
+        <div id="score1"></div>
+        <input id="score" name="score" type="hidden" value="0">
+    </div>
+    <!-- 编写评论的文本框 -->
+    <div id="textC">
+
+       <textarea id="ctext" name="ctext" required lay-verify="required" placeholder="请编写评价" class="layui-textarea"></textarea>
+
+    </div>
+
+    <!-- 图片插入部分 -->
+    <div id="photoC">
+
+        <p>上传图片</p>
+        <div id="photos">
+            <div id="addfile">
+                <img src="img/addfile.jpg" />
+                <input type="file"  accept="image/*" id="photo"  >
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+
+
+<footer class="aui-footer-default aui-footer-fixed">
+    <div style="width: 100%">
+        <div id="dbutton">
+            <button id="btn_comment" type="button" class="layui-btn layui-btn-danger">提交评价</button>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

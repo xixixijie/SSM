@@ -1,11 +1,11 @@
 
 #allcomment{
 
-
     float: left;
-    width: 95%;
+    width: 100%;
     margin-left: 2.5%;
 }
+
 #sortC{
     float: left;
     width: 100%;
@@ -13,11 +13,47 @@
 }
 #commentPart{
    float: left;
-   width: 95%;
-   margin-left: 2.5%;
+   width: 100%;
+
+}
+li{
+    border-top: 1px solid #d0d0d0;
+    margin-top: 5px;
+}
+.acomment{
+
+    width: 100%;
+
+    margin-top: 10px;
+}
+.commentHead{
+
+    width: 95%;
+    margin-left: 2.5%;
+}
+.commentBody{
+
+    width: 95%;
+    margin-left: 2.5%;
 }
 
-.acomment{
-    float: left;
-    width: 100%
+.commenttext{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.commentphoto{
+    width:33%;
+}
+.commentTail{
+
+    width: 95%;
+    margin-left: 2.5%;
+}
+.reply{
+
+    width: 95%;
+    margin-left: 2.5%;
+    margin-top: 30px;
+
 }

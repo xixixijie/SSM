@@ -1,4 +1,3 @@
-
 //地址格式 url?product_id=1&userID=2
 
 
@@ -83,58 +82,82 @@ $(function() {
 
 
 
-   //layui部分
+//layui部分
 
     layui.use(['layer','flow'], function(){
         var $ = layui.jquery; //不用额外加载jQuery，flow模块本身是有依赖jQuery的，直接用即可。
         var layer = layui.layer
         ,flow = layui.flow;
 
-
-        //流加载评论
+//流加载评论
         flow.load({
             elem: '#comment' //指定列表容器
             ,mb: 100
             ,done: function(page, next){
-
                 var lis = [];
+                //salert("liujiazais");
                 $.get('getPopularComment?page='+page+'&product_id='+product_id+'&userID='+userID, function(res){
                     //假设你的列表返回在data集合中
-
                     layui.each(res, function(index, item) {
+                    //转化日期格式
+                         var date = new Date(item.cdate);
+                         Date.prototype.Format = function(fmt) {
+                            //author:wangweizhen
+                             var o = {
+                                 "M+" : this.getMonth()+1,                 //月份
+                                 "d+" : this.getDate(),                    //日
+                                 "h+" : this.getHours(),                   //小时
+                                 "m+" : this.getMinutes(),                 //分
+                                 "s+" : this.getSeconds(),                 //秒
+                                 "q+" : Math.floor((this.getMonth()+3)/3), //季度
+                                 "S"  : this.getMilliseconds()             //毫秒
+                             };
+                             if(/(y+)/.test(fmt))
+                                 fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+                             for(var k in o)
+                                 if(new RegExp("("+ k +")").test(fmt))
+                                     fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+                             return fmt;
+                         };
 
+                     //添加评论
                         var str = '<li> <!-- 每一条评价的结构 --> <div class="acomment" >';
-                        str += ' <div style="float: left; width: 75%">' + item.userID + '<input name="userID" type="hidden" value=""> </div>';
-                        str += ' <div style="float: right; width: 25%">' + item.score + '<input id="score" type="hidden" value=""> </div>';
-                        str += '<div class="acomment">';
+                        str +='<div class="commentHead">';
+                        str += ' <div style="float: left;">' + item.userName + '<input name="userID" type="hidden" value=""> </div>';
+                        str += ' <div style="float: right;">' + item.score + '<input id="score" type="hidden" value=""> </div>';
+                        str +='</div><br>';
+                        str += '<div class="commentBody">';
                         if (item.ctext != null) {
-                            str += '<div class="acomment">' + item.ctext + ' </div>';
+                            str += '<div class="commenttext">' + item.ctext + ' </div>';
                         }
-                        str += '<div class="acomment">';
+                        str += '<div class="photo">';
                         //需要遍历输出图片
+
                         if (item.cphoto != null) {
-                            for (var i; i < item.cphoto.length; i++) {
-                                str += '<image src="' + item.cphoto[i].photourl + '">';
+                            for (var i=0; i < item.cphoto.length; i++) {
+                                str += '<img class="commentphoto" src="img\\comment_Photo\\' + item.cphoto[i].photourl + '">';
                             }
                         }
 
                         str + ' </div>';
-                        str += '</div>';
-                        str += '<div> <div style="float: left"> '+item.cdate+'</div> <div style="float: right">';
+                        str += '</div><br>';
+                        str += '<div class="commentTail"> <div style="float: left"> '+date.Format("yyyy-MM-dd")+'</div> ';
+
                         //点赞按钮
+                        str+='<div style="float: right">';
                         if(item.praiseInfo==null ||item.praiseInfo.is_praise!=1) {
                             str += '<i class="layui-icon" name="'+item.cid+'" style="rgb(76, 76, 76);">&#xe6c6;</i>';
                         }else{
                             str += '<i class="layui-icon" name="'+item.cid+'" style="color: rgb(255, 159, 30);">&#xe6c6;</i>';
                         }
-                        str +='('+item.praise+')';
+                        str +='<p id="praise'+item.cid+'">('+item.praise+')</p>';
                         //添加回复按钮
                         str += '</div> <div style="float: right"><button data-method="reply_btn" name="'+item.cid+'" class="layui-btn layui-btn-primary layui-btn-xs">回复</button>&nbsp;</div> </div>';
-                        str += '<div class="acomment"> ';
+                        str += '<div class="reply"> ';
                         if (item.reply != null) {
 
                             for(var i=0;i<item.reply.length;i++){
-                                str+='<p>'+item.reply[i].userid+':'+item.reply[i].rtext+'</p>';
+                                str+='<p>'+item.reply[i].userName+':'+item.reply[i].rtext+'</p>';
                             }
                         }
                         //需要遍历，输出评论
@@ -146,7 +169,7 @@ $(function() {
 
                     //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
                     //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-                    if(res){
+                    if(res.length==5){
                         next(lis.join(''), 1);
                     }else{
                         next(lis.join('没有更多了'), 0);
@@ -161,7 +184,7 @@ $(function() {
             var that = this;
             var cid = this.getAttribute("name"); //将name属性记为评论对应的cid，然后提取使用
             //判断是否登入
-            if(-1){
+            if(userID==-1){
                 loginJump();
             }else{
                 layer.open({
@@ -172,22 +195,29 @@ $(function() {
                         // alert("1+"+userID);
                         // alert("2+"+cid);
                         // alert("3+"+$("#rtext").val());
+                        alert("3+"+$("#rtext").val());
+                        if($("#rtext").val()==null ||$("#rtext").val()=='') {
+                            layer.open({
 
-                        $.ajax({
-                            url:"saveReply?cid="+cid+"&userID="+userID+"&rtext="+$("#rtext").val(),
-                            type:"get",
-                            dataType:"json",
-                            success:function(data)
-                            {
-                                //alert("我没有错");
-                                //刷新页面？
-                                window.location.reload();
-                            }
+                                content: '请输入回复文本'
+                            });
+                        }else{
 
-                        });
+                            $.ajax({
+                                url: "saveReply?cid=" + cid + "&userID=" + userID + "&rtext=" + $("#rtext").val(),
+                                type: "get",
+                                dataType: "json",
+                                success: function (data) {
+                                    //alert("我没有错");
+                                    //刷新页面？
+                                    window.location.reload();
+                                }
+
+                            });
+                            layer.close(index); //如果设定了yes回调，需进行手工关闭
+                        }
 
 
-                        layer.close(index); //如果设定了yes回调，需进行手工关闭
                     }
                 });
             }
@@ -221,7 +251,6 @@ $(function() {
             },
         });
     }
-
 
 
 });

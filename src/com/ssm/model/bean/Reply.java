@@ -12,7 +12,7 @@ public class Reply {
     private String rtext;
     private int cid;
     private Date rdate;
-    String userName;
+    private String userName;
 
 
     public int getRid() {

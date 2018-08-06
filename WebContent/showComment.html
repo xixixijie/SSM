@@ -9,11 +9,156 @@
     <link rel="stylesheet" href="themes/css/home.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
-    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
-    <link href="css/showComment.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+
+
     <script type="text/javascript" src="layui/layui.js" ></script>
     <script type="text/javascript" src="js/showComment.js" ></script>
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="css/layui.css">
+    <script type="text/javascript" src="js/layui.js"></script>
+    <script>
+
+        function getCommentsByKeyLabel(data) {
+            var keyLabel=data.value;
+
+            $.ajax({
+                url:"getComment/"+encodeURI(encodeURI(keyLabel)),
+                type:"get",
+                dataType:"json",
+                success:function(data)
+                {
+                    alert(data.length);
+
+                    $("#comment").empty();
+                    for(var i=0;i<data.length;i++){
+                        //alert(data[i].ctext)
+                        var str='   <li>\n' +
+                            '                    <!-- 每一条评价的结构 -->\n' +
+                            '                    <div class="acomment" >\n' +
+                            '                        <div class="commentHead">\n' +
+                            '                            <!-- 用户名 -->\n' +
+                            '                            <div style="float: left; ">\n' +
+                            '                                用户名<br>\n' +
+                            '                            <input name="userID" type="hidden">\n' +
+                            '                            </div>\n' +
+                            '                            <!-- 评分 -->\n' +
+                            '                            <div style="float: right;">\n' +
+                            '                                非常满意<br>\n' +
+                            '\n' +
+                            '                            </div>\n' +
+                            '                        </div><br>\n' +
+                            '                        <!-- 评论主体 -->\n' +
+                            '                        <div class="commentBody">\n' +
+                            '                            <!-- 文本 -->\n' +
+                            '                            <div class="commenttext">\n' +
+                            '                                我对这个小米手机非常满意\n' +
+                            '                            </div>\n' +
+                            '                            <!-- 图片 -->\n' +
+                            '                            <div class="photo">\n' +
+                            '                                <img class="commentphoto" src="img\\comment_Photo\\1533016464521WallpaperStudio10-589.jpg">\n' +
+                            '                            </div>\n' +
+                            '\n' +
+                            '                        </div><br>\n' +
+                            '                        <!-- 时间 点赞 回复按钮 -->\n' +
+                            '                        <div class="commentTail">\n' +
+                            '                            <div style="float: left"> 2018-7-25</div>\n' +
+                            '                            <div style="float: right">\n' +
+                            '\n' +
+                            '                                <i id="woshisb" name="111111" class="layui-icon" style="color:rgb(255, 159, 30);">&#xe6c6;</i>\n' +
+                            '\n' +
+                            '                            </div>\n' +
+                            '                            <div style="float: right">\n' +
+                            '                                <button data-method="reply_btn" class="layui-btn layui-btn-primary layui-btn-xs">回复</button>\n' +
+                            '                            </div>\n' +
+                            '                        </div>\n' +
+                            '                        <div></div>\n' +
+                            '                    </div>\n' +
+                            '                </li>\n';
+
+                        $("#comment").append(str);
+                    }
+
+
+
+                }
+
+            });
+
+        }
+
+        $(function(){
+            $("#addComment").click(function(){
+
+                //1. 创建一个formdata对象
+                var formData = new FormData(document.getElementById("myform"));
+
+                $.ajax({
+                    url:"addComment",
+                    type:"post",
+                    data:formData,
+                    dataType:"json",
+                    contentType:false,
+                    processData:false,
+                    cache:false,
+                    success:function(data)
+                    {
+
+                        //{result:true}
+                        if(data.result)
+                        {
+                            alert("添加成功");
+                        }
+                        else
+                        {
+                            alert("添加失败");
+                        }
+                    }
+                });
+
+            });
+
+
+
+            function load() {
+
+
+                $.ajax({
+                    url:"getKeyLabel",
+                    type:"get",
+                    dataType:"json",
+                    success:function(data)
+                    {
+
+
+                        for(var j=0; j<data.length;j++)
+                        {
+                            var str='<button onclick="getCommentsByKeyLabel(this);" value="'+data[j].labelID+'"  onclick="getCommentsByKeyword();"  class="layui-btn layui-btn-primary layui-btn-sm" >'+data[j].labelName+'('+data[j].labelNum+')'+'</button>';
+
+                            $("#block0").append(str);
+                        }
+
+
+                    }
+
+                });
+
+
+
+
+            }
+
+            load()
+
+
+        })
+
+
+    </script>
+
+    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+    <link href="css/showComment.css" type="text/css" rel="stylesheet">
+
 </head>
 <body>
     <header class="aui-header-default aui-header-fixed ">
@@ -36,17 +181,20 @@
             <!-- 评价数 ， 满意度 -->
             <div style="width: 100%; float: left">
                 <div style="float: left">
-                    商品名（评价数）
+                    <div id="photoP" STYLE="float: left"><img id="productPhoto" src=""></div>
+                    <div id="nameP" STYLE="float: left"> <p id="productName"></p></div>
                 </div>
                 <div style="float: right">
-                    满意度
+                    <!-- 满意度 -->
+
                 </div>
             </div>
             <!-- 评价分类 -->
             <div id="sortC">
                 评价分类
+                <div id="block0">
 
-
+                </div>
 
             </div>
 
@@ -54,56 +202,58 @@
 
         <!-- 评价信息分区 -->
         <div id="commentPart">
-            <ul class="flow-default" id="comment">
+            <ul class="flow-default" id="comment" >
                 <li>
                     <!-- 每一条评价的结构 -->
                     <div class="acomment" >
-                        <!-- 用户名 -->
-                        <div style="float: left; width: 75%">
-                            用户名
-                        <input name="userID" type="hidden" value="">
-                        </div>
-                        <!-- 评分 -->
-                        <div style="float: right; width: 25%">
-                            评分
-                            <input id="score" type="hidden" value="">
-                        </div>
+                        <div class="commentHead">
+                            <!-- 用户名 -->
+                            <div style="float: left; ">
+                                用户名<br>
+                            <input name="userID" type="hidden">
+                            </div>
+                            <!-- 评分 -->
+                            <div style="float: right;">
+                                非常满意<br>
 
+                            </div>
+                        </div><br>
                         <!-- 评论主体 -->
-                        <div class="acomment">
+                        <div class="commentBody">
                             <!-- 文本 -->
-                            <div class="acomment">
-                                这是评论论的文本，我也不知道他可以有多少字，总之就是非常的多，多到我也数不清楚，毕竟炉石玩家只要计算到三十就可以了
+                            <div class="commenttext">
+                                我对这个小米手机非常满意
                             </div>
                             <!-- 图片 -->
-                            <div class="acomment">图片
+                            <div class="photo">
+                                <img class="commentphoto" src="img\comment_Photo\1533016464521WallpaperStudio10-589.jpg">
                             </div>
 
-                        </div>
+                        </div><br>
                         <!-- 时间 点赞 回复按钮 -->
-                        <div>
+                        <div class="commentTail">
                             <div style="float: left"> 2018-7-25</div>
-                            <div style="float: right"><i class="layui-icon-praise" >&#xe6c6;</i></div>
-                            <div style="float: right">回复</div>
+                            <div style="float: right">
+
+                                <i id="woshisb" name="111111" class="layui-icon" style="color:rgb(255, 159, 30);">&#xe6c6;</i>
+
+                            </div>
+                            <div style="float: right">
+                                <button data-method="reply_btn" class="layui-btn layui-btn-primary layui-btn-xs">回复</button>
+                            </div>
                         </div>
                         <!-- 回复内容 -->
-                        <div class="acomment">
-                            <p>评论1</p>
-                            <p>评论2</p>
-                            <p>评论3</p>
-                            <p >更多评论</p>
+                        <div class="reply">
+                            <p>评论者1：同感同感</p>
+                            <p>评论者2：我也很喜欢呀</p>
+
                         </div>
+                        <div></div>
                     </div>
                 </li>
+
+
             </ul>
-
-
-
-
-
-            <div style="float: left; width: 100% ">
-                <button style="width: 100%; text-align: center">加载更多或已到末尾</button>
-            </div>
 
 
 

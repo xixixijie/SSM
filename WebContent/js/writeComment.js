@@ -26,18 +26,26 @@ $(function() {
 
     });
 
-
-
-
+    // var index1 = location.href.lastIndexOf("product_id=");
+    // var index2 = location.href.lastIndexOf("&userID=");
+    //
+    // var userID = location.href.substr(index2+"&userID=".length);//用户id
+    // var product_id =location.href.substring(index1+"product_id=".length, index2); //商品id
+    //
+    //
+    // $("#product_id").val(product_id);
+    // $("#userID").val(userID);
+    //
+    // 修改以上代码，商品id靠url传递，用户名靠cookie传递
     var index1 = location.href.lastIndexOf("product_id=");
-    var index2 = location.href.lastIndexOf("&userID=");
+    var product_id =location.href.substring(index1+"product_id=".length); //商品id
 
-    var userID = location.href.substr(index2+"&userID=".length);//用户id
-    var product_id =location.href.substring(index1+"product_id=".length, index2); //商品id
+    var userID=$.cookie('userID');
 
-
-    $("#product_id").val(product_id);
-    $("#userID").val(userID);
+    if(isNaN(userID)){
+        userID=-1;
+        //alert("1  "+userID);
+    }
 
 
     //获取商品图片和名称
@@ -78,41 +86,41 @@ $(function() {
 
     //提交评论
     $("#btn_comment").click(function(){
+        alert($("#score").val());
+        if($("#score").val()!=0) {
+            //1. 创建一个formdata对象
+            var formData = new FormData(document.getElementById("myform"));
+            //2. 把文件追加到formData中
 
-        //1. 创建一个formdata对象
-        var formData = new FormData(document.getElementById("myform"));
-        //2. 把文件追加到formData中
-
-        for(var i=0; i<files.length;i++)
-        {
-            formData.append("upload",files[i]);
-        }
-
-
-        //提交ajax
-        $.ajax({
-            url:"saveComment",
-            type:"post",
-            data:formData,
-            dataType:"json",
-            contentType:false,
-            processData:false,
-            cache:false,
-            success:function(data)
-            {
-                //{result:true}
-                if(data.result)
-                {
-                    alert("提交成功");
-                    //跳转页面
-                    window.history.back(-1);
-                }
-                else
-                {
-                    alert("提交失败");
-                }
+            for (var i = 0; i < files.length; i++) {
+                formData.append("upload", files[i]);
             }
-        });
+
+
+            //提交ajax
+            $.ajax({
+                url: "saveComment",
+                type: "post",
+                data: formData,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    //{result:true}
+                    if (data.result) {
+                        alert("提交成功");
+                        //跳转页面
+                        window.history.back(-1);
+                    }
+                    else {
+                        alert("提交失败");
+                    }
+                }
+            });
+        }else{
+            alert("请选择评分");
+        }
     });
 
 
