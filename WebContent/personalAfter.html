@@ -2,14 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>选择功能</title>
+    <title>客户售后界面</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+    <script type="text/javascript" src="js/personalAfter.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div name="choose1" class="chooseAfter">
-        <button name="addAfter" id="addAfter" >申请售后</button>
+<h1 align="center">售后服务</h1>
+<input id="cs_id" value="1" hidden="hidden">
+<div style="width: 100%;height:200px;position:absolute;left:50%;top:20%; margin-top:-100px;margin-left: -50%;border:solid #FFB800 5px;">
+    <div align="center">
+        <br>
+    <div id="btn_addAfter" name="choose1" class="chooseAfter">
+        <button name="addAfter" id="addAfter" class="btn btn-warning">申请售后服务</button>
     </div>
-    <div name="choose2" class="chooseAfter">
-        <button name="getAfter" id="getAfter">查看售后服务单</button>
+    <br>
+    <div id="btn_getAfter" name="choose2" class="chooseAfter">
+        <button name="getAfter" id="getAfter" class="btn btn-warning">查看售后服务</button>
     </div>
+        <br>
+        <div id="btn_chat" name="choose3" class="chooseAfter">
+            <button name="chatAfter" id="chatAfter" class="btn btn-warning">咨询在线客服</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -3,8 +3,20 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.model.dao.CustomerServiceDAO">
-
-
+    <select id="getUntreatAfter"  resultType="AfterServiceList">
+        select * from AfterService_List
+        where STATUS='0'
+        ORDER BY AFTER_DATE asc
+    </select>
+    <update id="updateAfter" parameterType="AfterServiceList">
+        update AFTERSERVICE_LIST
+        set  RESULT=#{result},CS_ID=#{cs_id},STATUS=#{status}
+        where AFTER_ID=#{after_id}
+    </update>
+    <select id="getUntreatAfterDetail" parameterType="int" resultType="AfterServiceList">
+        select * from AfterService_List
+        where AFTER_ID=#{after_id}
+    </select>
 </mapper>
 
 

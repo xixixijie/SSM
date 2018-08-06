@@ -5,8 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ssm.model.dao.PersonalDAO">
     <select id="getAfter" parameterType="int" resultType="AfterServiceList">
         select * from AfterService_List where user_id=#{user_id}
+        ORDER BY AFTER_ID asc
     </select>
-
+    <select id="getFinishOrder" parameterType="int" resultType="AfterOrder">
+        select * FROM ((ACCEPT_ADDRESS INNER JOIN ORDERINFO ON ACCEPT_ADDRESS.ADDRESS_ID=ORDERINFO.ADDRESS_ID) INNER JOIN ORDERPRODUCT ON ORDERINFO.ORDER_ID=ORDERPRODUCT.ORDER_ID) INNER JOIN PRODUCT ON ORDERPRODUCT.PRODUCT_ID=PRODUCT.PRODUCT_ID
+        where user_id=#{user_id}
+    </select>
 </mapper>
 
 

@@ -1,22 +1,25 @@
 package com.ssm.model.bean;
 
 public class CustomerService {
-    private int CsId;
-    private  String CsName;
+    private int cs_id;
+    private String cs_name;
 
-    public int getCsId() {
-        return CsId;
+    public int getCs_id() {
+        return cs_id;
     }
 
-    public void setCsId(int csId) {
-        CsId = csId;
+    public void setCs_id(int cs_id) {
+        this.cs_id = cs_id;
     }
 
-    public String getCsName() {
-        return CsName;
+    public String getCs_name() {
+        return cs_name;
     }
 
-    public void setCsName(String csName) {
-        CsName = csName;
+    public void setCs_name(String cs_name) {
+        this.cs_name = cs_name;
     }
 }
+
+
+

@@ -1,30 +1,22 @@
 package com.ssm.model.bean;
 
 public class AfterServiceList {
-    private int treatId;
+    private int after_id;
     private String reason;
     private String requirement;
-    private String treatment;
-    private int customerId;
-    private int serviceId;
+    private String result;
+    private int user_id;
+    private int cs_id;
     private int status;
-    private String date;
-    private int orderId;
+    private String after_date;
+    private int order_id;
 
-    public int getOrderId() {
-        return orderId;
+    public int getAfter_id() {
+        return after_id;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
-
-    public int getTreatId() {
-        return treatId;
-    }
-
-    public void setTreatId(int treatId) {
-        this.treatId = treatId;
+    public void setAfter_id(int after_id) {
+        this.after_id = after_id;
     }
 
     public String getReason() {
@@ -43,28 +35,28 @@ public class AfterServiceList {
         this.requirement = requirement;
     }
 
-    public String getTreatment() {
-        return treatment;
+    public String getResult() {
+        return result;
     }
 
-    public void setTreatment(String treatment) {
-        this.treatment = treatment;
+    public void setResult(String result) {
+        this.result = result;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public int getServiceId() {
-        return serviceId;
+    public int getCs_id() {
+        return cs_id;
     }
 
-    public void setServiceId(int serviceId) {
-        this.serviceId = serviceId;
+    public void setCs_id(int cs_id) {
+        this.cs_id = cs_id;
     }
 
     public int getStatus() {
@@ -75,11 +67,20 @@ public class AfterServiceList {
         this.status = status;
     }
 
-    public String getDate() {
-        return date;
+    public String getAfter_date() {
+        return after_date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setAfter_date(String after_date) {
+        this.after_date = after_date;
+    }
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
     }
 }
+

@@ -4,7 +4,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.model.dao.AfterDAO">
 
+    <select id="getAfterDetail" parameterType="int" resultType="AfterServiceList">
+        select * from afterservice_list where after_id=#{after_id}
+    </select>
+    <insert id="addAfterService" parameterType="AfterServiceList">
+        <selectKey keyProperty="after_id" resultType="int" order="BEFORE">
+            select nvl(max(after_id),0)+1 from afterservice_list
+        </selectKey>
+        insert into afterservice_list
+        VALUES (#{after_id},#{user_id},0,#{reason},#{requirement},sysdate,null,null,#{order_id})
 
+    </insert>
 </mapper>
 
 
