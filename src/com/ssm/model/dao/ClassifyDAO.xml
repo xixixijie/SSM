@@ -50,6 +50,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="showClassify" resultType="Classify">
         SELECT * from classify where classstate=1
     </select>
+
+    <select id="getOrderProduct" resultType="OrderProduct">
+        select * from ORDERPRODUCT
+    </select>
+
+    <select id="getProductName" parameterType="int" resultType="String">
+        select PRODUCT_NAME from PRODUCT where PRODUCT_ID=#{id}
+    </select>
 </mapper>
 
 

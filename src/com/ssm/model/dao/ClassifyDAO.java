@@ -1,6 +1,7 @@
 package com.ssm.model.dao;
 
 import com.ssm.model.bean.Classify;
+import com.ssm.model.bean.OrderProduct;
 
 import java.util.List;
 
@@ -23,4 +24,8 @@ public interface ClassifyDAO {
     public List<Classify> findClassify(String content);
 
     List<Classify> getClassifys(String[] ids);
+
+    List<OrderProduct> getOrderProduct();
+
+    String getProductName(Integer i);
 }

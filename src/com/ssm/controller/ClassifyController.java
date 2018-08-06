@@ -1,5 +1,6 @@
 package com.ssm.controller;
 
+import com.ssm.model.bean.BuyRecord;
 import com.ssm.model.bean.Classify;
 import com.ssm.model.service.ClassifyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -157,6 +158,13 @@ public class ClassifyController {
         System.out.println(similarity);
 
         return "{\"result\":"+similarity+"}";
+    }
+
+    @RequestMapping(value = "getBuyRecord")
+    @ResponseBody
+    public List<BuyRecord> getBuyRecord(){
+        //System.out.println("getRecordIn");
+        return classifyService.getBuyRecord();
     }
 
 

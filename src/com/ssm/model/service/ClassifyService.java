@@ -1,9 +1,6 @@
 package com.ssm.model.service;
 
-import com.ssm.model.bean.Classify;
-import com.ssm.model.bean.Keyword;
-import com.ssm.model.bean.keyLabel;
-import com.ssm.model.bean.Point;
+import com.ssm.model.bean.*;
 import com.ssm.model.dao.ClassifyDAO;
 import com.ssm.model.dao.KeywordDAO;
 import com.ssm.util.FileUtil;
@@ -20,11 +17,13 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+import org.apache.logging.log4j.core.config.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vec.Learn;
 import vec.Word2VEC;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.*;
 import java.util.*;
 
@@ -631,5 +630,34 @@ public class ClassifyService {
 
         return vec.distanceWith2Words(word1, word2);
 
+    }
+
+    public List<BuyRecord> getBuyRecord() {
+
+        List<OrderProduct> list=classifyDAO.getOrderProduct();
+        //System.out.println("购物数量"+list.size());
+        Map<Integer,Integer> map=new HashMap<>();
+        for(OrderProduct orderProduct:list){
+            int id=orderProduct.getProduct_id();
+            if(map.containsKey(id)){
+                int num=map.get(id);
+                map.put(id,num+orderProduct.getProduct_number());
+            }else{
+                map.put(id,orderProduct.getProduct_number());
+            }
+        }
+        List<BuyRecord> ans=new ArrayList<>();
+
+        Set<Integer> set=map.keySet();
+        //System.out.println("set大小"+set.size());
+        for(Integer i:set){
+            BuyRecord buyRecord=new BuyRecord();
+            buyRecord.setNum(map.get(i));
+            buyRecord.setProductName(classifyDAO.getProductName(i));
+            ans.add(buyRecord);
+        }
+
+
+        return ans;
     }
 }

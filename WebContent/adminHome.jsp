@@ -36,6 +36,8 @@
                     <dd><a href="addClassifyPage.html" target="mainFrame">添加分类</a></dd>
                     <dd><a href="showClassifyPage.html" target="mainFrame">管理分类</a></dd>
                     <dd><a href="updateModelPage.html" target="mainFrame">更新模型</a></dd>
+                    <dd><a href="static.html" target="mainFrame">商品购买数量统计</a></dd>
+
 
                 </dl>
             </li>
