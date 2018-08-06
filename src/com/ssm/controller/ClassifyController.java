@@ -137,7 +137,7 @@ public class ClassifyController {
     @ResponseBody
     public String updateModel(){
         System.out.println("更新模型Controller");
-        //classifyService.updateModel();
+        classifyService.updateModel();
         return "{\"result\":true}";
     }
 

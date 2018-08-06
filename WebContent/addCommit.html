@@ -9,23 +9,18 @@
     <script type="text/javascript" src="js/layui.js"></script>
     <script>
 
-        function getCommentsByKeyword(data) {
-            var keyword=data.value;
+        function getCommentsByKeyLabel(data) {
+            var keyLabel=data.value;
 
             $.ajax({
-                url:"getComment/"+encodeURI(encodeURI(keyword)),
+                url:"getComment/"+encodeURI(encodeURI(keyLabel)),
                 type:"get",
                 dataType:"json",
                 success:function(data)
                 {
 
-                    alert(data.length);
-                    for(var j=0; j<data.length;j++)
-                    {
-                        var str='<button  value="'+data[j].keyName+'"  onclick="getCommentsByKeyword();"  class="layui-btn layui-btn-primary layui-btn-sm" >'+data[j].ctext+'</button>';
+                    alert(data.length)
 
-                        $("#comments").append(str);
-                    }
 
 
                 }
@@ -71,7 +66,7 @@
 
 
                 $.ajax({
-                    url:"getKeyword",
+                    url:"getKeyLabel",
                     type:"get",
                     dataType:"json",
                     success:function(data)
@@ -80,7 +75,7 @@
 
                         for(var j=0; j<data.length;j++)
                         {
-                          var str='<button onclick="getCommentsByKeyword(this);" value="'+data[j].keyName+'"  onclick="getCommentsByKeyword();"  class="layui-btn layui-btn-primary layui-btn-sm" >'+data[j].keyName+'</button>';
+                          var str='<button onclick="getCommentsByKeyLabel(this);" value="'+data[j].labelID+'"  onclick="getCommentsByKeyword();"  class="layui-btn layui-btn-primary layui-btn-sm" >'+data[j].labelName+'('+data[j].labelNum+')'+'</button>';
 
                             $("#block0").append(str);
                         }

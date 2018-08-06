@@ -11,7 +11,7 @@ public class DBUtil {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             try {
-                connection = DriverManager.getConnection("jdbc:oracle:thin:@10.25.49.20:1521:orcl","scott","tiger");
+                connection = DriverManager.getConnection("jdbc:oracle:thin:@10.25.49.19:1521:orcl","scott","tiger");
                 if (connection == null) {
                     System.out.println(1);
                 }

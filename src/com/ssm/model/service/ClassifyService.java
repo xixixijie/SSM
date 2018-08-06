@@ -9,6 +9,11 @@ import com.ssm.model.dao.KeywordDAO;
 import com.ssm.util.FileUtil;
 
 
+import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.ling.CoreLabel;
+import edu.stanford.nlp.pipeline.Annotation;
+import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.util.CoreMap;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -233,175 +238,177 @@ public class ClassifyService {
      * @return
      */
 
-//    public static String divide(List<String> adjList, String content, StanfordCoreNLP pipeline) {
-////		String path = "./data/ace2004/RawTexts/chtb_165.eng";
-////        String content = "质量很好，是纯棉的，物流很快，很喜欢，款式很好看。喜欢的亲就购买吧？";
-//        // build pipeline
-//
-//        Annotation document = new Annotation(content);
-//        pipeline.annotate(document);
-//
-//        List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
-//        String result = "";
-//        for (CoreMap sentence : sentences) {
-//            // traversing the words in the current sentence
-//            // a CoreLabel is a CoreMap with additional token-specific methods
-//            for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-//                // this is the text of the token
-//                String word = token.get(CoreAnnotations.TextAnnotation.class);
-//                // this is the POS tag of the token
-//                String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
-//                // this is the NER label of the token
-//                String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
-//                //System.out.println(word + "\t" + pos + "\t" + ne);
-//                result += word + " ";
-//
-//                if (pos.equals("VA"))
-//                    adjList.add(word);
-//            }
-//
-//
-//        }
-//        return result;
-//    }
+    public static String divide(List<String> adjList, String content, StanfordCoreNLP pipeline) {
+//		String path = "./data/ace2004/RawTexts/chtb_165.eng";
+//        String content = "质量很好，是纯棉的，物流很快，很喜欢，款式很好看。喜欢的亲就购买吧？";
+        // build pipeline
+
+        Annotation document = new Annotation(content);
+        pipeline.annotate(document);
+
+        List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
+        String result = "";
+        for (CoreMap sentence : sentences) {
+            // traversing the words in the current sentence
+            // a CoreLabel is a CoreMap with additional token-specific methods
+            for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
+                // this is the text of the token
+                String word = token.get(CoreAnnotations.TextAnnotation.class);
+                // this is the POS tag of the token
+                String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
+                // this is the NER label of the token
+                String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
+                //System.out.println(word + "\t" + pos + "\t" + ne);
+                result += word + " ";
+
+                if (pos.equals("VA"))
+                    adjList.add(word);
+            }
+
+
+        }
+        return result;
+    }
 
 
     /**
      * 更新向量模型
      */
-//    public void updateModel() {
-//        System.out.println("更新模型service");
-//        //注册配置文件
-//        StanfordCoreNLP pipeline = new StanfordCoreNLP("CoreNLP-chinese.properties");
-//
-//
-//        //更新语料库
-//        //读取所有评论句子
-//        String[] strings = FileUtil.read();
-//
-//        //所有形容词
-//        List<String> adjList = new ArrayList<>();
-//        System.out.println("句子大小" + strings.length);
-//        //更新xh.txt
-//        for (String string : strings) {
-//            if (string == null)
-//                continue;
-//            FileUtil.write(divide(adjList, string, pipeline), "xh.txt");
+    public void updateModel() {
+        System.out.println("更新模型service");
+        //注册配置文件
+        StanfordCoreNLP pipeline = new StanfordCoreNLP("CoreNLP-chinese.properties");
+
+
+        //更新语料库
+        //读取所有评论句子
+        String[] strings = FileUtil.read();
+
+        //所有形容词
+        List<String> adjList = new ArrayList<>();
+        System.out.println("句子大小" + strings.length);
+        //更新xh.txt
+        for (String string : strings) {
+            if (string == null)
+                continue;
+            FileUtil.write(divide(adjList, string, pipeline), "xh.txt");
+        }
+//        for(String str:adjList){
+//            System.out.println(str);
 //        }
-////        for(String str:adjList){
-////            System.out.println(str);
-////        }
-////        System.out.println(adjList.size());
-//        System.out.println("分词完成");
-//        Set<String> adjSet = new HashSet<>(adjList);
-////        for(String str:adjSet){
-////            System.out.println(str);
-////        }
-////        System.out.println(adjSet.size());
-//        //更新模型
-//        Learn learn = new Learn();
-//        long start = System.currentTimeMillis();
-//        try {
-//            learn.learnFile(new File("/Users/xixi/Desktop/SSM/library/xh.txt"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
+//        System.out.println(adjList.size());
+        System.out.println("分词完成");
+        Set<String> adjSet = new HashSet<>(adjList);
+//        for(String str:adjSet){
+//            System.out.println(str);
 //        }
-//        System.out.println("use time " + (System.currentTimeMillis() - start));
-//        learn.saveModel(new File("/Users/xixi/Desktop/SSM/library/javaVector"));
-//
-//
-//        //更新关键词标签 以及 关键词库
-//        Word2VEC vec = new Word2VEC();
-//        try {
-//            vec.loadJavaModel("/Users/xixi/Desktop/SSM/library/javaVector");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        HashMap<String, float[]> wordMap = vec.getWordMap();
-//
-//
-//        for (String str : adjSet) {
-//            System.out.println(str + " " + Arrays.toString(wordMap.get(str)));
-//        }
-//        //DBSCAN聚类
-//        //点数组
-//        List<Point> points = new ArrayList<>();
-//        //填充点数组
-//        for (String str : adjSet) {
-//            Point point = new Point();
-//            point.setName(str);
-//            point.setVec(wordMap.get(str));
-//            points.add(point);
-//        }
-//
-//        System.out.println("点大小" + points.size());
-//
-//        //簇半径 到时候改为0.4
-//        double r = 1;
-//        //簇大小
-//        int clusterSize = 2;
-//        //簇数量
-//        int clusterNum = DBSCAN(points, r, clusterSize);
-//        System.out.println("簇大小" + clusterNum);
-//
-//        //计算中心词
-//        getCenter(clusterNum,points);
-//
-//        //中心点作为 该簇的代表词
-//        List<Point> centerPoint=new ArrayList<>();
-//        for(Point p:points){
-//            if(p.isCenter()){
-//                centerPoint.add(p);
-//            }
-//        }
-//
-//
-//        //keywordDAO.deleteAll();
-//        //中心点存为 keyLabel
-//
-//        for(Point cp:centerPoint){
-//            keyLabel label=new keyLabel();
-//            label.setLabelName(cp.getName());
-//            int num=0;
-//            //获得该中心点的簇的所有点
-//            System.out.println("中心点是"+cp.getName()+"簇类是"+cp.getCid());
-//            List<Point> clu=getCluster(cp,points);
-//            for(Point point:clu){
-//                System.out.println("边缘点是"+point.getName()+"簇类是"+point.getCid());
-//                for(String str:adjList){
-//                    if(str.equals(point.getName())){
-//                        num++;
-//                    }
-//                }
-//            }
-//            label.setLabelNum(num);
-//            //label.setLabelID(keywordDAO.getMaxLabelID());
-//            //keywordDAO.addKeyLabel(label);
-//            //簇内的词存为关键词
-//            for(Point point:clu){
-//                Keyword keyword=new Keyword();
-//                keyword.setLabelID(label.getLabelID());
-//                keyword.setKeyName(point.getName());
-//                int num1=0;
-//                for(String str:adjList){
-//                    if(str.equals(point.getName())){
-//                        num1++;
-//                    }
-//                }
-//                keyword.setKeyNum(num);
-//
-//                //keywordDAO.addKeyword(keyword);
-//
-//            }
-//
-//
-//
-//
-//        }
-//
-//
-//    }
+//        System.out.println(adjSet.size());
+        //更新模型
+        Learn learn = new Learn();
+        long start = System.currentTimeMillis();
+        try {
+            learn.learnFile(new File("/Users/xixi/Desktop/SSM/library/xh.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("use time " + (System.currentTimeMillis() - start));
+        learn.saveModel(new File("/Users/xixi/Desktop/SSM/library/javaVector"));
+
+
+        //更新关键词标签 以及 关键词库
+        Word2VEC vec = new Word2VEC();
+        try {
+            vec.loadJavaModel("/Users/xixi/Desktop/SSM/library/javaVector");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        HashMap<String, float[]> wordMap = vec.getWordMap();
+
+
+        for (String str : adjSet) {
+            System.out.println(str + " " + Arrays.toString(wordMap.get(str)));
+        }
+        //DBSCAN聚类
+        //点数组
+        List<Point> points = new ArrayList<>();
+        //填充点数组
+        for (String str : adjSet) {
+            Point point = new Point();
+            point.setName(str);
+            point.setVec(wordMap.get(str));
+            points.add(point);
+        }
+
+        System.out.println("点大小" + points.size());
+
+        //簇半径 到时候改为0.4
+        double r = 1;
+        //簇大小
+        int clusterSize = 2;
+        //簇数量
+        int clusterNum = DBSCAN(points, r, clusterSize);
+        System.out.println("簇大小" + clusterNum);
+
+        //计算中心词
+        getCenter(clusterNum,points);
+
+        //中心点作为 该簇的代表词
+        List<Point> centerPoint=new ArrayList<>();
+        for(Point p:points){
+            if(p.isCenter()){
+                centerPoint.add(p);
+            }
+        }
+
+
+        System.out.println("删除");
+            keywordDAO.deleteKeylabel();
+            keywordDAO.deleteKeyword();
+        //中心点存为 keyLabel
+
+        for(Point cp:centerPoint){
+            keyLabel label=new keyLabel();
+            label.setLabelName(cp.getName());
+            int num=0;
+            //获得该中心点的簇的所有点
+            System.out.println("中心点是"+cp.getName()+"簇类是"+cp.getCid());
+            List<Point> clu=getCluster(cp,points);
+            for(Point point:clu){
+                System.out.println("边缘点是"+point.getName()+"簇类是"+point.getCid());
+                for(String str:adjList){
+                    if(str.equals(point.getName())){
+                        num++;
+                    }
+                }
+            }
+            label.setLabelNum(num);
+            //label.setLabelID(keywordDAO.getMaxLabelID());
+            //keywordDAO.addKeyLabel(label);
+            //簇内的词存为关键词
+            for(Point point:clu){
+                Keyword keyword=new Keyword();
+                keyword.setLabelID(label.getLabelID());
+                keyword.setKeyName(point.getName());
+                int num1=0;
+                for(String str:adjList){
+                    if(str.equals(point.getName())){
+                        num1++;
+                    }
+                }
+                keyword.setKeyNum(num);
+
+                //keywordDAO.addKeyword(keyword);
+
+            }
+
+
+
+
+        }
+
+
+    }
 
     /**
      * 获得相同簇的点

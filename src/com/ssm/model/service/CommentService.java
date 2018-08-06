@@ -8,6 +8,7 @@ import com.ssm.model.bean.keyLabel;
 import com.ssm.model.dao.CommentDAO;
 import com.ssm.model.dao.KeywordDAO;
 import com.ssm.util.FileUtil;
+import nu.xom.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,13 +34,23 @@ public class CommentService {
 
     /**
      * 根据关键词获得评论
-     * @param keyName
+     * @param labelID
      * @return
      */
 
-    public List<CommentInfo> getCommentByKey(String keyName){
+    public List<CommentInfo> getCommentByKey(String labelID){
         System.out.println("-----通过关键词获取评论service-----");
-        List<CommentInfo> list=commentDAO.getCommentByKey(keyName);
+
+
+        List<Keyword> keywords=keywordDAO.getKeywordByLabelID(Integer.parseInt(labelID));
+
+        List<CommentInfo> list=new ArrayList<>();
+        for(Keyword keyword:keywords){
+            System.out.println(keyword.getKeyName());
+            List<CommentInfo> temp=commentDAO.getCommentByKey(keyword.getKeyName());
+            System.out.println(temp.size());
+            list.addAll(temp);
+        }
         System.out.println("通过关键词获取评论的数量"+list.size());
         return list;
     }

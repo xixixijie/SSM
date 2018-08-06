@@ -4,8 +4,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.model.dao.KeywordDAO">
 
+    <select id="getAllKeyLabel" resultType="keyLabel">
+       SELECT * from KEYLABEL order by LABELNUM desc
+    </select>
+
     <select id="getAllKeyword" resultType="Keyword">
-       SELECT * from KEYWORD
+        select * from KEYWORD
     </select>
 
     <insert id="addKeyword" parameterType="Keyword">
@@ -29,11 +33,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         values (#{labelID},#{labelName},#{labelNum})
     </insert>
 
-    <delete id="deleteAll">
-        delete from KEYWORD;
-        delete from KEYLABEL
+    <delete id="deleteKeyword">
+        delete from KEYWORD
     </delete>
 
+    <delete id="deleteKeylabel">
+        delete from KEYLABEL
+    </delete>
     <select id="getKeyLabel" resultType="keyLabel">
         select * from KEYLABEL where LABELID=#{labelID}
     </select>
@@ -42,6 +48,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update KEYLABEL set LABELNUM=#{labelNum}  where LABELID=#{labelID}
     </update>
 
+    <select id="getKeywordByLabelID" parameterType="int" resultType="Keyword">
+        select * from KEYWORD where LABELID=#{labelID}
+    </select>
 
 </mapper>
 

@@ -12,7 +12,9 @@ import java.util.Map;
 public interface KeywordDAO {
     public void addKeyword(Keyword content);
 
-    public List<Keyword> getAllKeyword();
+    public List<keyLabel> getAllKeyLabel();
+
+
 
     void addNum(Map map);
 
@@ -21,9 +23,14 @@ public interface KeywordDAO {
 
     int getMaxLabelID();
 
-    void deleteAll();
+    void deleteKeyword();
+    void deleteKeylabel();
 
     keyLabel getKeyLabel(int labelID);
 
     void updateLabel(keyLabel label);
+
+    List<Keyword> getAllKeyword();
+
+    List<Keyword> getKeywordByLabelID(int labelID);
 }
