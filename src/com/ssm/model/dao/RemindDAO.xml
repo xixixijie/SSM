@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.model.dao.RemindDAO">
+
+    <!-- 查找所有下一场秒杀的提醒 -->
+    <select id="getAllRemind" parameterType="map" resultMap="RemindInfo">
+        select PRODUCT_NAME,USER_ID,REMIND_ID
+        from product p,SECKILL_PRODUCT s,REMIND r
+        where p.PRODUCT_ID=s.SECKILLPRODUCT_ID and r.SECKILLPRODUCT_ID=s.SECKILLPRODUCT_ID and s.START_TIME=#{timestamp}
+    </select>
+
+    <resultMap id="RemindInfo" type="Remind">
+        <result column="user_id" property="user_id"/>
+        <result column="remind_id" property="remind_id"/>
+        <association property="seckillProduct" javaType="SeckillProduct" resultMap="SeckillResult"/>
+    </resultMap>
+    <resultMap id="SeckillResult" type="SeckillProduct">
+        <association property="product" javaType="Product" resultMap="ProductResult"/>
+    </resultMap>
+    <resultMap id="ProductResult" type="Product">
+        <result column="product_name" property="product_name"></result>
+    </resultMap>
+</mapper>

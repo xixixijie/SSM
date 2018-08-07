@@ -47,10 +47,19 @@ public class CommentService {
         for(Keyword keyword:keywords){
             System.out.println(keyword.getKeyName());
             List<CommentInfo> temp=commentDAO.getCommentByKey(keyword.getKeyName());
-            System.out.println(temp.size());
+//            System.out.println("temp大小"+temp.size());
+//            for(CommentInfo commentInfo:temp){
+//                System.out.println(commentInfo.getUserID()+" "+commentInfo.getCtext());
+//            }
             list.addAll(temp);
         }
-        System.out.println("通过关键词获取评论的数量"+list.size());
+
+        for(CommentInfo commentInfo:list){
+            commentInfo.setUserName(commentDAO.getUserNameByID(commentInfo.getUserID()));
+            System.out.println(commentInfo.getUserName()+" "+commentInfo.getCtext());
+        }
+        //System.out.println("通过关键词获取评论的数量"+list.size());
+
         return list;
     }
 

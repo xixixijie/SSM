@@ -50,12 +50,20 @@
                 </dl>
             </li>
             <li class="layui-nav-item">
+                <a href="javascript:; ">秒杀商品管理</a >
+                <dl class="layui-nav-child">
+                    <dd><a href="AddSeckillProduct.jsp" target="mainFrame">添加秒杀商品</a ></dd>
+                    <dd><a href="SelectSeckillProduct.jsp" target="mainFrame">管理秒杀商品</a ></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
                 <a href="javascript:;">拍卖管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="addAuctionPage.jsp" target="mainFrame">添加拍卖品</a></dd>
                     <%--<dd><a href="AuctionManager.html" target="mainFrame">查询拍卖品</a></dd>--%>
                 </dl>
             </li>
+
         </ul>
     </div>
     <div class="layui-col-md10">

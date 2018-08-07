@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <meta charset="UTF-8">
+    <title>秒杀商品</title>
+    <link rel="stylesheet" href="themes/css/core.css">
+    <link rel="stylesheet" href="themes/css/icon.css">
+    <link rel="stylesheet" href="themes/css/home.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="123.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+
+    <link href="artDialog4/skins/default.css" rel="stylesheet" />
+    <script src="artDialog4/jquery.artDialog.js"></script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            var index = location.href.lastIndexOf("=");
+            var seckillProductId= location.href.substr(index+1);
+            $("#seckillProductId").val(seckillProductId);
+            var product_id=0;
+            loadSeckillProduct();
+            loadAspect();
+            loadAddress();
+
+            //取得轮播商品图片
+            function loadAspect() {
+                $.ajax({
+                    url:"getAspectForUser/"+product_id,
+                    type:"POST",
+                    async:false,
+                    success:function(data){
+                        console.log(data);
+                        //1.清除原有的数据
+                        $("#aspect_url").empty();
+
+                        for(var i=0;i<data.length;i++){
+                            var str = '<div class="aui-banner-wrapper-item"><a href="#">';
+                            str += '<img src="img/'+data[i]+'"></a></div>';
+                            $("#aspect_url").append(str);
+                        }
+                    },
+                    error:function(){
+                        alert("获取商品轮播图失败");
+                    },
+                    dataType:"json"
+                });
+            }
+
+            //获取秒杀商品
+            function loadSeckillProduct() {
+                $.ajax({
+                    url:"getSeckillProductToSell/"+seckillProductId,
+                    type:"POST",
+                    async:false,
+                    success:function(data){
+
+                        console.log(data);
+                        //1.清除原有的数据
+                        $("#aspect_url").empty();
+
+                        product_id=data.product_id;
+                        var str1 = '<i>￥</i>'+data.seckill_price;
+                        $("#discountPrice").append(str1);
+                        var str2 = '￥'+data.product.original_price;
+                        $("#originalPrice").append(str2);
+
+                        var str3 = data.product.product_name;
+                        $("#productName").append(str3);
+                        var str4 = data.product.product_info;
+                        $("#productInfo").append(str4);
+                        var str5=data.seckill_price;
+                        $("#payPrice").empty();
+                        $("#payPrice").append('￥'+str5)
+
+                    },
+                    error:function(){
+                        alert("获取秒杀商品失败");
+                    },
+                    dataType:"json"
+                });
+            }
+
+            //获取当前用户地址
+            function loadAddress() {
+                var userId = 1;
+                $.ajax({
+                    url:"getAddressForSeckill/"+userId,
+                    type:"POST",
+                    async:false,
+                    success:function(data){
+                        for(var i=0;i<data.length;i++){
+                            $('#addressId').append("<option value='"+data[i].address_ID+"'>"+"地址："+data[i].address+" 收件人："+data[i].accept_Name+" 电话："+data[i].accept_Phone+"</option>");
+                        }
+
+                    },
+                    error:function(){
+                        alert("获取地址失败");
+                    },
+                    dataType:"json"
+                });
+            }
+
+        })
+    </script >
+    <script type="text/javascript">
+        //生成订单
+        function addSeckillOrder() {
+
+            var seckillProductId=$("#seckillProductId").val();
+            var addressId=$("#addressId").val();
+            var userId=1;
+            alert(addressId)
+
+            $.ajax({
+                url:"addSeckillOrder/"+seckillProductId+"/"+userId+"/"+addressId,
+                type:"POST",
+                async:false,
+                success:function(data){
+                    if(data){
+                        alert("支付成功，关闭本窗口跳转到秒杀首页");
+                        jumpToSeckill();
+                    }else{
+                        alert("商品已经售完，支付失败，关闭本窗口跳转到秒杀首页");
+                        jumpToSeckill();
+                    }
+
+                },
+                error:function(){
+                    alert("添加订单失败");
+                },
+                dataType:"json"
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        //跳转到秒杀首页
+        function jumpToSeckill() {
+            window.location.href="Seckill.html";
+        }
+    </script>
+    <script type="text/javascript">
+        function sleep(n) { //n表示的毫秒数
+            var start = new Date().getTime();
+            while (true) if (new Date().getTime() - start > n) break;
+        }
+    </script>
+
+</head>
+<body>
+    <header class="aui-header-default aui-header-fixed ">
+        <a href="javascript:history.back(-1)" class="aui-header-item">
+            <i class="aui-icon aui-icon-back"></i>
+        </a>
+        <div class="aui-header-center aui-header-center-clear">
+            <div class="aui-header-center-logo">
+                <div class="">秒杀商品</div>
+            </div>
+        </div>
+        <a href="#" class="aui-header-item-icon"   style="min-width:0">
+
+        </a>
+    </header>
+
+    <input type="text" id="seckillProductId" hidden="hidden">
+    <!-- 商品展示 -->
+    <div class="aui-banner-content aui-fixed-top" data-aui-slider>
+        <div id="aspect_url" class="aui-banner-wrapper">
+
+        </div>
+        <div class="aui-banner-pagination"></div>
+
+    </div>
+    <div class="aui-product-content">
+        <div class="aui-real-price clearfix">
+                <span id="discountPrice">
+
+                </span>
+            <del><span class="aui-font-num" id="originalPrice"></span></del>
+            <div class="aui-settle-choice">
+                <span>价格</span>
+            </div>
+        </div>
+        <div class="aui-product-title">
+            <h2 id="productName">
+
+            </h2>
+            <p id="productInfo">
+
+            </p>
+        </div>
+        <div class="aui-product-boutique clearfix">
+            <img src="themes/img/icon/icon-sj.png" alt="">
+            <span class="aui-product-tag-text">小米官方旗舰店</span>
+
+
+        </div>
+
+        <div class="aui-product-coupon">
+
+
+
+            <a class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
+                <div class="aui-address-cell-bd">配送</div>
+                <div class="aui-address-cell-ft">
+                    <select id="addressId" style="border:none;width: 100%">
+                    </select>
+                </div>
+            </a>
+            <a  class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
+                <div class="aui-address-cell-bd">运费</div>
+                <div class="aui-address-cell-ft">免运费</div>
+            </a>
+            <a  class="aui-address-cell aui-fl-arrow aui-fl-arrow-clear">
+                <div class="aui-address-cell-bd">说明</div>
+                <div class="aui-address-cell-ft">假一赔十 7天无忧退货</div>
+            </a>
+        </div>
+        <div class="aui-dri"></div>
+
+
+    </div>
+
+
+
+
+
+    <section class="aui-address-content">
+
+        <!--确认金额-->
+        <div class="aui-payment-bar">
+            <div class="shop-total">
+                <span class="aui-red aui-size">应付总额: <em id="payPrice"></em></span>
+            </div>
+            <a class="settlement" onclick="addSeckillOrder()">提交订单</a>
+        </div>
+
+    </section>
+
+</body>
+
+</html>

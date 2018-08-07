@@ -174,6 +174,10 @@ public class BuySeckillController {
     @RequestMapping("addSeckillOrder/{seckillProductId}/{userId}/{addressId}")
     @ResponseBody
     public boolean addSeckillOrder(@PathVariable int seckillProductId,@PathVariable int userId,@PathVariable int addressId){
+        System.out.println("jinru");
+        System.out.println(seckillProductId);
+        System.out.println(userId);
+        System.out.println(addressId);
         Timestamp timestamp = new Timestamp(new Date().getTime());
         SeckillOrder seckillOrder = new SeckillOrder();
         seckillOrder.setAddress_id(addressId);

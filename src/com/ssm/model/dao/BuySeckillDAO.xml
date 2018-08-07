@@ -59,10 +59,10 @@
         select * from ACCEPT_ADDRESS where USER_ID=#{userId} and STATUS=1
     </select>
     <resultMap id="addressInfo" type="Address">
-        <result property="addressID" column="address_id"/>
+        <result property="address_ID" column="address_id"/>
         <result property="address" column="address"/>
-        <result property="acceptPhone" column="accept_phone"/>
-        <result property="acceptName" column="accept_name"/>
+        <result property="accept_Phone" column="accept_phone"/>
+        <result property="accept_Name" column="accept_name"/>
 
     </resultMap>
 

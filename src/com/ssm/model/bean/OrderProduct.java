@@ -1,5 +1,6 @@
 package com.ssm.model.bean;
 
+
 import java.util.Date;
 
 public class OrderProduct {
@@ -8,6 +9,14 @@ public class OrderProduct {
     private  int order_id;
     private int product_number;
     private Date create_date;
+
+    public Date getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(Date create_date) {
+        this.create_date = create_date;
+    }
 
     public int getProduct_id() {
         return product_id;
@@ -40,14 +49,5 @@ public class OrderProduct {
     public void setProduct_number(int product_number) {
         this.product_number = product_number;
     }
-
-    public Date getCreate_date() {
-        return create_date;
-    }
-
-    public void setCreate_date(Date create_date) {
-        this.create_date = create_date;
-    }
-
 
 }

@@ -1,19 +1,22 @@
 $(function(){
-    // 数量减   ok
+    // 数量减
     $(".minus").click(function() {
         var t = $(this).parent().find('.num');
-        t.text(parseInt(t.text()) - 1);
-        if (t.text() <= 1) {
-            t.text(1);
+        var t2=t.val()-1;
+        t.attr("value",t2);
+        if (t.val() <= 1) {
+            t.attr("value",1);
         }
         TotalPrice();   //计算价格
     });
+
     // 数量加
     $(".plus").click(function() {
         var t = $(this).parent().find('.num');
-        t.text(parseInt(t.text()) + 1);
-        if (t.text() <= 1) {
-            t.text(1);
+        var t3=parseInt(t.val())+1;
+        t.attr("value",t3);
+        if (t.val() <= 1) {
+            t.attr("value",1);
         }
         TotalPrice();  //计算价格
     });
@@ -55,10 +58,11 @@ $(function(){
         $(".aui-car-box-list").find(".goodsCheck").each(function() { //循环遍历每一个商品
             if ($(this).is(":checked")) { //如果该商品被选中
 
-                var num = parseInt($(this).parent().find(".num").text()); //拿到商品的数量
+                var num = $(this).parent().find(".num").val(); //拿到商品的数量
                 var price = parseFloat($(this).parent().find(".price").text()); //得到商品的单价
                 //alert(num+" "+price);
                 var total = price * num; //计算单个商品的总价
+                alert(total);
                 allprice += total; //计算总价
             }
         });

@@ -33,5 +33,7 @@ public interface CommentDAO {
     public void updatePraise(Praise praise);//修改点赞的信息
     public void savePraise(Praise praise);//添加点赞的信息
     public int getMaxCid();//获取cid的最大值
+
+    String getUserNameByID(int userID);
     /*wym,end*/
 }

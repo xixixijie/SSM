@@ -14,7 +14,6 @@
     <script type="text/javascript" src="layui/layui.js" ></script>
     <script type="text/javascript" src="js/showComment.js" ></script>
     <script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
-    <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <link rel="stylesheet" href="css/layui.css">
     <script type="text/javascript" src="js/layui.js"></script>
     <script>
@@ -32,14 +31,15 @@
 
                     $("#comment").empty();
                     for(var i=0;i<data.length;i++){
-                        //alert(data[i].ctext)
+
+
                         var str='   <li>\n' +
                             '                    <!-- 每一条评价的结构 -->\n' +
                             '                    <div class="acomment" >\n' +
                             '                        <div class="commentHead">\n' +
                             '                            <!-- 用户名 -->\n' +
                             '                            <div style="float: left; ">\n' +
-                            '                                用户名<br>\n' +
+                            '                                '+data[i].userName+'<br>\n' +
                             '                            <input name="userID" type="hidden">\n' +
                             '                            </div>\n' +
                             '                            <!-- 评分 -->\n' +
@@ -52,7 +52,7 @@
                             '                        <div class="commentBody">\n' +
                             '                            <!-- 文本 -->\n' +
                             '                            <div class="commenttext">\n' +
-                            '                                我对这个小米手机非常满意\n' +
+                            '                                '+data[i].ctext+'\n' +
                             '                            </div>\n' +
                             '                            <!-- 图片 -->\n' +
                             '                            <div class="photo">\n' +

@@ -52,8 +52,8 @@ $(function () {
                 var str = '<div><div class="myorder-sum fl"><img src="/img/join.png"></div><div class="myorder-text">' +
                     ' <h1>团长：' + data[i].leader.name + '</h1> <div class="tuan_g_core"> <div class="tuan_g_price"> ' +
                     '<span>当前' + data[i].current_num + '/' + data[i].activity.requiredNumber + '</span></div> <div class="tuan_g_btn"></div> ' +
-                    '</div> </div> </div> <div class="groups-dowm-bnt">拼团进行中 <a href="join_group.html?groupID=' + data[0].groupID + '" class="btn fr">加入团购</a>' +
-                    ' <a href="show_group_info.html?groupID=' + data[0].groupID + '" class="btn fr">查看团详情</a> </div>';
+                    '</div> </div> </div> <div class="groups-dowm-bnt">拼团进行中 <a href="join_group.html?groupID=' + data[i].groupID + '" class="btn fr">加入团购</a>' +
+                    ' <a href="show_group_info.html?groupID=' + data[i].groupID + '" class="btn fr">查看团详情</a> </div>';
                 $("#show_groups").append(str);
             }
         }

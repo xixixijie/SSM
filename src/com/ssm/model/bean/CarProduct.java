@@ -7,6 +7,23 @@ public class CarProduct {
     private int product_id;
     private int user_id;
     private Date create_date;
+    private Product products;
+    private int cpnumber;
+
+    public int getCpnumber() {
+        return cpnumber;
+    }
+
+    public void setCpnumber(int cpnumber) {
+        this.cpnumber = cpnumber;
+    }
+
+    public Product getProducts() {
+        return products;
+    }
+    public void setProducts(Product products) {
+        this.products = products;
+    }
     public int getCarProduct_id() {
         return carProduct_id;
     }

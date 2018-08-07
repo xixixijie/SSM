@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.model.dao.CarProductDAO">
+    <!--向购物车中添加商品-->
+    <insert id="insertCarProduct" parameterType="CarProduct">
+        <selectKey keyProperty="carProduct_id" resultType="int" order="BEFORE">
+            select nvl(max(carProduct_id),0)+1 from carProduct
+        </selectKey>
+        insert into carProduct
+        values(#{carProduct_id},#{product_id},#{user_id},#{create_date},#{cpnumber})
+    </insert>
+
+
+    <!--根据用户Id查询购物车商品信息-->
+    <select id="selectCarProduct" resultMap="result1"  parameterType="int">
+        select c.carProduct_id,c.product_id,c.cpnumber,p.product_info,p.discount_price ,p.cover_url from  carProduct c,product p
+        where  c.product_id=p.product_id
+        and c.user_id=#{user_id}
+    </select>
+    <resultMap id="result1"  type="carProduct">
+
+        <result property="carProduct_id" column="carProduct_id"/>
+        <result property="product_id" column="product_id"/>
+        <result property="cpnumber" column="cpnumber"/>
+
+        <collection property="products" ofType="Product">
+            <result property="product_info" column="product_info"/>
+            <result property="discount_price" column="discount_price"/>
+            <result property="cover_url" column="cover_url"/>
+        </collection>
+    </resultMap>
+
+
+    <!--根据购物车商品ID删除购物车中商品-->
+    <delete id="deleteCarProduct" parameterType="int">
+          delete from carProduct where carProduct_id=#{carProduct_id}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+

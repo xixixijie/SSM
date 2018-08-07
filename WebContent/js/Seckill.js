@@ -75,6 +75,7 @@ $(function() {
 
                 }
             }
+            //时间不足10补0
             function padLeft(num)
             {
                 if(num<10)
@@ -109,10 +110,10 @@ function getSeckillProducts(t){
                     '                        <div class="aui-list-title-info">' +
                     '                            <a href="javascript:;" class="aui-list-product-fl-item">' +
                     '                                <div class="aui-list-product-fl-img">' +
-                    '                                    <img src="themes/img/pd/pd-zf-4.jpg" alt="">' +
+                    '                                    <img src="img/'+data[i].product.cover_url+'" alt="">' +
                     '                                </div>' +
                     '                                <div class="aui-list-product-fl-text">' +
-                    '                                    <h3 class="aui-list-product-fl-title">'+data[i].product.product_name+data[i].product.product_info+
+                    '                                    <h3 class="aui-list-product-fl-title">'+data[i].product.product_name+data[i].product.product_info+"【仅"+data[i].all_amount+"台】"+
                     '</h3>' +
                     '<div class="aui-list-product-fl-mes">' +
                     '<div>' +
@@ -124,12 +125,12 @@ function getSeckillProducts(t){
                     if(t=='1'){
                         if(data[i].canBuy){
                             judge=true;
-                            str=str+'<button onclick="aa('+data[i].seckillproduct_id+')">立即抢购</button>'
+                            str=str+'<button onclick="buy('+data[i].seckillproduct_id+')" style="background-color: #f44336;border: none;color:white; text-align: center;font-size: 22px;">立即抢购</button>'
                         }else{
-                            str=str+'<button>已售空</button>'
+                            str=str+'<button style="background-color: #e3e5f4;border: none;color:#131313; text-align: center;font-size: 22px;">已售空</button>'
                         }
                     }else{
-                        str=str+'<button onclick="remindonclick('+data[i].seckillproduct_id+')">点我设置提醒</button>'
+                        str=str+'<button onclick="remindonclick('+data[i].seckillproduct_id+')" style="background-color: #0ff40f;border: none;color:white; text-align: center;font-size: 22px;">点我设置提醒</button>'
                     }
 
                 str=str+ '                                        </div>' +
@@ -161,35 +162,57 @@ function getSeckillProducts(t){
     });
 }
 
-function aa(seckillId){
+//跳转到秒杀窗口
+function buy(seckillProductId){
+    $.ajax({
+        url:"judgeSeckillProduct/"+seckillProductId,
+        type:"POST",
+        dataType:"json",
+        success:function(data){
+            if(data){
+                window.location.href="AddSeckillOrder.html?seckillProductId="+seckillProductId;
+            }else{
+                alert("本商品已售完，请选择其他商品");
+                location.reload();
+            }
+        },
 
-    var d = dialog({
-        title: '欢迎',
-        content: '欢迎使用 artDialog 对话框组件！'
     });
-    d.show();
+
 }
 
 //弹出提示窗，提示是否设置提醒
 function remindonclick(seckillProductId) {
-    $("#seckillidtoremind").val(seckillProductId);
-    $("#myModal").modal('show');
+    art.dialog({
+        id: 'testID',
+        content: '如果确定设置提醒，系统将会在秒杀开始前15分钟提醒您。如果不需要，请按取消按钮',
+        button: [
+            {
+                name: '提醒我',
+                callback: function() {
+                    id:'button-generate';
+                    this.content('已经设置提醒，窗口将在2秒后自动关闭').time(2);
+                    setRemin(seckillProductId);
+                    returnfalse;
+                },
+                focus: true
+            },
+            {
+                name: '取消'
+            }
+        ]
+    });
 }
 
-function setRemin() {
+//设置提醒信息
+function setRemin(seckillProductId) {
     var userId=1;
-    var seckillProductId=$("#seckillidtoremind").val();
     $.ajax({
         url:"setRemind/"+userId+"/"+seckillProductId,
         type:"get",
         dataType:"json",
         success:function(data)
         {
-            alert('设置提醒成功！')
         }
-
-
-
-
     });
 }

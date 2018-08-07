@@ -16,6 +16,15 @@ public class Product {
     private Date on_date;
     private boolean isDelete;
     private int commentNum;
+    private CarProduct carProducts;
+
+    public CarProduct getCarProducts() {
+        return carProducts;
+    }
+
+    public void setCarProducts(CarProduct carProducts) {
+        this.carProducts = carProducts;
+    }
 
     public Date getOn_date() {
         return on_date;

@@ -4,11 +4,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.model.dao.CommentDAO">
 
+    <select id="getUserNameByID" parameterType="int" resultType="String">
+        select username from USERINFO where USER_ID=#{userID}
+    </select>
+
     <select id="getCommentNum" parameterType="int" resultType="java.lang.Integer">
         select count(*) as cc FROM commentInfo where product_id=#{productID}
     </select>
 
-    <select id="getCommentByKey" parameterType="String" resultType="Keyword">
+    <select id="getCommentByKey" parameterType="String" resultType="CommentInfo">
         SELECT * FROM commentinfo where ctext like '%'||#{keyname}||'%'
     </select>
 
