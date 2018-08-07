@@ -20,6 +20,7 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script language="javascript">
         function updateSeckill(seckillId){
+            //加载商品信息与模态窗口
             $.ajax({
                 url:"updateSeckill.action",
                 type:"post",
@@ -38,13 +39,61 @@
         }
     </script>
     <script language="javascript">
+        //提交更改
         function changeSeckillProduct() {
-            $("#form1").submit();
+            if($("#seckillPrice").val()!=""){
+                if($("#allAmount").val()!=""){
+                    $("#form1").submit();
+                }else {
+                    alert("商品数量不能为空,提交失败");
+                    $("#allAmount").val("");
+                    $("#allAmount").focus();
+                }
+            }else {
+                alert("商品价格不能为空，提交失败");
+                $("#seckillPrice").val("");
+                $("#seckillPrice").focus();
+            }
+        }
+    </script>
+    <script language="javascript">
+        //提交更改
+        function amountChange() {
+            if($("#allAmount").val()<0){
+                alert("商品数量不能小于0");
+                $("#allAmount").val("");
+                $("#allAmount").focus();
+            }
         }
     </script>
 
+    <script language="javascript">
+        //检查商品秒杀价格
+        function checkPrice() {
+
+            var oldPrice=$("#oldPrice").val();
+            var newPrice=$("#seckillPrice").val();
+            if(oldPrice<newPrice){
+                alert("秒杀价格不能高于商品原价");
+                $("#seckillPrice").val("");
+                $("#seckillPrice").focus();
+            }
+        }
+    </script>
+
+    <script language="JavaScript">
+        //判断商品数量不能小于0
+        function amountChange(){
+            var amount=$("#allAmount").val();
+            if(amount<=0){
+                alert("秒杀个数不能小于0");
+                $("#allAmount").val("");
+                $("#allAmount").focus();
+            }
+        }
+    </script>
 </head>
-<body>
+<body style="background-color: #f2f2f2">
 <div class="tpl-content-wrapper">
     <div class="row-content am-cf">
         <div class="row">
@@ -196,13 +245,13 @@
 
                     <div class="am-form-group">
                         <label >秒杀数量</label>
-                        <input type="number" id="allAmount" name="allAmount" placeholder="" required="required">
+                        <input type="number" id="allAmount" name="allAmount" placeholder="" onchange="amountChange()" required="required">
                     </div>
                 </fieldset>
             </form>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" >关闭</button>
-                <button type="button" class="btn btn-primary" onclick="changeSeckillProduct()">提交更改</button>
+                <button type="button" id="changeButton" class="btn btn-primary" onclick="changeSeckillProduct()">提交更改</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

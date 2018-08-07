@@ -24,11 +24,11 @@ public interface SeckillProductDAO {
     void deleteSeckillProduct(int seckillProductId);
 
     //通过插叙条件查找符合条件的秒杀商品
-    List<SeckillProduct> selectSeckillProducts(Map<String,Object> map);
+    List<SeckillProduct> selectSeckillProducts(Map<String, Object> map);
 
     //通过分类id查找所有商品
     List<Product> getProducts(int classifyId);
 
     //查找页数
-    int selectPageCount(Map<String,Object> map);
+    int selectPageCount(Map<String, Object> map);
 }

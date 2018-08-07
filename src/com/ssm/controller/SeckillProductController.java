@@ -4,6 +4,7 @@ import com.ssm.model.bean.Classify;
 import com.ssm.model.bean.Product;
 import com.ssm.model.bean.SeckillProduct;
 import com.ssm.model.service.SeckillProductService;
+import com.ssm.Task.RemindTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -43,6 +44,7 @@ public class SeckillProductController {
             System.out.println(p.getProduct_name()+"  "+p.getOriginal_price());
         }
         return l;
+
     }
 
     //通过商品id查找商品
@@ -62,7 +64,7 @@ public class SeckillProductController {
         s.setStart_time(t);
         s.setSeckill_price(seckillprice);
         service.addSeckillProduct(s);
-        return "AddSeckillProduct.jsp";
+        return "AddSeckillProduct";
     }
 
     //查找所有秒杀商品通过数据
@@ -88,8 +90,9 @@ public class SeckillProductController {
         session.setAttribute("startdate",startdate);
         session.setAttribute("enddate",enddate);
         session.setAttribute("name",name);
-        return "SelectSeckillProduct.jsp";
+        return "SelectSeckillProduct";
     }
+
     //获取要更改的秒杀商品
     @RequestMapping("updateSeckill")
     public @ResponseBody SeckillProduct updateSeckill(int seckillId){
@@ -121,7 +124,7 @@ public class SeckillProductController {
         session.setAttribute("startdate",startdate);
         session.setAttribute("enddate",enddate);
         session.setAttribute("name",name);
-        return "SelectSeckillProduct.jsp";
+        return "SelectSeckillProduct";
     }
 
     //更改秒杀商品

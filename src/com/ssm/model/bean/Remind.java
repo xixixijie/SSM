@@ -5,6 +5,16 @@ public class Remind {
     private int user_id;
     private int seckillproduct_id;
 
+    private SeckillProduct seckillProduct;
+
+    public SeckillProduct getSeckillProduct() {
+        return seckillProduct;
+    }
+
+    public void setSeckillProduct(SeckillProduct seckillProduct) {
+        this.seckillProduct = seckillProduct;
+    }
+
     public int getRemind_id() {
         return remind_id;
     }

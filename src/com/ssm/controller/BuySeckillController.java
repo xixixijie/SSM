@@ -1,8 +1,6 @@
 package com.ssm.controller;
 
-import com.ssm.model.bean.Remind;
-import com.ssm.model.bean.SeckillProduct;
-import com.ssm.model.bean.TimeInfo;
+import com.ssm.model.bean.*;
 import com.ssm.model.service.BuySeckillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,9 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -161,6 +161,39 @@ public class BuySeckillController {
         r.setUser_id(userId);
         r.setSeckillproduct_id(seckillProductId);
         service.addRemind(r);
+    }
 
+    //获取秒杀商品
+    @RequestMapping("getSeckillProductToSell/{seckillProductId}")
+    @ResponseBody
+    public SeckillProduct getSeckillProductToSell(@PathVariable int seckillProductId){
+        return service.getSeckillProductToSell(seckillProductId);
+    }
+
+    //生成秒杀单
+    @RequestMapping("addSeckillOrder/{seckillProductId}/{userId}/{addressId}")
+    @ResponseBody
+    public boolean addSeckillOrder(@PathVariable int seckillProductId,@PathVariable int userId,@PathVariable int addressId){
+        Timestamp timestamp = new Timestamp(new Date().getTime());
+        SeckillOrder seckillOrder = new SeckillOrder();
+        seckillOrder.setAddress_id(addressId);
+        seckillOrder.setSeckillProduct_id(seckillProductId);
+        seckillOrder.setUser_id(userId);
+        seckillOrder.setOrder_time(timestamp);
+        return service.addSeckillOrder(seckillOrder);
+    }
+
+    //获取地址
+    @RequestMapping("getAddressForSeckill/{userId}")
+    @ResponseBody
+    public List<Address> getAddressForSeckill(@PathVariable int userId){
+        return service.getAddressForSeckill(userId);
+    }
+
+    //判断是否已经售完
+    @RequestMapping("judgeSeckillProduct/{seckillProductId}")
+    @ResponseBody
+    public Boolean judgeSeckillProduct(@PathVariable int seckillProductId){
+        return service.judgeSeckillProduct(seckillProductId);
     }
 }
