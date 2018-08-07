@@ -23,12 +23,12 @@
             var keyLabel=data.value;
 
             $.ajax({
-                url:"getComment/"+encodeURI(encodeURI(keyLabel)),
+                url:"getCommentBykey/"+encodeURI(encodeURI(keyLabel)),
                 type:"get",
                 dataType:"json",
                 success:function(data)
                 {
-                    alert(data.length);
+
 
                     $("#comment").empty();
                     for(var i=0;i<data.length;i++){
@@ -56,7 +56,7 @@
                             '                            </div>\n' +
                             '                            <!-- 图片 -->\n' +
                             '                            <div class="photo">\n' +
-                            '                                <img class="commentphoto" src="img\\comment_Photo\\1533016464521WallpaperStudio10-589.jpg">\n' +
+                            '                                <img class="commentphoto" src="img/2.jpg">\n' +
                             '                            </div>\n' +
                             '\n' +
                             '                        </div><br>\n' +
