@@ -11,13 +11,16 @@
 
 	<link rel="stylesheet" href="./auctiondetail/mui.min.css">
     <link href="./auctiondetail/style.css" rel="stylesheet">
+	<script type="text/javascript" src="js/cookie.js"></script>
 	<script>
 		$(function () {
             var index = location.href.lastIndexOf("=");
             var aid= location.href.substr(index+1);
+            var userid=get_cookie("miUserId");
 			var price;
 			var wanted;
 
+			alert(userid);
 			function load(){
                 $.ajax({
                     url: "getAuction/"+1,
@@ -120,7 +123,7 @@
                         $.ajax({
 
 							//userid+aid+myprice
-                            url: "addHistory/"+1+"/"+1+"/"+myprice+'/'+wanted,
+                            url: "addHistory/"+userid+"/"+aid+"/"+myprice+'/'+wanted,
                             type: "get",
                             dataType: "json",
                             success: function () {

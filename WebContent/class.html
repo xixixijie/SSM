@@ -15,6 +15,7 @@
 
 	<script type="text/javascript" src="js/jquery-3.2.0.min.js" ></script>
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/cookie.js"></script>
 
 	<!--<script type="text/javascript" src="js/class.js" ></script>-->
 	<script>
@@ -53,11 +54,11 @@
 
 			function load() {
 
-			    var userid=$.cookie('userid');
-                //alert("in");
+			    var userid=get_cookie("miUserId");
+                //alert(userid);
                 //推荐商品
                 $.ajax({
-                    url:"introProduct/"+1,
+                    url:"introProduct/"+userid,
                     type:"get",
                     dataType:"json",
                     success:function(data)

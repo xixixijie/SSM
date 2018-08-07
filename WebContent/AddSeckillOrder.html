@@ -16,7 +16,7 @@
 
     <link href="artDialog4/skins/default.css" rel="stylesheet" />
     <script src="artDialog4/jquery.artDialog.js"></script>
-
+    <script src="js/cookie.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -88,7 +88,7 @@
 
             //获取当前用户地址
             function loadAddress() {
-                var userId = 1;
+                var userId = get_cookie("miUserId");
                 $.ajax({
                     url:"getAddressForSeckill/"+userId,
                     type:"POST",
@@ -114,8 +114,7 @@
 
             var seckillProductId=$("#seckillProductId").val();
             var addressId=$("#addressId").val();
-            var userId=1;
-            alert(addressId)
+            var userId=get_cookie("miUserId");
 
             $.ajax({
                 url:"addSeckillOrder/"+seckillProductId+"/"+userId+"/"+addressId,
