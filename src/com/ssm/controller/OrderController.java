@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
@@ -33,15 +34,27 @@ public class OrderController {
 
     //根据商品ID查询所有选中的商品信息
     @RequestMapping("selectAllProduct")
-    public String selectProduct(int[] productIds,Model model,Integer user_id,CarProduct carp){
+    public String selectProduct(int[] productIds,Model model,CarProduct carp,HttpServletRequest request){
         //修改商品数量
         orderService.updatePnumber(carp);
 
         List<Product> list=orderService.selectProduct(productIds);
         model.addAttribute("result3",list);
 
+        Cookie myCookie[]=request.getCookies();//创建一个Cookie对象数组
+
+        int userId=1;
+        for(int n=0;n<myCookie.length-1;n++) {
+            Cookie newCookie = myCookie[n];
+            if(newCookie.getName().equals("miUserId")){
+                System.out.println("@!@@@@@@"+newCookie.getValue());
+                userId=Integer.parseInt(newCookie.getValue());
+
+            }
+        }
+
         //根据用户id查询该用户的所有地址
-        List<Address>  list2=orderService.selectAddress(1);
+        List<Address>  list2=orderService.selectAddress(userId);
         model.addAttribute("result2",list2);
         return "order";
     }

@@ -6,20 +6,24 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 	<meta name="format-detection" content="telephone=no, email=no"/>
 	<meta charset="UTF-8">
-	<title>萌宝购物</title>
+	<title>小米商城</title>
+
+	<script src="/js/jquery-3.2.0.min.js"></script>
+	<script src="/js/recommended.js"></script>
 	<link rel="stylesheet" type="text/css" href="themes/css/core.css">
 	<link rel="stylesheet" type="text/css" href="themes/css/icon.css">
 	<link rel="stylesheet" type="text/css" href="themes/css/home.css">
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+	<!--<link rel="stylesheet" type="text/css" href="css/frameui.css">-->
+	<!--<link rel="stylesheet" type="text/css" href="css/recommended.css">-->
 	<style type="text/css">
-
 		#scrollBg{ width: 100%; height: 45px; line-height: 45px;background: rgba(251,55,67,0.8); display: none; z-index:-1; position: fixed; left: 0; top:0; text-align: center; font-size: 20px; color: #fff; }
 	</style>
 </head>
 <body>
 
-<header class="aui-header-default aui-header-fixed aui-header-clear-bg"> <!-- aui-header-clear-bg 清除背景色 -->
+<header class="aui-header-default aui-header-fixed aui-header-clear-bg" style="background-color: inherit"> <!-- aui-header-clear-bg 清除背景色 -->
 	<a href="#" class="aui-header-item">
 		<i class="aui-icon aui-icon-code"></i>
 	</a>
@@ -34,6 +38,21 @@
 	</a>
 	<div id="scrollBg"></div>
 </header>
+<!--<header class="aui-header-default aui-header-fixed aui-header-clear-bg"> &lt;!&ndash; aui-header-clear-bg 清除背景色 &ndash;&gt;-->
+<!--<a href="#" class="aui-header-item">-->
+<!--<i class="aui-icon aui-icon-code"></i>-->
+<!--</a>-->
+<!--<div class="aui-header-center aui-header-center-clear"  style="margin-right:50px;">-->
+<!--<div class="aui-header-search-box" style="background-color:#fff">-->
+<!--<i id="searchBtn" class="aui-icon aui-icon-small-search"></i>-->
+<!--<input id="searchInput" type="text"  placeholder="" class="aui-header-search">-->
+<!--</div>-->
+<!--</div>-->
+<!--<a href="#" class="aui-header-item-icon" style="position:absolute; right:-35px; top:0;">-->
+<!--<i class="aui-icon aui-icon-member-1"></i>-->
+<!--</a>-->
+<!--<div id="scrollBg"></div>-->
+<!--</header>-->
 <div class="aui-content-box" >
 	<div class="aui-banner-content " data-aui-slider>
 		<div class="aui-banner-wrapper">
@@ -67,7 +86,7 @@
 			<!--<i class="aui-icon-large aui-icon-sign"></i>-->
 			<!--<p class="aui-grid-row-label">每日签到</p>-->
 			<!--</a>-->
-			<a href="my-time.html" class="aui-grid-row-item">
+			<a href="Seckill.html" class="aui-grid-row-item">
 				<i class="aui-icon-large aui-icon-time"></i>
 				<p class="aui-grid-row-label">限时抢购</p>
 			</a>
@@ -107,9 +126,31 @@
 	</section>
 
 
+	<!--团购推荐-->
+	<!--<div id="tuan" class="tuan">-->
+		<!--<div class="tuan_g" data-vtuan="0" data-cat="1" data-num="12058">-->
+			<!--<i></i>-->
+			<!--<a href="#">-->
+				<!--<div class="tuan_g_img">-->
+					<!--<div class="tally_box" id="show_number">-->
+					<!--</div>-->
+					<!--<div id="product_img"></div>-->
+				<!--</div>-->
+				<!--<div class="tuan_g_info" id="show_product_info">-->
+				<!--</div>-->
+
+				<!--<div class="tuan_g_core" id="show_price">-->
+				<!--</div>-->
+				<!--<div class="tuan_g_yj" id="show_origin_price"></div>-->
+			<!--</a>-->
+		<!--</div>-->
+	<!--</div>-->
+
 	<div class="aui-title-head">
 		<img src="themes/img/icon/sjxp.jpg"  alt="">
 	</div>
+
+
 
 	<div class="aui-list-content">
 		<div class="aui-list-item">
@@ -185,7 +226,7 @@
 </div>
 
 <footer class="aui-footer-default aui-footer-fixed">
-	<a href="style.html" class="aui-footer-item aui-footer-active">
+	<a href="index.html" class="aui-footer-item aui-footer-active">
 		<span class="aui-footer-item-icon aui-icon aui-footer-icon-home"></span>
 		<span class="aui-footer-item-text">首页</span>
 	</a>
@@ -197,7 +238,7 @@
 		<span class="aui-footer-item-icon aui-icon aui-footer-icon-find"></span>
 		<span class="aui-footer-item-text">客服</span>
 	</a>
-	<a href="car.html" class="aui-footer-item">
+	<a href="selectProduct.action" class="aui-footer-item">
 		<span class="aui-footer-item-icon aui-icon aui-footer-icon-car"></span>
 		<span class="aui-footer-item-text">购物车</span>
 	</a>
@@ -261,7 +302,10 @@
                         str+='<img class="v-img" src="img/'+data[i].cover_url+'">';
                         str+='<p class="aui-slide-item-title aui-slide-item-f-els">'+data[i].product_name+'</p><p class="aui-slide-item-info">';
                         str+='<span class="aui-slide-item-price">¥'+data[i].discount_price+'</span>&nbsp;&nbsp;';
-                        str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
+                        if(data[i].discount_price!=data[i].original_price){
+                            str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
+                        }
+
 
                         $("#sjList").append(str);
                     }
@@ -290,8 +334,9 @@
                         str+='<img class="v-img" src="img/'+data[i].cover_url+'">';
                         str+='<p class="aui-slide-item-title aui-slide-item-f-els">'+data[i].product_name+'</p><p class="aui-slide-item-info">';
                         str+='<span class="aui-slide-item-price">¥'+data[i].discount_price+'</span>&nbsp;&nbsp;';
-                        str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
-
+                        if(data[i].discount_price!=data[i].original_price){
+                            str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
+                        }
                         $("#pcList").append(str);
                     }
                 }
@@ -319,8 +364,9 @@
                         str+='<img class="v-img" src="img/'+data[i].cover_url+'">';
                         str+='<p class="aui-slide-item-title aui-slide-item-f-els">'+data[i].product_name+'</p><p class="aui-slide-item-info">';
                         str+='<span class="aui-slide-item-price">¥'+data[i].discount_price+'</span>&nbsp;&nbsp;';
-                        str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
-
+                        if(data[i].discount_price!=data[i].original_price){
+                            str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
+                        }
                         $("#tvList").append(str);
                     }
                 }
@@ -348,8 +394,9 @@
                         str+='<img class="v-img" src="img/'+data[i].cover_url+'">';
                         str+='<p class="aui-slide-item-title aui-slide-item-f-els">'+data[i].product_name+'</p><p class="aui-slide-item-info">';
                         str+='<span class="aui-slide-item-price">¥'+data[i].discount_price+'</span>&nbsp;&nbsp;';
-                        str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
-
+                        if(data[i].discount_price!=data[i].original_price){
+                            str+='<span class="aui-slide-item-mrk">¥'+data[i].original_price+'</span></p></a></li>';
+                        }
                         $("#elecList").append(str);
                     }
                 }
@@ -365,5 +412,6 @@
 
     })
 </script>
+
 </body>
 </html>

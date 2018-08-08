@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -226,6 +228,12 @@ public class ProductController {
     @ResponseBody
     public List<Product> getProductForUserByName(@PathVariable String search_info){
         List<Product> productList=new ArrayList<Product>();
+        try {
+            search_info = URLDecoder.decode(search_info,"UTF-8");
+            //System.out.println(search_info);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         productList=productService.getProductForUserByName(search_info);
         return productList;
     }

@@ -4,7 +4,7 @@
        <meta charset="utf-8">
    </head>
    <body style="height: 100%; margin: 0">
-       <div id="container" style="height: 100%"></div>
+       <div id="container" style="width:800px; height: 400px;"></div>
        <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
        <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
        <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
@@ -31,7 +31,8 @@
                        var names=[];
                        var buyData=[];
                        for(var i=0;i<data.length;i++){
-                           names.push[data[i].productName];
+                           //alert(data[i].productName)
+                           names.push(data[i].productName);
                            buyData.push({name:data[i].productName,value:data[i].num})
                        }
 
@@ -42,6 +43,11 @@
                        app.title = '环形图';
 
                        option = {
+                           title : {
+                               text: '商品购买人数统计',
+                               subtext: '各商品购买人数',
+                               x:'center'
+                           },
                            tooltip: {
                                trigger: 'item',
                                formatter: "{a} <br/>{b}: {c} ({d}%)"

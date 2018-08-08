@@ -40,7 +40,8 @@ $(function() {
     var index1 = location.href.lastIndexOf("product_id=");
     var product_id =location.href.substring(index1+"product_id=".length); //商品id
 
-    var userID=$.cookie('userID');
+    var userID = get_cookie("miUserId");
+    // var userID=$.cookie('miuserID');
 
     if(isNaN(userID)){
         userID=-1;
@@ -125,3 +126,22 @@ $(function() {
 
 
 });
+
+function get_cookie(Name) {
+    //查询检索的值
+    var search = Name + "=";
+    //返回值
+    var returnvalue = "";
+    if (document.cookie.length > 0) {
+        sd = document.cookie.indexOf(search);
+        if (sd!= -1) {
+            sd += search.length;
+            end = document.cookie.indexOf(";", sd);
+            if (end == -1)
+                end = document.cookie.length;
+            //unescape() 函数可对通过 escape() 编码的字符串进行解码。
+            returnvalue=unescape(document.cookie.substring(sd, end))
+        }
+    }
+    return returnvalue;
+}

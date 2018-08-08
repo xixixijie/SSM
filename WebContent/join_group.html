@@ -112,6 +112,24 @@
         <a href="#" class="settlement" id="join_group_button">加入团购</a>
     </div>
     <script type="application/javascript">
+        function get_cookie(Name) {
+            //查询检索的值
+            var search = Name + "=";
+            //返回值
+            var returnvalue = "";
+            if (document.cookie.length > 0) {
+                sd = document.cookie.indexOf(search);
+                if (sd!= -1) {
+                    sd += search.length;
+                    end = document.cookie.indexOf(";", sd);
+                    if (end == -1)
+                        end = document.cookie.length;
+                    //unescape() 函数可对通过 escape() 编码的字符串进行解码。
+                    returnvalue=unescape(document.cookie.substring(sd, end))
+                }
+            }
+            return returnvalue;
+        }
         function getNowFormatDate() {
             var date = new Date();
             var seperator1 = "-";
@@ -133,7 +151,8 @@
             //往cookie中存joinerID
 //            $.cookie('joinerID', 1, { expires: 7 ,path:'/'});
             //从cookie中取joinerID
-            var joinerID = 1;
+            // var joinerID = 1;
+            var joinerID = get_cookie("miUserId");
 //            joinerID = $.cookie('joinerID');
 
             var groupID = $("#join_group_groupID").val();

@@ -55,6 +55,9 @@
 			function load() {
 
 			    var userid=get_cookie("miUserId");
+			    if(userid==null){
+			        userid=0;
+				}
                 //alert(userid);
                 //推荐商品
                 $.ajax({

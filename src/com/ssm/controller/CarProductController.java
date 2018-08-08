@@ -32,10 +32,20 @@ public class CarProductController {
                 if(sCookie.getName().equals("productid")){
                   pid=sCookie.getValue();
                 }*/
+        Cookie myCookie[]=request.getCookies();//创建一个Cookie对象数组
+        int userId=1;
+        for(int n=0;n<myCookie.length-1;n++) {
+            Cookie newCookie = myCookie[n];
+            if(newCookie.getName().equals("miUserId")){
+                System.out.println("@!@@@@@@"+newCookie.getValue());
+                userId=Integer.parseInt(newCookie.getValue());
 
-        carp=new CarProduct();
-        carp.setProduct_id(10);
-        carp.setUser_id(1);
+            }
+        }
+
+
+//        carp.setProduct_id(10);
+        carp.setUser_id(userId);
         carp.setCpnumber(1);
         Date date1=new Date();
         if(!"".equals("date1")) {
@@ -57,8 +67,22 @@ public class CarProductController {
 
     //根据用户Id查询购物车中商品
     @RequestMapping("selectProduct")
-    public String selectCarProduct(Integer user_id, Model model){
-        List<CarProduct> list=carProductService.selectCarProduct(1);
+    public String selectCarProduct( Model model,HttpServletRequest request){
+
+        Cookie myCookie[]=request.getCookies();//创建一个Cookie对象数组
+
+        int userId=1;
+        for(int n=0;n<myCookie.length-1;n++) {
+            Cookie newCookie = myCookie[n];
+            if(newCookie.getName().equals("miUserId")){
+                System.out.println("@!@@@@@@"+newCookie.getValue());
+                userId=Integer.parseInt(newCookie.getValue());
+
+            }
+        }
+
+
+        List<CarProduct> list=carProductService.selectCarProduct(userId);
         model.addAttribute("result1",list);
         return "car";
     }

@@ -238,7 +238,7 @@
 		</div>
 		<div class="aui-footer-product-action-list" style="width: 66%">
 
-			<a href="addProduct.action" class="yellow-color">加入购物车</a>
+			<a id="addCar" href="" class="yellow-color">加入购物车</a>
 			<a href="" class="red-color">立即购买</a>
 		</div>
 	</div>
@@ -348,6 +348,10 @@
         loadProduct();
         loadAspect();
         loadParameter();
+        loadCar();
+        function loadCar() {
+			$("#addCar").attr("href","addProduct.action?product_id="+product_id);
+        }
 
 
         function loadAspect() {

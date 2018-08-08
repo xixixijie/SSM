@@ -657,7 +657,7 @@ public class GroupBuyingController {
                         "                    <td class=\"od-red\">已成功</td>" +
                         "                </tr>" +
                         "                <tr>" +
-                        "                    <td>团购价格:</td" +
+                        "                    <td>团购价格:</td>" +
                         "                    <td class=\"od-red\">" + group1.getActivity().getGroup_buying_price() + " </td>" +
                         "                </tr>" +
                         "                <tr>" +

@@ -1,10 +1,32 @@
 /**
  * Created by chenyufeng on 2018/7/24.
  */
+
+function get_cookie(Name) {
+    //查询检索的值
+    var search = Name + "=";
+    //返回值
+    var returnvalue = "";
+    if (document.cookie.length > 0) {
+        sd = document.cookie.indexOf(search);
+        if (sd!= -1) {
+            sd += search.length;
+            end = document.cookie.indexOf(";", sd);
+            if (end == -1)
+                end = document.cookie.length;
+            //unescape() 函数可对通过 escape() 编码的字符串进行解码。
+            returnvalue=unescape(document.cookie.substring(sd, end))
+        }
+    }
+    return returnvalue;
+}
+
+
 $(function () {
     //获得排序最高，价格最低的团购活动
     var index = location.href.lastIndexOf("=");
-    var userID = location.href.substr(index+1);
+    var userID = get_cookie("miUserId");
+    // var userID = location.href.substr(index+1);
     $.ajax({
         url:"getRecommendedGroupBuying/"+userID,
         type:"post",
